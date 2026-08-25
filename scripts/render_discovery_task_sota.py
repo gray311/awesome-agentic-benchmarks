@@ -14,6 +14,8 @@ ROOT = Path(__file__).resolve().parents[1]
 TASK_PATH = ROOT / "data" / "discovery-tasks.json"
 SOTA_PATH = ROOT / "data" / "discovery-task-sota.json"
 DOC_PATH = ROOT / "docs" / "all-discovery-tasks.md"
+TTT_TASK_PATH = ROOT / "data" / "ttt-discover-tasks.json"
+FINCH_TASK_PATH = ROOT / "data" / "finch-collection-tasks.json"
 AS_OF = "2026-08-25"
 SIMPLETES_PAPER = "https://arxiv.org/html/2604.19341"
 SIMPLETES_ARTIFACTS = "https://github.com/wq-will/SimpleTES/tree/main/best_results"
@@ -271,7 +273,145 @@ def evidence_label(record: dict) -> str:
     }[record["status"]]
 
 
-def render_doc(registry: dict, sota: dict) -> str:
+def cell(value: object) -> str:
+    """Render a compact Markdown-table cell without changing source data."""
+    return str(value).replace("|", "\\|").replace("\n", " ")
+
+
+def render_collection_catalogue(ttt: dict, finch: dict) -> list[str]:
+    lines = [
+        "## Complete TTT-Discover and Finch task catalogues",
+        "",
+        f"> **{len(ttt['tasks'])} TTT-Discover published task variants** + "
+        f"**{len(finch['tasks'])} current Finch Collection task IDs**. These are catalogue entries, not "
+        "additional unique benchmark claims: TTT-Discover is an evaluated system, and Finch is a trajectory "
+        "collection assembled from upstream benchmarks.",
+        "",
+        "This section repairs an earlier source bias: TTT-Discover and Finch were previously shown only as "
+        "comparison systems on a few SimpleTES rows. Their own published/evolving task sets are now enumerated.",
+        "",
+        "### TTT-Discover: every published attempted task",
+        "",
+        f"Launch: **{ttt['launch_date']}** · repository stars: **{ttt['repository_stars']['count']}** "
+        f"(snapshot {ttt['repository_stars']['as_of']}) · model: **{ttt['model']}** · "
+        f"[paper]({ttt['paper']}) · [code]({ttt['repository']}) · [project page]({ttt['project_page']})",
+        "",
+        "The paper says it reports every attempted problem. Hardware- and dataset-specific evaluator contracts "
+        "are kept as separate variants, giving 3 mathematics + 4 TriMul hardware + 2 AtCoder + 2 biology = 11.",
+        "",
+        "| # | Task | Domain | Metric | TTT-Discover | Current-record field |",
+        "|---:|---|---|---|---:|---|",
+    ]
+    for index, task in enumerate(ttt["tasks"], 1):
+        metric = task["metric"]
+        direction = "↓" if metric["direction"] == "minimize" else "↑"
+        record = task["current_record"]
+        if record.get("score") is None:
+            current = record["status"]
+        else:
+            current = f"{record['system']}: {record['score']} {direction} ({record['status']})"
+        lines.append(
+            f"| {index} | [{cell(task['name'])}](#{task['id']}) | {cell(task['domain'])} | "
+            f"{cell(metric['name'])} ({direction}, {cell(metric['unit'])}) | "
+            f"{task['ttt_discover_result']} | {cell(current)} |"
+        )
+
+    lines.extend(["", "#### TTT-Discover task contracts", ""])
+    for task in ttt["tasks"]:
+        metric = task["metric"]
+        direction = "minimize ↓" if metric["direction"] == "minimize" else "maximize ↑"
+        lines.extend(
+            [
+                f"<a id=\"{task['id']}\"></a>",
+                "",
+                f"##### {task['name']}",
+                "",
+                f"- **Question:** {task['question']}",
+                f"- **Agent input:** {task['input']}",
+                f"- **Required output:** {task['output']}",
+                f"- **Evaluation:** {task['evaluation']}",
+                f"- **Environment:** {task['environment']}",
+                f"- **Metric:** {metric['name']} · {direction} · {metric['unit']}",
+                f"- **TTT-Discover result:** {task['ttt_discover_result']}",
+                f"- **Current-record status:** `{task['current_record']['status']}` as of {task['current_record']['as_of']}",
+                "",
+            ]
+        )
+
+    lines.extend(
+        [
+            "### Finch Collection: current 442-task dataset snapshot",
+            "",
+            f"Paper launch: **{finch['paper_launch_date']}** · repository stars: "
+            f"**{finch['repository_stars']['count']}** (snapshot {finch['repository_stars']['as_of']}) · "
+            f"[paper]({finch['paper']}) · [code]({finch['repository']}) · [dataset]({finch['dataset']})",
+            "",
+            f"The paper freezes **{finch['paper_task_count']} tasks / {finch['paper_trajectory_count']:,} trajectories**. "
+            f"The official dataset card and scanned Parquet revision now contain **{finch['current_task_count']} tasks / "
+            f"{finch['current_trajectory_count']:,} trajectories**. {finch['version_note']}",
+            "",
+            "Finch is not itself the evaluator or the current SOTA for every row. Each task retains its upstream "
+            "benchmark/evaluator; `current_dataset_rows` is trajectory coverage, not a score.",
+            "",
+            "#### Group counts and evaluator contracts",
+            "",
+            "| Task group | Paper v1 | Current dataset | Agent question / evaluation contract |",
+            "|---|---:|---:|---|",
+        ]
+    )
+    for domain in finch["current_group_counts"]:
+        contract = finch["domain_contracts"][domain]
+        lines.append(
+            f"| {cell(domain)} | {finch['paper_group_counts'][domain]} | "
+            f"{finch['current_group_counts'][domain]} | {cell(contract['question'])} "
+            f"Evaluator: {cell(contract['evaluation'])} |"
+        )
+
+    lines.extend(
+        [
+            "",
+            "#### All current Finch task IDs",
+            "",
+            "Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the expanded dataset. "
+            "`unresolved-paper-v1-or-expansion` is deliberate: the paper says 47 numerical tasks but prints 46 IDs, "
+            "while the current dataset has 65 additional numerical IDs. One is the omitted paper seed and 64 are "
+            "post-paper additions; no public artifact identifies which one.",
+            "",
+        ]
+    )
+    current_domain = None
+    running = 0
+    for task in finch["tasks"]:
+        if task["domain"] != current_domain:
+            current_domain = task["domain"]
+            contract = finch["domain_contracts"][current_domain]
+            lines.extend(
+                [
+                    f"##### {current_domain}",
+                    "",
+                    f"- **Question:** {contract['question']}",
+                    f"- **Input:** {contract['input']}",
+                    f"- **Output:** {contract['output']}",
+                    f"- **Evaluation:** {contract['evaluation']}",
+                    f"- **Environment:** {contract['environment']}",
+                    f"- **Metric family:** {contract['metric']}",
+                    "",
+                    "| # | Task ID | Upstream source | Paper/expansion status | Trajectories | Published description |",
+                    "|---:|---|---|---|---:|---|",
+                ]
+            )
+        running += 1
+        description = task.get("paper_description", "No per-task description in arXiv v1; use the upstream evaluator artifact.")
+        lines.append(
+            f"| {running} | `{cell(task['task'])}` | {cell(task['upstream_benchmark'])} | "
+            f"`{task['paper_371_membership']}` | {task['current_dataset_rows']} | {cell(description)} |"
+        )
+        if running == len(finch["tasks"]) or finch["tasks"][running]["domain"] != current_domain:
+            lines.append("")
+    return lines
+
+
+def render_doc(registry: dict, sota: dict, ttt: dict, finch: dict) -> str:
     records = {record["task_id"]: record for record in sota["records"]}
     counts = Counter(task["source_suite"] for task in registry["tasks"])
     domains = Counter(task["domain"] for task in registry["tasks"])
@@ -283,7 +423,8 @@ def render_doc(registry: dict, sota: dict) -> str:
     lines = [
         "# All Discovery Tasks and Current-Record Tracker",
         "",
-        f"> Evidence snapshot: **{AS_OF}** · **{len(registry['tasks'])} tasks** · **{len(counts)} source suites**",
+        f"> Evidence snapshot: **{AS_OF}** · **{len(registry['tasks'])} full-contract registry tasks** · "
+        f"**{len(ttt['tasks'])} TTT-Discover variants** · **{len(finch['tasks'])} current Finch task IDs**",
         "",
         "This is the single-file lookup for every task in the discovery registry. It records the agent-visible question and input, required output, evaluator, environment, metric, the source suite's own reported result, and a separately researched current-record field.",
         "",
@@ -330,7 +471,7 @@ def render_doc(registry: dict, sota: dict) -> str:
             f"| {index} | [{task['name']}](#{task['id']}) | {task['domain']} | {SUITE_LABELS[task['source_suite']]} | {metric['name']} ({direction}) | {score_text(record)} | {status} |"
         )
 
-    lines.extend(["", "## Full task contracts", ""])
+    lines.extend([""] + render_collection_catalogue(ttt, finch) + ["", "## Full task contracts", ""])
     current_domain = None
     for task in registry["tasks"]:
         if task["domain"] != current_domain:
@@ -397,8 +538,10 @@ def main() -> int:
     parser.add_argument("--check", action="store_true", help="fail if generated files are stale")
     args = parser.parse_args()
     registry = json.loads(TASK_PATH.read_text(encoding="utf-8"))
+    ttt = json.loads(TTT_TASK_PATH.read_text(encoding="utf-8"))
+    finch = json.loads(FINCH_TASK_PATH.read_text(encoding="utf-8"))
     sota = build_sota(registry)
-    expected = {SOTA_PATH: serialize_sota(sota), DOC_PATH: render_doc(registry, sota)}
+    expected = {SOTA_PATH: serialize_sota(sota), DOC_PATH: render_doc(registry, sota, ttt, finch)}
 
     if args.check:
         stale = [path for path, content in expected.items() if not path.exists() or path.read_text(encoding="utf-8") != content]

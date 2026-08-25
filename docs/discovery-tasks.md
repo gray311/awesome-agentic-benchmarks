@@ -170,16 +170,18 @@ Until an artifact is replayed with exact feasibility and a frozen objective, thi
 | Name | Registry role | Why |
 |---|---|---|
 | **SimpleTES** | Source suite + evaluated system | Releases executable tasks and also reports results from its search method. |
-| **TTT-Discover** | Evaluated system / task source when artifacts exist | Its `0.73` result is the reference for the single-cell task; the method itself is not a task. |
+| **TTT-Discover** | Evaluated system + published task-set source | The method is not a task, but all 11 published evaluator variants are now catalogued separately: 3 mathematics, 4 hardware-specific TriMul, 2 AtCoder, and 2 biology. |
 | **SkyDiscover** | Candidate source suite | Promote its individual problems only after extracting question, input, evaluator, environment, and artifacts. |
-| **EFT** | Training method | Record as agent/training configuration attached to a task result, not as a benchmark or discovery task. |
+| **EFT / Finch models** | Training method + evaluated models | Record EFT as training configuration and Finch as the mutation model; neither is a task. |
+| **Finch Collection** | Cross-benchmark trajectory collection | The current 442 domain/task IDs are catalogued with their upstream evaluator families; the collection must not be relabeled as a new 442-task benchmark. |
 | **AlphaEvolve / Together AI / CUDAAgent / SLD Agent** | Reference systems | Appear in result provenance for the tasks they attempted. |
+
+See the [all-in-one task catalogue](all-discovery-tasks.md#complete-ttt-discover-and-finch-task-catalogues), [TTT-Discover JSON](../data/ttt-discover-tasks.json), and [Finch Collection JSON](../data/finch-collection-tasks.json) for the complete extracted lists.
 
 ## Next task-source extraction queue
 
 The next expansion should extract individual executable problems—rather than add framework names—from:
 
-- TTT-Discover;
 - SkyDiscover;
 - AlphaEvolve and AlphaEvolve V2;
 - AI4AI-Bench's ten frozen training-algorithm repositories;

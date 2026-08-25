@@ -10,7 +10,7 @@
 ![Validation](https://img.shields.io/badge/validation-passing-16a34a)
 [![License: MIT](https://img.shields.io/badge/license-MIT-f59e0b.svg)](LICENSE)
 
-[All Discovery Tasks + SOTA](docs/all-discovery-tasks.md) · [Discovery Overview](docs/discovery-tasks.md) · [Interactive Discovery](docs/interactive-discovery-tasks.md) · [Launch & Stars](docs/benchmark-release-and-stars.md) · [Task JSON](data/discovery-tasks.json) · [SOTA JSON](data/discovery-task-sota.json) · [2026 Frontier Tracker](docs/2026-frontier-benchmarks.md) · [Benchmark Dimensions](docs/benchmark-dimensions.md) · [Model Coverage](docs/model-coverage.md) · [Suite JSON](data/benchmarks.json) · [Contributing](CONTRIBUTING.md)
+[All Discovery Tasks + SOTA](docs/all-discovery-tasks.md) · [TTT Task JSON](data/ttt-discover-tasks.json) · [Finch 442-Task JSON](data/finch-collection-tasks.json) · [Discovery Overview](docs/discovery-tasks.md) · [Interactive Discovery](docs/interactive-discovery-tasks.md) · [Launch & Stars](docs/benchmark-release-and-stars.md) · [Core Task JSON](data/discovery-tasks.json) · [SOTA JSON](data/discovery-task-sota.json) · [2026 Frontier Tracker](docs/2026-frontier-benchmarks.md) · [Benchmark Dimensions](docs/benchmark-dimensions.md) · [Model Coverage](docs/model-coverage.md) · [Suite JSON](data/benchmarks.json) · [Contributing](CONTRIBUTING.md)
 
 </div>
 
@@ -43,6 +43,7 @@ We therefore treat every score as a result of a complete experimental configurat
 
 ## 🔥 News
 
+- **2026-08-25** — Rebuilt discovery coverage around task sources rather than SimpleTES comparisons: all 11 published TTT-Discover variants and all 442 task IDs in the current Finch Collection are now enumerated, with the paper's 371-task snapshot and its official 47-vs-46 appendix inconsistency preserved explicitly.
 - **2026-08-25** — Corrected the discovery record model so source-paper results are never automatically labeled SOTA; current records, published-precision ties, contract-only incumbents, and suite-only evidence are now tracked separately.
 - **2026-08-25** — Published a single-file reference for all 52 discovery tasks with complete task contracts and a validated machine-readable result snapshot.
 - **2026-08-25** — Added launch dates and dated GitHub-star snapshots for all 59 benchmark entries, including live star badges, explicit date precision, repository-scope labels, and CI coverage checks.
@@ -124,7 +125,7 @@ The catalog separates three layers:
 | **Task suite/source** | SimpleTES, ARC-AGI-3, DiG-bench | Provenance grouping that exposes one or more tasks |
 | **Method or evaluated system** | SimpleTES search, TTT-Discover, EFT, AlphaEvolve | Attached to a result or configuration; not treated as the task itself |
 
-The [all-in-one Discovery Task + SOTA reference](docs/all-discovery-tasks.md) contains **52 individually verified tasks** from three source suites; the shorter [registry overview](docs/discovery-tasks.md) remains available for landscape browsing:
+The [all-in-one Discovery Task + SOTA reference](docs/all-discovery-tasks.md) now combines three explicitly different coverage layers: **52 full-contract task rows** with SOTA policy, **all 11 published TTT-Discover task variants**, and **all 442 domain/task IDs in the current Finch Collection snapshot**. TTT-Discover is an evaluated discovery system; Finch is a cross-benchmark trajectory collection. Neither is relabeled as a newly authored benchmark. The shorter [registry overview](docs/discovery-tasks.md) remains available for landscape browsing:
 
 | Domain | Tasks | Examples |
 |---|---:|---|
@@ -134,8 +135,10 @@ The [all-in-one Discovery Task + SOTA reference](docs/all-discovery-tasks.md) co
 | AI foundations | 7 | Three GPU kernels and four scaling-law discovery problems |
 | Mathematics discovery | 7 | Erdős minimum overlap, autocorrelation inequalities, sum-difference, circle packing, and Hadamard determinant |
 | Interactive world discovery | 24 | ARC-AGI-3's three anonymous public games and DiG-bench P-1 through P-21 |
+| TTT-Discover published task set | 11 variants | Three mathematics tasks, TriMul on four hardware targets, AHC039/AHC058, and PBMC/Tabula denoising |
+| Finch Collection current snapshot | 442 task IDs | 172 Frontier-CS, 111 AlgoTune, 38 ALE-Bench, 32 mathematics, 80 symbolic regression, 4 GPU, 3 biology, and 2 constructive-search tasks |
 
-Each task is available in [machine-readable JSON](data/discovery-tasks.json), with a separate [dated result snapshot](data/discovery-task-sota.json). For SimpleTES-derived task rows, the suite's own result is preserved separately from the current-record field. A current record is assigned only when a live leaderboard, official result dataset, historical construction, or later matched-evaluator artifact supports it; otherwise the row is explicitly marked as a source-reported contract incumbent. ARC-AGI-3 and DiG-bench suite aggregates are not imputed to individual tasks. The full source suites are larger—ARC-AGI-3 has 135 environments and DiG-bench has 70—but private environments and public IDs that cannot yet be authenticated are not fabricated as task rows. See [Interactive Discovery Tasks](docs/interactive-discovery-tasks.md) for the protocol and extraction policy.
+The coverage layers are available as [core task JSON](data/discovery-tasks.json), [TTT-Discover task JSON](data/ttt-discover-tasks.json), and [Finch Collection task JSON](data/finch-collection-tasks.json), with a separate [dated result snapshot](data/discovery-task-sota.json). The Finch file distinguishes the arXiv v1 371-task claim from the current 442-task dataset: arXiv identifies 370 task IDs, because its summary says 47 numerical tasks while Appendix Table 12 prints only 46. The 65 current numerical IDs that contain that omitted seed plus 64 additions remain explicitly unresolved rather than guessed. For SimpleTES-derived task rows, the suite's own result is preserved separately from the current-record field. A current record is assigned only when a live leaderboard, official result dataset, historical construction, or later matched-evaluator artifact supports it; otherwise the row is explicitly marked as a source-reported contract incumbent. ARC-AGI-3 and DiG-bench suite aggregates are not imputed to individual tasks. The full source suites are larger—ARC-AGI-3 has 135 environments and DiG-bench has 70—but private environments and public IDs that cannot yet be authenticated are not fabricated as task rows. See [Interactive Discovery Tasks](docs/interactive-discovery-tasks.md) for the protocol and extraction policy.
 
 ## 🗓️ Launch dates and GitHub stars
 
@@ -149,6 +152,8 @@ Launch time and repository popularity are tracked separately from capability sco
 | **SimpleTES** | 2026-04 | [wq-will/SimpleTES](https://github.com/wq-will/SimpleTES) | 169 |
 | **ARC-AGI-3** | 2026-04-22 | [arcprize/ARC-AGI](https://github.com/arcprize/ARC-AGI) (toolkit) | 69 |
 | **DiG-bench** | 2026-08-12 | [discos-research/dig-bench](https://github.com/discos-research/dig-bench) | 24 |
+| **TTT-Discover** | 2026-01-22 | [test-time-training/discover](https://github.com/test-time-training/discover) | 628 |
+| **Finch Collection / EFT** | 2026-06-27 | [Open-Galapagos/evolution-fine-tuning](https://github.com/Open-Galapagos/evolution-fine-tuning) | 28 |
 | **EdgeBench** | 2026-07-02 | [ByteDance-Seed/EdgeBench](https://github.com/ByteDance-Seed/EdgeBench) | 432 |
 
 See the [complete 59-benchmark launch and star table](docs/benchmark-release-and-stars.md) and its [machine-readable metadata](data/benchmark-metadata.json). Repositories shared by multiple evaluations are marked `shared-suite`; benchmarks without a verified official GitHub repository show `N/A`, not zero.

@@ -17,5 +17,6 @@ jobs:
           python-version: "3.12"
       - run: python scripts/validate_registry.py
       - run: python scripts/validate_discovery_tasks.py
+      - run: python scripts/validate_discovery_collections.py
       - run: python scripts/render_discovery_task_sota.py --check
       - run: python scripts/validate_benchmark_metadata.py
