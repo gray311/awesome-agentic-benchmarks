@@ -1,6 +1,24 @@
 # Contributing
 
-Contributions should make agentic benchmarks easier to compare and easier for downstream AI4AI systems to consume.
+Contributions should make executable discovery tasks and agentic benchmark suites easier to compare and easier for downstream AI4AI systems to consume.
+
+## Adding a discovery task
+
+The preferred contribution is a task-level entry in `data/discovery-tasks.json`. A discovery method or agent name is not sufficient.
+
+Every task must identify:
+
+- the scientific or engineering question;
+- agent-visible data, seed artifact, constraints, and feedback;
+- required output artifact;
+- metric name, unit, and minimize/maximize direction;
+- executable evaluator and validity checks;
+- language, dependencies, simulator/data, hardware, and isolation policy;
+- reference system and score under the same task contract;
+- reported discovery system and score;
+- primary evidence URLs and integrity caveats.
+
+If several tasks come from one project, declare that project once as a `source_suite` and add each problem as a separate task. Methods such as EFT and search frameworks without extracted problems belong in result/configuration provenance, not in the task array.
 
 ## Adding a benchmark
 
@@ -52,6 +70,7 @@ Blog posts and benchmark aggregators may help discovery but should not be the on
 - [ ] Integrity caveats are preserved.
 - [ ] At least two primary sources are linked.
 - [ ] `python scripts/validate_registry.py` passes.
+- [ ] `python scripts/validate_discovery_tasks.py` passes when task data changes.
 - [ ] The README landscape is updated when the new entry represents a new category.
 
 ## Taxonomy changes

@@ -2,7 +2,9 @@
 
 **Evidence snapshot:** 2026-08-24 (America/Chicago)
 
-This page is a dated frontier tracker. It complements the stable catalog in the main README and prevents a new preprint, a live benchmark, and a reproducible release from being presented as if they had the same maturity.
+This page is a dated frontier tracker for **task sources and benchmark suites**. The primary catalog unit is the executable problem in the [Scientific Discovery Task Registry](discovery-tasks.md), not the discovery method. This page prevents a new preprint, a live suite, and a reproducible release from being presented as if they had the same maturity.
+
+For example, SimpleTES is a source suite and evaluated system; its 28 quantum, astrodynamics, algorithm, AI-foundation, and mathematics problems are the actual discovery tasks.
 
 ## Status vocabulary
 

@@ -2,6 +2,8 @@
 
 Dimensions classify **what a benchmark evaluates**. Training techniques such as SFT, DPO, GRPO, RLHF, LoRA, and distillation are not top-level dimensions; they are methods an agent may use inside a benchmark, especially a post-training benchmark.
 
+For scientific discovery, dimension and task are also separate: `mathematics-discovery` is a dimension, **Erdős minimum overlap** is a task, **SimpleTES** is a source suite and evaluated system, and **EFT** is a training method.
+
 | Dimension ID | Display name | Definition | Example benchmarks |
 |---|---|---|---|
 | `coding-software-engineering` | Coding & Software Engineering | Repository editing, issue resolution, debugging, tests, and terminal work | SWE-bench, Terminal-Bench, TerminalWorld, SWE Refactor Bench |
@@ -39,3 +41,15 @@ AI R&D / AI4AI
 ```
 
 Each benchmark receives exactly one `primary_dimension`, zero or more `secondary_dimensions`, and multiple orthogonal `capabilities`. For example, NatureBench is primarily `scientific-discovery`; coding and experimentation are capabilities rather than duplicate top-level classifications.
+
+## Scientific-discovery task domains
+
+These domain labels classify individual problems in [data/discovery-tasks.json](../data/discovery-tasks.json):
+
+| Task domain | Object being discovered | Example tasks |
+|---|---|---|
+| `quantum-compilation` | Hardware-aware routing or scheduling policy | Superconducting qubit routing; zoned neutral-atom compilation |
+| `astrodynamics` | Feasible low-cost mission trajectory | Mariner 10; Voyager 2; Galileo; Cassini; Rosetta |
+| `scientific-algorithms` | Faster or more accurate scientific computation | LASSO path solver; ZAPBench forecasting; single-cell denoising |
+| `ai-foundations` | Faster AI systems or predictive laws of model behavior | GPU kernels; scaling-law discovery |
+| `mathematics-discovery` | Extremal, analytic, geometric, or combinatorial construction | Erdős overlap; autocorrelation inequalities; circle packing; Hadamard determinant |

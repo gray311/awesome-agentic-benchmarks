@@ -2,7 +2,7 @@
 
 # Awesome Agentic Benchmarks
 
-### A curated, evidence-backed map of benchmarks for autonomous agents, AI R&D, and recursive self-improvement
+### A task-level, evidence-backed map of discovery environments for autonomous agents, AI R&D, and recursive self-improvement
 
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 ![Registry](https://img.shields.io/badge/registry-machine--readable-2563eb)
@@ -10,7 +10,7 @@
 ![Validation](https://img.shields.io/badge/validation-passing-16a34a)
 [![License: MIT](https://img.shields.io/badge/license-MIT-f59e0b.svg)](LICENSE)
 
-[2026 Frontier Tracker](docs/2026-frontier-benchmarks.md) · [Benchmark Dimensions](docs/benchmark-dimensions.md) · [Model Coverage](docs/model-coverage.md) · [JSON Registry](data/benchmarks.json) · [Taxonomy](docs/taxonomy.md) · [Contributing](CONTRIBUTING.md)
+[Discovery Tasks](docs/discovery-tasks.md) · [Task JSON](data/discovery-tasks.json) · [2026 Frontier Tracker](docs/2026-frontier-benchmarks.md) · [Benchmark Dimensions](docs/benchmark-dimensions.md) · [Model Coverage](docs/model-coverage.md) · [Suite JSON](data/benchmarks.json) · [Contributing](CONTRIBUTING.md)
 
 </div>
 
@@ -20,15 +20,16 @@
 >
 > **model + scaffold + tools + environment + compute budget + evaluator**
 
-This repository tracks benchmarks in which agents browse, use tools, operate computers, edit repositories, run experiments, train models, reproduce papers, conduct scientific research, or improve AI systems. It is designed as shared evaluation infrastructure for **AI4AI** and **recursive self-improvement (RSI)** research.
+This repository primarily tracks **executable discovery tasks** in which agents optimize scientific, mathematical, engineering, or AI-system artifacts. Benchmark suites are indexed as sources of tasks; methods and agent frameworks are recorded only as systems evaluated on those tasks. The broader catalog also covers agent benchmarks for browsing, computer use, coding, post-training, and safety. It is designed as shared evaluation infrastructure for **AI4AI** and **recursive self-improvement (RSI)** research.
 
 ## 🎯 Mission: Evaluation Infrastructure for RSI
 
 Our goal is to help advance **recursive self-improvement (RSI)** by making progress measurable, comparable, and reproducible. An AI system cannot improve itself reliably without knowing which capabilities changed, whether an apparent gain survives controlled evaluation, and what resources or scaffolding produced that gain.
 
-To support this goal, the repository collects and organizes:
+The primary unit is a task such as *Cassini gravity-assist trajectory optimization* or *Erdős minimum overlap*—not a method such as SimpleTES or TTT-Discover. To support this goal, the repository collects and organizes:
 
-- **multidimensional evaluation datasets and benchmarks** spanning coding, machine learning engineering, post-training, scientific discovery, paper reproduction, tool use, computer use, daily-life tasks, professional work, multi-agent coordination, and safety;
+- **task-level discovery datasets** with the question, agent-visible input, required artifact, objective direction, evaluator, environment, reference result, and reported discovery result;
+- **benchmark suites as task sources** spanning quantum compilation, astrodynamics, scientific algorithms, AI foundations, mathematics, coding, machine learning engineering, post-training, paper reproduction, tool use, and safety;
 - **evaluation methods and protocols**, including task construction, inputs and outputs, scoring rules, judges, pass criteria, baselines, uncertainty, contamination controls, and reproducibility procedures;
 - **evaluation environments and resource envelopes**, such as tools, agent scaffolds, sandboxes, network access, time limits, token budgets, compute budgets, and hardware;
 - **cross-model evidence** for GPT, Claude, GLM, Kimi, Qwen, and other model families, with explicit distinctions between the agent model, target model, and judge model;
@@ -42,6 +43,7 @@ We therefore treat every score as a result of a complete experimental configurat
 
 ## 🔥 News
 
+- **2026-08-25** — Refocused the repository on executable discovery tasks and added a validated 28-task SimpleTES registry across quantum compilation, astrodynamics, scientific algorithms, AI foundations, and mathematics discovery.
 - **2026-08-24** — Added a dated [2026 frontier tracker](docs/2026-frontier-benchmarks.md) covering TB3/continuous Terminal-Bench, both RSI Bench projects, AI4AI-Bench, TerminalWorld, and new safety benchmarks; unresolved names are now kept separate from verified releases.
 - **2026-08-24** — Added role-aware coverage for **GPT, Claude, GLM, Kimi, and Qwen**, distinguishing agent, target, and judge models.
 - **2026-08-24** — Added a 31-benchmark evidence matrix and a broader primary-source verification backlog.
@@ -53,16 +55,17 @@ We therefore treat every score as a result of a complete experimental configurat
 - [Why this repository](#-why-this-repository)
 - [Mission: Evaluation Infrastructure for RSI](#-mission-evaluation-infrastructure-for-rsi)
 - [Benchmark dimensions](#-benchmark-dimensions)
-- [Featured AI4AI benchmarks](#-featured-ai4ai-benchmarks)
+- [Discovery task registry](#-discovery-task-registry)
+- [Featured benchmark suites](#-featured-benchmark-suites)
 - [2026 frontier tracker](#-2026-frontier-tracker)
-- [Benchmark catalog](#-benchmark-catalog)
+- [Benchmark suite catalog](#-benchmark-suite-catalog)
   - [AI R&D and scientific discovery](#ai-rd-and-scientific-discovery)
   - [Coding and software engineering](#coding-and-software-engineering)
   - [Tool use and interaction](#tool-use-and-interaction)
   - [Computer use and daily life](#computer-use-and-daily-life)
   - [General, professional, and safety agents](#general-professional-and-safety-agents)
 - [Model-family coverage](#-model-family-coverage)
-- [Machine-readable registry](#-machine-readable-registry)
+- [Machine-readable registries](#-machine-readable-registries)
 - [Inclusion criteria](#-inclusion-criteria)
 - [Contributing](#-contributing)
 - [Related repositories](#-related-repositories)
@@ -73,8 +76,8 @@ Agentic benchmarks are difficult to compare. Two results using the same underlyi
 
 Awesome Agentic Benchmarks provides:
 
-- a concise, categorized benchmark landscape;
-- a machine-readable registry for evaluation infrastructure and research agents;
+- a task-first scientific-discovery landscape;
+- machine-readable task and benchmark-suite registries for evaluation infrastructure and research agents;
 - evidence-backed coverage of GPT, Claude, GLM, Kimi, and Qwen;
 - dated score snapshots tied to the model, scaffold, and resource envelope;
 - explicit agent-model, target-model, and judge-model roles;
@@ -105,9 +108,31 @@ Dimensions describe **what the benchmark evaluates**. SFT, DPO, GRPO, RLHF, LoRA
 
 See the complete definitions and classification rules in [Benchmark Dimensions](docs/benchmark-dimensions.md).
 
-## 🌟 Featured AI4AI benchmarks
+## 🔬 Discovery task registry
 
-These are the first fully documented entries in the registry.
+The catalog separates three layers:
+
+| Layer | Example | How it is stored |
+|---|---|---|
+| **Discovery task** | Mariner 10 trajectory optimization, ZAPBench H=16 forecasting, circle packing n=32 | Primary registry row with question, input, output, metric, evaluator, environment, and results |
+| **Task suite/source** | SimpleTES, NatureBench, AI4AI-Bench | Provenance grouping that exposes one or more tasks |
+| **Method or evaluated system** | SimpleTES search, TTT-Discover, EFT, AlphaEvolve | Attached to a result or configuration; not treated as the task itself |
+
+The initial [Scientific Discovery Task Registry](docs/discovery-tasks.md) contains **28 executable SimpleTES tasks**:
+
+| Domain | Tasks | Examples |
+|---|---:|---|
+| Quantum compilation | 2 | Superconducting qubit routing; zoned neutral-atom compilation |
+| Astrodynamics | 5 | Mariner 10, Voyager 2, Galileo, Cassini, and Rosetta trajectory design |
+| Scientific algorithms | 7 | LASSO path solving; five ZAPBench horizons; single-cell RNA-seq denoising |
+| AI foundations | 7 | Three GPU kernels and four scaling-law discovery problems |
+| Mathematics discovery | 7 | Erdős minimum overlap, autocorrelation inequalities, sum-difference, circle packing, and Hadamard determinant |
+
+Each task is available in [machine-readable JSON](data/discovery-tasks.json). SimpleTES is represented as both the source suite and a reported evaluated system; TTT-Discover appears as the reference system for single-cell denoising rather than as a task.
+
+## 🌟 Featured benchmark suites
+
+These are the first fully documented suite-level entries. Their internal evaluation units should be extracted into the task registry when executable artifacts are available.
 
 | Benchmark | Primary dimension | Evaluation unit | Output | Environment | Current headline snapshot |
 |---|---|---|---|---|---|
@@ -146,7 +171,7 @@ Fast-moving 2026 work is tracked separately from the stable catalog so that matu
 
 See [2026 Frontier Agentic Benchmarks](docs/2026-frontier-benchmarks.md) for task inputs, evaluators, environments, reported scores, status definitions, and the explicit unresolved-name audit for **DeTrustAgent**.
 
-## 📚 Benchmark catalog
+## 📚 Benchmark suite catalog
 
 Legend: **Detailed** = complete registry entry; **Tracked** = included in the model-coverage and verification pipeline; **Live/Preview/Emerging** = status is defined in the [2026 tracker](docs/2026-frontier-benchmarks.md); **Discovery queue** = primary artifacts still need review.
 
@@ -261,11 +286,11 @@ Benchmarks with reported results for all five target families already include:
 
 The evidence source, exact model version, role, and remaining gaps are recorded in [Model Coverage](docs/model-coverage.md). A checkmark means that a result has been reported; it does **not** imply that scores produced with different scaffolds are directly comparable.
 
-## 🧱 Machine-readable registry
+## 🧱 Machine-readable registries
 
-The canonical detailed registry is [data/benchmarks.json](data/benchmarks.json), validated against [schema/benchmark.schema.json](schema/benchmark.schema.json).
+The task-level registry is [data/discovery-tasks.json](data/discovery-tasks.json), validated against [schema/discovery-task.schema.json](schema/discovery-task.schema.json). The suite-level registry is [data/benchmarks.json](data/benchmarks.json), validated against [schema/benchmark.schema.json](schema/benchmark.schema.json).
 
-Each detailed entry records:
+Each detailed task or suite entry records:
 
 - task type and agent-visible input;
 - required output artifact;
@@ -296,9 +321,12 @@ Validate locally:
 
 ```bash
 python scripts/validate_registry.py
+python scripts/validate_discovery_tasks.py
 ```
 
 ## ✅ Inclusion criteria
+
+A discovery task belongs in the primary registry when it has a concrete optimization question, an agent-mutable output artifact, an executable or inspectable evaluator, a named metric and direction, and enough environment information to attempt reproduction. A method name or paper-level claim without an extractable task remains provenance or a discovery lead.
 
 A benchmark belongs here when the evaluated system must do at least two of the following:
 
@@ -317,6 +345,7 @@ Model coverage requires evidence from an official paper, repository, leaderboard
 
 Contributions are welcome. Good first contributions include:
 
+- adding an executable discovery task with its question, seed/input, evaluator, environment, metric, and reference result;
 - adding a missing benchmark to the discovery queue;
 - attaching primary-source evidence for a model-family result;
 - upgrading a tracked benchmark into a detailed registry entry;
@@ -330,6 +359,7 @@ Before opening a PR:
 3. Record the exact model, scaffold, benchmark version, budget, and date.
 4. Distinguish agent, target, and judge models.
 5. Run `python scripts/validate_registry.py`.
+6. Run `python scripts/validate_discovery_tasks.py` when changing the task registry.
 
 ## 🔗 Related repositories
 
