@@ -13,17 +13,29 @@
       "minItems": 1,
       "items": {
         "type": "object",
-        "required": ["id", "name", "role", "evaluated_model", "result_status", "paper", "repository", "task_catalogue", "task_contract"],
+        "required": ["id", "name", "role", "evaluated_model", "result_status", "paper", "repository", "task_catalogue", "task_contract", "task_count", "public_task_count", "model_families"],
         "properties": {
           "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
           "name": {"type": "string"},
           "role": {"enum": ["task-source", "task-source-and-evaluated-system"]},
-          "evaluated_model": {"type": "string"},
+          "evaluated_model": {"type": ["string", "null"]},
           "result_status": {"enum": ["source-reported", "independently-reproduced", "independently-certified"]},
           "paper": {"type": "string", "format": "uri"},
           "repository": {"type": "string", "format": "uri"},
           "task_catalogue": {"type": "string", "format": "uri"},
-          "task_contract": {"type": "string"}
+          "task_contract": {"type": "string"},
+          "task_count": {"type": "integer", "minimum": 1},
+          "public_task_count": {"type": "integer", "minimum": 0},
+          "model_families": {
+            "type": "array",
+            "items": {"enum": ["gpt", "claude", "glm", "kimi", "qwen", "gemini", "deepseek", "xai", "other"]},
+            "uniqueItems": true
+          },
+          "aggregate_results": {
+            "type": "array",
+            "items": {"$ref": "#/$defs/result"}
+          },
+          "notes": {"type": "string"}
         },
         "additionalProperties": false
       }
@@ -49,8 +61,11 @@
         "domain": {
           "enum": [
             "quantum-compilation", "astrodynamics", "scientific-algorithms",
-            "ai-foundations", "mathematics-discovery"
+            "ai-foundations", "mathematics-discovery", "interactive-world-discovery"
           ]
+        },
+        "task_type": {
+          "enum": ["artifact-optimization", "interactive-rule-discovery", "scientific-investigation", "environment-learning"]
         },
         "source_suite": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
         "question": {"type": "string", "minLength": 10},
@@ -68,9 +83,9 @@
         },
         "evaluation": {"type": "string", "minLength": 10},
         "environment": {"type": "string", "minLength": 3},
-        "reference_result": {"$ref": "#/$defs/result"},
-        "reported_result": {"$ref": "#/$defs/result"},
-        "outcome": {"enum": ["improved", "matched-reference", "below-reference"]},
+        "reference_result": {"oneOf": [{"$ref": "#/$defs/result"}, {"type": "null"}]},
+        "reported_result": {"oneOf": [{"$ref": "#/$defs/result"}, {"type": "null"}]},
+        "outcome": {"enum": ["improved", "matched-reference", "below-reference", "not-yet-scored"]},
         "evidence_urls": {
           "type": "array",
           "minItems": 1,

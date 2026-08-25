@@ -22,9 +22,16 @@ DOMAINS = {
     "scientific-algorithms",
     "ai-foundations",
     "mathematics-discovery",
+    "interactive-world-discovery",
 }
 DIRECTIONS = {"minimize", "maximize"}
-OUTCOMES = {"improved", "matched-reference", "below-reference"}
+OUTCOMES = {"improved", "matched-reference", "below-reference", "not-yet-scored"}
+TASK_TYPES = {
+    "artifact-optimization",
+    "interactive-rule-discovery",
+    "scientific-investigation",
+    "environment-learning",
+}
 REQUIRED_TASK_FIELDS = {
     "id",
     "name",
@@ -99,8 +106,23 @@ def validate() -> list[str]:
             "independently-certified",
         }:
             errors.append(f"{prefix}.result_status is invalid")
-        if not isinstance(suite.get("evaluated_model"), str) or not suite["evaluated_model"]:
-            errors.append(f"{prefix}.evaluated_model must be a non-empty string")
+        evaluated_model = suite.get("evaluated_model")
+        if evaluated_model is not None and (
+            not isinstance(evaluated_model, str) or not evaluated_model
+        ):
+            errors.append(f"{prefix}.evaluated_model must be null or a non-empty string")
+        for field in ("task_count", "public_task_count"):
+            if not isinstance(suite.get(field), int) or suite[field] < 0:
+                errors.append(f"{prefix}.{field} must be a non-negative integer")
+        if (
+            isinstance(suite.get("task_count"), int)
+            and isinstance(suite.get("public_task_count"), int)
+            and suite["public_task_count"] > suite["task_count"]
+        ):
+            errors.append(f"{prefix}.public_task_count cannot exceed task_count")
+        families = suite.get("model_families")
+        if not isinstance(families, list) or not families:
+            errors.append(f"{prefix}.model_families must be a non-empty array")
         for field in ("paper", "repository", "task_catalogue"):
             if not is_https_url(suite.get(field)):
                 errors.append(f"{prefix}.{field} must be an HTTPS URL")
@@ -131,6 +153,8 @@ def validate() -> list[str]:
 
         if task["domain"] not in DOMAINS:
             errors.append(f"{task_id}: invalid domain")
+        if "task_type" in task and task["task_type"] not in TASK_TYPES:
+            errors.append(f"{task_id}: invalid task_type")
         if task["source_suite"] not in suite_ids:
             errors.append(f"{task_id}: source_suite does not reference a declared suite")
         if task["outcome"] not in OUTCOMES:
@@ -141,11 +165,21 @@ def validate() -> list[str]:
         if direction not in DIRECTIONS:
             errors.append(f"{task_id}: invalid metric direction")
 
-        reference = task["reference_result"].get("score")
-        reported = task["reported_result"].get("score")
-        if not isinstance(reference, (int, float)) or not isinstance(reported, (int, float)):
-            errors.append(f"{task_id}: result scores must be numeric")
-        elif direction in DIRECTIONS:
+        reference_result = task["reference_result"]
+        reported_result = task["reported_result"]
+        if reference_result is None or reported_result is None:
+            if task["outcome"] != "not-yet-scored":
+                errors.append(f"{task_id}: missing results require not-yet-scored outcome")
+            reference = reported = None
+        elif not isinstance(reference_result, dict) or not isinstance(reported_result, dict):
+            errors.append(f"{task_id}: results must be objects or null")
+            reference = reported = None
+        else:
+            reference = reference_result.get("score")
+            reported = reported_result.get("score")
+            if not isinstance(reference, (int, float)) or not isinstance(reported, (int, float)):
+                errors.append(f"{task_id}: result scores must be numeric")
+        if isinstance(reference, (int, float)) and isinstance(reported, (int, float)) and direction in DIRECTIONS:
             expected = expected_outcome(direction, float(reference), float(reported))
             if task["outcome"] != expected:
                 errors.append(

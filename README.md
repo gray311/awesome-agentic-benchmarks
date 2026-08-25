@@ -10,7 +10,7 @@
 ![Validation](https://img.shields.io/badge/validation-passing-16a34a)
 [![License: MIT](https://img.shields.io/badge/license-MIT-f59e0b.svg)](LICENSE)
 
-[Discovery Tasks](docs/discovery-tasks.md) · [Task JSON](data/discovery-tasks.json) · [2026 Frontier Tracker](docs/2026-frontier-benchmarks.md) · [Benchmark Dimensions](docs/benchmark-dimensions.md) · [Model Coverage](docs/model-coverage.md) · [Suite JSON](data/benchmarks.json) · [Contributing](CONTRIBUTING.md)
+[Discovery Tasks](docs/discovery-tasks.md) · [Interactive Discovery](docs/interactive-discovery-tasks.md) · [Task JSON](data/discovery-tasks.json) · [2026 Frontier Tracker](docs/2026-frontier-benchmarks.md) · [Benchmark Dimensions](docs/benchmark-dimensions.md) · [Model Coverage](docs/model-coverage.md) · [Suite JSON](data/benchmarks.json) · [Contributing](CONTRIBUTING.md)
 
 </div>
 
@@ -20,7 +20,7 @@
 >
 > **model + scaffold + tools + environment + compute budget + evaluator**
 
-This repository primarily tracks **executable discovery tasks** in which agents optimize scientific, mathematical, engineering, or AI-system artifacts. Benchmark suites are indexed as sources of tasks; methods and agent frameworks are recorded only as systems evaluated on those tasks. The broader catalog also covers agent benchmarks for browsing, computer use, coding, post-training, and safety. It is designed as shared evaluation infrastructure for **AI4AI** and **recursive self-improvement (RSI)** research.
+This repository primarily tracks **executable discovery tasks** in which agents either optimize scientific, mathematical, engineering, or AI-system artifacts, or discover unfamiliar environment rules through interaction. Benchmark suites are indexed as sources of tasks; methods and agent frameworks are recorded only as systems evaluated on those tasks. The broader catalog also covers agent benchmarks for browsing, computer use, coding, post-training, and safety. It is designed as shared evaluation infrastructure for **AI4AI** and **recursive self-improvement (RSI)** research.
 
 ## 🎯 Mission: Evaluation Infrastructure for RSI
 
@@ -43,6 +43,7 @@ We therefore treat every score as a result of a complete experimental configurat
 
 ## 🔥 News
 
+- **2026-08-25** — Added an interactive-discovery layer with ARC-AGI-3 and DiG-bench: 24 individually verified public environments, exact action/feedback/score contracts, private-split safeguards, and official frontier-model coverage.
 - **2026-08-25** — Refocused the repository on executable discovery tasks and added a validated 28-task SimpleTES registry across quantum compilation, astrodynamics, scientific algorithms, AI foundations, and mathematics discovery.
 - **2026-08-24** — Added a dated [2026 frontier tracker](docs/2026-frontier-benchmarks.md) covering TB3/continuous Terminal-Bench, both RSI Bench projects, AI4AI-Bench, TerminalWorld, and new safety benchmarks; unresolved names are now kept separate from verified releases.
 - **2026-08-24** — Added role-aware coverage for **GPT, Claude, GLM, Kimi, and Qwen**, distinguishing agent, target, and judge models.
@@ -96,6 +97,7 @@ Dimensions describe **what the benchmark evaluates**. SFT, DPO, GRPO, RLHF, LoRA
 | **Open-Ended AI R&D** | Proposing, implementing, and validating AI research improvements | AI4AI-Bench, RSI Bench, RE-Bench |
 | **Agent & Harness Improvement** | Modifying an agent's scaffold, memory, skills, or reusable procedures and testing transfer | RSIBench, LongWoF-Bench |
 | **Scientific Discovery** | Solving research problems in scientific domains | NatureBench, EarthVerse, SciAgentArena |
+| **Interactive World Discovery** | Inferring unfamiliar dynamics, rules, goals, and strategies from action-conditioned feedback | ARC-AGI-3, DiG-bench, EdgeBench |
 | **Paper Reproduction** | Reconstructing research code, environments, and results | PaperBench, CORE-Bench, SUPER |
 | **Web Research & Browsing** | Locating and synthesizing hard-to-find information | BrowseComp, WebArena, GAIA |
 | **Computer Use & Daily Life** | Completing workflows in desktop, mobile, and browser environments | OSWorld, TUA-Bench, MobilePA-Bench |
@@ -114,11 +116,11 @@ The catalog separates three layers:
 
 | Layer | Example | How it is stored |
 |---|---|---|
-| **Discovery task** | Mariner 10 trajectory optimization, ZAPBench H=16 forecasting, circle packing n=32 | Primary registry row with question, input, output, metric, evaluator, environment, and results |
-| **Task suite/source** | SimpleTES, NatureBench, AI4AI-Bench | Provenance grouping that exposes one or more tasks |
+| **Discovery task** | Mariner 10 trajectory optimization, ARC-AGI-3 ls20, DiG-bench P-19 | Primary registry row with question, input, output, metric, evaluator, environment, and results |
+| **Task suite/source** | SimpleTES, ARC-AGI-3, DiG-bench | Provenance grouping that exposes one or more tasks |
 | **Method or evaluated system** | SimpleTES search, TTT-Discover, EFT, AlphaEvolve | Attached to a result or configuration; not treated as the task itself |
 
-The initial [Scientific Discovery Task Registry](docs/discovery-tasks.md) contains **28 executable SimpleTES tasks**:
+The [Discovery Task Registry](docs/discovery-tasks.md) contains **52 individually verified tasks** from three source suites:
 
 | Domain | Tasks | Examples |
 |---|---:|---|
@@ -127,8 +129,9 @@ The initial [Scientific Discovery Task Registry](docs/discovery-tasks.md) contai
 | Scientific algorithms | 7 | LASSO path solving; five ZAPBench horizons; single-cell RNA-seq denoising |
 | AI foundations | 7 | Three GPU kernels and four scaling-law discovery problems |
 | Mathematics discovery | 7 | Erdős minimum overlap, autocorrelation inequalities, sum-difference, circle packing, and Hadamard determinant |
+| Interactive world discovery | 24 | ARC-AGI-3's three anonymous public games and DiG-bench P-1 through P-21 |
 
-Each task is available in [machine-readable JSON](data/discovery-tasks.json). SimpleTES is represented as both the source suite and a reported evaluated system; TTT-Discover appears as the reference system for single-cell denoising rather than as a task.
+Each task is available in [machine-readable JSON](data/discovery-tasks.json). The full source suites are larger—ARC-AGI-3 has 135 environments and DiG-bench has 70—but private environments and public IDs that cannot yet be authenticated are not fabricated as task rows. See [Interactive Discovery Tasks](docs/interactive-discovery-tasks.md) for the protocol and extraction policy.
 
 ## 🌟 Featured benchmark suites
 
@@ -160,6 +163,9 @@ Fast-moving 2026 work is tracked separately from the stable catalog so that matu
 | Benchmark | Dimension | Maturity | Why it matters |
 |---|---|---|---|
 | [**RSI Bench**](https://www.rsi-benchmark.com/) | Open-Ended AI R&D / Post-Training | Live preview | Long-horizon research tasks with controlled compute and executable verifiers; current public runs include GPT and Claude systems. |
+| [**ARC-AGI-3**](https://arcprize.org/arc-agi/3) | Interactive World Discovery | Live / Released protocol | Agents discover visual-world mechanics and goals without language instructions; official semi-private frontier results remain below 1% RHAE. |
+| [**DiG-bench**](https://digbench.ai/) | Interactive World Discovery | Released | 70 unknown-rule text games, including 21 public tasks; its official leaderboard covers GPT, Claude, GLM, Kimi, and Qwen. |
+| [**EdgeBench**](https://edge-bench.org/) | Environment Learning | Released / extraction queue | 134 real-world tasks with 12–72+ hour learning curves; 51 task artifacts are initially released. |
 | [**RSIBench**](https://huggingface.co/datasets/AgPerry/rsi-bench) | Agent/Harness Improvement | Released dataset | Counterfactual test of whether coding-agent self-modifications transfer to held-out tasks. |
 | [**AI4AI-Bench**](https://arxiv.org/abs/2608.20318) | Open-Ended AI R&D | Emerging | Agents rewrite training algorithms in frozen research repositories under a B300 compute envelope. |
 | [**Terminal-Bench**](https://github.com/harbor-framework/terminal-bench) | Coding / Terminal | Live, continuous | The former TB3 effort now publishes tagged continuous task sets through Harbor; a score needs an exact release tag. |
@@ -182,6 +188,9 @@ Legend: **Detailed** = complete registry entry; **Tracked** = included in the mo
 | **MLE-bench** | Machine Learning Engineering | Detailed | [Paper](https://arxiv.org/abs/2410.07095) · [Code](https://github.com/openai/mle-bench) · [Leaderboard](https://github.com/openai/mle-bench#leaderboard) |
 | **NatureBench** | Scientific Discovery | Detailed | [Paper](https://arxiv.org/abs/2606.24530) · [Code](https://github.com/FrontisAI/NatureBench) · [Leaderboard](https://frontisai.github.io/NatureBench/) |
 | **PostTrainBench** | Post-Training | Detailed | [Paper](https://arxiv.org/abs/2603.08640) · [Code](https://github.com/aisa-group/PostTrainBench) · [Leaderboard](https://posttrainbench.com/) |
+| **ARC-AGI-3** | Interactive World Discovery | Detailed | [Report](https://arcprize.org/media/ARC_AGI_3_Technical_Report.pdf) · [Toolkit](https://github.com/arcprize/ARC-AGI) · [Docs](https://docs.arcprize.org/) |
+| **DiG-bench** | Interactive World Discovery | Detailed | [Paper](https://arxiv.org/abs/2608.12593) · [Code](https://github.com/discos-research/dig-bench) · [Leaderboard](https://digbench.ai/) |
+| **EdgeBench** | Environment Learning | Extraction queue | [Project](https://edge-bench.org/) · [Code](https://github.com/ByteDance-Seed/EdgeBench) |
 | **RSI Bench** | Open-Ended AI R&D / Post-Training | Live / Preview | [Project](https://www.rsi-benchmark.com/) · [Tasks](https://www.rsi-benchmark.com/tasks) · [Runs](https://www.rsi-benchmark.com/runs) |
 | **RSIBench** | Agent/Harness Improvement | Released dataset | [Dataset](https://huggingface.co/datasets/AgPerry/rsi-bench) · [Code](https://github.com/reacher-z/rsi-bench) |
 | **AI4AI-Bench** | Open-Ended AI R&D | Emerging | [Paper](https://arxiv.org/abs/2608.20318) |
@@ -270,6 +279,7 @@ Benchmarks with reported results for all five target families already include:
 | Benchmark | Dimension | GPT | Claude | GLM | Kimi | Qwen |
 |---|---|:---:|:---:|:---:|:---:|:---:|
 | NatureBench | Scientific Discovery | ✓ | ✓ | ✓ | ✓ | ✓ |
+| DiG-bench | Interactive World Discovery | ✓ | ✓ | ✓ | ✓ | ✓ |
 | SWE-bench Verified | Coding | ✓ | ✓ | ✓ | ✓ | ✓ |
 | SWE-bench Pro | Coding | ✓ | ✓ | ✓ | ✓ | ✓ |
 | Terminal-Bench | Coding | ✓ | ✓ | ✓ | ✓ | ✓ |

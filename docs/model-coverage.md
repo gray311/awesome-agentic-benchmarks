@@ -1,6 +1,6 @@
 # Target Model-Family Coverage
 
-**Evidence snapshot:** 2026-08-24 (America/Chicago)
+**Evidence snapshot:** 2026-08-25 (America/Chicago)
 
 The registry tracks five target families: **GPT, Claude, GLM, Kimi, and Qwen**.
 
@@ -18,6 +18,9 @@ Coverage is role-aware:
 |---|---|---:|---:|---:|---:|---:|---|
 | MLE-bench | MLE | A | A | ? | ? | ? | [Official leaderboard](https://github.com/openai/mle-bench#leaderboard) |
 | NatureBench | Scientific discovery | A/J | A | A | A | A | [Official repository and results news](https://github.com/FrontisAI/NatureBench) |
+| ARC-AGI-3 | Interactive world discovery | A | A | ? | ? | ? | [Official technical report and semi-private results](https://arcprize.org/media/ARC_AGI_3_Technical_Report.pdf); Gemini and xAI are also evaluated |
+| DiG-bench | Interactive world discovery | A | A | A | A | A | [Official project and leaderboard](https://digbench.ai/) |
+| EdgeBench | Environment learning | A | A | A | ? | ? | [Official repository leaderboard](https://github.com/ByteDance-Seed/EdgeBench) |
 | PostTrainBench | Post-training | A/J | A | A | A | T | [Official leaderboard](https://posttrainbench.com/) |
 | SWE-bench Verified | Coding | M | M | M | M | M | [Claude results](https://www.anthropic.com/engineering/swe-bench-sonnet), [Kimi results](https://github.com/MoonshotAI/Kimi-K2), [Qwen results](https://qwenlm.github.io/blog/qwen3-coder/) |
 | SWE-bench Pro | Coding | M | M | M | M | M | [Claude system card](https://www-cdn.anthropic.com/0b4915911bb0d19eca5b5ee635c80fef830a37ea.pdf), [Qwen model repository](https://github.com/QwenLM/Qwen3-Coder) |

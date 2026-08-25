@@ -9,16 +9,18 @@ The preferred contribution is a task-level entry in `data/discovery-tasks.json`.
 Every task must identify:
 
 - the scientific or engineering question;
-- agent-visible data, seed artifact, constraints, and feedback;
-- required output artifact;
+- agent-visible data, seed artifact or observation state, constraints, legal actions, and feedback;
+- required output artifact or terminal action trace;
 - metric name, unit, and minimize/maximize direction;
 - executable evaluator and validity checks;
 - language, dependencies, simulator/data, hardware, and isolation policy;
-- reference system and score under the same task contract;
-- reported discovery system and score;
+- reference system and score under the same task contract, or `null` when no matched result exists;
+- reported discovery system and score, or `null` with `not-yet-scored` for a verified task awaiting evaluation;
 - primary evidence URLs and integrity caveats.
 
 If several tasks come from one project, declare that project once as a `source_suite` and add each problem as a separate task. Methods such as EFT and search frameworks without extracted problems belong in result/configuration provenance, not in the task array.
+
+For interactive discovery, also record what rules or objectives are hidden, observation and action schemas, reset/life/step budgets, terminal states, public/private split, and replay or scorecard policy. Never extract private environments, and never present public development games as a held-out score.
 
 ## Adding a benchmark
 

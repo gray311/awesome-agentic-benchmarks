@@ -1,8 +1,49 @@
 {
   "$schema": "../schema/discovery-task.schema.json",
-  "registry_version": "0.1.0",
+  "registry_version": "0.2.0",
   "last_updated": "2026-08-25",
   "source_suites": [
+    {
+      "id": "arc-agi-3",
+      "name": "ARC-AGI-3",
+      "role": "task-source",
+      "evaluated_model": null,
+      "result_status": "independently-certified",
+      "paper": "https://arcprize.org/media/ARC_AGI_3_Technical_Report.pdf",
+      "repository": "https://github.com/arcprize/ARC-AGI",
+      "task_catalogue": "https://docs.arcprize.org/available-games",
+      "task_contract": "An agent receives a turn-based 64x64-or-smaller 16-color frame and available actions, but no natural-language objective or mechanics. It must discover the world rules and win condition, then complete levels efficiently.",
+      "task_count": 135,
+      "public_task_count": 25,
+      "model_families": ["gpt", "claude", "gemini", "xai"],
+      "aggregate_results": [
+        {"system": "Anthropic Opus 4.6 (Max), official semi-private", "score": 0.5},
+        {"system": "Gemini 3.1 Pro Preview, official semi-private", "score": 0.4},
+        {"system": "OpenAI GPT-5.4 (High), official semi-private", "score": 0.2},
+        {"system": "xAI Grok-4.20 Beta, official semi-private", "score": 0.1}
+      ],
+      "notes": "The 135 environments comprise 25 public demos, 55 semi-private environments, and 55 fully private environments. Only the three anonymous public examples are itemized here until the remaining public IDs can be authenticated through the official API."
+    },
+    {
+      "id": "dig-bench",
+      "name": "DiG-bench",
+      "role": "task-source",
+      "evaluated_model": null,
+      "result_status": "source-reported",
+      "paper": "https://arxiv.org/abs/2608.12593",
+      "repository": "https://github.com/discos-research/dig-bench",
+      "task_catalogue": "https://digbench.ai/",
+      "task_contract": "An agent interacts with a text game through JSON states and legal actions, experiments to infer unique hidden transformation rules and win conditions, and must beat the game within its fixed step budget.",
+      "task_count": 70,
+      "public_task_count": 21,
+      "model_families": ["gpt", "claude", "glm", "kimi", "qwen", "gemini", "deepseek"],
+      "aggregate_results": [
+        {"system": "Claude Opus 5 basic harness, games won out of 70", "score": 50},
+        {"system": "Gemini 3.1 Pro basic harness without rules, games won out of 70", "score": 18},
+        {"system": "Qwen 3.6 27B basic harness, games won out of 70", "score": 1}
+      ],
+      "notes": "The public set contains P-1 through P-21, three games in each of seven difficulty tiers. The remaining 49 games are private and are not itemized."
+    },
     {
       "id": "simpletes",
       "name": "SimpleTES",
@@ -12,7 +53,11 @@
       "paper": "https://arxiv.org/abs/2604.19341",
       "repository": "https://github.com/wq-will/SimpleTES",
       "task_catalogue": "https://github.com/wq-will/SimpleTES/blob/main/datasets/README.md",
-      "task_contract": "Each task supplies an instruction, an editable seed program, and an executable evaluator that validates constraints and recomputes the score in an isolated subprocess."
+      "task_contract": "Each task supplies an instruction, an editable seed program, and an executable evaluator that validates constraints and recomputes the score in an isolated subprocess.",
+      "task_count": 28,
+      "public_task_count": 28,
+      "model_families": ["other"],
+      "notes": "The source reports gpt-oss-20b as the evaluated generator; matched runs for the five tracked frontier model families remain open."
     }
   ],
   "tasks": [
@@ -491,6 +536,642 @@
       "outcome": "improved",
       "evidence_urls": ["https://arxiv.org/abs/2604.19341", "https://github.com/wq-will/SimpleTES/blob/main/best_results/README.md"],
       "integrity_notes": "Circuit corpus, architecture parameters, simulator version, and aggregation must match."
+    },
+    {
+      "id": "arc-agi-3-ls20",
+      "name": "ARC-AGI-3 ls20 (Agent reasoning)",
+      "domain": "interactive-world-discovery",
+      "task_type": "interactive-rule-discovery",
+      "source_suite": "arc-agi-3",
+      "question": "Without natural-language instructions, discover ls20's hidden mechanics and win condition through interaction, then complete its levels efficiently.",
+      "input": "A turn-based grid frame of at most 64x64 cells using 16 colors, the currently available actions, and the accumulated frame/action history; the objective and mechanics are withheld.",
+      "output": "An action trace that reaches WIN across the game's levels",
+      "metric": {
+        "name": "Relative Human Action Efficiency (RHAE)",
+        "direction": "maximize",
+        "unit": "percent"
+      },
+      "evaluation": "For each completed level, square human-baseline actions divided by agent actions, cap at 1.15, take a level-index-weighted game score, then average games for an aggregate benchmark score.",
+      "environment": "Official ARC-AGI Toolkit/API; deterministic turn-based environment; RESET, ACTION1-ACTION7, with ACTION6 accepting coordinates and ACTION7 serving as undo when available.",
+      "reference_result": {
+        "system": "Human first-attempt upper-median baseline",
+        "score": 100
+      },
+      "reported_result": null,
+      "outcome": "not-yet-scored",
+      "evidence_urls": [
+        "https://arcprize.org/arc-agi/3",
+        "https://docs.arcprize.org/available-games",
+        "https://docs.arcprize.org/methodology",
+        "https://github.com/arcprize/ARC-AGI"
+      ],
+      "integrity_notes": "This is a public demonstration environment, not a valid stand-alone measure of ARC-AGI-3 progress. Record the exact game version, scorecard, replay, prompt, action budget, and toolkit/API version; do not expose private environments."
+    },
+    {
+      "id": "arc-agi-3-ft09",
+      "name": "ARC-AGI-3 ft09 (Elementary Logic)",
+      "domain": "interactive-world-discovery",
+      "task_type": "interactive-rule-discovery",
+      "source_suite": "arc-agi-3",
+      "question": "Without natural-language instructions, discover ft09's hidden mechanics and win condition through interaction, then complete its levels efficiently.",
+      "input": "A turn-based grid frame of at most 64x64 cells using 16 colors, the currently available actions, and the accumulated frame/action history; the objective and mechanics are withheld.",
+      "output": "An action trace that reaches WIN across the game's levels",
+      "metric": {
+        "name": "Relative Human Action Efficiency (RHAE)",
+        "direction": "maximize",
+        "unit": "percent"
+      },
+      "evaluation": "For each completed level, square human-baseline actions divided by agent actions, cap at 1.15, take a level-index-weighted game score, then average games for an aggregate benchmark score.",
+      "environment": "Official ARC-AGI Toolkit/API; deterministic turn-based environment; RESET, ACTION1-ACTION7, with ACTION6 accepting coordinates and ACTION7 serving as undo when available.",
+      "reference_result": {
+        "system": "Human first-attempt upper-median baseline",
+        "score": 100
+      },
+      "reported_result": null,
+      "outcome": "not-yet-scored",
+      "evidence_urls": [
+        "https://arcprize.org/arc-agi/3",
+        "https://docs.arcprize.org/available-games",
+        "https://docs.arcprize.org/methodology",
+        "https://github.com/arcprize/ARC-AGI"
+      ],
+      "integrity_notes": "This is a public demonstration environment, not a valid stand-alone measure of ARC-AGI-3 progress. Record the exact game version, scorecard, replay, prompt, action budget, and toolkit/API version; do not expose private environments."
+    },
+    {
+      "id": "arc-agi-3-vc33",
+      "name": "ARC-AGI-3 vc33 (Orchestration)",
+      "domain": "interactive-world-discovery",
+      "task_type": "interactive-rule-discovery",
+      "source_suite": "arc-agi-3",
+      "question": "Without natural-language instructions, discover vc33's hidden mechanics and win condition through interaction, then complete its levels efficiently.",
+      "input": "A turn-based grid frame of at most 64x64 cells using 16 colors, the currently available actions, and the accumulated frame/action history; the objective and mechanics are withheld.",
+      "output": "An action trace that reaches WIN across the game's levels",
+      "metric": {
+        "name": "Relative Human Action Efficiency (RHAE)",
+        "direction": "maximize",
+        "unit": "percent"
+      },
+      "evaluation": "For each completed level, square human-baseline actions divided by agent actions, cap at 1.15, take a level-index-weighted game score, then average games for an aggregate benchmark score.",
+      "environment": "Official ARC-AGI Toolkit/API; deterministic turn-based environment; RESET, ACTION1-ACTION7, with ACTION6 accepting coordinates and ACTION7 serving as undo when available.",
+      "reference_result": {
+        "system": "Human first-attempt upper-median baseline",
+        "score": 100
+      },
+      "reported_result": null,
+      "outcome": "not-yet-scored",
+      "evidence_urls": [
+        "https://arcprize.org/arc-agi/3",
+        "https://docs.arcprize.org/available-games",
+        "https://docs.arcprize.org/methodology",
+        "https://github.com/arcprize/ARC-AGI"
+      ],
+      "integrity_notes": "This is a public demonstration environment, not a valid stand-alone measure of ARC-AGI-3 progress. Record the exact game version, scorecard, replay, prompt, action budget, and toolkit/API version; do not expose private environments."
+    },
+    {
+      "id": "dig-bench-p-1",
+      "name": "DiG-bench P-1 (tier 1)",
+      "domain": "interactive-world-discovery",
+      "task_type": "interactive-rule-discovery",
+      "source_suite": "dig-bench",
+      "question": "Discover P-1's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.",
+      "input": "A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.",
+      "output": "A legal action sequence that wins the game",
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "evaluation": "Score each run by whether the game is beaten within its fixed step budget; average wins over repeated runs for the game, then average games within the difficulty tier.",
+      "environment": "Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.",
+      "reference_result": null,
+      "reported_result": null,
+      "outcome": "not-yet-scored",
+      "evidence_urls": [
+        "https://digbench.ai/",
+        "https://arxiv.org/abs/2608.12593",
+        "https://github.com/discos-research/dig-bench"
+      ],
+      "integrity_notes": "P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget."
+    },
+    {
+      "id": "dig-bench-p-2",
+      "name": "DiG-bench P-2 (tier 1)",
+      "domain": "interactive-world-discovery",
+      "task_type": "interactive-rule-discovery",
+      "source_suite": "dig-bench",
+      "question": "Discover P-2's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.",
+      "input": "A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.",
+      "output": "A legal action sequence that wins the game",
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "evaluation": "Score each run by whether the game is beaten within its fixed step budget; average wins over repeated runs for the game, then average games within the difficulty tier.",
+      "environment": "Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.",
+      "reference_result": null,
+      "reported_result": null,
+      "outcome": "not-yet-scored",
+      "evidence_urls": [
+        "https://digbench.ai/",
+        "https://arxiv.org/abs/2608.12593",
+        "https://github.com/discos-research/dig-bench"
+      ],
+      "integrity_notes": "P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget."
+    },
+    {
+      "id": "dig-bench-p-3",
+      "name": "DiG-bench P-3 (tier 1)",
+      "domain": "interactive-world-discovery",
+      "task_type": "interactive-rule-discovery",
+      "source_suite": "dig-bench",
+      "question": "Discover P-3's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.",
+      "input": "A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.",
+      "output": "A legal action sequence that wins the game",
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "evaluation": "Score each run by whether the game is beaten within its fixed step budget; average wins over repeated runs for the game, then average games within the difficulty tier.",
+      "environment": "Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.",
+      "reference_result": null,
+      "reported_result": null,
+      "outcome": "not-yet-scored",
+      "evidence_urls": [
+        "https://digbench.ai/",
+        "https://arxiv.org/abs/2608.12593",
+        "https://github.com/discos-research/dig-bench"
+      ],
+      "integrity_notes": "P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget."
+    },
+    {
+      "id": "dig-bench-p-4",
+      "name": "DiG-bench P-4 (tier 2)",
+      "domain": "interactive-world-discovery",
+      "task_type": "interactive-rule-discovery",
+      "source_suite": "dig-bench",
+      "question": "Discover P-4's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.",
+      "input": "A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.",
+      "output": "A legal action sequence that wins the game",
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "evaluation": "Score each run by whether the game is beaten within its fixed step budget; average wins over repeated runs for the game, then average games within the difficulty tier.",
+      "environment": "Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.",
+      "reference_result": null,
+      "reported_result": null,
+      "outcome": "not-yet-scored",
+      "evidence_urls": [
+        "https://digbench.ai/",
+        "https://arxiv.org/abs/2608.12593",
+        "https://github.com/discos-research/dig-bench"
+      ],
+      "integrity_notes": "P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget."
+    },
+    {
+      "id": "dig-bench-p-5",
+      "name": "DiG-bench P-5 (tier 2)",
+      "domain": "interactive-world-discovery",
+      "task_type": "interactive-rule-discovery",
+      "source_suite": "dig-bench",
+      "question": "Discover P-5's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.",
+      "input": "A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.",
+      "output": "A legal action sequence that wins the game",
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "evaluation": "Score each run by whether the game is beaten within its fixed step budget; average wins over repeated runs for the game, then average games within the difficulty tier.",
+      "environment": "Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.",
+      "reference_result": null,
+      "reported_result": null,
+      "outcome": "not-yet-scored",
+      "evidence_urls": [
+        "https://digbench.ai/",
+        "https://arxiv.org/abs/2608.12593",
+        "https://github.com/discos-research/dig-bench"
+      ],
+      "integrity_notes": "P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget."
+    },
+    {
+      "id": "dig-bench-p-6",
+      "name": "DiG-bench P-6 (tier 2)",
+      "domain": "interactive-world-discovery",
+      "task_type": "interactive-rule-discovery",
+      "source_suite": "dig-bench",
+      "question": "Discover P-6's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.",
+      "input": "A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.",
+      "output": "A legal action sequence that wins the game",
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "evaluation": "Score each run by whether the game is beaten within its fixed step budget; average wins over repeated runs for the game, then average games within the difficulty tier.",
+      "environment": "Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.",
+      "reference_result": null,
+      "reported_result": null,
+      "outcome": "not-yet-scored",
+      "evidence_urls": [
+        "https://digbench.ai/",
+        "https://arxiv.org/abs/2608.12593",
+        "https://github.com/discos-research/dig-bench"
+      ],
+      "integrity_notes": "P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget."
+    },
+    {
+      "id": "dig-bench-p-7",
+      "name": "DiG-bench P-7 (tier 3)",
+      "domain": "interactive-world-discovery",
+      "task_type": "interactive-rule-discovery",
+      "source_suite": "dig-bench",
+      "question": "Discover P-7's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.",
+      "input": "A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.",
+      "output": "A legal action sequence that wins the game",
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "evaluation": "Score each run by whether the game is beaten within its fixed step budget; average wins over repeated runs for the game, then average games within the difficulty tier.",
+      "environment": "Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.",
+      "reference_result": null,
+      "reported_result": null,
+      "outcome": "not-yet-scored",
+      "evidence_urls": [
+        "https://digbench.ai/",
+        "https://arxiv.org/abs/2608.12593",
+        "https://github.com/discos-research/dig-bench"
+      ],
+      "integrity_notes": "P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget."
+    },
+    {
+      "id": "dig-bench-p-8",
+      "name": "DiG-bench P-8 (tier 3)",
+      "domain": "interactive-world-discovery",
+      "task_type": "interactive-rule-discovery",
+      "source_suite": "dig-bench",
+      "question": "Discover P-8's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.",
+      "input": "A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.",
+      "output": "A legal action sequence that wins the game",
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "evaluation": "Score each run by whether the game is beaten within its fixed step budget; average wins over repeated runs for the game, then average games within the difficulty tier.",
+      "environment": "Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.",
+      "reference_result": null,
+      "reported_result": null,
+      "outcome": "not-yet-scored",
+      "evidence_urls": [
+        "https://digbench.ai/",
+        "https://arxiv.org/abs/2608.12593",
+        "https://github.com/discos-research/dig-bench"
+      ],
+      "integrity_notes": "P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget."
+    },
+    {
+      "id": "dig-bench-p-9",
+      "name": "DiG-bench P-9 (tier 3)",
+      "domain": "interactive-world-discovery",
+      "task_type": "interactive-rule-discovery",
+      "source_suite": "dig-bench",
+      "question": "Discover P-9's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.",
+      "input": "A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.",
+      "output": "A legal action sequence that wins the game",
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "evaluation": "Score each run by whether the game is beaten within its fixed step budget; average wins over repeated runs for the game, then average games within the difficulty tier.",
+      "environment": "Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.",
+      "reference_result": null,
+      "reported_result": null,
+      "outcome": "not-yet-scored",
+      "evidence_urls": [
+        "https://digbench.ai/",
+        "https://arxiv.org/abs/2608.12593",
+        "https://github.com/discos-research/dig-bench"
+      ],
+      "integrity_notes": "P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget."
+    },
+    {
+      "id": "dig-bench-p-10",
+      "name": "DiG-bench P-10 (tier 4)",
+      "domain": "interactive-world-discovery",
+      "task_type": "interactive-rule-discovery",
+      "source_suite": "dig-bench",
+      "question": "Discover P-10's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.",
+      "input": "A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.",
+      "output": "A legal action sequence that wins the game",
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "evaluation": "Score each run by whether the game is beaten within its fixed step budget; average wins over repeated runs for the game, then average games within the difficulty tier.",
+      "environment": "Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.",
+      "reference_result": null,
+      "reported_result": null,
+      "outcome": "not-yet-scored",
+      "evidence_urls": [
+        "https://digbench.ai/",
+        "https://arxiv.org/abs/2608.12593",
+        "https://github.com/discos-research/dig-bench"
+      ],
+      "integrity_notes": "P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget."
+    },
+    {
+      "id": "dig-bench-p-11",
+      "name": "DiG-bench P-11 (tier 4)",
+      "domain": "interactive-world-discovery",
+      "task_type": "interactive-rule-discovery",
+      "source_suite": "dig-bench",
+      "question": "Discover P-11's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.",
+      "input": "A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.",
+      "output": "A legal action sequence that wins the game",
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "evaluation": "Score each run by whether the game is beaten within its fixed step budget; average wins over repeated runs for the game, then average games within the difficulty tier.",
+      "environment": "Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.",
+      "reference_result": null,
+      "reported_result": null,
+      "outcome": "not-yet-scored",
+      "evidence_urls": [
+        "https://digbench.ai/",
+        "https://arxiv.org/abs/2608.12593",
+        "https://github.com/discos-research/dig-bench"
+      ],
+      "integrity_notes": "P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget."
+    },
+    {
+      "id": "dig-bench-p-12",
+      "name": "DiG-bench P-12 (tier 4)",
+      "domain": "interactive-world-discovery",
+      "task_type": "interactive-rule-discovery",
+      "source_suite": "dig-bench",
+      "question": "Discover P-12's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.",
+      "input": "A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.",
+      "output": "A legal action sequence that wins the game",
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "evaluation": "Score each run by whether the game is beaten within its fixed step budget; average wins over repeated runs for the game, then average games within the difficulty tier.",
+      "environment": "Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.",
+      "reference_result": null,
+      "reported_result": null,
+      "outcome": "not-yet-scored",
+      "evidence_urls": [
+        "https://digbench.ai/",
+        "https://arxiv.org/abs/2608.12593",
+        "https://github.com/discos-research/dig-bench"
+      ],
+      "integrity_notes": "P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget."
+    },
+    {
+      "id": "dig-bench-p-13",
+      "name": "DiG-bench P-13 (tier 5)",
+      "domain": "interactive-world-discovery",
+      "task_type": "interactive-rule-discovery",
+      "source_suite": "dig-bench",
+      "question": "Discover P-13's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.",
+      "input": "A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.",
+      "output": "A legal action sequence that wins the game",
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "evaluation": "Score each run by whether the game is beaten within its fixed step budget; average wins over repeated runs for the game, then average games within the difficulty tier.",
+      "environment": "Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.",
+      "reference_result": null,
+      "reported_result": null,
+      "outcome": "not-yet-scored",
+      "evidence_urls": [
+        "https://digbench.ai/",
+        "https://arxiv.org/abs/2608.12593",
+        "https://github.com/discos-research/dig-bench"
+      ],
+      "integrity_notes": "P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget."
+    },
+    {
+      "id": "dig-bench-p-14",
+      "name": "DiG-bench P-14 (tier 5)",
+      "domain": "interactive-world-discovery",
+      "task_type": "interactive-rule-discovery",
+      "source_suite": "dig-bench",
+      "question": "Discover P-14's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.",
+      "input": "A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.",
+      "output": "A legal action sequence that wins the game",
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "evaluation": "Score each run by whether the game is beaten within its fixed step budget; average wins over repeated runs for the game, then average games within the difficulty tier.",
+      "environment": "Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.",
+      "reference_result": null,
+      "reported_result": null,
+      "outcome": "not-yet-scored",
+      "evidence_urls": [
+        "https://digbench.ai/",
+        "https://arxiv.org/abs/2608.12593",
+        "https://github.com/discos-research/dig-bench"
+      ],
+      "integrity_notes": "P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget."
+    },
+    {
+      "id": "dig-bench-p-15",
+      "name": "DiG-bench P-15 (tier 5)",
+      "domain": "interactive-world-discovery",
+      "task_type": "interactive-rule-discovery",
+      "source_suite": "dig-bench",
+      "question": "Discover P-15's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.",
+      "input": "A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.",
+      "output": "A legal action sequence that wins the game",
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "evaluation": "Score each run by whether the game is beaten within its fixed step budget; average wins over repeated runs for the game, then average games within the difficulty tier.",
+      "environment": "Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.",
+      "reference_result": null,
+      "reported_result": null,
+      "outcome": "not-yet-scored",
+      "evidence_urls": [
+        "https://digbench.ai/",
+        "https://arxiv.org/abs/2608.12593",
+        "https://github.com/discos-research/dig-bench"
+      ],
+      "integrity_notes": "P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget."
+    },
+    {
+      "id": "dig-bench-p-16",
+      "name": "DiG-bench P-16 (tier 6)",
+      "domain": "interactive-world-discovery",
+      "task_type": "interactive-rule-discovery",
+      "source_suite": "dig-bench",
+      "question": "Discover P-16's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.",
+      "input": "A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.",
+      "output": "A legal action sequence that wins the game",
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "evaluation": "Score each run by whether the game is beaten within its fixed step budget; average wins over repeated runs for the game, then average games within the difficulty tier.",
+      "environment": "Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.",
+      "reference_result": null,
+      "reported_result": null,
+      "outcome": "not-yet-scored",
+      "evidence_urls": [
+        "https://digbench.ai/",
+        "https://arxiv.org/abs/2608.12593",
+        "https://github.com/discos-research/dig-bench"
+      ],
+      "integrity_notes": "P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget."
+    },
+    {
+      "id": "dig-bench-p-17",
+      "name": "DiG-bench P-17 (tier 6)",
+      "domain": "interactive-world-discovery",
+      "task_type": "interactive-rule-discovery",
+      "source_suite": "dig-bench",
+      "question": "Discover P-17's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.",
+      "input": "A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.",
+      "output": "A legal action sequence that wins the game",
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "evaluation": "Score each run by whether the game is beaten within its fixed step budget; average wins over repeated runs for the game, then average games within the difficulty tier.",
+      "environment": "Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.",
+      "reference_result": null,
+      "reported_result": null,
+      "outcome": "not-yet-scored",
+      "evidence_urls": [
+        "https://digbench.ai/",
+        "https://arxiv.org/abs/2608.12593",
+        "https://github.com/discos-research/dig-bench"
+      ],
+      "integrity_notes": "P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget."
+    },
+    {
+      "id": "dig-bench-p-18",
+      "name": "DiG-bench P-18 (tier 6)",
+      "domain": "interactive-world-discovery",
+      "task_type": "interactive-rule-discovery",
+      "source_suite": "dig-bench",
+      "question": "Discover P-18's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.",
+      "input": "A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.",
+      "output": "A legal action sequence that wins the game",
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "evaluation": "Score each run by whether the game is beaten within its fixed step budget; average wins over repeated runs for the game, then average games within the difficulty tier.",
+      "environment": "Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.",
+      "reference_result": null,
+      "reported_result": null,
+      "outcome": "not-yet-scored",
+      "evidence_urls": [
+        "https://digbench.ai/",
+        "https://arxiv.org/abs/2608.12593",
+        "https://github.com/discos-research/dig-bench"
+      ],
+      "integrity_notes": "P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget."
+    },
+    {
+      "id": "dig-bench-p-19",
+      "name": "DiG-bench P-19 (tier 7)",
+      "domain": "interactive-world-discovery",
+      "task_type": "interactive-rule-discovery",
+      "source_suite": "dig-bench",
+      "question": "Discover P-19's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.",
+      "input": "A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.",
+      "output": "A legal action sequence that wins the game",
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "evaluation": "Score each run by whether the game is beaten within its fixed step budget; average wins over repeated runs for the game, then average games within the difficulty tier.",
+      "environment": "Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.",
+      "reference_result": null,
+      "reported_result": null,
+      "outcome": "not-yet-scored",
+      "evidence_urls": [
+        "https://digbench.ai/",
+        "https://arxiv.org/abs/2608.12593",
+        "https://github.com/discos-research/dig-bench"
+      ],
+      "integrity_notes": "P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget."
+    },
+    {
+      "id": "dig-bench-p-20",
+      "name": "DiG-bench P-20 (tier 7)",
+      "domain": "interactive-world-discovery",
+      "task_type": "interactive-rule-discovery",
+      "source_suite": "dig-bench",
+      "question": "Discover P-20's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.",
+      "input": "A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.",
+      "output": "A legal action sequence that wins the game",
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "evaluation": "Score each run by whether the game is beaten within its fixed step budget; average wins over repeated runs for the game, then average games within the difficulty tier.",
+      "environment": "Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.",
+      "reference_result": null,
+      "reported_result": null,
+      "outcome": "not-yet-scored",
+      "evidence_urls": [
+        "https://digbench.ai/",
+        "https://arxiv.org/abs/2608.12593",
+        "https://github.com/discos-research/dig-bench"
+      ],
+      "integrity_notes": "P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget."
+    },
+    {
+      "id": "dig-bench-p-21",
+      "name": "DiG-bench P-21 (tier 7)",
+      "domain": "interactive-world-discovery",
+      "task_type": "interactive-rule-discovery",
+      "source_suite": "dig-bench",
+      "question": "Discover P-21's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.",
+      "input": "A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.",
+      "output": "A legal action sequence that wins the game",
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "evaluation": "Score each run by whether the game is beaten within its fixed step budget; average wins over repeated runs for the game, then average games within the difficulty tier.",
+      "environment": "Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.",
+      "reference_result": null,
+      "reported_result": null,
+      "outcome": "not-yet-scored",
+      "evidence_urls": [
+        "https://digbench.ai/",
+        "https://arxiv.org/abs/2608.12593",
+        "https://github.com/discos-research/dig-bench"
+      ],
+      "integrity_notes": "P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget."
     }
   ]
 }

@@ -12,6 +12,7 @@ For scientific discovery, dimension and task are also separate: `mathematics-dis
 | `open-ended-ai-r-and-d` | Open-Ended AI R&D | Propose, implement, and validate AI research improvements | AI4AI-Bench, RSI Bench, RE-Bench, MLR-Bench |
 | `agent-harness-improvement` | Agent & Harness Improvement | Modify an agent's own scaffold, memory, skills, or reusable procedures and test transfer to held-out tasks | RSIBench, LongWoF-Bench |
 | `scientific-discovery` | Scientific Discovery | Solve research problems in biology, chemistry, physics, medicine, Earth science, materials, or scientific ML | NatureBench, EarthVerse, SciAgentArena, ScienceAgentBench |
+| `interactive-world-discovery` | Interactive World Discovery | Infer unfamiliar dynamics, rules, objectives, and strategies from action-conditioned feedback rather than a complete natural-language specification | ARC-AGI-3, DiG-bench, EdgeBench, DiscoveryWorld |
 | `paper-reproduction` | Paper Reproduction | Reconstruct code, environments, experiments, and results from research papers | PaperBench, CORE-Bench, SUPER, ResearchCodeBench, SciReplicate-Bench |
 | `data-science-analytics` | Data Science & Analytics | Analyze structured data, write SQL, create visualizations, and produce evidence-backed conclusions | DataSciBench, DABench, InfiAgent-DABench, BixBench |
 | `web-research-browsing` | Web Research & Browsing | Locate, verify, and synthesize information through web interaction | BrowseComp, WebArena, VisualWebArena, ResearchArena, GAIA |

@@ -1,8 +1,8 @@
-# Scientific Discovery Task Registry
+# Discovery Task Registry
 
 **Task evidence snapshot:** 2026-08-25
 
-This is the primary discovery layer of the repository. The unit of collection is an **executable discovery task**, not the method or agent that attempted it.
+This is the primary discovery layer of the repository. The unit of collection is an **executable discovery task**, not the method or agent that attempted it. It now covers both fully specified artifact-optimization tasks and environments whose rules or objectives must be discovered through interaction.
 
 > **Task:** “Find a lower-cost Cassini trajectory under this simulator and these constraints.”  
 > **Not a task:** “Use SimpleTES to improve science.”
@@ -24,6 +24,15 @@ SimpleTES, TTT-Discover, SkyDiscover, AlphaEvolve, and other systems belong in p
 | **Integrity** | Leakage, evaluator access, simulator mismatch, numerical precision, and reward-hacking risks. |
 
 The machine-readable form is [data/discovery-tasks.json](../data/discovery-tasks.json), validated against [schema/discovery-task.schema.json](../schema/discovery-task.schema.json).
+
+## Two discovery modes
+
+| Mode | What is hidden | Example tasks |
+|---|---|---|
+| **Artifact optimization** | A better solution is unknown, but the objective and evaluator are specified | Cassini trajectory, GPU kernels, circle packing |
+| **Interactive rule discovery** | The environment's dynamics, transformation rules, objective, or win condition | ARC-AGI-3 and DiG-bench games |
+
+The second mode is documented in depth in [Interactive Discovery Tasks](interactive-discovery-tasks.md). A registry row may have no model result yet; that means the task contract is verified but a matched run has not been recorded.
 
 ## SimpleTES as a task source
 
@@ -49,6 +58,39 @@ isolated subprocess → constraint validation → recomputed objective
 ```
 
 According to the official [task catalogue](https://github.com/wq-will/SimpleTES/blob/main/datasets/README.md), the evaluator applies a timeout and memory cap, validates hard constraints, and recomputes the score rather than trusting a self-reported value. Each row below is therefore cataloged separately, even though the tasks were evaluated by one discovery framework.
+
+## Interactive discovery task index
+
+The suite inventories and private splits are larger than the list below. We itemize only public task IDs that can be verified from official sources: three anonymous ARC-AGI-3 games and all 21 public DiG-bench games.
+
+| Discovery task | Modality | Metric | Registry status |
+|---|---|---|---|
+| **ARC-AGI-3 ls20 (Agent reasoning)** | Visual grid | RHAE ↑ | Public demo; per-game score pending |
+| **ARC-AGI-3 ft09 (Elementary Logic)** | Visual grid | RHAE ↑ | Public demo; per-game score pending |
+| **ARC-AGI-3 vc33 (Orchestration)** | Visual grid | RHAE ↑ | Public demo; per-game score pending |
+| **DiG-bench P-1 (tier 1)** | Text/JSON | Win rate ↑ | Public task; score pending |
+| **DiG-bench P-2 (tier 1)** | Text/JSON | Win rate ↑ | Public task; score pending |
+| **DiG-bench P-3 (tier 1)** | Text/JSON | Win rate ↑ | Public task; score pending |
+| **DiG-bench P-4 (tier 2)** | Text/JSON | Win rate ↑ | Public task; score pending |
+| **DiG-bench P-5 (tier 2)** | Text/JSON | Win rate ↑ | Public task; score pending |
+| **DiG-bench P-6 (tier 2)** | Text/JSON | Win rate ↑ | Public task; score pending |
+| **DiG-bench P-7 (tier 3)** | Text/JSON | Win rate ↑ | Public task; score pending |
+| **DiG-bench P-8 (tier 3)** | Text/JSON | Win rate ↑ | Public task; score pending |
+| **DiG-bench P-9 (tier 3)** | Text/JSON | Win rate ↑ | Public task; score pending |
+| **DiG-bench P-10 (tier 4)** | Text/JSON | Win rate ↑ | Public task; score pending |
+| **DiG-bench P-11 (tier 4)** | Text/JSON | Win rate ↑ | Public task; score pending |
+| **DiG-bench P-12 (tier 4)** | Text/JSON | Win rate ↑ | Public task; score pending |
+| **DiG-bench P-13 (tier 5)** | Text/JSON | Win rate ↑ | Public task; score pending |
+| **DiG-bench P-14 (tier 5)** | Text/JSON | Win rate ↑ | Public task; score pending |
+| **DiG-bench P-15 (tier 5)** | Text/JSON | Win rate ↑ | Public task; score pending |
+| **DiG-bench P-16 (tier 6)** | Text/JSON | Win rate ↑ | Public task; score pending |
+| **DiG-bench P-17 (tier 6)** | Text/JSON | Win rate ↑ | Public task; score pending |
+| **DiG-bench P-18 (tier 6)** | Text/JSON | Win rate ↑ | Public task; score pending |
+| **DiG-bench P-19 (tier 7)** | Text/JSON | Win rate ↑ | Public task; score pending |
+| **DiG-bench P-20 (tier 7)** | Text/JSON | Win rate ↑ | Public task; score pending |
+| **DiG-bench P-21 (tier 7)** | Text/JSON | Win rate ↑ | Public task; score pending |
+
+See the [interactive task guide](interactive-discovery-tasks.md) for input/action schemas, hidden information, budgets, evaluation formulas, official aggregate model scores, split restrictions, and the extraction queue.
 
 ## Task families: question, evaluator, and environment
 

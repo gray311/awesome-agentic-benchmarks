@@ -1,8 +1,8 @@
 # 2026 Frontier Agentic Benchmarks
 
-**Evidence snapshot:** 2026-08-24 (America/Chicago)
+**Evidence snapshot:** 2026-08-25 (America/Chicago)
 
-This page is a dated frontier tracker for **task sources and benchmark suites**. The primary catalog unit is the executable problem in the [Scientific Discovery Task Registry](discovery-tasks.md), not the discovery method. This page prevents a new preprint, a live suite, and a reproducible release from being presented as if they had the same maturity.
+This page is a dated frontier tracker for **task sources and benchmark suites**. The primary catalog unit is the executable problem in the [Discovery Task Registry](discovery-tasks.md), not the discovery method. This page prevents a new preprint, a live suite, and a reproducible release from being presented as if they had the same maturity.
 
 For example, SimpleTES is a source suite and evaluated system; its 28 quantum, astrodynamics, algorithm, AI-foundation, and mathematics problems are the actual discovery tasks.
 
@@ -58,6 +58,17 @@ The closest verified 2026 safety benchmarks by topic are [SkillSafetyBench](http
 | [**NatureBench**](https://github.com/FrontisAI/NatureBench) | 2026-06 · **Released** | A scientific ML problem package derived from a Nature-family paper | Task-dependent executable pipelines, held-out predictions, and comparison with the published SOTA under a four-hour budget | Official results cover GPT, Claude, GLM, Kimi, and Qwen families; leading listed Surpass-SOTA rate in our detailed snapshot is 23.3%. |
 | [**EarthVerse**](https://arxiv.org/abs/2608.23525) | 2026-08-24 · **Emerging** | Reproducible Earth-science event packages spanning 19 hazard families | 405 tasks from 199 documented events; executable answer units plus process rubrics. Reports answer accuracy and strict high-confidence success | Across 25 systems, paper reports best mean answer accuracy of 84.65% and best Strict@95 of 34.81%. |
 | [**LongWoF-Bench**](https://arxiv.org/abs/2608.23200) | 2026-08-24 · **Emerging** | 778 machine-verifiable tasks across code, environment synthesis, mathematics, and rule following | Verified trajectories are externalized as reusable “Genes”; evaluation tests whether persistent artifacts improve later task performance | On a 252-task subset, Gene reportedly exceeds Skill by 8.7–15.5 points across seven models; Claude Opus solves 39 more tasks with 9.9% fewer tokens. This measures externalized adaptation, not weight-level RSI. |
+
+## Interactive discovery and environment learning
+
+| Benchmark | Date / status | Question or task input | Evaluation method and environment | Reported model evidence |
+|---|---|---|---|---|
+| [**ARC-AGI-3**](https://arcprize.org/arc-agi/3) | 2026-04 · **Live / Released protocol** | A 16-color grid frame and legal actions, with no language description of the mechanics, objective, or win condition | 135 environments: 25 public demos, 55 semi-private, and 55 fully private. RHAE compares completed-level action efficiency with first-run humans and averages weighted game scores | Official semi-private scores: Opus 4.6 0.50%, Gemini 3.1 Pro Preview 0.40%, GPT-5.4 0.20%, Grok-4.20 Beta 0.10%. No verified GLM, Kimi, or Qwen official row yet. |
+| [**DiG-bench**](https://digbench.ai/) | 2026-08-12 · **Released** | JSON text-game state and legal actions; the agent must discover each game's unique hidden rules and win condition | 70 games in seven tiers, 21 public. Success is a win within a fixed step budget; per-game repeated-run win rates are averaged within tier | The official basic leaderboard includes GPT-5.5, Opus 5, GLM-5.2, Kimi K3, and Qwen 3.6 27B; agentic configurations include GPT, Claude, and Kimi systems. |
+| [**EdgeBench**](https://edge-bench.org/) | 2026-07-02 · **Released / task extraction in progress** | Long-running real-world workspaces across science, systems, optimization, knowledge, formal math, and games | 134 tasks with 12–72+ hour feedback-driven runs; 51 initially released. Best-so-far task curves and aggregate learning curves measure improvement over interaction time | 402 curves per model are reported. One documented GPT-5.5 gravitational-wave run improves from 42.8 to 67.0 over 247 scored attempts in 12 hours. |
+| [**ScrambleToolBench**](https://arxiv.org/abs/2608.02358) | 2026-08-03 · **Emerging** | Obfuscated terminal commands whose behavior must be inferred by trial and error | Tests stable discovery plus mapping drift, stochastic failures, and temporal windows; exact public task inventory awaits artifact verification | The paper reports aggregate completion collapsing from 93% in stable conditions to 3% under combined dynamic challenges. |
+| [**FALSIFYBENCH**](https://arxiv.org/abs/2606.04751) | 2026-06-03 · **Emerging** | Iteratively proposed examples receive confirm/disconfirm feedback for a hidden semantic property | Wason-style rule-discovery games score hypothesis-driven induction and turn-level falsification behavior | Twelve LLMs are evaluated; the paper reports that no model approaches optimal performance and negative testing is the strongest success factor. |
+| [**CausalGame**](https://arxiv.org/abs/2607.04293) | 2026-07-05 · **Emerging** | Agents design interventions, collect observations, and write a causal solution and explanation in worlds with hidden biases | 14 interactive scenarios cover selection bias, measurement error, and hidden confounding; survival and causal-reasoning rubrics are separate | Across 30 agents, the best reaches 68.0% survival versus 78–85% analytical optima, while only 5–7% of sessions receive causal-reasoning credit. |
 
 ## Coding, terminal, computer, and mobile agents
 
