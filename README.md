@@ -10,7 +10,7 @@
 ![Validation](https://img.shields.io/badge/validation-passing-16a34a)
 [![License: MIT](https://img.shields.io/badge/license-MIT-f59e0b.svg)](LICENSE)
 
-[Benchmark Dimensions](docs/benchmark-dimensions.md) · [Model Coverage](docs/model-coverage.md) · [JSON Registry](data/benchmarks.json) · [Taxonomy](docs/taxonomy.md) · [Contributing](CONTRIBUTING.md)
+[2026 Frontier Tracker](docs/2026-frontier-benchmarks.md) · [Benchmark Dimensions](docs/benchmark-dimensions.md) · [Model Coverage](docs/model-coverage.md) · [JSON Registry](data/benchmarks.json) · [Taxonomy](docs/taxonomy.md) · [Contributing](CONTRIBUTING.md)
 
 </div>
 
@@ -42,6 +42,7 @@ We therefore treat every score as a result of a complete experimental configurat
 
 ## 🔥 News
 
+- **2026-08-24** — Added a dated [2026 frontier tracker](docs/2026-frontier-benchmarks.md) covering TB3/continuous Terminal-Bench, both RSI Bench projects, AI4AI-Bench, TerminalWorld, and new safety benchmarks; unresolved names are now kept separate from verified releases.
 - **2026-08-24** — Added role-aware coverage for **GPT, Claude, GLM, Kimi, and Qwen**, distinguishing agent, target, and judge models.
 - **2026-08-24** — Added a 31-benchmark evidence matrix and a broader primary-source verification backlog.
 - **2026-08-24** — Released the initial machine-readable registry with MLE-bench, NatureBench, and PostTrainBench.
@@ -53,6 +54,7 @@ We therefore treat every score as a result of a complete experimental configurat
 - [Mission: Evaluation Infrastructure for RSI](#-mission-evaluation-infrastructure-for-rsi)
 - [Benchmark dimensions](#-benchmark-dimensions)
 - [Featured AI4AI benchmarks](#-featured-ai4ai-benchmarks)
+- [2026 frontier tracker](#-2026-frontier-tracker)
 - [Benchmark catalog](#-benchmark-catalog)
   - [AI R&D and scientific discovery](#ai-rd-and-scientific-discovery)
   - [Coding and software engineering](#coding-and-software-engineering)
@@ -85,18 +87,20 @@ Dimensions describe **what the benchmark evaluates**. SFT, DPO, GRPO, RLHF, LoRA
 
 | Dimension | What it evaluates | Example benchmarks |
 |---|---|---|
-| **Coding & Software Engineering** | Repository editing, issue resolution, debugging, tests, and terminal work | SWE-bench, Terminal-Bench, SWE-Lancer |
+| **Coding & Software Engineering** | Repository editing, issue resolution, debugging, tests, and terminal work | SWE-bench, Terminal-Bench, SWE Refactor Bench |
 | **Machine Learning Engineering** | Building and optimizing ML systems against a defined objective | MLE-bench, MLAgentBench, ML-Dev-Bench |
 | **Post-Training** | Improving a provided base model under a bounded compute budget | PostTrainBench, RSI Bench |
-| **Open-Ended AI R&D** | Proposing, implementing, and validating AI research improvements | RE-Bench, MLR-Bench, MLRC-Bench |
-| **Scientific Discovery** | Solving research problems in scientific domains | NatureBench, ScienceAgentBench, DiscoveryBench |
+| **Open-Ended AI R&D** | Proposing, implementing, and validating AI research improvements | AI4AI-Bench, RSI Bench, RE-Bench |
+| **Agent & Harness Improvement** | Modifying an agent's scaffold, memory, skills, or reusable procedures and testing transfer | RSIBench, LongWoF-Bench |
+| **Scientific Discovery** | Solving research problems in scientific domains | NatureBench, EarthVerse, SciAgentArena |
 | **Paper Reproduction** | Reconstructing research code, environments, and results | PaperBench, CORE-Bench, SUPER |
 | **Web Research & Browsing** | Locating and synthesizing hard-to-find information | BrowseComp, WebArena, GAIA |
-| **Computer Use & Daily Life** | Completing workflows in desktop, mobile, and browser environments | OSWorld, AndroidWorld, TravelPlanner |
+| **Computer Use & Daily Life** | Completing workflows in desktop, mobile, and browser environments | OSWorld, TUA-Bench, MobilePA-Bench |
 | **Tool Use** | Selecting APIs and tools while following stateful policies | BFCL, tau2-bench, MCP-Atlas |
 | **Professional Work** | Completing realistic office and knowledge-work deliverables | GDPval-AA, SpreadsheetBench 2, WorkArena |
 | **Multi-Agent Coordination** | Delegation, collaboration, negotiation, and competition | MultiAgentBench, GAMA-Bench, SOTOPIA |
-| **Safety & Security** | Harmful actions, permissions, prompt injection, and cyber capability | AgentDojo, AgentHarm, CyBench |
+| **Safety & Security** | Harmful actions, permissions, prompt injection, reward hacking, and cyber capability | SkillSafetyBench, TAMAS, HVTB |
+| **Evaluation Integrity** | Verifier exploitation, reward hacking, leakage, and judge reliability | HVTB, CatchBench |
 | **General Agents** | Broad planning, reasoning, tool use, and long-horizon execution | OmniaBench, AGENCYBENCH, AgentBench |
 
 See the complete definitions and classification rules in [Benchmark Dimensions](docs/benchmark-dimensions.md).
@@ -124,9 +128,27 @@ PostTrainBench
 
 These benchmarks measure increasingly direct forms of AI-assisted AI development. None is, by itself, a complete recursive self-improvement benchmark: the evaluated agent does not repeatedly improve successor versions of its own improvement mechanism under a controlled causal protocol.
 
+## 🛰️ 2026 frontier tracker
+
+Fast-moving 2026 work is tracked separately from the stable catalog so that maturity remains visible.
+
+| Benchmark | Dimension | Maturity | Why it matters |
+|---|---|---|---|
+| [**RSI Bench**](https://www.rsi-benchmark.com/) | Open-Ended AI R&D / Post-Training | Live preview | Long-horizon research tasks with controlled compute and executable verifiers; current public runs include GPT and Claude systems. |
+| [**RSIBench**](https://huggingface.co/datasets/AgPerry/rsi-bench) | Agent/Harness Improvement | Released dataset | Counterfactual test of whether coding-agent self-modifications transfer to held-out tasks. |
+| [**AI4AI-Bench**](https://arxiv.org/abs/2608.20318) | Open-Ended AI R&D | Emerging | Agents rewrite training algorithms in frozen research repositories under a B300 compute envelope. |
+| [**Terminal-Bench**](https://github.com/harbor-framework/terminal-bench) | Coding / Terminal | Live, continuous | The former TB3 effort now publishes tagged continuous task sets through Harbor; a score needs an exact release tag. |
+| [**TerminalWorld**](https://terminalworld.ai/) | Coding / Terminal | Live | Its human-verified leaderboard currently contains GPT, Claude, GLM, Kimi, and Qwen results in one shared environment. |
+| [**EarthVerse**](https://arxiv.org/abs/2608.23525) | Scientific Discovery | Emerging | 405 reproducible Earth-science tasks with executable answer units and process rubrics. |
+| [**SWE Refactor Bench**](https://arxiv.org/abs/2608.23564) | Coding | Emerging | Whole-repository migrations evaluated by audits, behavior tests, and independently generated hidden tests. |
+| [**HVTB**](https://arxiv.org/abs/2608.22103) | Safety / Evaluation Integrity | Emerging | Detects reward hacking in terminal-agent evaluation rather than trusting verifier success alone. |
+| [**SkillSafetyBench**](https://arxiv.org/abs/2605.12015) | Safety | Released | Tests malicious skills and local artifacts across six risk domains. |
+
+See [2026 Frontier Agentic Benchmarks](docs/2026-frontier-benchmarks.md) for task inputs, evaluators, environments, reported scores, status definitions, and the explicit unresolved-name audit for **DeTrustAgent**.
+
 ## 📚 Benchmark catalog
 
-Legend: **Detailed** = complete registry entry; **Tracked** = included in the model-coverage and verification pipeline.
+Legend: **Detailed** = complete registry entry; **Tracked** = included in the model-coverage and verification pipeline; **Live/Preview/Emerging** = status is defined in the [2026 tracker](docs/2026-frontier-benchmarks.md); **Discovery queue** = primary artifacts still need review.
 
 ### AI R&D and scientific discovery
 
@@ -135,10 +157,16 @@ Legend: **Detailed** = complete registry entry; **Tracked** = included in the mo
 | **MLE-bench** | Machine Learning Engineering | Detailed | [Paper](https://arxiv.org/abs/2410.07095) · [Code](https://github.com/openai/mle-bench) · [Leaderboard](https://github.com/openai/mle-bench#leaderboard) |
 | **NatureBench** | Scientific Discovery | Detailed | [Paper](https://arxiv.org/abs/2606.24530) · [Code](https://github.com/FrontisAI/NatureBench) · [Leaderboard](https://frontisai.github.io/NatureBench/) |
 | **PostTrainBench** | Post-Training | Detailed | [Paper](https://arxiv.org/abs/2603.08640) · [Code](https://github.com/aisa-group/PostTrainBench) · [Leaderboard](https://posttrainbench.com/) |
+| **RSI Bench** | Open-Ended AI R&D / Post-Training | Live / Preview | [Project](https://www.rsi-benchmark.com/) · [Tasks](https://www.rsi-benchmark.com/tasks) · [Runs](https://www.rsi-benchmark.com/runs) |
+| **RSIBench** | Agent/Harness Improvement | Released dataset | [Dataset](https://huggingface.co/datasets/AgPerry/rsi-bench) · [Code](https://github.com/reacher-z/rsi-bench) |
+| **AI4AI-Bench** | Open-Ended AI R&D | Emerging | [Paper](https://arxiv.org/abs/2608.20318) |
 | **RE-Bench** | Open-Ended AI R&D | Tracked | [Paper](https://arxiv.org/abs/2411.15114) · [Code](https://github.com/METR/RE-Bench) |
 | **MLR-Bench** | Open-Ended AI R&D | Tracked | [Paper](https://proceedings.neurips.cc/paper_files/paper/2025/hash/ab8dd000d6f87f40061a73f8bca7fae4-Abstract-Datasets_and_Benchmarks_Track.html) |
 | **PaperBench** | Paper Reproduction | Tracked | [Paper](https://arxiv.org/abs/2504.01848) · [Project](https://openai.com/index/paperbench/) |
 | **InferenceBench** | AI Systems Optimization | Tracked | [Code](https://github.com/aisa-group/InferenceBench) |
+| **AgentHPOBench** | Machine Learning Engineering | Emerging | [Paper](https://arxiv.org/abs/2607.29626) |
+| **SciAgentArena** | Scientific Discovery | Emerging | [Paper](https://arxiv.org/abs/2606.12736) |
+| **EarthVerse** | Scientific Discovery | Emerging | [Paper](https://arxiv.org/abs/2608.23525) |
 | **ScienceAgentBench** | Scientific Discovery | Discovery queue | [Paper](https://arxiv.org/abs/2410.05080) · [Code](https://github.com/OSU-NLP-Group/ScienceAgentBench) |
 | **EXP-Bench** | Open-Ended AI R&D | Discovery queue | [Paper](https://arxiv.org/abs/2505.24785) · [Code](https://github.com/EvolvingLMMs-Lab/EXP-Bench) |
 
@@ -150,8 +178,11 @@ Legend: **Detailed** = complete registry entry; **Tracked** = included in the mo
 | **SWE-bench Pro** | Harder professional repository tasks | Tracked | [Project](https://scale.com/leaderboard/swe_bench_pro_public) |
 | **SWE-bench Multilingual** | Repository tasks across programming languages | Tracked | [Code](https://github.com/multi-swe-bench/multi-swe-bench) |
 | **SWE-bench Multimodal** | UI-facing repository issues with visual context | Tracked | [Code](https://github.com/SWE-bench/SWE-bench) |
-| **Terminal-Bench** | Long-horizon terminal tasks | Tracked | [Code](https://github.com/laude-institute/terminal-bench) |
+| **Terminal-Bench** | Continuous long-horizon terminal tasks; TB3 lineage | Live | [Code](https://github.com/harbor-framework/terminal-bench) |
+| **TerminalWorld** | Reproduced real-world terminal environments | Live | [Project / Leaderboard](https://terminalworld.ai/) |
 | **TUA-Bench** | General-purpose terminal use | Tracked | [Code](https://github.com/facebookresearch/TUA-Bench) |
+| **SWE Refactor Bench** | Whole-repository migrations and technical-debt removal | Emerging | [Paper](https://arxiv.org/abs/2608.23564) |
+| **NetConfArena** | Closed-loop multi-device network configuration | Emerging | [Paper](https://arxiv.org/abs/2608.23179) |
 | **SWE-Lancer** | Paid freelance software-engineering tasks | Discovery queue | [Code](https://github.com/openai/SWELancer-Benchmark) |
 
 ### Tool use and interaction
@@ -175,6 +206,7 @@ Legend: **Detailed** = complete registry entry; **Tracked** = included in the mo
 | **ScreenSpot-Pro** | Professional high-resolution GUI grounding | Tracked | [Code](https://github.com/likaixin2000/ScreenSpot-Pro-GUI-Grounding) |
 | **AndroidWorld** | Real Android application workflows | Tracked | [Code](https://github.com/google-research/android_world) |
 | **WindowsAgentArena** | Windows application workflows | Tracked | [Code](https://github.com/microsoft/WindowsAgentArena) |
+| **MobilePA-Bench** | Stateful mobile personal-assistant workflows | Emerging | [Paper](https://arxiv.org/abs/2608.23035) |
 | **TravelPlanner** | Constrained travel planning | Discovery queue | [Code](https://github.com/OSU-NLP-Group/TravelPlanner) |
 
 ### General, professional, and safety agents
@@ -186,6 +218,14 @@ Legend: **Detailed** = complete registry entry; **Tracked** = included in the mo
 | **GDPval-AA v2** | Professional Work | Tracked | [Leaderboard](https://artificialanalysis.ai/evaluations/gdpval-aa) |
 | **Claw-Eval-Live** | Enterprise Agent Workflows | Tracked | [Code](https://github.com/Claw-Eval-Live/Claw-Eval-Live) |
 | **Agent3Sigma** | Agent Safety | Tracked | [Code](https://github.com/antgroup/Agent3Sigma) |
+| **SkillSafetyBench** | Skill and Local-Artifact Safety | Released | [Paper](https://arxiv.org/abs/2605.12015) · [Code](https://github.com/AI45Lab/skill-safety-bench) |
+| **TRUST-Bench** | Compromised-Tool Robustness | Emerging | [Paper](https://arxiv.org/abs/2605.17453) |
+| **AgentLAB** | Long-Horizon Agent Security | Emerging | [Paper](https://arxiv.org/abs/2602.16901) |
+| **TAMAS** | Multi-Agent System Safety | Released | [Paper](https://aclanthology.org/2026.acl-long.1442/) · [Code](https://github.com/microsoft/TAMAS) |
+| **ST-WebAgentBench** | Web-Agent Safety and Trust | Emerging | [Project](https://research.ibm.com/publications/st-webagentbench-a-benchmark-for-evaluating-safety-and-trustworthiness-in-web-agents--1) |
+| **AgentFairBench** | Fairness in Stateful Agent Decisions | Emerging | [Paper](https://arxiv.org/abs/2606.16723) |
+| **HVTB** | Reward-Hacking Detection | Emerging | [Paper](https://arxiv.org/abs/2608.22103) |
+| **CatchBench** | Evaluation Auditing | Work in progress | [Paper](https://arxiv.org/abs/2608.22808) |
 | **TheAgentCompany** | Simulated Knowledge Work | Discovery queue | [Code](https://github.com/TheAgentCompany/TheAgentCompany) |
 | **AgentDojo** | Prompt-Injection Safety | Discovery queue | [Code](https://github.com/ethz-spylab/agentdojo) |
 | **AgentHarm** | Harmful Agent Behavior | Discovery queue | [Code](https://github.com/UKGovernmentBEIS/inspect_evals) |
@@ -208,6 +248,7 @@ Benchmarks with reported results for all five target families already include:
 | SWE-bench Verified | Coding | ✓ | ✓ | ✓ | ✓ | ✓ |
 | SWE-bench Pro | Coding | ✓ | ✓ | ✓ | ✓ | ✓ |
 | Terminal-Bench | Coding | ✓ | ✓ | ✓ | ✓ | ✓ |
+| TerminalWorld | Coding | ✓ | ✓ | ✓ | ✓ | ✓ |
 | tau2-bench | Tool Use | ✓ | ✓ | ✓ | ✓ | ✓ |
 | MCP-Atlas | Tool Use | ✓ | ✓ | ✓ | ✓ | ✓ |
 | MCP-Bench | Tool Use | ✓ | ✓ | ✓ | ✓ | ✓ |
