@@ -22,6 +22,24 @@
 
 This repository tracks benchmarks in which agents browse, use tools, operate computers, edit repositories, run experiments, train models, reproduce papers, conduct scientific research, or improve AI systems. It is designed as shared evaluation infrastructure for **AI4AI** and **recursive self-improvement (RSI)** research.
 
+## 🎯 Mission: Evaluation Infrastructure for RSI
+
+Our goal is to help advance **recursive self-improvement (RSI)** by making progress measurable, comparable, and reproducible. An AI system cannot improve itself reliably without knowing which capabilities changed, whether an apparent gain survives controlled evaluation, and what resources or scaffolding produced that gain.
+
+To support this goal, the repository collects and organizes:
+
+- **multidimensional evaluation datasets and benchmarks** spanning coding, machine learning engineering, post-training, scientific discovery, paper reproduction, tool use, computer use, daily-life tasks, professional work, multi-agent coordination, and safety;
+- **evaluation methods and protocols**, including task construction, inputs and outputs, scoring rules, judges, pass criteria, baselines, uncertainty, contamination controls, and reproducibility procedures;
+- **evaluation environments and resource envelopes**, such as tools, agent scaffolds, sandboxes, network access, time limits, token budgets, compute budgets, and hardware;
+- **cross-model evidence** for GPT, Claude, GLM, Kimi, Qwen, and other model families, with explicit distinctions between the agent model, target model, and judge model;
+- **machine-readable records** that future AI4AI systems can search, compare, validate, and use to select evaluations for their own improvement cycles.
+
+The long-term aim is not merely to maintain a leaderboard. It is to build an open evaluation layer for the AI4AI/RSI loop:
+
+> **propose an improvement → implement it → evaluate across dimensions → analyze regressions and trade-offs → retain verified gains → repeat**
+
+We therefore treat every score as a result of a complete experimental configuration—not as an intrinsic property of a model—and prioritize primary sources, transparent protocols, reproducible environments, and dated evidence.
+
 ## 🔥 News
 
 - **2026-08-24** — Added role-aware coverage for **GPT, Claude, GLM, Kimi, and Qwen**, distinguishing agent, target, and judge models.
@@ -32,6 +50,7 @@ This repository tracks benchmarks in which agents browse, use tools, operate com
 ## 📑 Table of Contents
 
 - [Why this repository](#-why-this-repository)
+- [Mission: Evaluation Infrastructure for RSI](#-mission-evaluation-infrastructure-for-rsi)
 - [Benchmark dimensions](#-benchmark-dimensions)
 - [Featured AI4AI benchmarks](#-featured-ai4ai-benchmarks)
 - [Benchmark catalog](#-benchmark-catalog)
