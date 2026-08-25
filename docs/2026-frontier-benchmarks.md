@@ -4,7 +4,7 @@
 
 This page is a dated frontier tracker for **task sources and benchmark suites**. The primary catalog unit is the executable problem in the [Discovery Task Registry](discovery-tasks.md), not the discovery method. This page prevents a new preprint, a live suite, and a reproducible release from being presented as if they had the same maturity.
 
-For example, SimpleTES is a source suite and evaluated system; its 28 quantum, astrodynamics, algorithm, AI-foundation, and mathematics problems are the actual discovery tasks.
+For example, SimpleTES packages/adapts 28 executable contracts and evaluates them, but it is not automatically their original source: GPUMode, SLDBench, ZAPBench, KernelBench, OpenProblems, established mathematical problems, and several SimpleTES-authored evaluator contracts all appear in per-task provenance.
 
 ## Status vocabulary
 

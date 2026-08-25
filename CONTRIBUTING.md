@@ -18,7 +18,7 @@ Every task must identify:
 - reported discovery system and score, or `null` with `not-yet-scored` for a verified task awaiting evaluation;
 - primary evidence URLs and integrity caveats.
 
-If several tasks come from one project, declare that project once as a `source_suite` and add each problem as a separate task. Methods such as EFT and search frameworks without extracted problems belong in result/configuration provenance, not in the task array.
+If several tasks are ingested from one project or package, declare it once as a `registry_suite` and add each problem as a separate task. Always preserve the original `task_origin` and `task_url`; packaging or evaluating a task does not make a method its source. Methods such as EFT and search frameworks without extracted problems belong in result/configuration provenance, not in the task array.
 
 For interactive discovery, also record what rules or objectives are hidden, observation and action schemas, reset/life/step budgets, terminal states, public/private split, and replay or scorecard policy. Never extract private environments, and never present public development games as a held-out score.
 

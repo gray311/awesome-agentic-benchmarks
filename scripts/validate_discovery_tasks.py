@@ -38,7 +38,9 @@ REQUIRED_TASK_FIELDS = {
     "id",
     "name",
     "domain",
-    "source_suite",
+    "registry_suite",
+    "task_origin",
+    "task_url",
     "question",
     "input",
     "output",
@@ -89,12 +91,12 @@ def validate() -> list[str]:
     if not is_iso_date(registry.get("last_updated")):
         errors.append("last_updated must be an ISO date")
 
-    suites = registry.get("source_suites")
+    suites = registry.get("registry_suites")
     if not isinstance(suites, list) or not suites:
-        return errors + ["source_suites must be a non-empty array"]
+        return errors + ["registry_suites must be a non-empty array"]
     suite_ids: set[str] = set()
     for index, suite in enumerate(suites):
-        prefix = f"source_suites[{index}]"
+        prefix = f"registry_suites[{index}]"
         suite_id = suite.get("id")
         if not isinstance(suite_id, str) or not ID_PATTERN.fullmatch(suite_id):
             errors.append(f"{prefix}.id must be kebab-case")
@@ -158,8 +160,12 @@ def validate() -> list[str]:
             errors.append(f"{task_id}: invalid domain")
         if "task_type" in task and task["task_type"] not in TASK_TYPES:
             errors.append(f"{task_id}: invalid task_type")
-        if task["source_suite"] not in suite_ids:
-            errors.append(f"{task_id}: source_suite does not reference a declared suite")
+        if task["registry_suite"] not in suite_ids:
+            errors.append(f"{task_id}: registry_suite does not reference a declared suite")
+        if not isinstance(task["task_origin"], str) or not task["task_origin"]:
+            errors.append(f"{task_id}: task_origin must be a non-empty string")
+        if not is_https_url(task["task_url"]):
+            errors.append(f"{task_id}: task_url must be an HTTPS URL")
         if task["outcome"] not in OUTCOMES:
             errors.append(f"{task_id}: invalid outcome")
 
@@ -234,6 +240,12 @@ def validate() -> list[str]:
             errors.append(f"{task_id}: SOTA model must be a non-empty string")
         if not is_https_url(record.get("primary_result_url")):
             errors.append(f"{task_id}: SOTA primary_result_url must be an HTTPS URL")
+        if not isinstance(record.get("task_origin"), str) or not record["task_origin"]:
+            errors.append(f"{task_id}: task_origin must be a non-empty string")
+        if not is_https_url(record.get("task_url")):
+            errors.append(f"{task_id}: task_url must be an HTTPS URL")
+        if not isinstance(record.get("evaluated_in"), str) or not record["evaluated_in"]:
+            errors.append(f"{task_id}: evaluated_in must be a non-empty string")
         if not isinstance(record.get("evidence_urls"), list) or not record["evidence_urls"]:
             errors.append(f"{task_id}: SOTA evidence_urls must be a non-empty array")
         elif any(not is_https_url(url) for url in record["evidence_urls"]):
@@ -255,7 +267,7 @@ def validate() -> list[str]:
             errors.append(f"{task_id}: invalid SOTA status")
 
         source_reported = record.get("source_reported")
-        if task["source_suite"] == "simpletes" and not isinstance(source_reported, dict):
+        if task["registry_suite"] == "simpletes" and not isinstance(source_reported, dict):
             errors.append(f"{task_id}: SimpleTES task must preserve source_reported separately from current record")
         if isinstance(source_reported, dict):
             if not source_reported.get("system") or not isinstance(source_reported.get("score"), (int, float)):
@@ -282,7 +294,7 @@ def main() -> int:
     registry = json.loads(REGISTRY_PATH.read_text(encoding="utf-8"))
     print(
         f"Discovery-task registry is valid: {len(registry['tasks'])} tasks from "
-        f"{len(registry['source_suites'])} source suite(s), version "
+        f"{len(registry['registry_suites'])} registry suite(s), version "
         f"{registry['registry_version']}."
     )
     return 0

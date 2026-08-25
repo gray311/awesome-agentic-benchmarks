@@ -3,12 +3,12 @@
   "$id": "https://example.org/awesome-agentic-benchmarks/discovery-task.schema.json",
   "title": "Discovery Task Registry",
   "type": "object",
-  "required": ["registry_version", "last_updated", "source_suites", "tasks"],
+  "required": ["registry_version", "last_updated", "registry_suites", "tasks"],
   "properties": {
     "$schema": {"type": "string"},
     "registry_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
     "last_updated": {"type": "string", "format": "date"},
-    "source_suites": {
+    "registry_suites": {
       "type": "array",
       "minItems": 1,
       "items": {
@@ -17,7 +17,7 @@
         "properties": {
           "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
           "name": {"type": "string"},
-          "role": {"enum": ["task-source", "task-source-and-evaluated-system"]},
+          "role": {"enum": ["task-source", "task-source-and-evaluated-system", "task-package-and-evaluated-system"]},
           "evaluated_model": {"type": ["string", "null"]},
           "result_status": {"enum": ["source-reported", "independently-reproduced", "independently-certified"]},
           "paper": {"type": "string", "format": "uri"},
@@ -51,7 +51,7 @@
     "task": {
       "type": "object",
       "required": [
-        "id", "name", "domain", "source_suite", "question", "input", "output",
+        "id", "name", "domain", "registry_suite", "task_origin", "task_url", "question", "input", "output",
         "metric", "evaluation", "environment", "reference_result", "reported_result",
         "outcome", "evidence_urls", "integrity_notes"
       ],
@@ -67,7 +67,9 @@
         "task_type": {
           "enum": ["artifact-optimization", "interactive-rule-discovery", "scientific-investigation", "environment-learning"]
         },
-        "source_suite": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+        "registry_suite": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+        "task_origin": {"type": "string", "minLength": 3},
+        "task_url": {"type": "string", "format": "uri"},
         "question": {"type": "string", "minLength": 10},
         "input": {"type": "string", "minLength": 10},
         "output": {"type": "string", "minLength": 3},

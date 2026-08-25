@@ -112,7 +112,7 @@ def validate() -> list[str]:
 
     discovery = json.loads(DISCOVERY_PATH.read_text(encoding="utf-8"))
     missing_sources = sorted(
-        suite["name"] for suite in discovery["source_suites"] if suite["id"] not in ids
+        suite["name"] for suite in discovery["registry_suites"] if suite["id"] not in ids
     )
     if missing_sources:
         errors.append("discovery source suites missing metadata: " + ", ".join(missing_sources))

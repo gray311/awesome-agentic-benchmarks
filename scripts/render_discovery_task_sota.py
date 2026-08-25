@@ -180,7 +180,8 @@ SUITE_LABELS = {
 def build_sota(registry: dict) -> dict:
     records = []
     for task in registry["tasks"]:
-        suite = task["source_suite"]
+        suite = task["registry_suite"]
+        task_origin, task_url = task["task_origin"], task["task_url"]
         if suite == "simpletes":
             result = task["reported_result"]
             source_system = result["system"] if task["id"] == "sum-difference-problem" else "SimpleTES + gpt-oss-120b"
@@ -190,9 +191,12 @@ def build_sota(registry: dict) -> dict:
                 "scope": "contract-level",
                 "system": None,
                 "score": None,
-                "method": "SimpleTES (source incumbent; global SOTA unverified)",
-                "model": "gpt-oss-120b",
+                "method": "No verified public current SOTA located",
+                "model": "Not established",
                 "primary_result_url": SIMPLETES_PAPER,
+                "task_origin": task_origin,
+                "task_url": task_url,
+                "evaluated_in": "SimpleTES",
                 "metric": task["metric"],
                 "as_of": AS_OF,
                 "source_reported": {
@@ -224,6 +228,9 @@ def build_sota(registry: dict) -> dict:
                     "method": "No per-task SOTA published (suite aggregate: Tycho)",
                     "model": "Not disclosed",
                     "primary_result_url": ARC_BOARD,
+                    "task_origin": task_origin,
+                    "task_url": task_url,
+                    "evaluated_in": "ARC-AGI-3",
                     "metric": task["metric"],
                     "as_of": AS_OF,
                     "evidence_status": "community-self-reported-no-task-breakdown",
@@ -248,6 +255,9 @@ def build_sota(registry: dict) -> dict:
                     "method": "No per-task SOTA published (suite aggregate: basic harness)",
                     "model": "Claude Opus 5",
                     "primary_result_url": DIG_PAPER,
+                    "task_origin": task_origin,
+                    "task_url": task_url,
+                    "evaluated_in": "DiG-bench",
                     "metric": task["metric"],
                     "as_of": AS_OF,
                     "evidence_status": "source-reported-no-task-breakdown",
@@ -311,7 +321,7 @@ def result_cell(record: dict) -> str:
         return f"Unresolved at published precision ({candidates})"
     if record["status"] == "source-reported-contract-incumbent":
         source = record["source_reported"]
-        return f"{number_text(source['score'])} {direction} (source incumbent; SOTA unverified)"
+        return f"{source['system']}: {number_text(source['score'])} {direction} (source result; SOTA unverified)"
     best = record["suite_best"]
     return f"No per-task result; suite {number_text(best['score'])} {best['unit']}"
 
@@ -333,7 +343,7 @@ def sota_table_lines(registry: dict, sota: dict, *, readme: bool = False) -> lis
     """Build the task-first SOTA table shared by README and the detailed reference."""
     records = {record["task_id"]: record for record in sota["records"]}
     lines = [
-        "| # | Discovery task | Domain | Source | SOTA method / status | Model / backbone | Result | Link |",
+        "| # | Discovery task | Domain | Task origin / evaluator | SOTA method / status | Model / backbone | Result | SOTA evidence |",
         "|---:|---|---|---|---|---|---|---|",
     ]
     for index, task in enumerate(registry["tasks"], 1):
@@ -341,7 +351,7 @@ def sota_table_lines(registry: dict, sota: dict, *, readme: bool = False) -> lis
         anchor = f"docs/all-discovery-tasks.md#{task['id']}" if readme else f"#{task['id']}"
         lines.append(
             f"| {index} | [{cell(task['name'])}]({anchor}) | {cell(task['domain'])} | "
-            f"{SUITE_LABELS[task['source_suite']]} | {cell(record['method'])} | {cell(record['model'])} | "
+            f"[{cell(record['task_origin'])}]({record['task_url']}) | {cell(record['method'])} | {cell(record['model'])} | "
             f"{cell(result_cell(record))} | [evidence]({record['primary_result_url']}) |"
         )
     return lines
@@ -404,14 +414,14 @@ def render_collection_catalogue(ttt: dict, finch: dict) -> list[str]:
         "The paper says it reports every attempted problem. Hardware- and dataset-specific evaluator contracts "
         "are kept as separate variants, giving 3 mathematics + 4 TriMul hardware + 2 AtCoder + 2 biology = 11.",
         "",
-        "| # | Task | Domain | SOTA method / status | Model / backbone | Result | Link |",
-        "|---:|---|---|---|---|---|---|",
+        "| # | Task | Domain | Task origin / evaluator | SOTA method / status | Model / backbone | Result | SOTA evidence |",
+        "|---:|---|---|---|---|---|---|---|",
     ]
     for index, task in enumerate(ttt["tasks"], 1):
         method, model, result, url = ttt_record_fields(task, ttt)
         lines.append(
             f"| {index} | [{cell(task['name'])}](#{task['id']}) | {cell(task['domain'])} | "
-            f"{cell(method)} | {cell(model)} | {cell(result)} | [evidence]({url}) |"
+            f"{cell(task['upstream_source'])} | {cell(method)} | {cell(model)} | {cell(result)} | [evidence]({url}) |"
         )
 
     lines.extend(["", "#### TTT-Discover task contracts", ""])
@@ -431,6 +441,7 @@ def render_collection_catalogue(ttt: dict, finch: dict) -> list[str]:
                 f"- **Evaluation:** {task['evaluation']}",
                 f"- **Environment:** {task['environment']}",
                 f"- **Metric:** {metric['name']} · {direction} · {metric['unit']}",
+                f"- **Task origin / evaluator:** {task['upstream_source']}",
                 f"- **TTT-Discover result:** {task['ttt_discover_result']}",
                 f"- **Current SOTA method / status:** {method}",
                 f"- **Model / backbone:** {model}",
@@ -520,7 +531,7 @@ def render_collection_catalogue(ttt: dict, finch: dict) -> list[str]:
 
 def render_doc(registry: dict, sota: dict, ttt: dict, finch: dict) -> str:
     records = {record["task_id"]: record for record in sota["records"]}
-    counts = Counter(task["source_suite"] for task in registry["tasks"])
+    counts = Counter(task["registry_suite"] for task in registry["tasks"])
     domains = Counter(task["domain"] for task in registry["tasks"])
     status_counts = Counter(record["status"] for record in sota["records"])
     externally_checked = sum(
@@ -533,7 +544,7 @@ def render_doc(registry: dict, sota: dict, ttt: dict, finch: dict) -> str:
         f"> Evidence snapshot: **{AS_OF}** · **{len(registry['tasks'])} full-contract registry tasks** · "
         f"**{len(ttt['tasks'])} TTT-Discover variants** · **{len(finch['tasks'])} current Finch task IDs**",
         "",
-        "This is the single-file lookup for every task in the discovery registry. It records the agent-visible question and input, required output, evaluator, environment, metric, the source suite's own reported result, and a separately researched current-record field.",
+        "This is the single-file lookup for every task in the discovery registry. It records original task/evaluator provenance separately from the system that attempted it, plus the agent-visible question and input, required output, environment, metric, reported result, and a separately researched current-record field.",
         "",
         "## SOTA policy",
         "",
@@ -553,9 +564,9 @@ def render_doc(registry: dict, sota: dict, ttt: dict, finch: dict) -> str:
         f"| Source-reported contract incumbent only | {status_counts['source-reported-contract-incumbent']} | Released result exists, but no independent exact-contract current record was located |",
         f"| Suite-level only | {status_counts['suite-level-only']} | ARC-AGI-3 and DiG-bench publish no attributable per-task result table |",
         "",
-        "### Source-suite snapshot",
+        "### Result-source snapshot",
         "",
-        "| Source | Launch | GitHub stars | Tasks here | Current best evidence |",
+        "| Evaluated system / result source | Launch | GitHub stars | Results tracked here | Current best evidence |",
         "|---|---:|---:|---:|---|",
         f"| [SimpleTES](https://github.com/wq-will/SimpleTES) | 2026-04 | 169 | 28 | 28 source-reported results; {externally_checked} tasks cross-checked against other systems or records |",
         "| [ARC-AGI-3](https://arcprize.org/arc-agi/3/) | 2026-04-22 | 69 | 3 | Tycho 100.0% public-demo aggregate; community self-reported, no attributable per-game table |",
@@ -590,7 +601,9 @@ def render_doc(registry: dict, sota: dict, ttt: dict, finch: dict) -> str:
                 "",
                 f"### {task['name']}",
                 "",
-                f"- **ID / source:** `{task['id']}` · {SUITE_LABELS[task['source_suite']]}",
+                f"- **ID:** `{task['id']}`",
+                f"- **Task origin / evaluator:** [{record['task_origin']}]({record['task_url']})",
+                f"- **Evaluated in / result source:** {record['evaluated_in']}",
                 f"- **Question:** {task['question']}",
                 f"- **Agent input:** {task['input']}",
                 f"- **Required output:** {task['output']}",

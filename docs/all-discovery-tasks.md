@@ -2,7 +2,7 @@
 
 > Evidence snapshot: **2026-08-25** · **52 full-contract registry tasks** · **11 TTT-Discover variants** · **442 current Finch task IDs**
 
-This is the single-file lookup for every task in the discovery registry. It records the agent-visible question and input, required output, evaluator, environment, metric, the source suite's own reported result, and a separately researched current-record field.
+This is the single-file lookup for every task in the discovery registry. It records original task/evaluator provenance separately from the system that attempted it, plus the agent-visible question and input, required output, environment, metric, reported result, and a separately researched current-record field.
 
 ## SOTA policy
 
@@ -22,9 +22,9 @@ This is the single-file lookup for every task in the discovery registry. It reco
 | Source-reported contract incumbent only | 16 | Released result exists, but no independent exact-contract current record was located |
 | Suite-level only | 24 | ARC-AGI-3 and DiG-bench publish no attributable per-task result table |
 
-### Source-suite snapshot
+### Result-source snapshot
 
-| Source | Launch | GitHub stars | Tasks here | Current best evidence |
+| Evaluated system / result source | Launch | GitHub stars | Results tracked here | Current best evidence |
 |---|---:|---:|---:|---|
 | [SimpleTES](https://github.com/wq-will/SimpleTES) | 2026-04 | 169 | 28 | 28 source-reported results; 12 tasks cross-checked against other systems or records |
 | [ARC-AGI-3](https://arcprize.org/arc-agi/3/) | 2026-04-22 | 69 | 3 | Tycho 100.0% public-demo aggregate; community self-reported, no attributable per-game table |
@@ -34,60 +34,60 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 
 ## Master SOTA index
 
-| # | Discovery task | Domain | Source | SOTA method / status | Model / backbone | Result | Link |
+| # | Discovery task | Domain | Task origin / evaluator | SOTA method / status | Model / backbone | Result | SOTA evidence |
 |---:|---|---|---|---|---|---|---|
-| 1 | [Asymmetric matrix multiplication](#asymmetric-matrix-multiplication) | ai-foundations | SimpleTES | SimpleTES (source incumbent; global SOTA unverified) | gpt-oss-120b | 0.44 ↓ (source incumbent; SOTA unverified) | [evidence](https://arxiv.org/html/2604.19341) |
-| 2 | [Batched cumulative sum](#batched-cumulative-sum) | ai-foundations | SimpleTES | SimpleTES (source incumbent; global SOTA unverified) | gpt-oss-120b | 0.104 ↓ (source incumbent; SOTA unverified) | [evidence](https://arxiv.org/html/2604.19341) |
-| 3 | [Cassini gravity-assist trajectory](#cassini-trajectory) | astrodynamics | SimpleTES | SimpleTES (source incumbent; global SOTA unverified) | gpt-oss-120b | 0.820129 ↓ (source incumbent; SOTA unverified) | [evidence](https://arxiv.org/html/2604.19341) |
-| 4 | [Circle packing in a unit square (n=26)](#circle-packing-n26) | mathematics-discovery | SimpleTES | AlphaEvolve (live-board tie) | Not disclosed for leaderboard row | 2.6359830849 ↑ (current record) | [evidence](https://einsteinarena.com/problems/circle-packing) |
-| 5 | [Circle packing in a unit square (n=32)](#circle-packing-n32) | mathematics-discovery | SimpleTES | nanodiscover (EFT) | Qwen3-8B / Finch-8B | 2.939573 ↑ (tie) | [evidence](https://arxiv.org/html/2606.29082) |
-| 6 | [Erdős minimum overlap](#erdos-minimum-overlap) | mathematics-discovery | SimpleTES | CodexProLong | Not disclosed by leaderboard | 0.38085857 ↓ (current record) | [evidence](https://einsteinarena.com/problems/erdos-min-overlap) |
-| 7 | [Galileo gravity-assist trajectory](#galileo-trajectory) | astrodynamics | SimpleTES | SimpleTES (source incumbent; global SOTA unverified) | gpt-oss-120b | 0.795108 ↓ (source incumbent; SOTA unverified) | [evidence](https://arxiv.org/html/2604.19341) |
-| 8 | [Hadamard maximum determinant (n=29)](#hadamard-determinant-n29) | mathematics-discovery | SimpleTES | Orrick et al. construction; matched by SimpleTES | Human construction / gpt-oss-120b match | 0.935673 ↑ (tie) | [evidence](https://maths-people.anu.edu.au/~brent/maxdet/order29/) |
-| 9 | [LASSO regularization path](#lasso-regularization-path) | scientific-algorithms | SimpleTES | SimpleTES (source incumbent; global SOTA unverified) | gpt-oss-120b | 2502.3 ↓ (source incumbent; SOTA unverified) | [evidence](https://arxiv.org/html/2604.19341) |
-| 10 | [Mariner 10 gravity-assist trajectory](#mariner-10-trajectory) | astrodynamics | SimpleTES | SimpleTES (source incumbent; global SOTA unverified) | gpt-oss-120b | 0.326993 ↓ (source incumbent; SOTA unverified) | [evidence](https://arxiv.org/html/2604.19341) |
-| 11 | [Rosetta gravity-assist trajectory](#rosetta-trajectory) | astrodynamics | SimpleTES | SimpleTES (source incumbent; global SOTA unverified) | gpt-oss-120b | 1.552968 ↓ (source incumbent; SOTA unverified) | [evidence](https://arxiv.org/html/2604.19341) |
-| 12 | [Scaling-law discovery: domain mix](#scaling-law-domain-mix) | ai-foundations | SimpleTES | SLDAgent | Gemini-3-Pro-Preview | 0.993529 ↑ (current record) | [evidence](https://huggingface.co/datasets/pkuHaowei/scaling_law_discovery_results) |
-| 13 | [Scaling-law discovery: learning rate and batch size](#scaling-law-lr-bsz) | ai-foundations | SimpleTES | SLDAgent | GPT-5 | 0.847918 ↑ (current record) | [evidence](https://huggingface.co/datasets/pkuHaowei/scaling_law_discovery_results) |
-| 14 | [Scaling-law discovery: parallel](#scaling-law-parallel) | ai-foundations | SimpleTES | Unresolved: SLDAgent vs SimpleTES | Claude Sonnet 4.5 / gpt-oss-120b | Unresolved at published precision (0.999971 vs 1.0) | [evidence](https://huggingface.co/datasets/pkuHaowei/scaling_law_discovery_results) |
-| 15 | [Scaling-law discovery: U-shape](#scaling-law-u-shape) | ai-foundations | SimpleTES | Aider | GPT-5 | 0.38070320345369735 ↑ (current record) | [evidence](https://huggingface.co/datasets/pkuHaowei/scaling_law_discovery_results) |
-| 16 | [Second autocorrelation inequality](#second-autocorrelation-inequality) | mathematics-discovery | SimpleTES | ClaudeExplorer | Not disclosed by leaderboard | 0.96359 ↑ (current record) | [evidence](https://einsteinarena.com/problems/second-autocorrelation-inequality) |
-| 17 | [Single-cell RNA-seq denoising](#single-cell-rna-denoising) | scientific-algorithms | SimpleTES | SimpleTES (source incumbent; global SOTA unverified) | gpt-oss-120b | 0.74 ↑ (source incumbent; SOTA unverified) | [evidence](https://arxiv.org/html/2604.19341) |
-| 18 | [Sum-Difference problem](#sum-difference-problem) | mathematics-discovery | SimpleTES | MLEvolve | Gemini-3.1-Pro-preview | 1.1901774219 ↑ (current record) | [evidence](https://github.com/InternScience/MLEvolve) |
-| 19 | [Superconducting qubit routing](#superconducting-qubit-routing) | quantum-compilation | SimpleTES | SimpleTES (source incumbent; global SOTA unverified) | gpt-oss-120b | 15147 ↓ (source incumbent; SOTA unverified) | [evidence](https://arxiv.org/html/2604.19341) |
-| 20 | [Third autocorrelation inequality](#third-autocorrelation-inequality) | mathematics-discovery | SimpleTES | Poolish | Not disclosed by leaderboard | 1.45080664 ↓ (current record) | [evidence](https://einsteinarena.com/problems/third-autocorrelation-inequality) |
-| 21 | [TriMul GPU kernel](#trimul-kernel) | ai-foundations | SimpleTES | K-Search | GPT-5.2 (released GPUMode default) | 1.028 ↓ (current record) | [evidence](https://github.com/caoshiyi/K-Search) |
-| 22 | [Voyager 2 gravity-assist trajectory](#voyager-2-trajectory) | astrodynamics | SimpleTES | SimpleTES (source incumbent; global SOTA unverified) | gpt-oss-120b | 3.430214 ↓ (source incumbent; SOTA unverified) | [evidence](https://arxiv.org/html/2604.19341) |
-| 23 | [ZAPBench whole-brain forecasting (H=1)](#zapbench-h1) | scientific-algorithms | SimpleTES | SimpleTES (source incumbent; global SOTA unverified) | gpt-oss-120b | 0.0165 ↓ (source incumbent; SOTA unverified) | [evidence](https://arxiv.org/html/2604.19341) |
-| 24 | [ZAPBench whole-brain forecasting (H=4)](#zapbench-h4) | scientific-algorithms | SimpleTES | SimpleTES (source incumbent; global SOTA unverified) | gpt-oss-120b | 0.0211 ↓ (source incumbent; SOTA unverified) | [evidence](https://arxiv.org/html/2604.19341) |
-| 25 | [ZAPBench whole-brain forecasting (H=8)](#zapbench-h8) | scientific-algorithms | SimpleTES | SimpleTES (source incumbent; global SOTA unverified) | gpt-oss-120b | 0.023 ↓ (source incumbent; SOTA unverified) | [evidence](https://arxiv.org/html/2604.19341) |
-| 26 | [ZAPBench whole-brain forecasting (H=16)](#zapbench-h16) | scientific-algorithms | SimpleTES | SimpleTES (source incumbent; global SOTA unverified) | gpt-oss-120b | 0.0251 ↓ (source incumbent; SOTA unverified) | [evidence](https://arxiv.org/html/2604.19341) |
-| 27 | [ZAPBench whole-brain forecasting (H=32)](#zapbench-h32) | scientific-algorithms | SimpleTES | SimpleTES (source incumbent; global SOTA unverified) | gpt-oss-120b | 0.0259 ↓ (source incumbent; SOTA unverified) | [evidence](https://arxiv.org/html/2604.19341) |
-| 28 | [Zoned neutral-atom compilation](#zoned-neutral-atom-compilation) | quantum-compilation | SimpleTES | SimpleTES (source incumbent; global SOTA unverified) | gpt-oss-120b | 19507.5 ↓ (source incumbent; SOTA unverified) | [evidence](https://arxiv.org/html/2604.19341) |
-| 29 | [ARC-AGI-3 ls20 (Agent reasoning)](#arc-agi-3-ls20) | interactive-world-discovery | ARC-AGI-3 | No per-task SOTA published (suite aggregate: Tycho) | Not disclosed | No per-task result; suite 100.0 percent | [evidence](https://arcprize.org/leaderboard/community) |
-| 30 | [ARC-AGI-3 ft09 (Elementary Logic)](#arc-agi-3-ft09) | interactive-world-discovery | ARC-AGI-3 | No per-task SOTA published (suite aggregate: Tycho) | Not disclosed | No per-task result; suite 100.0 percent | [evidence](https://arcprize.org/leaderboard/community) |
-| 31 | [ARC-AGI-3 vc33 (Orchestration)](#arc-agi-3-vc33) | interactive-world-discovery | ARC-AGI-3 | No per-task SOTA published (suite aggregate: Tycho) | Not disclosed | No per-task result; suite 100.0 percent | [evidence](https://arcprize.org/leaderboard/community) |
-| 32 | [DiG-bench P-1 (tier 1)](#dig-bench-p-1) | interactive-world-discovery | DiG-bench | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
-| 33 | [DiG-bench P-2 (tier 1)](#dig-bench-p-2) | interactive-world-discovery | DiG-bench | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
-| 34 | [DiG-bench P-3 (tier 1)](#dig-bench-p-3) | interactive-world-discovery | DiG-bench | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
-| 35 | [DiG-bench P-4 (tier 2)](#dig-bench-p-4) | interactive-world-discovery | DiG-bench | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
-| 36 | [DiG-bench P-5 (tier 2)](#dig-bench-p-5) | interactive-world-discovery | DiG-bench | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
-| 37 | [DiG-bench P-6 (tier 2)](#dig-bench-p-6) | interactive-world-discovery | DiG-bench | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
-| 38 | [DiG-bench P-7 (tier 3)](#dig-bench-p-7) | interactive-world-discovery | DiG-bench | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
-| 39 | [DiG-bench P-8 (tier 3)](#dig-bench-p-8) | interactive-world-discovery | DiG-bench | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
-| 40 | [DiG-bench P-9 (tier 3)](#dig-bench-p-9) | interactive-world-discovery | DiG-bench | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
-| 41 | [DiG-bench P-10 (tier 4)](#dig-bench-p-10) | interactive-world-discovery | DiG-bench | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
-| 42 | [DiG-bench P-11 (tier 4)](#dig-bench-p-11) | interactive-world-discovery | DiG-bench | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
-| 43 | [DiG-bench P-12 (tier 4)](#dig-bench-p-12) | interactive-world-discovery | DiG-bench | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
-| 44 | [DiG-bench P-13 (tier 5)](#dig-bench-p-13) | interactive-world-discovery | DiG-bench | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
-| 45 | [DiG-bench P-14 (tier 5)](#dig-bench-p-14) | interactive-world-discovery | DiG-bench | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
-| 46 | [DiG-bench P-15 (tier 5)](#dig-bench-p-15) | interactive-world-discovery | DiG-bench | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
-| 47 | [DiG-bench P-16 (tier 6)](#dig-bench-p-16) | interactive-world-discovery | DiG-bench | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
-| 48 | [DiG-bench P-17 (tier 6)](#dig-bench-p-17) | interactive-world-discovery | DiG-bench | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
-| 49 | [DiG-bench P-18 (tier 6)](#dig-bench-p-18) | interactive-world-discovery | DiG-bench | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
-| 50 | [DiG-bench P-19 (tier 7)](#dig-bench-p-19) | interactive-world-discovery | DiG-bench | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
-| 51 | [DiG-bench P-20 (tier 7)](#dig-bench-p-20) | interactive-world-discovery | DiG-bench | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
-| 52 | [DiG-bench P-21 (tier 7)](#dig-bench-p-21) | interactive-world-discovery | DiG-bench | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
+| 1 | [Asymmetric matrix multiplication](#asymmetric-matrix-multiplication) | ai-foundations | [KernelBench L1 / SimpleTES extended-shape contract](https://github.com/ScalingIntelligence/KernelBench) | No verified public current SOTA located | Not established | SimpleTES + gpt-oss-120b: 0.44 ↓ (source result; SOTA unverified) | [evidence](https://arxiv.org/html/2604.19341) |
+| 2 | [Batched cumulative sum](#batched-cumulative-sum) | ai-foundations | [KernelBench L1 / SimpleTES extended-shape contract](https://github.com/ScalingIntelligence/KernelBench) | No verified public current SOTA located | Not established | SimpleTES + gpt-oss-120b: 0.104 ↓ (source result; SOTA unverified) | [evidence](https://arxiv.org/html/2604.19341) |
+| 3 | [Cassini gravity-assist trajectory](#cassini-trajectory) | astrodynamics | [Cassini historical mission / SimpleTES trajectory evaluator](https://arxiv.org/html/2604.19341) | No verified public current SOTA located | Not established | SimpleTES + gpt-oss-120b: 0.820129 ↓ (source result; SOTA unverified) | [evidence](https://arxiv.org/html/2604.19341) |
+| 4 | [Circle packing in a unit square (n=26)](#circle-packing-n26) | mathematics-discovery | [Circle-packing problem / EinsteinArena evaluator](https://einsteinarena.com/problems/circle-packing) | AlphaEvolve (live-board tie) | Not disclosed for leaderboard row | 2.6359830849 ↑ (current record) | [evidence](https://einsteinarena.com/problems/circle-packing) |
+| 5 | [Circle packing in a unit square (n=32)](#circle-packing-n32) | mathematics-discovery | [Circle-packing problem / AlphaEvolve–EFT contract](https://arxiv.org/html/2606.29082) | nanodiscover (EFT) | Qwen3-8B / Finch-8B | 2.939573 ↑ (tie) | [evidence](https://arxiv.org/html/2606.29082) |
+| 6 | [Erdős minimum overlap](#erdos-minimum-overlap) | mathematics-discovery | [Erdős minimum-overlap problem / EinsteinArena evaluator](https://einsteinarena.com/problems/erdos-min-overlap) | CodexProLong | Not disclosed by leaderboard | 0.38085857 ↓ (current record) | [evidence](https://einsteinarena.com/problems/erdos-min-overlap) |
+| 7 | [Galileo gravity-assist trajectory](#galileo-trajectory) | astrodynamics | [Galileo historical mission / SimpleTES trajectory evaluator](https://arxiv.org/html/2604.19341) | No verified public current SOTA located | Not established | SimpleTES + gpt-oss-120b: 0.795108 ↓ (source result; SOTA unverified) | [evidence](https://arxiv.org/html/2604.19341) |
+| 8 | [Hadamard maximum determinant (n=29)](#hadamard-determinant-n29) | mathematics-discovery | [Hadamard maximal-determinant problem (order 29)](https://maths-people.anu.edu.au/~brent/maxdet/order29/) | Orrick et al. construction; matched by SimpleTES | Human construction / gpt-oss-120b match | 0.935673 ↑ (tie) | [evidence](https://maths-people.anu.edu.au/~brent/maxdet/order29/) |
+| 9 | [LASSO regularization path](#lasso-regularization-path) | scientific-algorithms | [glmnet/sklearn lasso-path evaluation / SimpleTES contract](https://arxiv.org/html/2604.19341) | No verified public current SOTA located | Not established | SimpleTES + gpt-oss-120b: 2502.3 ↓ (source result; SOTA unverified) | [evidence](https://arxiv.org/html/2604.19341) |
+| 10 | [Mariner 10 gravity-assist trajectory](#mariner-10-trajectory) | astrodynamics | [Mariner 10 historical mission / SimpleTES trajectory evaluator](https://arxiv.org/html/2604.19341) | No verified public current SOTA located | Not established | SimpleTES + gpt-oss-120b: 0.326993 ↓ (source result; SOTA unverified) | [evidence](https://arxiv.org/html/2604.19341) |
+| 11 | [Rosetta gravity-assist trajectory](#rosetta-trajectory) | astrodynamics | [Rosetta historical mission / SimpleTES trajectory evaluator](https://arxiv.org/html/2604.19341) | No verified public current SOTA located | Not established | SimpleTES + gpt-oss-120b: 1.552968 ↓ (source result; SOTA unverified) | [evidence](https://arxiv.org/html/2604.19341) |
+| 12 | [Scaling-law discovery: domain mix](#scaling-law-domain-mix) | ai-foundations | [SLDBench: domain mixture](https://github.com/linhaowei1/SLD) | SLDAgent | Gemini-3-Pro-Preview | 0.993529 ↑ (current record) | [evidence](https://huggingface.co/datasets/pkuHaowei/scaling_law_discovery_results) |
+| 13 | [Scaling-law discovery: learning rate and batch size](#scaling-law-lr-bsz) | ai-foundations | [SLDBench: learning rate & batch size](https://github.com/linhaowei1/SLD) | SLDAgent | GPT-5 | 0.847918 ↑ (current record) | [evidence](https://huggingface.co/datasets/pkuHaowei/scaling_law_discovery_results) |
+| 14 | [Scaling-law discovery: parallel](#scaling-law-parallel) | ai-foundations | [SLDBench: parallel scaling](https://github.com/linhaowei1/SLD) | Unresolved: SLDAgent vs SimpleTES | Claude Sonnet 4.5 / gpt-oss-120b | Unresolved at published precision (0.999971 vs 1.0) | [evidence](https://huggingface.co/datasets/pkuHaowei/scaling_law_discovery_results) |
+| 15 | [Scaling-law discovery: U-shape](#scaling-law-u-shape) | ai-foundations | [SLDBench: U-shaped scaling](https://github.com/linhaowei1/SLD) | Aider | GPT-5 | 0.38070320345369735 ↑ (current record) | [evidence](https://huggingface.co/datasets/pkuHaowei/scaling_law_discovery_results) |
+| 16 | [Second autocorrelation inequality](#second-autocorrelation-inequality) | mathematics-discovery | [Second autocorrelation inequality / EinsteinArena evaluator](https://einsteinarena.com/problems/second-autocorrelation-inequality) | ClaudeExplorer | Not disclosed by leaderboard | 0.96359 ↑ (current record) | [evidence](https://einsteinarena.com/problems/second-autocorrelation-inequality) |
+| 17 | [Single-cell RNA-seq denoising](#single-cell-rna-denoising) | scientific-algorithms | [OpenProblems denoising / TTT-Discover adaptation](https://github.com/openproblems-bio) | No verified public current SOTA located | Not established | SimpleTES + gpt-oss-120b: 0.74 ↑ (source result; SOTA unverified) | [evidence](https://arxiv.org/html/2604.19341) |
+| 18 | [Sum-Difference problem](#sum-difference-problem) | mathematics-discovery | [Sum–Difference construction / AlphaEvolve-lineage evaluator](https://arxiv.org/abs/2511.02864) | MLEvolve | Gemini-3.1-Pro-preview | 1.1901774219 ↑ (current record) | [evidence](https://github.com/InternScience/MLEvolve) |
+| 19 | [Superconducting qubit routing](#superconducting-qubit-routing) | quantum-compilation | [QASMBench + MQT Bench / SimpleTES routing contract](https://arxiv.org/html/2604.19341) | No verified public current SOTA located | Not established | SimpleTES + gpt-oss-120b: 15147 ↓ (source result; SOTA unverified) | [evidence](https://arxiv.org/html/2604.19341) |
+| 20 | [Third autocorrelation inequality](#third-autocorrelation-inequality) | mathematics-discovery | [Third autocorrelation inequality / EinsteinArena evaluator](https://einsteinarena.com/problems/third-autocorrelation-inequality) | Poolish | Not disclosed by leaderboard | 1.45080664 ↓ (current record) | [evidence](https://einsteinarena.com/problems/third-autocorrelation-inequality) |
+| 21 | [TriMul GPU kernel](#trimul-kernel) | ai-foundations | [GPUMode TriMul](https://github.com/gpu-mode/reference-kernels) | K-Search | GPT-5.2 (released GPUMode default) | 1.028 ↓ (current record) | [evidence](https://github.com/caoshiyi/K-Search) |
+| 22 | [Voyager 2 gravity-assist trajectory](#voyager-2-trajectory) | astrodynamics | [Voyager 2 historical mission / SimpleTES trajectory evaluator](https://arxiv.org/html/2604.19341) | No verified public current SOTA located | Not established | SimpleTES + gpt-oss-120b: 3.430214 ↓ (source result; SOTA unverified) | [evidence](https://arxiv.org/html/2604.19341) |
+| 23 | [ZAPBench whole-brain forecasting (H=1)](#zapbench-h1) | scientific-algorithms | [ZAPBench forecasting (H=1)](https://github.com/google-research/zapbench) | No verified public current SOTA located | Not established | SimpleTES + gpt-oss-120b: 0.0165 ↓ (source result; SOTA unverified) | [evidence](https://arxiv.org/html/2604.19341) |
+| 24 | [ZAPBench whole-brain forecasting (H=4)](#zapbench-h4) | scientific-algorithms | [ZAPBench forecasting (H=4)](https://github.com/google-research/zapbench) | No verified public current SOTA located | Not established | SimpleTES + gpt-oss-120b: 0.0211 ↓ (source result; SOTA unverified) | [evidence](https://arxiv.org/html/2604.19341) |
+| 25 | [ZAPBench whole-brain forecasting (H=8)](#zapbench-h8) | scientific-algorithms | [ZAPBench forecasting (H=8)](https://github.com/google-research/zapbench) | No verified public current SOTA located | Not established | SimpleTES + gpt-oss-120b: 0.023 ↓ (source result; SOTA unverified) | [evidence](https://arxiv.org/html/2604.19341) |
+| 26 | [ZAPBench whole-brain forecasting (H=16)](#zapbench-h16) | scientific-algorithms | [ZAPBench forecasting (H=16)](https://github.com/google-research/zapbench) | No verified public current SOTA located | Not established | SimpleTES + gpt-oss-120b: 0.0251 ↓ (source result; SOTA unverified) | [evidence](https://arxiv.org/html/2604.19341) |
+| 27 | [ZAPBench whole-brain forecasting (H=32)](#zapbench-h32) | scientific-algorithms | [ZAPBench forecasting (H=32)](https://github.com/google-research/zapbench) | No verified public current SOTA located | Not established | SimpleTES + gpt-oss-120b: 0.0259 ↓ (source result; SOTA unverified) | [evidence](https://arxiv.org/html/2604.19341) |
+| 28 | [Zoned neutral-atom compilation](#zoned-neutral-atom-compilation) | quantum-compilation | [QASMBench + MQT Bench / SimpleTES ZAC-style contract](https://arxiv.org/html/2604.19341) | No verified public current SOTA located | Not established | SimpleTES + gpt-oss-120b: 19507.5 ↓ (source result; SOTA unverified) | [evidence](https://arxiv.org/html/2604.19341) |
+| 29 | [ARC-AGI-3 ls20 (Agent reasoning)](#arc-agi-3-ls20) | interactive-world-discovery | [ARC-AGI-3 public game ls20](https://arcprize.org/media/ARC_AGI_3_Technical_Report.pdf) | No per-task SOTA published (suite aggregate: Tycho) | Not disclosed | No per-task result; suite 100.0 percent | [evidence](https://arcprize.org/leaderboard/community) |
+| 30 | [ARC-AGI-3 ft09 (Elementary Logic)](#arc-agi-3-ft09) | interactive-world-discovery | [ARC-AGI-3 public game ft09](https://arcprize.org/media/ARC_AGI_3_Technical_Report.pdf) | No per-task SOTA published (suite aggregate: Tycho) | Not disclosed | No per-task result; suite 100.0 percent | [evidence](https://arcprize.org/leaderboard/community) |
+| 31 | [ARC-AGI-3 vc33 (Orchestration)](#arc-agi-3-vc33) | interactive-world-discovery | [ARC-AGI-3 public game vc33](https://arcprize.org/media/ARC_AGI_3_Technical_Report.pdf) | No per-task SOTA published (suite aggregate: Tycho) | Not disclosed | No per-task result; suite 100.0 percent | [evidence](https://arcprize.org/leaderboard/community) |
+| 32 | [DiG-bench P-1 (tier 1)](#dig-bench-p-1) | interactive-world-discovery | [DiG-bench public game P-1](https://digbench.ai/) | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
+| 33 | [DiG-bench P-2 (tier 1)](#dig-bench-p-2) | interactive-world-discovery | [DiG-bench public game P-2](https://digbench.ai/) | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
+| 34 | [DiG-bench P-3 (tier 1)](#dig-bench-p-3) | interactive-world-discovery | [DiG-bench public game P-3](https://digbench.ai/) | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
+| 35 | [DiG-bench P-4 (tier 2)](#dig-bench-p-4) | interactive-world-discovery | [DiG-bench public game P-4](https://digbench.ai/) | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
+| 36 | [DiG-bench P-5 (tier 2)](#dig-bench-p-5) | interactive-world-discovery | [DiG-bench public game P-5](https://digbench.ai/) | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
+| 37 | [DiG-bench P-6 (tier 2)](#dig-bench-p-6) | interactive-world-discovery | [DiG-bench public game P-6](https://digbench.ai/) | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
+| 38 | [DiG-bench P-7 (tier 3)](#dig-bench-p-7) | interactive-world-discovery | [DiG-bench public game P-7](https://digbench.ai/) | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
+| 39 | [DiG-bench P-8 (tier 3)](#dig-bench-p-8) | interactive-world-discovery | [DiG-bench public game P-8](https://digbench.ai/) | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
+| 40 | [DiG-bench P-9 (tier 3)](#dig-bench-p-9) | interactive-world-discovery | [DiG-bench public game P-9](https://digbench.ai/) | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
+| 41 | [DiG-bench P-10 (tier 4)](#dig-bench-p-10) | interactive-world-discovery | [DiG-bench public game P-10](https://digbench.ai/) | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
+| 42 | [DiG-bench P-11 (tier 4)](#dig-bench-p-11) | interactive-world-discovery | [DiG-bench public game P-11](https://digbench.ai/) | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
+| 43 | [DiG-bench P-12 (tier 4)](#dig-bench-p-12) | interactive-world-discovery | [DiG-bench public game P-12](https://digbench.ai/) | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
+| 44 | [DiG-bench P-13 (tier 5)](#dig-bench-p-13) | interactive-world-discovery | [DiG-bench public game P-13](https://digbench.ai/) | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
+| 45 | [DiG-bench P-14 (tier 5)](#dig-bench-p-14) | interactive-world-discovery | [DiG-bench public game P-14](https://digbench.ai/) | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
+| 46 | [DiG-bench P-15 (tier 5)](#dig-bench-p-15) | interactive-world-discovery | [DiG-bench public game P-15](https://digbench.ai/) | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
+| 47 | [DiG-bench P-16 (tier 6)](#dig-bench-p-16) | interactive-world-discovery | [DiG-bench public game P-16](https://digbench.ai/) | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
+| 48 | [DiG-bench P-17 (tier 6)](#dig-bench-p-17) | interactive-world-discovery | [DiG-bench public game P-17](https://digbench.ai/) | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
+| 49 | [DiG-bench P-18 (tier 6)](#dig-bench-p-18) | interactive-world-discovery | [DiG-bench public game P-18](https://digbench.ai/) | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
+| 50 | [DiG-bench P-19 (tier 7)](#dig-bench-p-19) | interactive-world-discovery | [DiG-bench public game P-19](https://digbench.ai/) | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
+| 51 | [DiG-bench P-20 (tier 7)](#dig-bench-p-20) | interactive-world-discovery | [DiG-bench public game P-20](https://digbench.ai/) | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
+| 52 | [DiG-bench P-21 (tier 7)](#dig-bench-p-21) | interactive-world-discovery | [DiG-bench public game P-21](https://digbench.ai/) | No per-task SOTA published (suite aggregate: basic harness) | Claude Opus 5 | No per-task result; suite 50 games out of 70 | [evidence](https://arxiv.org/html/2608.12593) |
 
 ## Complete TTT-Discover and Finch task catalogues
 
@@ -101,19 +101,19 @@ Launch: **2026-01-22** · repository stars: **628** (snapshot 2026-08-25) · mod
 
 The paper says it reports every attempted problem. Hardware- and dataset-specific evaluator contracts are kept as separate variants, giving 3 mathematics + 4 TriMul hardware + 2 AtCoder + 2 biology = 11.
 
-| # | Task | Domain | SOTA method / status | Model / backbone | Result | Link |
-|---:|---|---|---|---|---|---|
-| 1 | [Erdős minimum overlap](#ttt-discover-erdos-minimum-overlap) | Mathematics discovery | CodexProLong | Not disclosed by leaderboard | 0.38085857 ↓ (live-leaderboard-best) | [evidence](https://einsteinarena.com/problems/erdos-min-overlap) |
-| 2 | [First autocorrelation inequality (AC1)](#ttt-discover-first-autocorrelation-inequality) | Mathematics discovery | CodexProLong | Not disclosed by leaderboard | 1.50274365 ↓ (live-leaderboard-best) | [evidence](https://einsteinarena.com/problems/first-autocorrelation-inequality) |
-| 3 | [Second autocorrelation inequality (AC2)](#ttt-discover-second-autocorrelation-inequality) | Mathematics discovery | ClaudeExplorer | Not disclosed by leaderboard | 0.96359 ↑ (live-leaderboard-best) | [evidence](https://einsteinarena.com/problems/second-autocorrelation-inequality) |
-| 4 | [GPUMode TriMul — A100](#ttt-discover-trimul-a100) | GPU kernel engineering | TTT-Discover (source result; later SOTA unverified) | OpenAI gpt-oss-120b | 2198 ↓ (source result) | [evidence](https://test-time-training.github.io/discover/) |
-| 5 | [GPUMode TriMul — H100](#ttt-discover-trimul-h100) | GPU kernel engineering | K-Search | GPT-5.2 (released GPUMode default) | 1028 ↓ (matched-evaluator-artifact) | [evidence](https://github.com/caoshiyi/K-Search) |
-| 6 | [GPUMode TriMul — B200](#ttt-discover-trimul-b200) | GPU kernel engineering | TTT-Discover (source result; later SOTA unverified) | OpenAI gpt-oss-120b | 905 ↓ (source result) | [evidence](https://test-time-training.github.io/discover/) |
-| 7 | [GPUMode TriMul — MI300X](#ttt-discover-trimul-mi300x) | GPU kernel engineering | TTT-Discover (source result; later SOTA unverified) | OpenAI gpt-oss-120b | 1596 ↓ (source result) | [evidence](https://test-time-training.github.io/discover/) |
-| 8 | [AtCoder Heuristic Contest 039 — Purifying Machine](#ttt-discover-ahc039) | Algorithm engineering | TTT-Discover | OpenAI gpt-oss-120b | 567062 ↑ (paper-reported-sota) | [evidence](https://test-time-training.github.io/discover/) |
-| 9 | [AtCoder Heuristic Contest 058 — Scheduling](#ttt-discover-ahc058) | Algorithm engineering | TTT-Discover | OpenAI gpt-oss-120b | 848414228 ↑ (paper-reported-sota) | [evidence](https://test-time-training.github.io/discover/) |
-| 10 | [Single-cell RNA-seq denoising — PBMC](#ttt-discover-scrna-pbmc) | Biological discovery | TTT-Discover / SimpleTES | gpt-oss-120b | 0.71 ↑ (tie-at-published-precision) | [evidence](https://arxiv.org/abs/2604.19341) |
-| 11 | [Single-cell RNA-seq denoising — Tabula Muris Senis Lung](#ttt-discover-scrna-tabula) | Biological discovery | SimpleTES | gpt-oss-120b | 0.74 ↑ (matched-evaluator-paper-result) | [evidence](https://arxiv.org/abs/2604.19341) |
+| # | Task | Domain | Task origin / evaluator | SOTA method / status | Model / backbone | Result | SOTA evidence |
+|---:|---|---|---|---|---|---|---|
+| 1 | [Erdős minimum overlap](#ttt-discover-erdos-minimum-overlap) | Mathematics discovery | Erdős minimum overlap problem | CodexProLong | Not disclosed by leaderboard | 0.38085857 ↓ (live-leaderboard-best) | [evidence](https://einsteinarena.com/problems/erdos-min-overlap) |
+| 2 | [First autocorrelation inequality (AC1)](#ttt-discover-first-autocorrelation-inequality) | Mathematics discovery | First autocorrelation inequality | CodexProLong | Not disclosed by leaderboard | 1.50274365 ↓ (live-leaderboard-best) | [evidence](https://einsteinarena.com/problems/first-autocorrelation-inequality) |
+| 3 | [Second autocorrelation inequality (AC2)](#ttt-discover-second-autocorrelation-inequality) | Mathematics discovery | Second autocorrelation inequality | ClaudeExplorer | Not disclosed by leaderboard | 0.96359 ↑ (live-leaderboard-best) | [evidence](https://einsteinarena.com/problems/second-autocorrelation-inequality) |
+| 4 | [GPUMode TriMul — A100](#ttt-discover-trimul-a100) | GPU kernel engineering | GPUMode TriMul competition | TTT-Discover (source result; later SOTA unverified) | OpenAI gpt-oss-120b | 2198 ↓ (source result) | [evidence](https://test-time-training.github.io/discover/) |
+| 5 | [GPUMode TriMul — H100](#ttt-discover-trimul-h100) | GPU kernel engineering | GPUMode TriMul competition | K-Search | GPT-5.2 (released GPUMode default) | 1028 ↓ (matched-evaluator-artifact) | [evidence](https://github.com/caoshiyi/K-Search) |
+| 6 | [GPUMode TriMul — B200](#ttt-discover-trimul-b200) | GPU kernel engineering | GPUMode TriMul competition | TTT-Discover (source result; later SOTA unverified) | OpenAI gpt-oss-120b | 905 ↓ (source result) | [evidence](https://test-time-training.github.io/discover/) |
+| 7 | [GPUMode TriMul — MI300X](#ttt-discover-trimul-mi300x) | GPU kernel engineering | GPUMode TriMul competition | TTT-Discover (source result; later SOTA unverified) | OpenAI gpt-oss-120b | 1596 ↓ (source result) | [evidence](https://test-time-training.github.io/discover/) |
+| 8 | [AtCoder Heuristic Contest 039 — Purifying Machine](#ttt-discover-ahc039) | Algorithm engineering | AtCoder Heuristic Contest 039 / ALE-Bench | TTT-Discover | OpenAI gpt-oss-120b | 567062 ↑ (paper-reported-sota) | [evidence](https://test-time-training.github.io/discover/) |
+| 9 | [AtCoder Heuristic Contest 058 — Scheduling](#ttt-discover-ahc058) | Algorithm engineering | AtCoder Heuristic Contest 058 / ALE-Bench | TTT-Discover | OpenAI gpt-oss-120b | 848414228 ↑ (paper-reported-sota) | [evidence](https://test-time-training.github.io/discover/) |
+| 10 | [Single-cell RNA-seq denoising — PBMC](#ttt-discover-scrna-pbmc) | Biological discovery | OpenProblems single-cell denoising | TTT-Discover / SimpleTES | gpt-oss-120b | 0.71 ↑ (tie-at-published-precision) | [evidence](https://arxiv.org/abs/2604.19341) |
+| 11 | [Single-cell RNA-seq denoising — Tabula Muris Senis Lung](#ttt-discover-scrna-tabula) | Biological discovery | OpenProblems single-cell denoising | SimpleTES | gpt-oss-120b | 0.74 ↑ (matched-evaluator-paper-result) | [evidence](https://arxiv.org/abs/2604.19341) |
 
 #### TTT-Discover task contracts
 
@@ -127,6 +127,7 @@ The paper says it reports every attempted problem. Hardware- and dataset-specifi
 - **Evaluation:** The released deterministic verifier evaluates the maximum translated overlap under the task normalization.
 - **Environment:** TTT-Discover mathematics environment; Python/JAX execution with evaluator feedback and Tinker-based test-time RL.
 - **Metric:** maximum overlap · minimize ↓ · normalized overlap
+- **Task origin / evaluator:** Erdős minimum overlap problem
 - **TTT-Discover result:** 0.380876
 - **Current SOTA method / status:** CodexProLong
 - **Model / backbone:** Not disclosed by leaderboard
@@ -144,6 +145,7 @@ The paper says it reports every attempted problem. Hardware- and dataset-specifi
 - **Evaluation:** The verifier computes the normalized maximum autoconvolution value; lower is better.
 - **Environment:** TTT-Discover mathematics environment; Python/JAX execution with evaluator feedback and Tinker-based test-time RL.
 - **Metric:** AC1 upper-bound constant · minimize ↓ · normalized constant
+- **Task origin / evaluator:** First autocorrelation inequality
 - **TTT-Discover result:** 1.50287
 - **Current SOTA method / status:** CodexProLong
 - **Model / backbone:** Not disclosed by leaderboard
@@ -161,6 +163,7 @@ The paper says it reports every attempted problem. Hardware- and dataset-specifi
 - **Evaluation:** The released verifier evaluates the task's normalized lower-bound constant; higher is better.
 - **Environment:** TTT-Discover mathematics environment; Python/JAX execution with evaluator feedback and Tinker-based test-time RL.
 - **Metric:** AC2 lower-bound constant · maximize ↑ · normalized constant
+- **Task origin / evaluator:** Second autocorrelation inequality
 - **TTT-Discover result:** 0.9591
 - **Current SOTA method / status:** ClaudeExplorer
 - **Model / backbone:** Not disclosed by leaderboard
@@ -178,6 +181,7 @@ The paper says it reports every attempted problem. Hardware- and dataset-specifi
 - **Evaluation:** GPUMode first checks numerical correctness and then measures latency on A100; lower runtime is better.
 - **Environment:** GPUMode TriMul harness on NVIDIA A100; hardware-specific results are not interchangeable.
 - **Metric:** execution time · minimize ↓ · microseconds
+- **Task origin / evaluator:** GPUMode TriMul competition
 - **TTT-Discover result:** 2198
 - **Current SOTA method / status:** TTT-Discover (source result; later SOTA unverified)
 - **Model / backbone:** OpenAI gpt-oss-120b
@@ -195,6 +199,7 @@ The paper says it reports every attempted problem. Hardware- and dataset-specifi
 - **Evaluation:** GPUMode first checks numerical correctness and then measures latency on H100; lower runtime is better.
 - **Environment:** GPUMode TriMul harness on NVIDIA H100; hardware-specific results are not interchangeable.
 - **Metric:** execution time · minimize ↓ · microseconds
+- **Task origin / evaluator:** GPUMode TriMul competition
 - **TTT-Discover result:** 1161
 - **Current SOTA method / status:** K-Search
 - **Model / backbone:** GPT-5.2 (released GPUMode default)
@@ -212,6 +217,7 @@ The paper says it reports every attempted problem. Hardware- and dataset-specifi
 - **Evaluation:** GPUMode first checks numerical correctness and then measures latency on B200; lower runtime is better.
 - **Environment:** GPUMode TriMul harness on NVIDIA B200; the published kernel was trained with H100 reward and evaluated on B200.
 - **Metric:** execution time · minimize ↓ · microseconds
+- **Task origin / evaluator:** GPUMode TriMul competition
 - **TTT-Discover result:** 905
 - **Current SOTA method / status:** TTT-Discover (source result; later SOTA unverified)
 - **Model / backbone:** OpenAI gpt-oss-120b
@@ -229,6 +235,7 @@ The paper says it reports every attempted problem. Hardware- and dataset-specifi
 - **Evaluation:** GPUMode first checks numerical correctness and then measures latency on MI300X; lower runtime is better.
 - **Environment:** GPUMode TriMul harness on AMD MI300X; the published kernel was trained with H100 reward and evaluated on MI300X.
 - **Metric:** execution time · minimize ↓ · microseconds
+- **Task origin / evaluator:** GPUMode TriMul competition
 - **TTT-Discover result:** 1596
 - **Current SOTA method / status:** TTT-Discover (source result; later SOTA unverified)
 - **Model / backbone:** OpenAI gpt-oss-120b
@@ -246,6 +253,7 @@ The paper says it reports every attempted problem. Hardware- and dataset-specifi
 - **Evaluation:** The official AtCoder/ALE-Bench scorer computes the contest score across the evaluation instances; higher is better.
 - **Environment:** AtCoder-compatible C++ solver environment and heuristic-contest judge used by the released reproduction.
 - **Metric:** AHC039 judge score · maximize ↑ · points
+- **Task origin / evaluator:** AtCoder Heuristic Contest 039 / ALE-Bench
 - **TTT-Discover result:** 567062
 - **Current SOTA method / status:** TTT-Discover
 - **Model / backbone:** OpenAI gpt-oss-120b
@@ -263,6 +271,7 @@ The paper says it reports every attempted problem. Hardware- and dataset-specifi
 - **Evaluation:** The official AtCoder/ALE-Bench scorer computes the contest score across the evaluation instances; higher is better.
 - **Environment:** AtCoder-compatible C++ solver environment and heuristic-contest judge used by the released reproduction.
 - **Metric:** AHC058 judge score · maximize ↑ · points
+- **Task origin / evaluator:** AtCoder Heuristic Contest 058 / ALE-Bench
 - **TTT-Discover result:** 848414228
 - **Current SOTA method / status:** TTT-Discover
 - **Model / backbone:** OpenAI gpt-oss-120b
@@ -280,6 +289,7 @@ The paper says it reports every attempted problem. Hardware- and dataset-specifi
 - **Evaluation:** The OpenProblems-derived evaluator averages normalized MSE and Poisson components; higher is better.
 - **Environment:** Python scientific-computing environment with OpenProblems v1.0.0-compatible data/evaluator.
 - **Metric:** denoising score · maximize ↑ · mean normalized score
+- **Task origin / evaluator:** OpenProblems single-cell denoising
 - **TTT-Discover result:** 0.71
 - **Current SOTA method / status:** TTT-Discover / SimpleTES
 - **Model / backbone:** gpt-oss-120b
@@ -297,6 +307,7 @@ The paper says it reports every attempted problem. Hardware- and dataset-specifi
 - **Evaluation:** The OpenProblems-derived evaluator averages normalized MSE and Poisson components; higher is better.
 - **Environment:** Python scientific-computing environment with OpenProblems v1.0.0-compatible data/evaluator.
 - **Metric:** denoising score · maximize ↑ · mean normalized score
+- **Task origin / evaluator:** OpenProblems single-cell denoising
 - **TTT-Discover result:** 0.73
 - **Current SOTA method / status:** SimpleTES
 - **Model / backbone:** gpt-oss-120b
@@ -903,7 +914,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### Asymmetric matrix multiplication
 
-- **ID / source:** `asymmetric-matrix-multiplication` · SimpleTES
+- **ID:** `asymmetric-matrix-multiplication`
+- **Task origin / evaluator:** [KernelBench L1 / SimpleTES extended-shape contract](https://github.com/ScalingIntelligence/KernelBench)
+- **Evaluated in / result source:** SimpleTES
 - **Question:** Implement a faster asymmetric matrix-multiplication GPU kernel without changing numerical semantics.
 - **Agent input:** A seed Triton/CUDA kernel, fixed tensor shapes and dtypes, correctness tests, and a profiling harness.
 - **Required output:** GPU kernel source
@@ -912,8 +925,8 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 - **Metric:** runtime · minimize ↓ · ms
 - **Prior reference:** CUDAAgent: 0.747
 - **Source-suite reported result:** SimpleTES + gpt-oss-120b: 0.44 ↓
-- **Current SOTA method / status:** SimpleTES (source incumbent; global SOTA unverified)
-- **Model / backbone:** gpt-oss-120b
+- **Current SOTA method / status:** No verified public current SOTA located
+- **Model / backbone:** Not established
 - **Current record located:** **No independent current record located** — source report: SimpleTES + gpt-oss-120b 0.44 ↓
 - **Evidence status:** `no-independent-current-record-located` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
@@ -924,7 +937,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### Batched cumulative sum
 
-- **ID / source:** `batched-cumulative-sum` · SimpleTES
+- **ID:** `batched-cumulative-sum`
+- **Task origin / evaluator:** [KernelBench L1 / SimpleTES extended-shape contract](https://github.com/ScalingIntelligence/KernelBench)
+- **Evaluated in / result source:** SimpleTES
 - **Question:** Implement a faster batched prefix-sum GPU kernel while preserving output correctness.
 - **Agent input:** A seed GPU kernel, fixed tensors, correctness tests, and a profiling harness.
 - **Required output:** GPU kernel source
@@ -933,8 +948,8 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 - **Metric:** runtime · minimize ↓ · ms
 - **Prior reference:** NVIDIA CUB: 0.147
 - **Source-suite reported result:** SimpleTES + gpt-oss-120b: 0.104 ↓
-- **Current SOTA method / status:** SimpleTES (source incumbent; global SOTA unverified)
-- **Model / backbone:** gpt-oss-120b
+- **Current SOTA method / status:** No verified public current SOTA located
+- **Model / backbone:** Not established
 - **Current record located:** **No independent current record located** — source report: SimpleTES + gpt-oss-120b 0.104 ↓
 - **Evidence status:** `no-independent-current-record-located` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
@@ -947,7 +962,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### Cassini gravity-assist trajectory
 
-- **ID / source:** `cassini-trajectory` · SimpleTES
+- **ID:** `cassini-trajectory`
+- **Task origin / evaluator:** [Cassini historical mission / SimpleTES trajectory evaluator](https://arxiv.org/html/2604.19341)
+- **Evaluated in / result source:** SimpleTES
 - **Question:** Find a feasible Cassini gravity-assist trajectory with lower total propulsive cost.
 - **Agent input:** Mission window, body sequence/search variables, orbital constraints, a seed optimizer, and NAIF ephemeris kernels.
 - **Required output:** Trajectory-design program and feasible mission parameters
@@ -956,8 +973,8 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 - **Metric:** propulsive cost · minimize ↓ · normalized mission objective
 - **Prior reference:** Historical sequence: 1.066682
 - **Source-suite reported result:** SimpleTES + gpt-oss-120b: 0.820129 ↓
-- **Current SOTA method / status:** SimpleTES (source incumbent; global SOTA unverified)
-- **Model / backbone:** gpt-oss-120b
+- **Current SOTA method / status:** No verified public current SOTA located
+- **Model / backbone:** Not established
 - **Current record located:** **No independent current record located** — source report: SimpleTES + gpt-oss-120b 0.820129 ↓
 - **Evidence status:** `no-independent-current-record-located` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
@@ -970,7 +987,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### Circle packing in a unit square (n=26)
 
-- **ID / source:** `circle-packing-n26` · SimpleTES
+- **ID:** `circle-packing-n26`
+- **Task origin / evaluator:** [Circle-packing problem / EinsteinArena evaluator](https://einsteinarena.com/problems/circle-packing)
+- **Evaluated in / result source:** SimpleTES
 - **Question:** Place 26 non-overlapping circles inside a unit square to maximize the sum of their radii.
 - **Agent input:** A Python seed construction, geometric constraints, and an executable feasibility checker.
 - **Required output:** Circle centers and radii
@@ -991,7 +1010,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### Circle packing in a unit square (n=32)
 
-- **ID / source:** `circle-packing-n32` · SimpleTES
+- **ID:** `circle-packing-n32`
+- **Task origin / evaluator:** [Circle-packing problem / AlphaEvolve–EFT contract](https://arxiv.org/html/2606.29082)
+- **Evaluated in / result source:** SimpleTES
 - **Question:** Place 32 non-overlapping circles inside a unit square to maximize the sum of their radii.
 - **Agent input:** A Python seed construction, geometric constraints, and an executable feasibility checker.
 - **Required output:** Circle centers and radii
@@ -1012,7 +1033,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### Erdős minimum overlap
 
-- **ID / source:** `erdos-minimum-overlap` · SimpleTES
+- **ID:** `erdos-minimum-overlap`
+- **Task origin / evaluator:** [Erdős minimum-overlap problem / EinsteinArena evaluator](https://einsteinarena.com/problems/erdos-min-overlap)
+- **Evaluated in / result source:** SimpleTES
 - **Question:** Construct a feasible step function with unit mass that minimizes its worst translated one-sided overlap.
 - **Agent input:** A discretized Python construction, integral and range constraints, and a fixed overlap evaluator.
 - **Required output:** Step-function construction
@@ -1035,7 +1058,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### Galileo gravity-assist trajectory
 
-- **ID / source:** `galileo-trajectory` · SimpleTES
+- **ID:** `galileo-trajectory`
+- **Task origin / evaluator:** [Galileo historical mission / SimpleTES trajectory evaluator](https://arxiv.org/html/2604.19341)
+- **Evaluated in / result source:** SimpleTES
 - **Question:** Find a feasible Galileo gravity-assist trajectory with lower total propulsive cost.
 - **Agent input:** Mission window, body sequence/search variables, orbital constraints, a seed optimizer, and NAIF ephemeris kernels.
 - **Required output:** Trajectory-design program and feasible mission parameters
@@ -1044,8 +1069,8 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 - **Metric:** propulsive cost · minimize ↓ · normalized mission objective
 - **Prior reference:** Historical sequence: 0.823681
 - **Source-suite reported result:** SimpleTES + gpt-oss-120b: 0.795108 ↓
-- **Current SOTA method / status:** SimpleTES (source incumbent; global SOTA unverified)
-- **Model / backbone:** gpt-oss-120b
+- **Current SOTA method / status:** No verified public current SOTA located
+- **Model / backbone:** Not established
 - **Current record located:** **No independent current record located** — source report: SimpleTES + gpt-oss-120b 0.795108 ↓
 - **Evidence status:** `no-independent-current-record-located` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
@@ -1058,7 +1083,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### Hadamard maximum determinant (n=29)
 
-- **ID / source:** `hadamard-determinant-n29` · SimpleTES
+- **ID:** `hadamard-determinant-n29`
+- **Task origin / evaluator:** [Hadamard maximal-determinant problem (order 29)](https://maths-people.anu.edu.au/~brent/maxdet/order29/)
+- **Evaluated in / result source:** SimpleTES
 - **Question:** Construct a plus-or-minus-one matrix of order 29 with maximum normalized determinant.
 - **Agent input:** A Python seed construction, discrete matrix constraints, and a determinant evaluator.
 - **Required output:** 29 by 29 sign matrix
@@ -1081,7 +1108,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### LASSO regularization path
 
-- **ID / source:** `lasso-regularization-path` · SimpleTES
+- **ID:** `lasso-regularization-path`
+- **Task origin / evaluator:** [glmnet/sklearn lasso-path evaluation / SimpleTES contract](https://arxiv.org/html/2604.19341)
+- **Evaluated in / result source:** SimpleTES
 - **Question:** Implement a faster solver for the complete LASSO regularization path while retaining solution accuracy.
 - **Agent input:** A seed solver, fixed datasets and regularization path, accuracy checks, and a timing harness.
 - **Required output:** C++ solver program
@@ -1090,8 +1119,8 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 - **Metric:** runtime · minimize ↓ · ms
 - **Prior reference:** glmnet: 4139.4
 - **Source-suite reported result:** SimpleTES + gpt-oss-120b: 2502.3 ↓
-- **Current SOTA method / status:** SimpleTES (source incumbent; global SOTA unverified)
-- **Model / backbone:** gpt-oss-120b
+- **Current SOTA method / status:** No verified public current SOTA located
+- **Model / backbone:** Not established
 - **Current record located:** **No independent current record located** — source report: SimpleTES + gpt-oss-120b 2502.3 ↓
 - **Evidence status:** `no-independent-current-record-located` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
@@ -1104,7 +1133,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### Mariner 10 gravity-assist trajectory
 
-- **ID / source:** `mariner-10-trajectory` · SimpleTES
+- **ID:** `mariner-10-trajectory`
+- **Task origin / evaluator:** [Mariner 10 historical mission / SimpleTES trajectory evaluator](https://arxiv.org/html/2604.19341)
+- **Evaluated in / result source:** SimpleTES
 - **Question:** Find a feasible Mariner 10 gravity-assist trajectory with lower total propulsive cost.
 - **Agent input:** Mission window, body sequence/search variables, orbital constraints, a seed optimizer, and NAIF ephemeris kernels.
 - **Required output:** Trajectory-design program and feasible mission parameters
@@ -1113,8 +1144,8 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 - **Metric:** propulsive cost · minimize ↓ · normalized mission objective
 - **Prior reference:** Historical sequence: 0.424147
 - **Source-suite reported result:** SimpleTES + gpt-oss-120b: 0.326993 ↓
-- **Current SOTA method / status:** SimpleTES (source incumbent; global SOTA unverified)
-- **Model / backbone:** gpt-oss-120b
+- **Current SOTA method / status:** No verified public current SOTA located
+- **Model / backbone:** Not established
 - **Current record located:** **No independent current record located** — source report: SimpleTES + gpt-oss-120b 0.326993 ↓
 - **Evidence status:** `no-independent-current-record-located` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
@@ -1125,7 +1156,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### Rosetta gravity-assist trajectory
 
-- **ID / source:** `rosetta-trajectory` · SimpleTES
+- **ID:** `rosetta-trajectory`
+- **Task origin / evaluator:** [Rosetta historical mission / SimpleTES trajectory evaluator](https://arxiv.org/html/2604.19341)
+- **Evaluated in / result source:** SimpleTES
 - **Question:** Find a feasible Rosetta gravity-assist trajectory with lower total propulsive cost.
 - **Agent input:** Mission window, body sequence/search variables, orbital constraints, a seed optimizer, and NAIF ephemeris kernels.
 - **Required output:** Trajectory-design program and feasible mission parameters
@@ -1134,8 +1167,8 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 - **Metric:** propulsive cost · minimize ↓ · normalized mission objective
 - **Prior reference:** Historical sequence: 1.736837
 - **Source-suite reported result:** SimpleTES + gpt-oss-120b: 1.552968 ↓
-- **Current SOTA method / status:** SimpleTES (source incumbent; global SOTA unverified)
-- **Model / backbone:** gpt-oss-120b
+- **Current SOTA method / status:** No verified public current SOTA located
+- **Model / backbone:** Not established
 - **Current record located:** **No independent current record located** — source report: SimpleTES + gpt-oss-120b 1.552968 ↓
 - **Evidence status:** `no-independent-current-record-located` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
@@ -1148,7 +1181,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### Scaling-law discovery: domain mix
 
-- **ID / source:** `scaling-law-domain-mix` · SimpleTES
+- **ID:** `scaling-law-domain-mix`
+- **Task origin / evaluator:** [SLDBench: domain mixture](https://github.com/linhaowei1/SLD)
+- **Evaluated in / result source:** SimpleTES
 - **Question:** Discover a scaling-law program that extrapolates performance across training-domain mixtures.
 - **Agent input:** Observed training runs, a seed symbolic/numerical predictor, a held-out extrapolation split, and fixed fitting code.
 - **Required output:** Scaling-law prediction program
@@ -1169,7 +1204,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### Scaling-law discovery: learning rate and batch size
 
-- **ID / source:** `scaling-law-lr-bsz` · SimpleTES
+- **ID:** `scaling-law-lr-bsz`
+- **Task origin / evaluator:** [SLDBench: learning rate & batch size](https://github.com/linhaowei1/SLD)
+- **Evaluated in / result source:** SimpleTES
 - **Question:** Discover a scaling-law program that extrapolates across learning-rate and batch-size choices.
 - **Agent input:** Observed training runs, a seed symbolic/numerical predictor, a held-out extrapolation split, and fixed fitting code.
 - **Required output:** Scaling-law prediction program
@@ -1190,7 +1227,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### Scaling-law discovery: parallel
 
-- **ID / source:** `scaling-law-parallel` · SimpleTES
+- **ID:** `scaling-law-parallel`
+- **Task origin / evaluator:** [SLDBench: parallel scaling](https://github.com/linhaowei1/SLD)
+- **Evaluated in / result source:** SimpleTES
 - **Question:** Discover a scaling-law program that extrapolates performance on the parallel-compute split.
 - **Agent input:** Observed training runs, a seed symbolic/numerical predictor, a held-out extrapolation split, and fixed fitting code.
 - **Required output:** Scaling-law prediction program
@@ -1211,7 +1250,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### Scaling-law discovery: U-shape
 
-- **ID / source:** `scaling-law-u-shape` · SimpleTES
+- **ID:** `scaling-law-u-shape`
+- **Task origin / evaluator:** [SLDBench: U-shaped scaling](https://github.com/linhaowei1/SLD)
+- **Evaluated in / result source:** SimpleTES
 - **Question:** Discover a scaling-law program that extrapolates the U-shaped performance regime.
 - **Agent input:** Observed training runs, a seed symbolic/numerical predictor, a held-out extrapolation split, and fixed fitting code.
 - **Required output:** Scaling-law prediction program
@@ -1234,7 +1275,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### Second autocorrelation inequality
 
-- **ID / source:** `second-autocorrelation-inequality` · SimpleTES
+- **ID:** `second-autocorrelation-inequality`
+- **Task origin / evaluator:** [Second autocorrelation inequality / EinsteinArena evaluator](https://einsteinarena.com/problems/second-autocorrelation-inequality)
+- **Evaluated in / result source:** SimpleTES
 - **Question:** Construct a feasible function or sequence that improves the second autocorrelation-inequality bound.
 - **Agent input:** A discretized Python construction, inequality constraints, and a fixed bound evaluator.
 - **Required output:** Mathematical construction
@@ -1257,7 +1300,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### Single-cell RNA-seq denoising
 
-- **ID / source:** `single-cell-rna-denoising` · SimpleTES
+- **ID:** `single-cell-rna-denoising`
+- **Task origin / evaluator:** [OpenProblems denoising / TTT-Discover adaptation](https://github.com/openproblems-bio)
+- **Evaluated in / result source:** SimpleTES
 - **Question:** Discover a denoising policy that reconstructs held-out single-cell gene-expression measurements more accurately.
 - **Agent input:** OpenProblems/Tabula Muris data, a seed Python denoising program, visible training data, and held-out evaluation data.
 - **Required output:** Denoising program and reconstructed expression matrix
@@ -1266,8 +1311,8 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 - **Metric:** denoising score · maximize ↑ · OpenProblems composite score
 - **Prior reference:** TTT-Discover: 0.73
 - **Source-suite reported result:** SimpleTES + gpt-oss-120b: 0.74 ↑
-- **Current SOTA method / status:** SimpleTES (source incumbent; global SOTA unverified)
-- **Model / backbone:** gpt-oss-120b
+- **Current SOTA method / status:** No verified public current SOTA located
+- **Model / backbone:** Not established
 - **Current record located:** **No independent current record located** — source report: SimpleTES + gpt-oss-120b 0.74 ↑
 - **Evidence status:** `no-independent-current-record-located` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
@@ -1280,7 +1325,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### Sum-Difference problem
 
-- **ID / source:** `sum-difference-problem` · SimpleTES
+- **ID:** `sum-difference-problem`
+- **Task origin / evaluator:** [Sum–Difference construction / AlphaEvolve-lineage evaluator](https://arxiv.org/abs/2511.02864)
+- **Evaluated in / result source:** SimpleTES
 - **Question:** Construct a set with a larger sumset-to-difference-set objective ratio under the fixed task definition.
 - **Agent input:** A Python seed construction, discrete constraints, and an exact set-operation evaluator.
 - **Required output:** Combinatorial set construction
@@ -1303,7 +1350,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### Superconducting qubit routing
 
-- **ID / source:** `superconducting-qubit-routing` · SimpleTES
+- **ID:** `superconducting-qubit-routing`
+- **Task origin / evaluator:** [QASMBench + MQT Bench / SimpleTES routing contract](https://arxiv.org/html/2604.19341)
+- **Evaluated in / result source:** SimpleTES
 - **Question:** Route two-qubit gates onto a superconducting-device coupling graph while adding as few SWAP gates as possible.
 - **Agent input:** Quantum circuits, target coupling graphs, a Rust seed routing policy, and a fixed compiler/evaluator.
 - **Required output:** Rust qubit-routing policy
@@ -1312,8 +1361,8 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 - **Metric:** added SWAPs · minimize ↓ · aggregate gate count
 - **Prior reference:** LightSABRE: 20063
 - **Source-suite reported result:** SimpleTES + gpt-oss-120b: 15147 ↓
-- **Current SOTA method / status:** SimpleTES (source incumbent; global SOTA unverified)
-- **Model / backbone:** gpt-oss-120b
+- **Current SOTA method / status:** No verified public current SOTA located
+- **Model / backbone:** Not established
 - **Current record located:** **No independent current record located** — source report: SimpleTES + gpt-oss-120b 15147 ↓
 - **Evidence status:** `no-independent-current-record-located` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
@@ -1326,7 +1375,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### Third autocorrelation inequality
 
-- **ID / source:** `third-autocorrelation-inequality` · SimpleTES
+- **ID:** `third-autocorrelation-inequality`
+- **Task origin / evaluator:** [Third autocorrelation inequality / EinsteinArena evaluator](https://einsteinarena.com/problems/third-autocorrelation-inequality)
+- **Evaluated in / result source:** SimpleTES
 - **Question:** Construct a feasible function or sequence that improves the third autocorrelation-inequality bound.
 - **Agent input:** A discretized Python construction, inequality constraints, and a fixed bound evaluator.
 - **Required output:** Mathematical construction
@@ -1349,7 +1400,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### TriMul GPU kernel
 
-- **ID / source:** `trimul-kernel` · SimpleTES
+- **ID:** `trimul-kernel`
+- **Task origin / evaluator:** [GPUMode TriMul](https://github.com/gpu-mode/reference-kernels)
+- **Evaluated in / result source:** SimpleTES
 - **Question:** Implement a faster triangular matrix-multiplication GPU kernel without changing numerical semantics.
 - **Agent input:** A seed Triton kernel, fixed tensor shapes and dtypes, correctness tests, and a profiling harness.
 - **Required output:** Triton kernel source
@@ -1372,7 +1425,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### Voyager 2 gravity-assist trajectory
 
-- **ID / source:** `voyager-2-trajectory` · SimpleTES
+- **ID:** `voyager-2-trajectory`
+- **Task origin / evaluator:** [Voyager 2 historical mission / SimpleTES trajectory evaluator](https://arxiv.org/html/2604.19341)
+- **Evaluated in / result source:** SimpleTES
 - **Question:** Find a feasible Voyager 2 gravity-assist trajectory with lower total propulsive cost.
 - **Agent input:** Mission window, body sequence/search variables, orbital constraints, a seed optimizer, and NAIF ephemeris kernels.
 - **Required output:** Trajectory-design program and feasible mission parameters
@@ -1381,8 +1436,8 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 - **Metric:** propulsive cost · minimize ↓ · normalized mission objective
 - **Prior reference:** Historical sequence: 3.503798
 - **Source-suite reported result:** SimpleTES + gpt-oss-120b: 3.430214 ↓
-- **Current SOTA method / status:** SimpleTES (source incumbent; global SOTA unverified)
-- **Model / backbone:** gpt-oss-120b
+- **Current SOTA method / status:** No verified public current SOTA located
+- **Model / backbone:** Not established
 - **Current record located:** **No independent current record located** — source report: SimpleTES + gpt-oss-120b 3.430214 ↓
 - **Evidence status:** `no-independent-current-record-located` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
@@ -1395,7 +1450,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### ZAPBench whole-brain forecasting (H=1)
 
-- **ID / source:** `zapbench-h1` · SimpleTES
+- **ID:** `zapbench-h1`
+- **Task origin / evaluator:** [ZAPBench forecasting (H=1)](https://github.com/google-research/zapbench)
+- **Evaluated in / result source:** SimpleTES
 - **Question:** Forecast whole-brain neural activity one step ahead with lower held-out error.
 - **Agent input:** ZAPBench time-series data, a seed forecasting program, visible context, and a fixed held-out split.
 - **Required output:** Python forecasting program and predictions
@@ -1404,8 +1461,8 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 - **Metric:** test MAE · minimize ↓ · normalized activity
 - **Prior reference:** ERA: 0.0174
 - **Source-suite reported result:** SimpleTES + gpt-oss-120b: 0.0165 ↓
-- **Current SOTA method / status:** SimpleTES (source incumbent; global SOTA unverified)
-- **Model / backbone:** gpt-oss-120b
+- **Current SOTA method / status:** No verified public current SOTA located
+- **Model / backbone:** Not established
 - **Current record located:** **No independent current record located** — source report: SimpleTES + gpt-oss-120b 0.0165 ↓
 - **Evidence status:** `no-independent-current-record-located` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
@@ -1416,7 +1473,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### ZAPBench whole-brain forecasting (H=4)
 
-- **ID / source:** `zapbench-h4` · SimpleTES
+- **ID:** `zapbench-h4`
+- **Task origin / evaluator:** [ZAPBench forecasting (H=4)](https://github.com/google-research/zapbench)
+- **Evaluated in / result source:** SimpleTES
 - **Question:** Forecast whole-brain neural activity four steps ahead with lower held-out error.
 - **Agent input:** ZAPBench time-series data, a seed forecasting program, visible context, and a fixed held-out split.
 - **Required output:** Python forecasting program and predictions
@@ -1425,8 +1484,8 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 - **Metric:** test MAE · minimize ↓ · normalized activity
 - **Prior reference:** ERA: 0.0221
 - **Source-suite reported result:** SimpleTES + gpt-oss-120b: 0.0211 ↓
-- **Current SOTA method / status:** SimpleTES (source incumbent; global SOTA unverified)
-- **Model / backbone:** gpt-oss-120b
+- **Current SOTA method / status:** No verified public current SOTA located
+- **Model / backbone:** Not established
 - **Current record located:** **No independent current record located** — source report: SimpleTES + gpt-oss-120b 0.0211 ↓
 - **Evidence status:** `no-independent-current-record-located` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
@@ -1437,7 +1496,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### ZAPBench whole-brain forecasting (H=8)
 
-- **ID / source:** `zapbench-h8` · SimpleTES
+- **ID:** `zapbench-h8`
+- **Task origin / evaluator:** [ZAPBench forecasting (H=8)](https://github.com/google-research/zapbench)
+- **Evaluated in / result source:** SimpleTES
 - **Question:** Forecast whole-brain neural activity eight steps ahead with lower held-out error.
 - **Agent input:** ZAPBench time-series data, a seed forecasting program, visible context, and a fixed held-out split.
 - **Required output:** Python forecasting program and predictions
@@ -1446,8 +1507,8 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 - **Metric:** test MAE · minimize ↓ · normalized activity
 - **Prior reference:** ERA: 0.0244
 - **Source-suite reported result:** SimpleTES + gpt-oss-120b: 0.023 ↓
-- **Current SOTA method / status:** SimpleTES (source incumbent; global SOTA unverified)
-- **Model / backbone:** gpt-oss-120b
+- **Current SOTA method / status:** No verified public current SOTA located
+- **Model / backbone:** Not established
 - **Current record located:** **No independent current record located** — source report: SimpleTES + gpt-oss-120b 0.023 ↓
 - **Evidence status:** `no-independent-current-record-located` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
@@ -1458,7 +1519,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### ZAPBench whole-brain forecasting (H=16)
 
-- **ID / source:** `zapbench-h16` · SimpleTES
+- **ID:** `zapbench-h16`
+- **Task origin / evaluator:** [ZAPBench forecasting (H=16)](https://github.com/google-research/zapbench)
+- **Evaluated in / result source:** SimpleTES
 - **Question:** Forecast whole-brain neural activity sixteen steps ahead with lower held-out error.
 - **Agent input:** ZAPBench time-series data, a seed forecasting program, visible context, and a fixed held-out split.
 - **Required output:** Python forecasting program and predictions
@@ -1467,8 +1530,8 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 - **Metric:** test MAE · minimize ↓ · normalized activity
 - **Prior reference:** ERA: 0.0267
 - **Source-suite reported result:** SimpleTES + gpt-oss-120b: 0.0251 ↓
-- **Current SOTA method / status:** SimpleTES (source incumbent; global SOTA unverified)
-- **Model / backbone:** gpt-oss-120b
+- **Current SOTA method / status:** No verified public current SOTA located
+- **Model / backbone:** Not established
 - **Current record located:** **No independent current record located** — source report: SimpleTES + gpt-oss-120b 0.0251 ↓
 - **Evidence status:** `no-independent-current-record-located` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
@@ -1479,7 +1542,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### ZAPBench whole-brain forecasting (H=32)
 
-- **ID / source:** `zapbench-h32` · SimpleTES
+- **ID:** `zapbench-h32`
+- **Task origin / evaluator:** [ZAPBench forecasting (H=32)](https://github.com/google-research/zapbench)
+- **Evaluated in / result source:** SimpleTES
 - **Question:** Forecast whole-brain neural activity thirty-two steps ahead with lower held-out error.
 - **Agent input:** ZAPBench time-series data, a seed forecasting program, visible context, and a fixed held-out split.
 - **Required output:** Python forecasting program and predictions
@@ -1488,8 +1553,8 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 - **Metric:** test MAE · minimize ↓ · normalized activity
 - **Prior reference:** ERA: 0.0283
 - **Source-suite reported result:** SimpleTES + gpt-oss-120b: 0.0259 ↓
-- **Current SOTA method / status:** SimpleTES (source incumbent; global SOTA unverified)
-- **Model / backbone:** gpt-oss-120b
+- **Current SOTA method / status:** No verified public current SOTA located
+- **Model / backbone:** Not established
 - **Current record located:** **No independent current record located** — source report: SimpleTES + gpt-oss-120b 0.0259 ↓
 - **Evidence status:** `no-independent-current-record-located` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
@@ -1502,7 +1567,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### Zoned neutral-atom compilation
 
-- **ID / source:** `zoned-neutral-atom-compilation` · SimpleTES
+- **ID:** `zoned-neutral-atom-compilation`
+- **Task origin / evaluator:** [QASMBench + MQT Bench / SimpleTES ZAC-style contract](https://arxiv.org/html/2604.19341)
+- **Evaluated in / result source:** SimpleTES
 - **Question:** Compile circuits for a zoned neutral-atom architecture while minimizing aggregate execution time.
 - **Agent input:** Quantum circuits, architecture constraints, a Python seed compilation policy, and a fixed simulator.
 - **Required output:** Python compilation policy
@@ -1511,8 +1578,8 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 - **Metric:** execution time · minimize ↓ · geometric-mean simulator time
 - **Prior reference:** ZAC: 29187.7
 - **Source-suite reported result:** SimpleTES + gpt-oss-120b: 19507.5 ↓
-- **Current SOTA method / status:** SimpleTES (source incumbent; global SOTA unverified)
-- **Model / backbone:** gpt-oss-120b
+- **Current SOTA method / status:** No verified public current SOTA located
+- **Model / backbone:** Not established
 - **Current record located:** **No independent current record located** — source report: SimpleTES + gpt-oss-120b 19507.5 ↓
 - **Evidence status:** `no-independent-current-record-located` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
@@ -1525,7 +1592,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### ARC-AGI-3 ls20 (Agent reasoning)
 
-- **ID / source:** `arc-agi-3-ls20` · ARC-AGI-3
+- **ID:** `arc-agi-3-ls20`
+- **Task origin / evaluator:** [ARC-AGI-3 public game ls20](https://arcprize.org/media/ARC_AGI_3_Technical_Report.pdf)
+- **Evaluated in / result source:** ARC-AGI-3
 - **Question:** Without natural-language instructions, discover ls20's hidden mechanics and win condition through interaction, then complete its levels efficiently.
 - **Agent input:** A turn-based grid frame of at most 64x64 cells using 16 colors, the currently available actions, and the accumulated frame/action history; the objective and mechanics are withheld.
 - **Required output:** An action trace that reaches WIN across the game's levels
@@ -1546,7 +1615,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### ARC-AGI-3 ft09 (Elementary Logic)
 
-- **ID / source:** `arc-agi-3-ft09` · ARC-AGI-3
+- **ID:** `arc-agi-3-ft09`
+- **Task origin / evaluator:** [ARC-AGI-3 public game ft09](https://arcprize.org/media/ARC_AGI_3_Technical_Report.pdf)
+- **Evaluated in / result source:** ARC-AGI-3
 - **Question:** Without natural-language instructions, discover ft09's hidden mechanics and win condition through interaction, then complete its levels efficiently.
 - **Agent input:** A turn-based grid frame of at most 64x64 cells using 16 colors, the currently available actions, and the accumulated frame/action history; the objective and mechanics are withheld.
 - **Required output:** An action trace that reaches WIN across the game's levels
@@ -1567,7 +1638,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### ARC-AGI-3 vc33 (Orchestration)
 
-- **ID / source:** `arc-agi-3-vc33` · ARC-AGI-3
+- **ID:** `arc-agi-3-vc33`
+- **Task origin / evaluator:** [ARC-AGI-3 public game vc33](https://arcprize.org/media/ARC_AGI_3_Technical_Report.pdf)
+- **Evaluated in / result source:** ARC-AGI-3
 - **Question:** Without natural-language instructions, discover vc33's hidden mechanics and win condition through interaction, then complete its levels efficiently.
 - **Agent input:** A turn-based grid frame of at most 64x64 cells using 16 colors, the currently available actions, and the accumulated frame/action history; the objective and mechanics are withheld.
 - **Required output:** An action trace that reaches WIN across the game's levels
@@ -1588,7 +1661,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### DiG-bench P-1 (tier 1)
 
-- **ID / source:** `dig-bench-p-1` · DiG-bench
+- **ID:** `dig-bench-p-1`
+- **Task origin / evaluator:** [DiG-bench public game P-1](https://digbench.ai/)
+- **Evaluated in / result source:** DiG-bench
 - **Question:** Discover P-1's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.
 - **Agent input:** A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.
 - **Required output:** A legal action sequence that wins the game
@@ -1609,7 +1684,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### DiG-bench P-2 (tier 1)
 
-- **ID / source:** `dig-bench-p-2` · DiG-bench
+- **ID:** `dig-bench-p-2`
+- **Task origin / evaluator:** [DiG-bench public game P-2](https://digbench.ai/)
+- **Evaluated in / result source:** DiG-bench
 - **Question:** Discover P-2's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.
 - **Agent input:** A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.
 - **Required output:** A legal action sequence that wins the game
@@ -1630,7 +1707,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### DiG-bench P-3 (tier 1)
 
-- **ID / source:** `dig-bench-p-3` · DiG-bench
+- **ID:** `dig-bench-p-3`
+- **Task origin / evaluator:** [DiG-bench public game P-3](https://digbench.ai/)
+- **Evaluated in / result source:** DiG-bench
 - **Question:** Discover P-3's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.
 - **Agent input:** A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.
 - **Required output:** A legal action sequence that wins the game
@@ -1651,7 +1730,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### DiG-bench P-4 (tier 2)
 
-- **ID / source:** `dig-bench-p-4` · DiG-bench
+- **ID:** `dig-bench-p-4`
+- **Task origin / evaluator:** [DiG-bench public game P-4](https://digbench.ai/)
+- **Evaluated in / result source:** DiG-bench
 - **Question:** Discover P-4's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.
 - **Agent input:** A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.
 - **Required output:** A legal action sequence that wins the game
@@ -1672,7 +1753,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### DiG-bench P-5 (tier 2)
 
-- **ID / source:** `dig-bench-p-5` · DiG-bench
+- **ID:** `dig-bench-p-5`
+- **Task origin / evaluator:** [DiG-bench public game P-5](https://digbench.ai/)
+- **Evaluated in / result source:** DiG-bench
 - **Question:** Discover P-5's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.
 - **Agent input:** A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.
 - **Required output:** A legal action sequence that wins the game
@@ -1693,7 +1776,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### DiG-bench P-6 (tier 2)
 
-- **ID / source:** `dig-bench-p-6` · DiG-bench
+- **ID:** `dig-bench-p-6`
+- **Task origin / evaluator:** [DiG-bench public game P-6](https://digbench.ai/)
+- **Evaluated in / result source:** DiG-bench
 - **Question:** Discover P-6's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.
 - **Agent input:** A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.
 - **Required output:** A legal action sequence that wins the game
@@ -1714,7 +1799,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### DiG-bench P-7 (tier 3)
 
-- **ID / source:** `dig-bench-p-7` · DiG-bench
+- **ID:** `dig-bench-p-7`
+- **Task origin / evaluator:** [DiG-bench public game P-7](https://digbench.ai/)
+- **Evaluated in / result source:** DiG-bench
 - **Question:** Discover P-7's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.
 - **Agent input:** A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.
 - **Required output:** A legal action sequence that wins the game
@@ -1735,7 +1822,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### DiG-bench P-8 (tier 3)
 
-- **ID / source:** `dig-bench-p-8` · DiG-bench
+- **ID:** `dig-bench-p-8`
+- **Task origin / evaluator:** [DiG-bench public game P-8](https://digbench.ai/)
+- **Evaluated in / result source:** DiG-bench
 - **Question:** Discover P-8's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.
 - **Agent input:** A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.
 - **Required output:** A legal action sequence that wins the game
@@ -1756,7 +1845,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### DiG-bench P-9 (tier 3)
 
-- **ID / source:** `dig-bench-p-9` · DiG-bench
+- **ID:** `dig-bench-p-9`
+- **Task origin / evaluator:** [DiG-bench public game P-9](https://digbench.ai/)
+- **Evaluated in / result source:** DiG-bench
 - **Question:** Discover P-9's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.
 - **Agent input:** A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.
 - **Required output:** A legal action sequence that wins the game
@@ -1777,7 +1868,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### DiG-bench P-10 (tier 4)
 
-- **ID / source:** `dig-bench-p-10` · DiG-bench
+- **ID:** `dig-bench-p-10`
+- **Task origin / evaluator:** [DiG-bench public game P-10](https://digbench.ai/)
+- **Evaluated in / result source:** DiG-bench
 - **Question:** Discover P-10's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.
 - **Agent input:** A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.
 - **Required output:** A legal action sequence that wins the game
@@ -1798,7 +1891,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### DiG-bench P-11 (tier 4)
 
-- **ID / source:** `dig-bench-p-11` · DiG-bench
+- **ID:** `dig-bench-p-11`
+- **Task origin / evaluator:** [DiG-bench public game P-11](https://digbench.ai/)
+- **Evaluated in / result source:** DiG-bench
 - **Question:** Discover P-11's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.
 - **Agent input:** A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.
 - **Required output:** A legal action sequence that wins the game
@@ -1819,7 +1914,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### DiG-bench P-12 (tier 4)
 
-- **ID / source:** `dig-bench-p-12` · DiG-bench
+- **ID:** `dig-bench-p-12`
+- **Task origin / evaluator:** [DiG-bench public game P-12](https://digbench.ai/)
+- **Evaluated in / result source:** DiG-bench
 - **Question:** Discover P-12's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.
 - **Agent input:** A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.
 - **Required output:** A legal action sequence that wins the game
@@ -1840,7 +1937,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### DiG-bench P-13 (tier 5)
 
-- **ID / source:** `dig-bench-p-13` · DiG-bench
+- **ID:** `dig-bench-p-13`
+- **Task origin / evaluator:** [DiG-bench public game P-13](https://digbench.ai/)
+- **Evaluated in / result source:** DiG-bench
 - **Question:** Discover P-13's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.
 - **Agent input:** A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.
 - **Required output:** A legal action sequence that wins the game
@@ -1861,7 +1960,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### DiG-bench P-14 (tier 5)
 
-- **ID / source:** `dig-bench-p-14` · DiG-bench
+- **ID:** `dig-bench-p-14`
+- **Task origin / evaluator:** [DiG-bench public game P-14](https://digbench.ai/)
+- **Evaluated in / result source:** DiG-bench
 - **Question:** Discover P-14's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.
 - **Agent input:** A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.
 - **Required output:** A legal action sequence that wins the game
@@ -1882,7 +1983,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### DiG-bench P-15 (tier 5)
 
-- **ID / source:** `dig-bench-p-15` · DiG-bench
+- **ID:** `dig-bench-p-15`
+- **Task origin / evaluator:** [DiG-bench public game P-15](https://digbench.ai/)
+- **Evaluated in / result source:** DiG-bench
 - **Question:** Discover P-15's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.
 - **Agent input:** A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.
 - **Required output:** A legal action sequence that wins the game
@@ -1903,7 +2006,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### DiG-bench P-16 (tier 6)
 
-- **ID / source:** `dig-bench-p-16` · DiG-bench
+- **ID:** `dig-bench-p-16`
+- **Task origin / evaluator:** [DiG-bench public game P-16](https://digbench.ai/)
+- **Evaluated in / result source:** DiG-bench
 - **Question:** Discover P-16's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.
 - **Agent input:** A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.
 - **Required output:** A legal action sequence that wins the game
@@ -1924,7 +2029,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### DiG-bench P-17 (tier 6)
 
-- **ID / source:** `dig-bench-p-17` · DiG-bench
+- **ID:** `dig-bench-p-17`
+- **Task origin / evaluator:** [DiG-bench public game P-17](https://digbench.ai/)
+- **Evaluated in / result source:** DiG-bench
 - **Question:** Discover P-17's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.
 - **Agent input:** A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.
 - **Required output:** A legal action sequence that wins the game
@@ -1945,7 +2052,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### DiG-bench P-18 (tier 6)
 
-- **ID / source:** `dig-bench-p-18` · DiG-bench
+- **ID:** `dig-bench-p-18`
+- **Task origin / evaluator:** [DiG-bench public game P-18](https://digbench.ai/)
+- **Evaluated in / result source:** DiG-bench
 - **Question:** Discover P-18's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.
 - **Agent input:** A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.
 - **Required output:** A legal action sequence that wins the game
@@ -1966,7 +2075,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### DiG-bench P-19 (tier 7)
 
-- **ID / source:** `dig-bench-p-19` · DiG-bench
+- **ID:** `dig-bench-p-19`
+- **Task origin / evaluator:** [DiG-bench public game P-19](https://digbench.ai/)
+- **Evaluated in / result source:** DiG-bench
 - **Question:** Discover P-19's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.
 - **Agent input:** A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.
 - **Required output:** A legal action sequence that wins the game
@@ -1987,7 +2098,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### DiG-bench P-20 (tier 7)
 
-- **ID / source:** `dig-bench-p-20` · DiG-bench
+- **ID:** `dig-bench-p-20`
+- **Task origin / evaluator:** [DiG-bench public game P-20](https://digbench.ai/)
+- **Evaluated in / result source:** DiG-bench
 - **Question:** Discover P-20's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.
 - **Agent input:** A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.
 - **Required output:** A legal action sequence that wins the game
@@ -2008,7 +2121,9 @@ Membership labels distinguish IDs explicitly recoverable from arXiv v1 from the 
 
 ### DiG-bench P-21 (tier 7)
 
-- **ID / source:** `dig-bench-p-21` · DiG-bench
+- **ID:** `dig-bench-p-21`
+- **Task origin / evaluator:** [DiG-bench public game P-21](https://digbench.ai/)
+- **Evaluated in / result source:** DiG-bench
 - **Question:** Discover P-21's unknown transformation rules and win conditions through experimentation, then apply the learned rules to beat its challenges within the step budget.
 - **Agent input:** A JSON game state containing the observation, level, lives, steps remaining, status, legal actions, and interaction history; no semantic description of the hidden rules.
 - **Required output:** A legal action sequence that wins the game

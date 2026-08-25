@@ -34,12 +34,14 @@ The machine-readable form is [data/discovery-tasks.json](../data/discovery-tasks
 
 The second mode is documented in depth in [Interactive Discovery Tasks](interactive-discovery-tasks.md). A registry row may have no model result yet; that means the task contract is verified but a matched run has not been recorded.
 
-## SimpleTES as a task source
+## SimpleTES as a task package and evaluated system
 
 [SimpleTES](https://github.com/wq-will/SimpleTES) is recorded as both:
 
-1. a **source suite** that currently exposes 28 task packages; and
+1. a **task package/adapter** that currently exposes 28 executable contracts; and
 2. an **evaluated discovery system** that produced the reported candidate results.
+
+It is not the original source of every problem. The registry records that provenance separately: for example, TriMul is GPUMode, the four scaling-law tasks are SLDBench, the forecasting tasks are ZAPBench, the kernel tasks derive from KernelBench, and the denoising task derives from OpenProblems through the TTT-Discover setup.
 
 The current paper reports `gpt-oss-120b` as the generator for the comparison summarized here. Matched runs using GPT, Claude, GLM, Kimi, and Qwen agents have not yet been recorded for these 28 task contracts; those cells should remain unknown rather than inferred from other benchmarks.
 
@@ -169,7 +171,7 @@ Until an artifact is replayed with exact feasibility and a frozen objective, thi
 
 | Name | Registry role | Why |
 |---|---|---|
-| **SimpleTES** | Source suite + evaluated system | Releases executable tasks and also reports results from its search method. |
+| **SimpleTES** | Task package + evaluated system | Adapts/releases executable contracts and reports results; per-task origin remains separate. |
 | **TTT-Discover** | Evaluated system + published task-set source | The method is not a task, but all 11 published evaluator variants are now catalogued separately: 3 mathematics, 4 hardware-specific TriMul, 2 AtCoder, and 2 biology. |
 | **SkyDiscover** | Candidate source suite | Promote its individual problems only after extracting question, input, evaluator, environment, and artifacts. |
 | **EFT / Finch models** | Training method + evaluated models | Record EFT as training configuration and Finch as the mutation model; neither is a task. |

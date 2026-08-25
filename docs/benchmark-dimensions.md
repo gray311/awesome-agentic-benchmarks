@@ -2,7 +2,7 @@
 
 Dimensions classify **what a benchmark evaluates**. Training techniques such as SFT, DPO, GRPO, RLHF, LoRA, and distillation are not top-level dimensions; they are methods an agent may use inside a benchmark, especially a post-training benchmark.
 
-For scientific discovery, dimension and task are also separate: `mathematics-discovery` is a dimension, **Erdős minimum overlap** is a task, **SimpleTES** is a source suite and evaluated system, and **EFT** is a training method.
+For scientific discovery, dimension, task provenance, and evaluated method are separate: `mathematics-discovery` is a dimension, **Erdős minimum overlap** is a task, **SimpleTES** is an evaluated system/task packager, and **EFT** is a training method.
 
 | Dimension ID | Display name | Definition | Example benchmarks |
 |---|---|---|---|
