@@ -1,12 +1,15 @@
-# All Discovery Tasks and Current SOTA
+# All Discovery Tasks and Current-Record Tracker
 
 > Evidence snapshot: **2026-08-25** · **52 tasks** · **3 source suites**
 
-This is the single-file lookup for every task in the discovery registry. It records the agent-visible question and input, required output, evaluator, environment, metric, and the best result that could be traced to the exact task contract.
+This is the single-file lookup for every task in the discovery registry. It records the agent-visible question and input, required output, evaluator, environment, metric, the source suite's own reported result, and a separately researched current-record field.
 
 ## SOTA policy
 
-- **Task-level current best** means a result was located for that exact evaluator and task version. It may still be source-reported rather than independently reproduced.
+- **Source-reported result is not automatically SOTA.** It records what the suite paper or released artifact achieved.
+- **Current record** is assigned only when a live leaderboard, official result dataset, historical record, or later matched-evaluator artifact supports it.
+- **Contract incumbent only** means no independent maintained leaderboard or later exact-contract comparison was found. The source result remains useful, but is not labeled global SOTA.
+- **Tie / precision unresolved** is used when papers round differently or several systems match at published precision.
 - **Suite-level only** means the source publishes an aggregate but no attributable per-task result. The aggregate is shown as context and is never imputed to a task.
 - Runtime results are hardware-sensitive; interactive results are harness-, budget-, game-version-, and run-count-sensitive.
 - `Current` means best located from primary sources by the snapshot date, not a guarantee that an unpublished or incomparable result does not exist.
@@ -15,14 +18,15 @@ This is the single-file lookup for every task in the discovery registry. It reco
 
 | Evidence scope | Tasks | Interpretation |
 |---|---:|---|
-| Task-level current best | 28 | SimpleTES result and released artifact located |
-| Suite-level only | 24 | ARC-AGI-3 (3) and DiG-bench (21) publish no attributable per-task result table |
+| Externally cross-checked current record / tie / ambiguity | 12 | Live leaderboards, official result datasets, historical records, or matched artifacts |
+| Source-reported contract incumbent only | 16 | Released result exists, but no independent exact-contract current record was located |
+| Suite-level only | 24 | ARC-AGI-3 and DiG-bench publish no attributable per-task result table |
 
 ### Source-suite snapshot
 
 | Source | Launch | GitHub stars | Tasks here | Current best evidence |
 |---|---:|---:|---:|---|
-| [SimpleTES](https://github.com/wq-will/SimpleTES) | 2026-04 | 169 | 28 | 28 task-level source-reported best results; current paper uses gpt-oss-120b |
+| [SimpleTES](https://github.com/wq-will/SimpleTES) | 2026-04 | 169 | 28 | 28 source-reported results; 12 tasks cross-checked against other systems or records |
 | [ARC-AGI-3](https://arcprize.org/arc-agi/3/) | 2026-04-22 | 69 | 3 | Tycho 100.0% public-demo aggregate; community self-reported, no attributable per-game table |
 | [DiG-bench](https://digbench.ai/) | 2026-08-12 | 24 | 21 | Claude Opus 5 basic harness: 50/70 games; no per-game table |
 
@@ -30,60 +34,60 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 
 ## Master SOTA index
 
-| # | Task | Domain | Source | Metric | Current SOTA | Evidence |
+| # | Task | Domain | Source | Metric | Current record located | Evidence |
 |---:|---|---|---|---|---|---|
-| 1 | [Asymmetric matrix multiplication](#asymmetric-matrix-multiplication) | ai-foundations | SimpleTES | runtime (↓) | **0.44 ↓** — SimpleTES + gpt-oss-120b | task-level, source-reported |
-| 2 | [Batched cumulative sum](#batched-cumulative-sum) | ai-foundations | SimpleTES | runtime (↓) | **0.104 ↓** — SimpleTES + gpt-oss-120b | task-level, source-reported |
-| 3 | [Cassini gravity-assist trajectory](#cassini-trajectory) | astrodynamics | SimpleTES | propulsive cost (↓) | **0.820129 ↓** — SimpleTES + gpt-oss-120b | task-level, source-reported |
-| 4 | [Circle packing in a unit square (n=26)](#circle-packing-n26) | mathematics-discovery | SimpleTES | sum of radii (↑) | **2.635983 ↑** — SimpleTES + gpt-oss-120b | task-level, source-reported |
-| 5 | [Circle packing in a unit square (n=32)](#circle-packing-n32) | mathematics-discovery | SimpleTES | sum of radii (↑) | **2.939572 ↑** — SimpleTES + gpt-oss-120b | task-level, source-reported |
-| 6 | [Erdős minimum overlap](#erdos-minimum-overlap) | mathematics-discovery | SimpleTES | overlap (↓) | **0.380868 ↓** — SimpleTES + gpt-oss-120b | task-level, source-reported |
-| 7 | [Galileo gravity-assist trajectory](#galileo-trajectory) | astrodynamics | SimpleTES | propulsive cost (↓) | **0.795108 ↓** — SimpleTES + gpt-oss-120b | task-level, source-reported |
-| 8 | [Hadamard maximum determinant (n=29)](#hadamard-determinant-n29) | mathematics-discovery | SimpleTES | normalized determinant (↑) | **0.935673 ↑** — SimpleTES + gpt-oss-120b | task-level, source-reported |
-| 9 | [LASSO regularization path](#lasso-regularization-path) | scientific-algorithms | SimpleTES | runtime (↓) | **2502.3 ↓** — SimpleTES + gpt-oss-120b | task-level, source-reported |
-| 10 | [Mariner 10 gravity-assist trajectory](#mariner-10-trajectory) | astrodynamics | SimpleTES | propulsive cost (↓) | **0.326993 ↓** — SimpleTES + gpt-oss-120b | task-level, source-reported |
-| 11 | [Rosetta gravity-assist trajectory](#rosetta-trajectory) | astrodynamics | SimpleTES | propulsive cost (↓) | **1.552968 ↓** — SimpleTES + gpt-oss-120b | task-level, source-reported |
-| 12 | [Scaling-law discovery: domain mix](#scaling-law-domain-mix) | ai-foundations | SimpleTES | extrapolation R2 (↑) | **0.991 ↑** — SimpleTES + gpt-oss-120b | task-level, source-reported |
-| 13 | [Scaling-law discovery: learning rate and batch size](#scaling-law-lr-bsz) | ai-foundations | SimpleTES | extrapolation R2 (↑) | **0.712 ↑** — SimpleTES + gpt-oss-120b | task-level, source-reported |
-| 14 | [Scaling-law discovery: parallel](#scaling-law-parallel) | ai-foundations | SimpleTES | extrapolation R2 (↑) | **1.0 ↑** — SimpleTES + gpt-oss-120b | task-level, source-reported |
-| 15 | [Scaling-law discovery: U-shape](#scaling-law-u-shape) | ai-foundations | SimpleTES | extrapolation R2 (↑) | **-0.008 ↑** — SimpleTES + gpt-oss-120b | task-level, source-reported |
-| 16 | [Second autocorrelation inequality](#second-autocorrelation-inequality) | mathematics-discovery | SimpleTES | bound (↑) | **0.962694 ↑** — SimpleTES + gpt-oss-120b | task-level, source-reported |
-| 17 | [Single-cell RNA-seq denoising](#single-cell-rna-denoising) | scientific-algorithms | SimpleTES | denoising score (↑) | **0.74 ↑** — SimpleTES + gpt-oss-120b | task-level, source-reported |
-| 18 | [Sum-Difference problem](#sum-difference-problem) | mathematics-discovery | SimpleTES | ratio (↑) | **1.144887 ↑** — SimpleTES + trajectory-level post-trained gpt-oss-120b | task-level, source-reported |
-| 19 | [Superconducting qubit routing](#superconducting-qubit-routing) | quantum-compilation | SimpleTES | added SWAPs (↓) | **15147 ↓** — SimpleTES + gpt-oss-120b | task-level, source-reported |
-| 20 | [Third autocorrelation inequality](#third-autocorrelation-inequality) | mathematics-discovery | SimpleTES | bound (↓) | **1.453675 ↓** — SimpleTES + gpt-oss-120b | task-level, source-reported |
-| 21 | [TriMul GPU kernel](#trimul-kernel) | ai-foundations | SimpleTES | runtime (↓) | **1.122 ↓** — SimpleTES + gpt-oss-120b | task-level, source-reported |
-| 22 | [Voyager 2 gravity-assist trajectory](#voyager-2-trajectory) | astrodynamics | SimpleTES | propulsive cost (↓) | **3.430214 ↓** — SimpleTES + gpt-oss-120b | task-level, source-reported |
-| 23 | [ZAPBench whole-brain forecasting (H=1)](#zapbench-h1) | scientific-algorithms | SimpleTES | test MAE (↓) | **0.0165 ↓** — SimpleTES + gpt-oss-120b | task-level, source-reported |
-| 24 | [ZAPBench whole-brain forecasting (H=4)](#zapbench-h4) | scientific-algorithms | SimpleTES | test MAE (↓) | **0.0211 ↓** — SimpleTES + gpt-oss-120b | task-level, source-reported |
-| 25 | [ZAPBench whole-brain forecasting (H=8)](#zapbench-h8) | scientific-algorithms | SimpleTES | test MAE (↓) | **0.023 ↓** — SimpleTES + gpt-oss-120b | task-level, source-reported |
-| 26 | [ZAPBench whole-brain forecasting (H=16)](#zapbench-h16) | scientific-algorithms | SimpleTES | test MAE (↓) | **0.0251 ↓** — SimpleTES + gpt-oss-120b | task-level, source-reported |
-| 27 | [ZAPBench whole-brain forecasting (H=32)](#zapbench-h32) | scientific-algorithms | SimpleTES | test MAE (↓) | **0.0259 ↓** — SimpleTES + gpt-oss-120b | task-level, source-reported |
-| 28 | [Zoned neutral-atom compilation](#zoned-neutral-atom-compilation) | quantum-compilation | SimpleTES | execution time (↓) | **19507.5 ↓** — SimpleTES + gpt-oss-120b | task-level, source-reported |
-| 29 | [ARC-AGI-3 ls20 (Agent reasoning)](#arc-agi-3-ls20) | interactive-world-discovery | ARC-AGI-3 | Relative Human Action Efficiency (RHAE) (↑) | **Not published per task** — suite best: Tycho, 100.0 percent | suite-level only |
-| 30 | [ARC-AGI-3 ft09 (Elementary Logic)](#arc-agi-3-ft09) | interactive-world-discovery | ARC-AGI-3 | Relative Human Action Efficiency (RHAE) (↑) | **Not published per task** — suite best: Tycho, 100.0 percent | suite-level only |
-| 31 | [ARC-AGI-3 vc33 (Orchestration)](#arc-agi-3-vc33) | interactive-world-discovery | ARC-AGI-3 | Relative Human Action Efficiency (RHAE) (↑) | **Not published per task** — suite best: Tycho, 100.0 percent | suite-level only |
-| 32 | [DiG-bench P-1 (tier 1)](#dig-bench-p-1) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite-level only |
-| 33 | [DiG-bench P-2 (tier 1)](#dig-bench-p-2) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite-level only |
-| 34 | [DiG-bench P-3 (tier 1)](#dig-bench-p-3) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite-level only |
-| 35 | [DiG-bench P-4 (tier 2)](#dig-bench-p-4) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite-level only |
-| 36 | [DiG-bench P-5 (tier 2)](#dig-bench-p-5) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite-level only |
-| 37 | [DiG-bench P-6 (tier 2)](#dig-bench-p-6) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite-level only |
-| 38 | [DiG-bench P-7 (tier 3)](#dig-bench-p-7) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite-level only |
-| 39 | [DiG-bench P-8 (tier 3)](#dig-bench-p-8) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite-level only |
-| 40 | [DiG-bench P-9 (tier 3)](#dig-bench-p-9) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite-level only |
-| 41 | [DiG-bench P-10 (tier 4)](#dig-bench-p-10) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite-level only |
-| 42 | [DiG-bench P-11 (tier 4)](#dig-bench-p-11) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite-level only |
-| 43 | [DiG-bench P-12 (tier 4)](#dig-bench-p-12) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite-level only |
-| 44 | [DiG-bench P-13 (tier 5)](#dig-bench-p-13) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite-level only |
-| 45 | [DiG-bench P-14 (tier 5)](#dig-bench-p-14) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite-level only |
-| 46 | [DiG-bench P-15 (tier 5)](#dig-bench-p-15) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite-level only |
-| 47 | [DiG-bench P-16 (tier 6)](#dig-bench-p-16) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite-level only |
-| 48 | [DiG-bench P-17 (tier 6)](#dig-bench-p-17) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite-level only |
-| 49 | [DiG-bench P-18 (tier 6)](#dig-bench-p-18) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite-level only |
-| 50 | [DiG-bench P-19 (tier 7)](#dig-bench-p-19) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite-level only |
-| 51 | [DiG-bench P-20 (tier 7)](#dig-bench-p-20) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite-level only |
-| 52 | [DiG-bench P-21 (tier 7)](#dig-bench-p-21) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite-level only |
+| 1 | [Asymmetric matrix multiplication](#asymmetric-matrix-multiplication) | ai-foundations | SimpleTES | runtime (↓) | **No independent current record located** — source report: SimpleTES + gpt-oss-120b 0.44 ↓ | source result only |
+| 2 | [Batched cumulative sum](#batched-cumulative-sum) | ai-foundations | SimpleTES | runtime (↓) | **No independent current record located** — source report: SimpleTES + gpt-oss-120b 0.104 ↓ | source result only |
+| 3 | [Cassini gravity-assist trajectory](#cassini-trajectory) | astrodynamics | SimpleTES | propulsive cost (↓) | **No independent current record located** — source report: SimpleTES + gpt-oss-120b 0.820129 ↓ | source result only |
+| 4 | [Circle packing in a unit square (n=26)](#circle-packing-n26) | mathematics-discovery | SimpleTES | sum of radii (↑) | **2.6359830849 ↑** — AlphaEvolve (tied on the live board) | live leaderboard |
+| 5 | [Circle packing in a unit square (n=32)](#circle-packing-n32) | mathematics-discovery | SimpleTES | sum of radii (↑) | **2.939573 ↑** — nanodiscover + Qwen3-8B / Finch-8B (EFT), tied at published precision | published-precision tie |
+| 6 | [Erdős minimum overlap](#erdos-minimum-overlap) | mathematics-discovery | SimpleTES | overlap (↓) | **0.38085857 ↓** — CodexProLong | live leaderboard |
+| 7 | [Galileo gravity-assist trajectory](#galileo-trajectory) | astrodynamics | SimpleTES | propulsive cost (↓) | **No independent current record located** — source report: SimpleTES + gpt-oss-120b 0.795108 ↓ | source result only |
+| 8 | [Hadamard maximum determinant (n=29)](#hadamard-determinant-n29) | mathematics-discovery | SimpleTES | normalized determinant (↑) | **0.935673 ↑** — Orrick et al. human record (matched by SimpleTES) | published-precision tie |
+| 9 | [LASSO regularization path](#lasso-regularization-path) | scientific-algorithms | SimpleTES | runtime (↓) | **No independent current record located** — source report: SimpleTES + gpt-oss-120b 2502.3 ↓ | source result only |
+| 10 | [Mariner 10 gravity-assist trajectory](#mariner-10-trajectory) | astrodynamics | SimpleTES | propulsive cost (↓) | **No independent current record located** — source report: SimpleTES + gpt-oss-120b 0.326993 ↓ | source result only |
+| 11 | [Rosetta gravity-assist trajectory](#rosetta-trajectory) | astrodynamics | SimpleTES | propulsive cost (↓) | **No independent current record located** — source report: SimpleTES + gpt-oss-120b 1.552968 ↓ | source result only |
+| 12 | [Scaling-law discovery: domain mix](#scaling-law-domain-mix) | ai-foundations | SimpleTES | extrapolation R2 (↑) | **0.993529 ↑** — SLDAgent + Gemini-3-Pro-Preview | matched artifact/result set |
+| 13 | [Scaling-law discovery: learning rate and batch size](#scaling-law-lr-bsz) | ai-foundations | SimpleTES | extrapolation R2 (↑) | **0.847918 ↑** — SLDAgent + GPT-5 | matched artifact/result set |
+| 14 | [Scaling-law discovery: parallel](#scaling-law-parallel) | ai-foundations | SimpleTES | extrapolation R2 (↑) | **Unresolved at published precision** — SLDAgent + Claude Sonnet 4.5 0.999971; SimpleTES + gpt-oss-120b (rounded) 1.0 | precision unresolved |
+| 15 | [Scaling-law discovery: U-shape](#scaling-law-u-shape) | ai-foundations | SimpleTES | extrapolation R2 (↑) | **0.38070320345369735 ↑** — Aider + GPT-5 | matched artifact/result set |
+| 16 | [Second autocorrelation inequality](#second-autocorrelation-inequality) | mathematics-discovery | SimpleTES | bound (↑) | **0.96359 ↑** — ClaudeExplorer | live leaderboard |
+| 17 | [Single-cell RNA-seq denoising](#single-cell-rna-denoising) | scientific-algorithms | SimpleTES | denoising score (↑) | **No independent current record located** — source report: SimpleTES + gpt-oss-120b 0.74 ↑ | source result only |
+| 18 | [Sum-Difference problem](#sum-difference-problem) | mathematics-discovery | SimpleTES | ratio (↑) | **1.1901774219 ↑** — MLEvolve | matched artifact/result set |
+| 19 | [Superconducting qubit routing](#superconducting-qubit-routing) | quantum-compilation | SimpleTES | added SWAPs (↓) | **No independent current record located** — source report: SimpleTES + gpt-oss-120b 15147 ↓ | source result only |
+| 20 | [Third autocorrelation inequality](#third-autocorrelation-inequality) | mathematics-discovery | SimpleTES | bound (↓) | **1.45080664 ↓** — Poolish | live leaderboard |
+| 21 | [TriMul GPU kernel](#trimul-kernel) | ai-foundations | SimpleTES | runtime (↓) | **1.028 ↓** — K-Search | matched artifact/result set |
+| 22 | [Voyager 2 gravity-assist trajectory](#voyager-2-trajectory) | astrodynamics | SimpleTES | propulsive cost (↓) | **No independent current record located** — source report: SimpleTES + gpt-oss-120b 3.430214 ↓ | source result only |
+| 23 | [ZAPBench whole-brain forecasting (H=1)](#zapbench-h1) | scientific-algorithms | SimpleTES | test MAE (↓) | **No independent current record located** — source report: SimpleTES + gpt-oss-120b 0.0165 ↓ | source result only |
+| 24 | [ZAPBench whole-brain forecasting (H=4)](#zapbench-h4) | scientific-algorithms | SimpleTES | test MAE (↓) | **No independent current record located** — source report: SimpleTES + gpt-oss-120b 0.0211 ↓ | source result only |
+| 25 | [ZAPBench whole-brain forecasting (H=8)](#zapbench-h8) | scientific-algorithms | SimpleTES | test MAE (↓) | **No independent current record located** — source report: SimpleTES + gpt-oss-120b 0.023 ↓ | source result only |
+| 26 | [ZAPBench whole-brain forecasting (H=16)](#zapbench-h16) | scientific-algorithms | SimpleTES | test MAE (↓) | **No independent current record located** — source report: SimpleTES + gpt-oss-120b 0.0251 ↓ | source result only |
+| 27 | [ZAPBench whole-brain forecasting (H=32)](#zapbench-h32) | scientific-algorithms | SimpleTES | test MAE (↓) | **No independent current record located** — source report: SimpleTES + gpt-oss-120b 0.0259 ↓ | source result only |
+| 28 | [Zoned neutral-atom compilation](#zoned-neutral-atom-compilation) | quantum-compilation | SimpleTES | execution time (↓) | **No independent current record located** — source report: SimpleTES + gpt-oss-120b 19507.5 ↓ | source result only |
+| 29 | [ARC-AGI-3 ls20 (Agent reasoning)](#arc-agi-3-ls20) | interactive-world-discovery | ARC-AGI-3 | Relative Human Action Efficiency (RHAE) (↑) | **Not published per task** — suite best: Tycho, 100.0 percent | suite aggregate only |
+| 30 | [ARC-AGI-3 ft09 (Elementary Logic)](#arc-agi-3-ft09) | interactive-world-discovery | ARC-AGI-3 | Relative Human Action Efficiency (RHAE) (↑) | **Not published per task** — suite best: Tycho, 100.0 percent | suite aggregate only |
+| 31 | [ARC-AGI-3 vc33 (Orchestration)](#arc-agi-3-vc33) | interactive-world-discovery | ARC-AGI-3 | Relative Human Action Efficiency (RHAE) (↑) | **Not published per task** — suite best: Tycho, 100.0 percent | suite aggregate only |
+| 32 | [DiG-bench P-1 (tier 1)](#dig-bench-p-1) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite aggregate only |
+| 33 | [DiG-bench P-2 (tier 1)](#dig-bench-p-2) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite aggregate only |
+| 34 | [DiG-bench P-3 (tier 1)](#dig-bench-p-3) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite aggregate only |
+| 35 | [DiG-bench P-4 (tier 2)](#dig-bench-p-4) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite aggregate only |
+| 36 | [DiG-bench P-5 (tier 2)](#dig-bench-p-5) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite aggregate only |
+| 37 | [DiG-bench P-6 (tier 2)](#dig-bench-p-6) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite aggregate only |
+| 38 | [DiG-bench P-7 (tier 3)](#dig-bench-p-7) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite aggregate only |
+| 39 | [DiG-bench P-8 (tier 3)](#dig-bench-p-8) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite aggregate only |
+| 40 | [DiG-bench P-9 (tier 3)](#dig-bench-p-9) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite aggregate only |
+| 41 | [DiG-bench P-10 (tier 4)](#dig-bench-p-10) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite aggregate only |
+| 42 | [DiG-bench P-11 (tier 4)](#dig-bench-p-11) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite aggregate only |
+| 43 | [DiG-bench P-12 (tier 4)](#dig-bench-p-12) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite aggregate only |
+| 44 | [DiG-bench P-13 (tier 5)](#dig-bench-p-13) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite aggregate only |
+| 45 | [DiG-bench P-14 (tier 5)](#dig-bench-p-14) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite aggregate only |
+| 46 | [DiG-bench P-15 (tier 5)](#dig-bench-p-15) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite aggregate only |
+| 47 | [DiG-bench P-16 (tier 6)](#dig-bench-p-16) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite aggregate only |
+| 48 | [DiG-bench P-17 (tier 6)](#dig-bench-p-17) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite aggregate only |
+| 49 | [DiG-bench P-18 (tier 6)](#dig-bench-p-18) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite aggregate only |
+| 50 | [DiG-bench P-19 (tier 7)](#dig-bench-p-19) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite aggregate only |
+| 51 | [DiG-bench P-20 (tier 7)](#dig-bench-p-20) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite aggregate only |
+| 52 | [DiG-bench P-21 (tier 7)](#dig-bench-p-21) | interactive-world-discovery | DiG-bench | win rate (↑) | **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70 | suite aggregate only |
 
 ## Full task contracts
 
@@ -101,10 +105,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Triton/CUDA with a GPU profiling server; headline result uses H200.
 - **Metric:** runtime · minimize ↓ · ms
 - **Prior reference:** CUDAAgent: 0.747
-- **Current SOTA:** **0.44 ↓** — SimpleTES + gpt-oss-120b
-- **Evidence status:** `source-reported-current-best` as of 2026-08-25
+- **Source-suite reported result:** SimpleTES + gpt-oss-120b: 0.44 ↓
+- **Current record located:** **No independent current record located** — source report: SimpleTES + gpt-oss-120b 0.44 ↓
+- **Evidence status:** `no-independent-current-record-located` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
-- **SOTA note:** Best result located under the released task evaluator. This is a source-reported record, not an independent global certification.
+- **Record note:** A released SimpleTES result exists for this exact contract, but no independent current leaderboard or later matched-evaluator comparison was located. It is retained as a source-reported contract incumbent, not labeled global SOTA.
 - **Integrity note:** Runtime depends on hardware and profiler configuration; scores are source-reported and require matched-device replay.
 
 <a id="batched-cumulative-sum"></a>
@@ -119,10 +124,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Triton/CUDA with a GPU profiling server; headline result uses H200.
 - **Metric:** runtime · minimize ↓ · ms
 - **Prior reference:** NVIDIA CUB: 0.147
-- **Current SOTA:** **0.104 ↓** — SimpleTES + gpt-oss-120b
-- **Evidence status:** `source-reported-current-best` as of 2026-08-25
+- **Source-suite reported result:** SimpleTES + gpt-oss-120b: 0.104 ↓
+- **Current record located:** **No independent current record located** — source report: SimpleTES + gpt-oss-120b 0.104 ↓
+- **Evidence status:** `no-independent-current-record-located` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
-- **SOTA note:** Best result located under the released task evaluator. This is a source-reported record, not an independent global certification.
+- **Record note:** A released SimpleTES result exists for this exact contract, but no independent current leaderboard or later matched-evaluator comparison was located. It is retained as a source-reported contract incumbent, not labeled global SOTA.
 - **Integrity note:** Runtime depends on hardware and profiler configuration; scores are source-reported and require matched-device replay.
 
 ## Astrodynamics
@@ -139,10 +145,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Python task environment with astrodynamics dependencies and NAIF kernels.
 - **Metric:** propulsive cost · minimize ↓ · normalized mission objective
 - **Prior reference:** Historical sequence: 1.066682
-- **Current SOTA:** **0.820129 ↓** — SimpleTES + gpt-oss-120b
-- **Evidence status:** `source-reported-current-best` as of 2026-08-25
+- **Source-suite reported result:** SimpleTES + gpt-oss-120b: 0.820129 ↓
+- **Current record located:** **No independent current record located** — source report: SimpleTES + gpt-oss-120b 0.820129 ↓
+- **Evidence status:** `no-independent-current-record-located` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
-- **SOTA note:** Best result located under the released task evaluator. This is a source-reported record, not an independent global certification.
+- **Record note:** A released SimpleTES result exists for this exact contract, but no independent current leaderboard or later matched-evaluator comparison was located. It is retained as a source-reported contract incumbent, not labeled global SOTA.
 - **Integrity note:** Comparison is meaningful only under the same mission windows, simulator, constraints, and cost normalization.
 
 ## Mathematics Discovery
@@ -159,10 +166,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Python; no external task setup listed.
 - **Metric:** sum of radii · maximize ↑ · unit-square length
 - **Prior reference:** AlphaEvolve V2: 2.635983
-- **Current SOTA:** **2.635983 ↑** — SimpleTES + gpt-oss-120b
-- **Evidence status:** `source-reported-current-best` as of 2026-08-25
-- **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
-- **SOTA note:** Best result located under the released task evaluator. This is a source-reported record, not an independent global certification.
+- **Source-suite reported result:** SimpleTES + gpt-oss-120b: 2.635983 ↑
+- **Current record located:** **2.6359830849 ↑** — AlphaEvolve (tied on the live board)
+- **Evidence status:** `official-live-leaderboard` as of 2026-08-25
+- **Primary evidence:** [source 1](https://einsteinarena.com/problems/circle-packing) · [source 2](https://arxiv.org/abs/2511.02864) · [source 3](https://arxiv.org/html/2604.19341) · [source 4](https://github.com/InternScience/MLEvolve)
+- **Record note:** EinsteinArena lists AlphaEvolve first at 2.6359830849, with several agents tied at displayed precision. SimpleTES reports 2.635983 and MLEvolve 2.6359830395; neither should be presented as the unique current record.
 - **Integrity note:** Rounded values match; full-precision artifacts are required to establish equality or a strict improvement.
 
 <a id="circle-packing-n32"></a>
@@ -177,10 +185,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Python; no external task setup listed.
 - **Metric:** sum of radii · maximize ↑ · unit-square length
 - **Prior reference:** AlphaEvolve V2: 2.939572
-- **Current SOTA:** **2.939572 ↑** — SimpleTES + gpt-oss-120b
-- **Evidence status:** `source-reported-current-best` as of 2026-08-25
-- **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
-- **SOTA note:** Best result located under the released task evaluator. This is a source-reported record, not an independent global certification.
+- **Source-suite reported result:** SimpleTES + gpt-oss-120b: 2.939572 ↑
+- **Current record located:** **2.939573 ↑** — nanodiscover + Qwen3-8B / Finch-8B (EFT), tied at published precision
+- **Evidence status:** `cross-paper-tie-at-published-precision` as of 2026-08-25
+- **Primary evidence:** [source 1](https://arxiv.org/html/2606.29082) · [source 2](https://arxiv.org/html/2604.19341) · [source 3](https://arxiv.org/abs/2511.02864)
+- **Record note:** EFT Table 6 reports 2.939573 for both nanodiscover + Qwen3-8B and nanodiscover + Finch-8B, above the 2.939572 SimpleTES source result at displayed precision. The two 2.939573 entries are tied only at published precision; full-precision artifacts are needed to order them.
 - **Integrity note:** Rounded values match; full-precision artifacts are required to establish equality or a strict improvement.
 
 <a id="erdos-minimum-overlap"></a>
@@ -195,10 +204,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Python; no external task setup listed.
 - **Metric:** overlap · minimize ↓ · dimensionless bound
 - **Prior reference:** Together AI: 0.380871
-- **Current SOTA:** **0.380868 ↓** — SimpleTES + gpt-oss-120b
-- **Evidence status:** `source-reported-current-best` as of 2026-08-25
-- **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
-- **SOTA note:** Best result located under the released task evaluator. This is a source-reported record, not an independent global certification.
+- **Source-suite reported result:** SimpleTES + gpt-oss-120b: 0.380868 ↓
+- **Current record located:** **0.38085857 ↓** — CodexProLong
+- **Evidence status:** `official-live-leaderboard-with-certification-caveat` as of 2026-08-25
+- **Primary evidence:** [source 1](https://einsteinarena.com/problems/erdos-min-overlap) · [source 2](https://github.com/bzanghi/erdos-minimum-overlap-bochner/blob/main/MINIMUM_OVERLAP_STATE_2026-07-25b.md) · [source 3](https://test-time-training.github.io/discover/) · [source 4](https://arxiv.org/html/2604.19341)
+- **Record note:** EinsteinArena's live leader is CodexProLong. The independent certification note verifies a slightly older 0.3808590566148069 construction and explains why a widely cited lower SimpleTES number was affected by normalization; leaderboard rank and rigorous certification are therefore reported separately.
 - **Integrity note:** This row preserves the rounded comparison table supplied for the task. Other SimpleTES versions report 0.380856, and later independent analysis raised normalization/certification issues; cite the exact artifact and recompute at full precision before claiming a record.
 
 ## Astrodynamics
@@ -215,10 +225,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Python task environment with astrodynamics dependencies and NAIF kernels.
 - **Metric:** propulsive cost · minimize ↓ · normalized mission objective
 - **Prior reference:** Historical sequence: 0.823681
-- **Current SOTA:** **0.795108 ↓** — SimpleTES + gpt-oss-120b
-- **Evidence status:** `source-reported-current-best` as of 2026-08-25
+- **Source-suite reported result:** SimpleTES + gpt-oss-120b: 0.795108 ↓
+- **Current record located:** **No independent current record located** — source report: SimpleTES + gpt-oss-120b 0.795108 ↓
+- **Evidence status:** `no-independent-current-record-located` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
-- **SOTA note:** Best result located under the released task evaluator. This is a source-reported record, not an independent global certification.
+- **Record note:** A released SimpleTES result exists for this exact contract, but no independent current leaderboard or later matched-evaluator comparison was located. It is retained as a source-reported contract incumbent, not labeled global SOTA.
 - **Integrity note:** Comparison is meaningful only under the same mission windows, simulator, constraints, and cost normalization.
 
 ## Mathematics Discovery
@@ -235,10 +246,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Python; no external task setup listed.
 - **Metric:** normalized determinant · maximize ↑ · dimensionless
 - **Prior reference:** Orrick: 0.935673
-- **Current SOTA:** **0.935673 ↑** — SimpleTES + gpt-oss-120b
-- **Evidence status:** `source-reported-current-best` as of 2026-08-25
-- **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
-- **SOTA note:** Best result located under the released task evaluator. This is a source-reported record, not an independent global certification.
+- **Source-suite reported result:** SimpleTES + gpt-oss-120b: 0.935673 ↑
+- **Current record located:** **0.935673 ↑** — Orrick et al. human record (matched by SimpleTES)
+- **Evidence status:** `historical-record-matched-by-agent` as of 2026-08-25
+- **Primary evidence:** [source 1](https://maths-people.anu.edu.au/~brent/maxdet/order29/) · [source 2](https://arxiv.org/html/2604.19341)
+- **Record note:** The order-29 construction predates SimpleTES. SimpleTES matches the normalized determinant at published precision; it did not originate the record.
 - **Integrity note:** Rounded values match; use exact determinant arithmetic and the released matrix to verify equality.
 
 ## Scientific Algorithms
@@ -255,10 +267,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** C++ invoked through Python with g++ and Eigen.
 - **Metric:** runtime · minimize ↓ · ms
 - **Prior reference:** glmnet: 4139.4
-- **Current SOTA:** **2502.3 ↓** — SimpleTES + gpt-oss-120b
-- **Evidence status:** `source-reported-current-best` as of 2026-08-25
+- **Source-suite reported result:** SimpleTES + gpt-oss-120b: 2502.3 ↓
+- **Current record located:** **No independent current record located** — source report: SimpleTES + gpt-oss-120b 2502.3 ↓
+- **Evidence status:** `no-independent-current-record-located` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
-- **SOTA note:** Best result located under the released task evaluator. This is a source-reported record, not an independent global certification.
+- **Record note:** A released SimpleTES result exists for this exact contract, but no independent current leaderboard or later matched-evaluator comparison was located. It is retained as a source-reported contract incumbent, not labeled global SOTA.
 - **Integrity note:** Runtime comparison requires identical CPU, compiler flags, datasets, tolerance, warmup, and thread policy.
 
 ## Astrodynamics
@@ -275,10 +288,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Python task environment with astrodynamics dependencies and NAIF kernels.
 - **Metric:** propulsive cost · minimize ↓ · normalized mission objective
 - **Prior reference:** Historical sequence: 0.424147
-- **Current SOTA:** **0.326993 ↓** — SimpleTES + gpt-oss-120b
-- **Evidence status:** `source-reported-current-best` as of 2026-08-25
+- **Source-suite reported result:** SimpleTES + gpt-oss-120b: 0.326993 ↓
+- **Current record located:** **No independent current record located** — source report: SimpleTES + gpt-oss-120b 0.326993 ↓
+- **Evidence status:** `no-independent-current-record-located` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
-- **SOTA note:** Best result located under the released task evaluator. This is a source-reported record, not an independent global certification.
+- **Record note:** A released SimpleTES result exists for this exact contract, but no independent current leaderboard or later matched-evaluator comparison was located. It is retained as a source-reported contract incumbent, not labeled global SOTA.
 - **Integrity note:** Comparison is meaningful only under the same mission windows, simulator, constraints, and cost normalization.
 
 <a id="rosetta-trajectory"></a>
@@ -293,10 +307,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Python task environment with astrodynamics dependencies and NAIF kernels.
 - **Metric:** propulsive cost · minimize ↓ · normalized mission objective
 - **Prior reference:** Historical sequence: 1.736837
-- **Current SOTA:** **1.552968 ↓** — SimpleTES + gpt-oss-120b
-- **Evidence status:** `source-reported-current-best` as of 2026-08-25
+- **Source-suite reported result:** SimpleTES + gpt-oss-120b: 1.552968 ↓
+- **Current record located:** **No independent current record located** — source report: SimpleTES + gpt-oss-120b 1.552968 ↓
+- **Evidence status:** `no-independent-current-record-located` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
-- **SOTA note:** Best result located under the released task evaluator. This is a source-reported record, not an independent global certification.
+- **Record note:** A released SimpleTES result exists for this exact contract, but no independent current leaderboard or later matched-evaluator comparison was located. It is retained as a source-reported contract incumbent, not labeled global SOTA.
 - **Integrity note:** Comparison is meaningful only under the same mission windows, simulator, constraints, and cost normalization.
 
 ## Ai Foundations
@@ -313,10 +328,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Python with the task dataset and Hugging Face cache.
 - **Metric:** extrapolation R2 · maximize ↑ · coefficient of determination
 - **Prior reference:** SLD Agent (Gemini-2.5-Flash): 0.991
-- **Current SOTA:** **0.991 ↑** — SimpleTES + gpt-oss-120b
-- **Evidence status:** `source-reported-current-best` as of 2026-08-25
-- **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
-- **SOTA note:** Best result located under the released task evaluator. This is a source-reported record, not an independent global certification.
+- **Source-suite reported result:** SimpleTES + gpt-oss-120b: 0.991 ↑
+- **Current record located:** **0.993529 ↑** — SLDAgent + Gemini-3-Pro-Preview
+- **Evidence status:** `official-results-dataset` as of 2026-08-25
+- **Primary evidence:** [source 1](https://huggingface.co/datasets/pkuHaowei/scaling_law_discovery_results) · [source 2](https://github.com/linhaowei1/SLD) · [source 3](https://arxiv.org/html/2604.19341)
+- **Record note:** Computed from the released SLDBench result records for the domain_mixture split. It exceeds the 0.991 SimpleTES source result under the matched split metric.
 - **Integrity note:** Rounded values match; the exact split, preprocessing, and full-precision predictions are required for comparison.
 
 <a id="scaling-law-lr-bsz"></a>
@@ -331,10 +347,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Python with the task dataset and Hugging Face cache.
 - **Metric:** extrapolation R2 · maximize ↑ · coefficient of determination
 - **Prior reference:** SLD Agent (o4-mini): 0.611
-- **Current SOTA:** **0.712 ↑** — SimpleTES + gpt-oss-120b
-- **Evidence status:** `source-reported-current-best` as of 2026-08-25
-- **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
-- **SOTA note:** Best result located under the released task evaluator. This is a source-reported record, not an independent global certification.
+- **Source-suite reported result:** SimpleTES + gpt-oss-120b: 0.712 ↑
+- **Current record located:** **0.847918 ↑** — SLDAgent + GPT-5
+- **Evidence status:** `official-results-dataset` as of 2026-08-25
+- **Primary evidence:** [source 1](https://huggingface.co/datasets/pkuHaowei/scaling_law_discovery_results) · [source 2](https://github.com/linhaowei1/SLD) · [source 3](https://arxiv.org/html/2604.19341)
+- **Record note:** Computed from the released SLDBench result records for the lr_bsz split. It exceeds the 0.712 SimpleTES source result.
 - **Integrity note:** The exact split, preprocessing, and full-precision predictions are required for comparison.
 
 <a id="scaling-law-parallel"></a>
@@ -349,10 +366,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Python with the task dataset and Hugging Face cache.
 - **Metric:** extrapolation R2 · maximize ↑ · coefficient of determination
 - **Prior reference:** SLD Agent (GPT-5): 1.0
-- **Current SOTA:** **1.0 ↑** — SimpleTES + gpt-oss-120b
-- **Evidence status:** `source-reported-current-best` as of 2026-08-25
-- **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
-- **SOTA note:** Best result located under the released task evaluator. This is a source-reported record, not an independent global certification.
+- **Source-suite reported result:** SimpleTES + gpt-oss-120b: 1.0 ↑
+- **Current record located:** **Unresolved at published precision** — SLDAgent + Claude Sonnet 4.5 0.999971; SimpleTES + gpt-oss-120b (rounded) 1.0
+- **Evidence status:** `incomparable-published-precision` as of 2026-08-25
+- **Primary evidence:** [source 1](https://huggingface.co/datasets/pkuHaowei/scaling_law_discovery_results) · [source 2](https://github.com/linhaowei1/SLD) · [source 3](https://arxiv.org/html/2604.19341)
+- **Record note:** The official SLDBench result dataset has SLDAgent + Claude Sonnet 4.5 at 0.999971, while SimpleTES reports 1.000 only to three decimals. The rounded number cannot establish a strict win or tie, so no unique current record is assigned.
 - **Integrity note:** Rounded values match; the exact split, preprocessing, and full-precision predictions are required for comparison.
 
 <a id="scaling-law-u-shape"></a>
@@ -367,10 +385,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Python with the task dataset and Hugging Face cache.
 - **Metric:** extrapolation R2 · maximize ↑ · coefficient of determination
 - **Prior reference:** Goose + GPT-5: -0.232
-- **Current SOTA:** **-0.008 ↑** — SimpleTES + gpt-oss-120b
-- **Evidence status:** `source-reported-current-best` as of 2026-08-25
-- **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
-- **SOTA note:** Best result located under the released task evaluator. This is a source-reported record, not an independent global certification.
+- **Source-suite reported result:** SimpleTES + gpt-oss-120b: -0.008 ↑
+- **Current record located:** **0.38070320345369735 ↑** — Aider + GPT-5
+- **Evidence status:** `official-results-dataset` as of 2026-08-25
+- **Primary evidence:** [source 1](https://huggingface.co/datasets/pkuHaowei/scaling_law_discovery_results) · [source 2](https://github.com/linhaowei1/SLD) · [source 3](https://arxiv.org/html/2604.19341)
+- **Record note:** Computed from the released SLDBench easy_question/u-shape result records. It exceeds the -0.008 SimpleTES source result.
 - **Integrity note:** The exact split, preprocessing, and full-precision predictions are required for comparison.
 
 ## Mathematics Discovery
@@ -387,10 +406,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Python; no external task setup listed.
 - **Metric:** bound · maximize ↑ · dimensionless
 - **Prior reference:** Together AI: 0.961206
-- **Current SOTA:** **0.962694 ↑** — SimpleTES + gpt-oss-120b
-- **Evidence status:** `source-reported-current-best` as of 2026-08-25
-- **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
-- **SOTA note:** Best result located under the released task evaluator. This is a source-reported record, not an independent global certification.
+- **Source-suite reported result:** SimpleTES + gpt-oss-120b: 0.962694 ↑
+- **Current record located:** **0.96359 ↑** — ClaudeExplorer
+- **Evidence status:** `official-live-leaderboard` as of 2026-08-25
+- **Primary evidence:** [source 1](https://einsteinarena.com/problems/second-autocorrelation-inequality) · [source 2](https://test-time-training.github.io/discover/) · [source 3](https://arxiv.org/html/2604.19341) · [source 4](https://github.com/InternScience/MLEvolve)
+- **Record note:** EinsteinArena currently ranks ClaudeExplorer first. The board also records AlphaEvolve and TTT-Discover as earlier results; SimpleTES's 0.962694 is no longer the public leader.
 - **Integrity note:** Source-reported rounded score; full-precision construction and independent feasibility checks are required for a record claim.
 
 ## Scientific Algorithms
@@ -407,10 +427,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Python in a bundled task environment with the biological dataset.
 - **Metric:** denoising score · maximize ↑ · OpenProblems composite score
 - **Prior reference:** TTT-Discover: 0.73
-- **Current SOTA:** **0.74 ↑** — SimpleTES + gpt-oss-120b
-- **Evidence status:** `source-reported-current-best` as of 2026-08-25
+- **Source-suite reported result:** SimpleTES + gpt-oss-120b: 0.74 ↑
+- **Current record located:** **No independent current record located** — source report: SimpleTES + gpt-oss-120b 0.74 ↑
+- **Evidence status:** `no-independent-current-record-located` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
-- **SOTA note:** Best result located under the released task evaluator. This is a source-reported record, not an independent global certification.
+- **Record note:** A released SimpleTES result exists for this exact contract, but no independent current leaderboard or later matched-evaluator comparison was located. It is retained as a source-reported contract incumbent, not labeled global SOTA.
 - **Integrity note:** The data split, preprocessing, allowed retraining, and metric implementation must be frozen for comparison.
 
 ## Mathematics Discovery
@@ -427,10 +448,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Python; no external task setup listed.
 - **Metric:** ratio · maximize ↑ · dimensionless
 - **Prior reference:** AlphaEvolve V2: 1.121936
-- **Current SOTA:** **1.144887 ↑** — SimpleTES + trajectory-level post-trained gpt-oss-120b
-- **Evidence status:** `source-reported-current-best` as of 2026-08-25
-- **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
-- **SOTA note:** Best result located under the released task evaluator. This is a source-reported record, not an independent global certification.
+- **Source-suite reported result:** SimpleTES + trajectory-level post-trained gpt-oss-120b: 1.144887 ↑
+- **Current record located:** **1.1901774219 ↑** — MLEvolve
+- **Evidence status:** `source-reported-matched-task-table` as of 2026-08-25
+- **Primary evidence:** [source 1](https://github.com/InternScience/MLEvolve) · [source 2](https://arxiv.org/abs/2511.02864) · [source 3](https://arxiv.org/html/2604.19341)
+- **Record note:** MLEvolve's official comparison table reports 1.1901774219 on Sums differences problem 1, above AlphaEvolve (1.1479889651) and SimpleTES (1.143975 in that table; 1.144887 in the later post-trained SimpleTES result).
 - **Integrity note:** The current paper reports 1.143975 for the training-free run and 1.144887 after trajectory-level post-training. Verify the released set and exact objective independently.
 
 ## Quantum Compilation
@@ -447,10 +469,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Rust toolchain with the task's quantum-circuit corpus and compiler harness.
 - **Metric:** added SWAPs · minimize ↓ · aggregate gate count
 - **Prior reference:** LightSABRE: 20063
-- **Current SOTA:** **15147 ↓** — SimpleTES + gpt-oss-120b
-- **Evidence status:** `source-reported-current-best` as of 2026-08-25
+- **Source-suite reported result:** SimpleTES + gpt-oss-120b: 15147 ↓
+- **Current record located:** **No independent current record located** — source report: SimpleTES + gpt-oss-120b 15147 ↓
+- **Evidence status:** `no-independent-current-record-located` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
-- **SOTA note:** Best result located under the released task evaluator. This is a source-reported record, not an independent global certification.
+- **Record note:** A released SimpleTES result exists for this exact contract, but no independent current leaderboard or later matched-evaluator comparison was located. It is retained as a source-reported contract incumbent, not labeled global SOTA.
 - **Integrity note:** Circuit corpus, device topology, compiler version, seed policy, and aggregation must match.
 
 ## Mathematics Discovery
@@ -467,10 +490,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Python; no external task setup listed.
 - **Metric:** bound · minimize ↓ · dimensionless
 - **Prior reference:** Together AI: 1.454555
-- **Current SOTA:** **1.453675 ↓** — SimpleTES + gpt-oss-120b
-- **Evidence status:** `source-reported-current-best` as of 2026-08-25
-- **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
-- **SOTA note:** Best result located under the released task evaluator. This is a source-reported record, not an independent global certification.
+- **Source-suite reported result:** SimpleTES + gpt-oss-120b: 1.453675 ↓
+- **Current record located:** **1.45080664 ↓** — Poolish
+- **Evidence status:** `official-live-leaderboard` as of 2026-08-25
+- **Primary evidence:** [source 1](https://einsteinarena.com/problems/third-autocorrelation-inequality) · [source 2](https://arxiv.org/html/2604.19341) · [source 3](https://github.com/InternScience/MLEvolve)
+- **Record note:** EinsteinArena currently ranks Poolish first. SimpleTES's 1.453675 is a historical source result, not the current live record.
 - **Integrity note:** Source-reported rounded score; full-precision construction and independent feasibility checks are required for a record claim.
 
 ## Ai Foundations
@@ -487,10 +511,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Triton with a GPU profiling server; headline result uses H100.
 - **Metric:** runtime · minimize ↓ · ms
 - **Prior reference:** Human expert: 1.14
-- **Current SOTA:** **1.122 ↓** — SimpleTES + gpt-oss-120b
-- **Evidence status:** `source-reported-current-best` as of 2026-08-25
-- **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
-- **SOTA note:** Best result located under the released task evaluator. This is a source-reported record, not an independent global certification.
+- **Source-suite reported result:** SimpleTES + gpt-oss-120b: 1.122 ↓
+- **Current record located:** **1.028 ↓** — K-Search
+- **Evidence status:** `matched-upstream-evaluator-local-artifact` as of 2026-08-25
+- **Primary evidence:** [source 1](https://github.com/caoshiyi/K-Search) · [source 2](https://test-time-training.github.io/discover/) · [source 3](https://arxiv.org/html/2604.19341)
+- **Record note:** K-Search reports 1.028 ms on H100 across the seven upstream GPUMode workloads and releases the generated kernels. It beats the 1.122 ms SimpleTES paper result, but is a local matched-evaluator artifact rather than an official leaderboard submission.
 - **Integrity note:** Runtime depends on hardware and profiler configuration; scores are source-reported and require matched-device replay.
 
 ## Astrodynamics
@@ -507,10 +532,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Python task environment with astrodynamics dependencies and NAIF kernels.
 - **Metric:** propulsive cost · minimize ↓ · normalized mission objective
 - **Prior reference:** Historical sequence: 3.503798
-- **Current SOTA:** **3.430214 ↓** — SimpleTES + gpt-oss-120b
-- **Evidence status:** `source-reported-current-best` as of 2026-08-25
+- **Source-suite reported result:** SimpleTES + gpt-oss-120b: 3.430214 ↓
+- **Current record located:** **No independent current record located** — source report: SimpleTES + gpt-oss-120b 3.430214 ↓
+- **Evidence status:** `no-independent-current-record-located` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
-- **SOTA note:** Best result located under the released task evaluator. This is a source-reported record, not an independent global certification.
+- **Record note:** A released SimpleTES result exists for this exact contract, but no independent current leaderboard or later matched-evaluator comparison was located. It is retained as a source-reported contract incumbent, not labeled global SOTA.
 - **Integrity note:** Comparison is meaningful only under the same mission windows, simulator, constraints, and cost normalization.
 
 ## Scientific Algorithms
@@ -527,10 +553,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Python task environment with GPU and ZAPBench dataset.
 - **Metric:** test MAE · minimize ↓ · normalized activity
 - **Prior reference:** ERA: 0.0174
-- **Current SOTA:** **0.0165 ↓** — SimpleTES + gpt-oss-120b
-- **Evidence status:** `source-reported-current-best` as of 2026-08-25
+- **Source-suite reported result:** SimpleTES + gpt-oss-120b: 0.0165 ↓
+- **Current record located:** **No independent current record located** — source report: SimpleTES + gpt-oss-120b 0.0165 ↓
+- **Evidence status:** `no-independent-current-record-located` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
-- **SOTA note:** Best result located under the released task evaluator. This is a source-reported record, not an independent global certification.
+- **Record note:** A released SimpleTES result exists for this exact contract, but no independent current leaderboard or later matched-evaluator comparison was located. It is retained as a source-reported contract incumbent, not labeled global SOTA.
 - **Integrity note:** Forecast split, normalization, horizon semantics, and use of future information must be identical.
 
 <a id="zapbench-h4"></a>
@@ -545,10 +572,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Python task environment with GPU and ZAPBench dataset.
 - **Metric:** test MAE · minimize ↓ · normalized activity
 - **Prior reference:** ERA: 0.0221
-- **Current SOTA:** **0.0211 ↓** — SimpleTES + gpt-oss-120b
-- **Evidence status:** `source-reported-current-best` as of 2026-08-25
+- **Source-suite reported result:** SimpleTES + gpt-oss-120b: 0.0211 ↓
+- **Current record located:** **No independent current record located** — source report: SimpleTES + gpt-oss-120b 0.0211 ↓
+- **Evidence status:** `no-independent-current-record-located` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
-- **SOTA note:** Best result located under the released task evaluator. This is a source-reported record, not an independent global certification.
+- **Record note:** A released SimpleTES result exists for this exact contract, but no independent current leaderboard or later matched-evaluator comparison was located. It is retained as a source-reported contract incumbent, not labeled global SOTA.
 - **Integrity note:** Forecast split, normalization, horizon semantics, and use of future information must be identical.
 
 <a id="zapbench-h8"></a>
@@ -563,10 +591,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Python task environment with GPU and ZAPBench dataset.
 - **Metric:** test MAE · minimize ↓ · normalized activity
 - **Prior reference:** ERA: 0.0244
-- **Current SOTA:** **0.023 ↓** — SimpleTES + gpt-oss-120b
-- **Evidence status:** `source-reported-current-best` as of 2026-08-25
+- **Source-suite reported result:** SimpleTES + gpt-oss-120b: 0.023 ↓
+- **Current record located:** **No independent current record located** — source report: SimpleTES + gpt-oss-120b 0.023 ↓
+- **Evidence status:** `no-independent-current-record-located` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
-- **SOTA note:** Best result located under the released task evaluator. This is a source-reported record, not an independent global certification.
+- **Record note:** A released SimpleTES result exists for this exact contract, but no independent current leaderboard or later matched-evaluator comparison was located. It is retained as a source-reported contract incumbent, not labeled global SOTA.
 - **Integrity note:** Forecast split, normalization, horizon semantics, and use of future information must be identical.
 
 <a id="zapbench-h16"></a>
@@ -581,10 +610,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Python task environment with GPU and ZAPBench dataset.
 - **Metric:** test MAE · minimize ↓ · normalized activity
 - **Prior reference:** ERA: 0.0267
-- **Current SOTA:** **0.0251 ↓** — SimpleTES + gpt-oss-120b
-- **Evidence status:** `source-reported-current-best` as of 2026-08-25
+- **Source-suite reported result:** SimpleTES + gpt-oss-120b: 0.0251 ↓
+- **Current record located:** **No independent current record located** — source report: SimpleTES + gpt-oss-120b 0.0251 ↓
+- **Evidence status:** `no-independent-current-record-located` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
-- **SOTA note:** Best result located under the released task evaluator. This is a source-reported record, not an independent global certification.
+- **Record note:** A released SimpleTES result exists for this exact contract, but no independent current leaderboard or later matched-evaluator comparison was located. It is retained as a source-reported contract incumbent, not labeled global SOTA.
 - **Integrity note:** Forecast split, normalization, horizon semantics, and use of future information must be identical.
 
 <a id="zapbench-h32"></a>
@@ -599,10 +629,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Python task environment with GPU and ZAPBench dataset.
 - **Metric:** test MAE · minimize ↓ · normalized activity
 - **Prior reference:** ERA: 0.0283
-- **Current SOTA:** **0.0259 ↓** — SimpleTES + gpt-oss-120b
-- **Evidence status:** `source-reported-current-best` as of 2026-08-25
+- **Source-suite reported result:** SimpleTES + gpt-oss-120b: 0.0259 ↓
+- **Current record located:** **No independent current record located** — source report: SimpleTES + gpt-oss-120b 0.0259 ↓
+- **Evidence status:** `no-independent-current-record-located` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
-- **SOTA note:** Best result located under the released task evaluator. This is a source-reported record, not an independent global certification.
+- **Record note:** A released SimpleTES result exists for this exact contract, but no independent current leaderboard or later matched-evaluator comparison was located. It is retained as a source-reported contract incumbent, not labeled global SOTA.
 - **Integrity note:** Forecast split, normalization, horizon semantics, and use of future information must be identical.
 
 ## Quantum Compilation
@@ -619,10 +650,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Python in the task-specific zoned-neutral-atom environment.
 - **Metric:** execution time · minimize ↓ · geometric-mean simulator time
 - **Prior reference:** ZAC: 29187.7
-- **Current SOTA:** **19507.5 ↓** — SimpleTES + gpt-oss-120b
-- **Evidence status:** `source-reported-current-best` as of 2026-08-25
+- **Source-suite reported result:** SimpleTES + gpt-oss-120b: 19507.5 ↓
+- **Current record located:** **No independent current record located** — source report: SimpleTES + gpt-oss-120b 19507.5 ↓
+- **Evidence status:** `no-independent-current-record-located` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2604.19341) · [source 2](https://github.com/wq-will/SimpleTES/tree/main/best_results)
-- **SOTA note:** Best result located under the released task evaluator. This is a source-reported record, not an independent global certification.
+- **Record note:** A released SimpleTES result exists for this exact contract, but no independent current leaderboard or later matched-evaluator comparison was located. It is retained as a source-reported contract incumbent, not labeled global SOTA.
 - **Integrity note:** Circuit corpus, architecture parameters, simulator version, and aggregation must match.
 
 ## Interactive World Discovery
@@ -639,10 +671,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Official ARC-AGI Toolkit/API; deterministic turn-based environment; RESET, ACTION1-ACTION7, with ACTION6 accepting coordinates and ACTION7 serving as undo when available.
 - **Metric:** Relative Human Action Efficiency (RHAE) · maximize ↑ · percent
 - **Prior reference:** Human first-attempt upper-median baseline: 100
-- **Current SOTA:** **Not published per task** — suite best: Tycho, 100.0 percent
+- **Source-suite reported result:** Not available as a task-level result
+- **Current record located:** **Not published per task** — suite best: Tycho, 100.0 percent
 - **Evidence status:** `community-self-reported-no-task-breakdown` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arcprize.org/leaderboard/community) · [source 2](https://arcprize.org/scorecards/08b98aa0-5df0-42c0-b501-856f553a21e9) · [source 3](https://arcprize.org/media/ARC_AGI_3_Technical_Report.pdf)
-- **SOTA note:** The official community page reports Tycho at 100.0% on the public-demo suite, but labels community results self-reported and does not expose an attributable per-game breakdown. The suite score must not be copied into this task row.
+- **Record note:** The official community page reports Tycho at 100.0% on the public-demo suite, but labels community results self-reported and does not expose an attributable per-game breakdown. The suite score must not be copied into this task row.
 - **Integrity note:** This is a public demonstration environment, not a valid stand-alone measure of ARC-AGI-3 progress. Record the exact game version, scorecard, replay, prompt, action budget, and toolkit/API version; do not expose private environments.
 
 <a id="arc-agi-3-ft09"></a>
@@ -657,10 +690,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Official ARC-AGI Toolkit/API; deterministic turn-based environment; RESET, ACTION1-ACTION7, with ACTION6 accepting coordinates and ACTION7 serving as undo when available.
 - **Metric:** Relative Human Action Efficiency (RHAE) · maximize ↑ · percent
 - **Prior reference:** Human first-attempt upper-median baseline: 100
-- **Current SOTA:** **Not published per task** — suite best: Tycho, 100.0 percent
+- **Source-suite reported result:** Not available as a task-level result
+- **Current record located:** **Not published per task** — suite best: Tycho, 100.0 percent
 - **Evidence status:** `community-self-reported-no-task-breakdown` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arcprize.org/leaderboard/community) · [source 2](https://arcprize.org/scorecards/08b98aa0-5df0-42c0-b501-856f553a21e9) · [source 3](https://arcprize.org/media/ARC_AGI_3_Technical_Report.pdf) · [source 4](https://arcprize.org/replay/591e7e51-5004-4510-9e03-eca2b2d81edb?frame=19)
-- **SOTA note:** The official community page reports Tycho at 100.0% on the public-demo suite, but labels community results self-reported and does not expose an attributable per-game breakdown. The suite score must not be copied into this task row. A public ft09 replay reaches 100%, but its model and harness fields are blank.
+- **Record note:** The official community page reports Tycho at 100.0% on the public-demo suite, but labels community results self-reported and does not expose an attributable per-game breakdown. The suite score must not be copied into this task row. A public ft09 replay reaches 100%, but its model and harness fields are blank.
 - **Integrity note:** This is a public demonstration environment, not a valid stand-alone measure of ARC-AGI-3 progress. Record the exact game version, scorecard, replay, prompt, action budget, and toolkit/API version; do not expose private environments.
 
 <a id="arc-agi-3-vc33"></a>
@@ -675,10 +709,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Official ARC-AGI Toolkit/API; deterministic turn-based environment; RESET, ACTION1-ACTION7, with ACTION6 accepting coordinates and ACTION7 serving as undo when available.
 - **Metric:** Relative Human Action Efficiency (RHAE) · maximize ↑ · percent
 - **Prior reference:** Human first-attempt upper-median baseline: 100
-- **Current SOTA:** **Not published per task** — suite best: Tycho, 100.0 percent
+- **Source-suite reported result:** Not available as a task-level result
+- **Current record located:** **Not published per task** — suite best: Tycho, 100.0 percent
 - **Evidence status:** `community-self-reported-no-task-breakdown` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arcprize.org/leaderboard/community) · [source 2](https://arcprize.org/scorecards/08b98aa0-5df0-42c0-b501-856f553a21e9) · [source 3](https://arcprize.org/media/ARC_AGI_3_Technical_Report.pdf)
-- **SOTA note:** The official community page reports Tycho at 100.0% on the public-demo suite, but labels community results self-reported and does not expose an attributable per-game breakdown. The suite score must not be copied into this task row.
+- **Record note:** The official community page reports Tycho at 100.0% on the public-demo suite, but labels community results self-reported and does not expose an attributable per-game breakdown. The suite score must not be copied into this task row.
 - **Integrity note:** This is a public demonstration environment, not a valid stand-alone measure of ARC-AGI-3 progress. Record the exact game version, scorecard, replay, prompt, action budget, and toolkit/API version; do not expose private environments.
 
 <a id="dig-bench-p-1"></a>
@@ -693,10 +728,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.
 - **Metric:** win rate · maximize ↑ · fraction of runs
 - **Prior reference:** No matched task-level reference published
-- **Current SOTA:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
+- **Source-suite reported result:** Not available as a task-level result
+- **Current record located:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
 - **Evidence status:** `source-reported-no-task-breakdown` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2608.12593) · [source 2](https://digbench.ai/)
-- **SOTA note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
+- **Record note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
 - **Integrity note:** P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget.
 
 <a id="dig-bench-p-2"></a>
@@ -711,10 +747,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.
 - **Metric:** win rate · maximize ↑ · fraction of runs
 - **Prior reference:** No matched task-level reference published
-- **Current SOTA:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
+- **Source-suite reported result:** Not available as a task-level result
+- **Current record located:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
 - **Evidence status:** `source-reported-no-task-breakdown` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2608.12593) · [source 2](https://digbench.ai/)
-- **SOTA note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
+- **Record note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
 - **Integrity note:** P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget.
 
 <a id="dig-bench-p-3"></a>
@@ -729,10 +766,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.
 - **Metric:** win rate · maximize ↑ · fraction of runs
 - **Prior reference:** No matched task-level reference published
-- **Current SOTA:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
+- **Source-suite reported result:** Not available as a task-level result
+- **Current record located:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
 - **Evidence status:** `source-reported-no-task-breakdown` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2608.12593) · [source 2](https://digbench.ai/)
-- **SOTA note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
+- **Record note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
 - **Integrity note:** P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget.
 
 <a id="dig-bench-p-4"></a>
@@ -747,10 +785,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.
 - **Metric:** win rate · maximize ↑ · fraction of runs
 - **Prior reference:** No matched task-level reference published
-- **Current SOTA:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
+- **Source-suite reported result:** Not available as a task-level result
+- **Current record located:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
 - **Evidence status:** `source-reported-no-task-breakdown` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2608.12593) · [source 2](https://digbench.ai/)
-- **SOTA note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
+- **Record note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
 - **Integrity note:** P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget.
 
 <a id="dig-bench-p-5"></a>
@@ -765,10 +804,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.
 - **Metric:** win rate · maximize ↑ · fraction of runs
 - **Prior reference:** No matched task-level reference published
-- **Current SOTA:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
+- **Source-suite reported result:** Not available as a task-level result
+- **Current record located:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
 - **Evidence status:** `source-reported-no-task-breakdown` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2608.12593) · [source 2](https://digbench.ai/)
-- **SOTA note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
+- **Record note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
 - **Integrity note:** P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget.
 
 <a id="dig-bench-p-6"></a>
@@ -783,10 +823,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.
 - **Metric:** win rate · maximize ↑ · fraction of runs
 - **Prior reference:** No matched task-level reference published
-- **Current SOTA:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
+- **Source-suite reported result:** Not available as a task-level result
+- **Current record located:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
 - **Evidence status:** `source-reported-no-task-breakdown` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2608.12593) · [source 2](https://digbench.ai/)
-- **SOTA note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
+- **Record note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
 - **Integrity note:** P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget.
 
 <a id="dig-bench-p-7"></a>
@@ -801,10 +842,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.
 - **Metric:** win rate · maximize ↑ · fraction of runs
 - **Prior reference:** No matched task-level reference published
-- **Current SOTA:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
+- **Source-suite reported result:** Not available as a task-level result
+- **Current record located:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
 - **Evidence status:** `source-reported-no-task-breakdown` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2608.12593) · [source 2](https://digbench.ai/)
-- **SOTA note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
+- **Record note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
 - **Integrity note:** P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget.
 
 <a id="dig-bench-p-8"></a>
@@ -819,10 +861,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.
 - **Metric:** win rate · maximize ↑ · fraction of runs
 - **Prior reference:** No matched task-level reference published
-- **Current SOTA:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
+- **Source-suite reported result:** Not available as a task-level result
+- **Current record located:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
 - **Evidence status:** `source-reported-no-task-breakdown` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2608.12593) · [source 2](https://digbench.ai/)
-- **SOTA note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
+- **Record note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
 - **Integrity note:** P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget.
 
 <a id="dig-bench-p-9"></a>
@@ -837,10 +880,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.
 - **Metric:** win rate · maximize ↑ · fraction of runs
 - **Prior reference:** No matched task-level reference published
-- **Current SOTA:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
+- **Source-suite reported result:** Not available as a task-level result
+- **Current record located:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
 - **Evidence status:** `source-reported-no-task-breakdown` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2608.12593) · [source 2](https://digbench.ai/)
-- **SOTA note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
+- **Record note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
 - **Integrity note:** P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget.
 
 <a id="dig-bench-p-10"></a>
@@ -855,10 +899,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.
 - **Metric:** win rate · maximize ↑ · fraction of runs
 - **Prior reference:** No matched task-level reference published
-- **Current SOTA:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
+- **Source-suite reported result:** Not available as a task-level result
+- **Current record located:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
 - **Evidence status:** `source-reported-no-task-breakdown` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2608.12593) · [source 2](https://digbench.ai/)
-- **SOTA note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
+- **Record note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
 - **Integrity note:** P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget.
 
 <a id="dig-bench-p-11"></a>
@@ -873,10 +918,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.
 - **Metric:** win rate · maximize ↑ · fraction of runs
 - **Prior reference:** No matched task-level reference published
-- **Current SOTA:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
+- **Source-suite reported result:** Not available as a task-level result
+- **Current record located:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
 - **Evidence status:** `source-reported-no-task-breakdown` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2608.12593) · [source 2](https://digbench.ai/)
-- **SOTA note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
+- **Record note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
 - **Integrity note:** P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget.
 
 <a id="dig-bench-p-12"></a>
@@ -891,10 +937,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.
 - **Metric:** win rate · maximize ↑ · fraction of runs
 - **Prior reference:** No matched task-level reference published
-- **Current SOTA:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
+- **Source-suite reported result:** Not available as a task-level result
+- **Current record located:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
 - **Evidence status:** `source-reported-no-task-breakdown` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2608.12593) · [source 2](https://digbench.ai/)
-- **SOTA note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
+- **Record note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
 - **Integrity note:** P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget.
 
 <a id="dig-bench-p-13"></a>
@@ -909,10 +956,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.
 - **Metric:** win rate · maximize ↑ · fraction of runs
 - **Prior reference:** No matched task-level reference published
-- **Current SOTA:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
+- **Source-suite reported result:** Not available as a task-level result
+- **Current record located:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
 - **Evidence status:** `source-reported-no-task-breakdown` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2608.12593) · [source 2](https://digbench.ai/)
-- **SOTA note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
+- **Record note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
 - **Integrity note:** P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget.
 
 <a id="dig-bench-p-14"></a>
@@ -927,10 +975,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.
 - **Metric:** win rate · maximize ↑ · fraction of runs
 - **Prior reference:** No matched task-level reference published
-- **Current SOTA:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
+- **Source-suite reported result:** Not available as a task-level result
+- **Current record located:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
 - **Evidence status:** `source-reported-no-task-breakdown` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2608.12593) · [source 2](https://digbench.ai/)
-- **SOTA note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
+- **Record note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
 - **Integrity note:** P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget.
 
 <a id="dig-bench-p-15"></a>
@@ -945,10 +994,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.
 - **Metric:** win rate · maximize ↑ · fraction of runs
 - **Prior reference:** No matched task-level reference published
-- **Current SOTA:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
+- **Source-suite reported result:** Not available as a task-level result
+- **Current record located:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
 - **Evidence status:** `source-reported-no-task-breakdown` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2608.12593) · [source 2](https://digbench.ai/)
-- **SOTA note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
+- **Record note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
 - **Integrity note:** P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget.
 
 <a id="dig-bench-p-16"></a>
@@ -963,10 +1013,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.
 - **Metric:** win rate · maximize ↑ · fraction of runs
 - **Prior reference:** No matched task-level reference published
-- **Current SOTA:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
+- **Source-suite reported result:** Not available as a task-level result
+- **Current record located:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
 - **Evidence status:** `source-reported-no-task-breakdown` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2608.12593) · [source 2](https://digbench.ai/)
-- **SOTA note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
+- **Record note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
 - **Integrity note:** P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget.
 
 <a id="dig-bench-p-17"></a>
@@ -981,10 +1032,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.
 - **Metric:** win rate · maximize ↑ · fraction of runs
 - **Prior reference:** No matched task-level reference published
-- **Current SOTA:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
+- **Source-suite reported result:** Not available as a task-level result
+- **Current record located:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
 - **Evidence status:** `source-reported-no-task-breakdown` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2608.12593) · [source 2](https://digbench.ai/)
-- **SOTA note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
+- **Record note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
 - **Integrity note:** P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget.
 
 <a id="dig-bench-p-18"></a>
@@ -999,10 +1051,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.
 - **Metric:** win rate · maximize ↑ · fraction of runs
 - **Prior reference:** No matched task-level reference published
-- **Current SOTA:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
+- **Source-suite reported result:** Not available as a task-level result
+- **Current record located:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
 - **Evidence status:** `source-reported-no-task-breakdown` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2608.12593) · [source 2](https://digbench.ai/)
-- **SOTA note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
+- **Record note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
 - **Integrity note:** P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget.
 
 <a id="dig-bench-p-19"></a>
@@ -1017,10 +1070,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.
 - **Metric:** win rate · maximize ↑ · fraction of runs
 - **Prior reference:** No matched task-level reference published
-- **Current SOTA:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
+- **Source-suite reported result:** Not available as a task-level result
+- **Current record located:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
 - **Evidence status:** `source-reported-no-task-breakdown` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2608.12593) · [source 2](https://digbench.ai/)
-- **SOTA note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
+- **Record note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
 - **Integrity note:** P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget.
 
 <a id="dig-bench-p-20"></a>
@@ -1035,10 +1089,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.
 - **Metric:** win rate · maximize ↑ · fraction of runs
 - **Prior reference:** No matched task-level reference published
-- **Current SOTA:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
+- **Source-suite reported result:** Not available as a task-level result
+- **Current record located:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
 - **Evidence status:** `source-reported-no-task-breakdown` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2608.12593) · [source 2](https://digbench.ai/)
-- **SOTA note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
+- **Record note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
 - **Integrity note:** P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget.
 
 <a id="dig-bench-p-21"></a>
@@ -1053,10 +1108,11 @@ GitHub stars are the repository snapshots recorded on 2026-08-25; they are popul
 - **Environment:** Official text-game server exposed through the DiG-bench API or MCP and a declared model harness; humans and models receive identical states, actions, and step budgets. Some games offer a declared creative mode for unmetered experiments.
 - **Metric:** win rate · maximize ↑ · fraction of runs
 - **Prior reference:** No matched task-level reference published
-- **Current SOTA:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
+- **Source-suite reported result:** Not available as a task-level result
+- **Current record located:** **Not published per task** — suite best: Claude Opus 5, basic harness, 50 games out of 70
 - **Evidence status:** `source-reported-no-task-breakdown` as of 2026-08-25
 - **Primary evidence:** [source 1](https://arxiv.org/html/2608.12593) · [source 2](https://digbench.ai/)
-- **SOTA note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
+- **Record note:** The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA.
 - **Integrity note:** P-series task is public and may be used for development, so report public-versus-private evaluation separately. Pin the game, server, harness, model, prompt, context policy, run count, and step budget.
 
 ## Maintenance
@@ -1068,4 +1124,4 @@ python scripts/render_discovery_task_sota.py
 python scripts/render_discovery_task_sota.py --check
 ```
 
-For a new record, provide the exact task/version, complete system and harness, score, run count or uncertainty when available, resource envelope, and primary result artifact. A suite leaderboard screenshot alone is insufficient for a task-level SOTA claim.
+For a new record, provide the exact task/version, complete system and harness, score, run count or uncertainty when available, resource envelope, and primary result artifact. A source paper claim or suite leaderboard screenshot alone is insufficient for a task-level SOTA claim.

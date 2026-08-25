@@ -26,8 +26,17 @@
         ],
         "properties": {
           "task_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
-          "status": {"enum": ["task-level-current-best", "suite-level-only"]},
-          "scope": {"enum": ["task-level", "suite-level"]},
+          "status": {
+            "enum": [
+              "live-leaderboard-best",
+              "artifact-reported-best",
+              "tie-at-published-precision",
+              "precision-ambiguous",
+              "source-reported-contract-incumbent",
+              "suite-level-only"
+            ]
+          },
+          "scope": {"enum": ["task-level", "contract-level", "suite-level"]},
           "system": {"type": ["string", "null"]},
           "score": {"type": ["number", "null"]},
           "metric": {
@@ -42,6 +51,33 @@
           },
           "as_of": {"type": "string", "format": "date"},
           "evidence_status": {"type": "string"},
+          "source_reported": {
+            "type": "object",
+            "required": ["system", "score", "evidence_urls"],
+            "properties": {
+              "system": {"type": "string", "minLength": 1},
+              "score": {"type": "number"},
+              "evidence_urls": {
+                "type": "array",
+                "minItems": 1,
+                "items": {"type": "string", "format": "uri"}
+              }
+            },
+            "additionalProperties": false
+          },
+          "candidates": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "type": "object",
+              "required": ["system", "score"],
+              "properties": {
+                "system": {"type": "string", "minLength": 1},
+                "score": {"type": "number"}
+              },
+              "additionalProperties": false
+            }
+          },
           "suite_best": {
             "type": "object",
             "required": ["system", "score", "metric_name", "unit"]

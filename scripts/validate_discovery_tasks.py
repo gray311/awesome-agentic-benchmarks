@@ -232,14 +232,30 @@ def validate() -> list[str]:
             errors.append(f"{task_id}: SOTA evidence_urls must be a non-empty array")
         elif any(not is_https_url(url) for url in record["evidence_urls"]):
             errors.append(f"{task_id}: every SOTA evidence URL must use HTTPS")
-        if record.get("status") == "task-level-current-best":
+        current_statuses = {"live-leaderboard-best", "artifact-reported-best", "tie-at-published-precision"}
+        if record.get("status") in current_statuses:
             if record.get("scope") != "task-level" or not isinstance(record.get("score"), (int, float)) or not record.get("system"):
                 errors.append(f"{task_id}: task-level SOTA requires task scope, system, and numeric score")
+        elif record.get("status") == "precision-ambiguous":
+            if record.get("scope") != "task-level" or record.get("score") is not None or record.get("system") is not None or not isinstance(record.get("candidates"), list):
+                errors.append(f"{task_id}: precision-ambiguous result requires task scope, null system/score, and candidates")
+        elif record.get("status") == "source-reported-contract-incumbent":
+            if record.get("scope") != "contract-level" or record.get("score") is not None or record.get("system") is not None or not isinstance(record.get("source_reported"), dict):
+                errors.append(f"{task_id}: contract incumbent requires contract scope, null current system/score, and source_reported")
         elif record.get("status") == "suite-level-only":
             if record.get("scope") != "suite-level" or record.get("score") is not None or record.get("system") is not None or not isinstance(record.get("suite_best"), dict):
                 errors.append(f"{task_id}: suite-only SOTA must keep task score/system null and declare suite_best")
         else:
             errors.append(f"{task_id}: invalid SOTA status")
+
+        source_reported = record.get("source_reported")
+        if task["source_suite"] == "simpletes" and not isinstance(source_reported, dict):
+            errors.append(f"{task_id}: SimpleTES task must preserve source_reported separately from current record")
+        if isinstance(source_reported, dict):
+            if not source_reported.get("system") or not isinstance(source_reported.get("score"), (int, float)):
+                errors.append(f"{task_id}: source_reported requires system and numeric score")
+            if not isinstance(source_reported.get("evidence_urls"), list) or not source_reported["evidence_urls"]:
+                errors.append(f"{task_id}: source_reported requires evidence URLs")
 
     if record_ids != seen_ids:
         missing = sorted(seen_ids - record_ids)

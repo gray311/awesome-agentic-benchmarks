@@ -43,7 +43,8 @@ We therefore treat every score as a result of a complete experimental configurat
 
 ## 🔥 News
 
-- **2026-08-25** — Published a single-file reference for all 52 discovery tasks with complete task contracts, task-level current-best results where available, suite-only evidence where per-task results are not public, and a validated machine-readable SOTA snapshot.
+- **2026-08-25** — Corrected the discovery record model so source-paper results are never automatically labeled SOTA; current records, published-precision ties, contract-only incumbents, and suite-only evidence are now tracked separately.
+- **2026-08-25** — Published a single-file reference for all 52 discovery tasks with complete task contracts and a validated machine-readable result snapshot.
 - **2026-08-25** — Added launch dates and dated GitHub-star snapshots for all 59 benchmark entries, including live star badges, explicit date precision, repository-scope labels, and CI coverage checks.
 - **2026-08-25** — Added an interactive-discovery layer with ARC-AGI-3 and DiG-bench: 24 individually verified public environments, exact action/feedback/score contracts, private-split safeguards, and official frontier-model coverage.
 - **2026-08-25** — Refocused the repository on executable discovery tasks and added a validated 28-task SimpleTES registry across quantum compilation, astrodynamics, scientific algorithms, AI foundations, and mathematics discovery.
@@ -134,7 +135,7 @@ The [all-in-one Discovery Task + SOTA reference](docs/all-discovery-tasks.md) co
 | Mathematics discovery | 7 | Erdős minimum overlap, autocorrelation inequalities, sum-difference, circle packing, and Hadamard determinant |
 | Interactive world discovery | 24 | ARC-AGI-3's three anonymous public games and DiG-bench P-1 through P-21 |
 
-Each task is available in [machine-readable JSON](data/discovery-tasks.json), with a separate [dated SOTA snapshot](data/discovery-task-sota.json). Of the 52 tasks, 28 currently have a task-level best result under the released evaluator. The other 24 expose only suite-level results, which are explicitly not imputed to individual tasks. The full source suites are larger—ARC-AGI-3 has 135 environments and DiG-bench has 70—but private environments and public IDs that cannot yet be authenticated are not fabricated as task rows. See [Interactive Discovery Tasks](docs/interactive-discovery-tasks.md) for the protocol and extraction policy.
+Each task is available in [machine-readable JSON](data/discovery-tasks.json), with a separate [dated result snapshot](data/discovery-task-sota.json). For SimpleTES-derived task rows, the suite's own result is preserved separately from the current-record field. A current record is assigned only when a live leaderboard, official result dataset, historical construction, or later matched-evaluator artifact supports it; otherwise the row is explicitly marked as a source-reported contract incumbent. ARC-AGI-3 and DiG-bench suite aggregates are not imputed to individual tasks. The full source suites are larger—ARC-AGI-3 has 135 environments and DiG-bench has 70—but private environments and public IDs that cannot yet be authenticated are not fabricated as task rows. See [Interactive Discovery Tasks](docs/interactive-discovery-tasks.md) for the protocol and extraction policy.
 
 ## 🗓️ Launch dates and GitHub stars
 
