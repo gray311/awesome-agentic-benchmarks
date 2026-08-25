@@ -9,6 +9,9 @@
       "scope": "contract-level",
       "system": null,
       "score": null,
+      "method": "SimpleTES (source incumbent; global SOTA unverified)",
+      "model": "gpt-oss-120b",
+      "primary_result_url": "https://arxiv.org/html/2604.19341",
       "metric": {
         "name": "runtime",
         "direction": "minimize",
@@ -36,6 +39,9 @@
       "scope": "contract-level",
       "system": null,
       "score": null,
+      "method": "SimpleTES (source incumbent; global SOTA unverified)",
+      "model": "gpt-oss-120b",
+      "primary_result_url": "https://arxiv.org/html/2604.19341",
       "metric": {
         "name": "runtime",
         "direction": "minimize",
@@ -63,6 +69,9 @@
       "scope": "contract-level",
       "system": null,
       "score": null,
+      "method": "SimpleTES (source incumbent; global SOTA unverified)",
+      "model": "gpt-oss-120b",
+      "primary_result_url": "https://arxiv.org/html/2604.19341",
       "metric": {
         "name": "propulsive cost",
         "direction": "minimize",
@@ -90,6 +99,9 @@
       "scope": "task-level",
       "system": "AlphaEvolve (tied on the live board)",
       "score": 2.6359830849,
+      "method": "AlphaEvolve (live-board tie)",
+      "model": "Not disclosed for leaderboard row",
+      "primary_result_url": "https://einsteinarena.com/problems/circle-packing",
       "metric": {
         "name": "sum of radii",
         "direction": "maximize",
@@ -119,6 +131,9 @@
       "scope": "task-level",
       "system": "nanodiscover + Qwen3-8B / Finch-8B (EFT), tied at published precision",
       "score": 2.939573,
+      "method": "nanodiscover (EFT)",
+      "model": "Qwen3-8B / Finch-8B",
+      "primary_result_url": "https://arxiv.org/html/2606.29082",
       "metric": {
         "name": "sum of radii",
         "direction": "maximize",
@@ -147,6 +162,9 @@
       "scope": "task-level",
       "system": "CodexProLong",
       "score": 0.38085857,
+      "method": "CodexProLong",
+      "model": "Not disclosed by leaderboard",
+      "primary_result_url": "https://einsteinarena.com/problems/erdos-min-overlap",
       "metric": {
         "name": "overlap",
         "direction": "minimize",
@@ -176,6 +194,9 @@
       "scope": "contract-level",
       "system": null,
       "score": null,
+      "method": "SimpleTES (source incumbent; global SOTA unverified)",
+      "model": "gpt-oss-120b",
+      "primary_result_url": "https://arxiv.org/html/2604.19341",
       "metric": {
         "name": "propulsive cost",
         "direction": "minimize",
@@ -203,6 +224,9 @@
       "scope": "task-level",
       "system": "Orrick et al. human record (matched by SimpleTES)",
       "score": 0.935673,
+      "method": "Orrick et al. construction; matched by SimpleTES",
+      "model": "Human construction / gpt-oss-120b match",
+      "primary_result_url": "https://maths-people.anu.edu.au/~brent/maxdet/order29/",
       "metric": {
         "name": "normalized determinant",
         "direction": "maximize",
@@ -230,6 +254,9 @@
       "scope": "contract-level",
       "system": null,
       "score": null,
+      "method": "SimpleTES (source incumbent; global SOTA unverified)",
+      "model": "gpt-oss-120b",
+      "primary_result_url": "https://arxiv.org/html/2604.19341",
       "metric": {
         "name": "runtime",
         "direction": "minimize",
@@ -257,6 +284,9 @@
       "scope": "contract-level",
       "system": null,
       "score": null,
+      "method": "SimpleTES (source incumbent; global SOTA unverified)",
+      "model": "gpt-oss-120b",
+      "primary_result_url": "https://arxiv.org/html/2604.19341",
       "metric": {
         "name": "propulsive cost",
         "direction": "minimize",
@@ -284,6 +314,9 @@
       "scope": "contract-level",
       "system": null,
       "score": null,
+      "method": "SimpleTES (source incumbent; global SOTA unverified)",
+      "model": "gpt-oss-120b",
+      "primary_result_url": "https://arxiv.org/html/2604.19341",
       "metric": {
         "name": "propulsive cost",
         "direction": "minimize",
@@ -311,6 +344,9 @@
       "scope": "task-level",
       "system": "SLDAgent + Gemini-3-Pro-Preview",
       "score": 0.993529,
+      "method": "SLDAgent",
+      "model": "Gemini-3-Pro-Preview",
+      "primary_result_url": "https://huggingface.co/datasets/pkuHaowei/scaling_law_discovery_results",
       "metric": {
         "name": "extrapolation R2",
         "direction": "maximize",
@@ -339,6 +375,9 @@
       "scope": "task-level",
       "system": "SLDAgent + GPT-5",
       "score": 0.847918,
+      "method": "SLDAgent",
+      "model": "GPT-5",
+      "primary_result_url": "https://huggingface.co/datasets/pkuHaowei/scaling_law_discovery_results",
       "metric": {
         "name": "extrapolation R2",
         "direction": "maximize",
@@ -367,6 +406,9 @@
       "scope": "task-level",
       "system": null,
       "score": null,
+      "method": "Unresolved: SLDAgent vs SimpleTES",
+      "model": "Claude Sonnet 4.5 / gpt-oss-120b",
+      "primary_result_url": "https://huggingface.co/datasets/pkuHaowei/scaling_law_discovery_results",
       "metric": {
         "name": "extrapolation R2",
         "direction": "maximize",
@@ -405,6 +447,9 @@
       "scope": "task-level",
       "system": "Aider + GPT-5",
       "score": 0.38070320345369735,
+      "method": "Aider",
+      "model": "GPT-5",
+      "primary_result_url": "https://huggingface.co/datasets/pkuHaowei/scaling_law_discovery_results",
       "metric": {
         "name": "extrapolation R2",
         "direction": "maximize",
@@ -433,6 +478,9 @@
       "scope": "task-level",
       "system": "ClaudeExplorer",
       "score": 0.96359,
+      "method": "ClaudeExplorer",
+      "model": "Not disclosed by leaderboard",
+      "primary_result_url": "https://einsteinarena.com/problems/second-autocorrelation-inequality",
       "metric": {
         "name": "bound",
         "direction": "maximize",
@@ -462,6 +510,9 @@
       "scope": "contract-level",
       "system": null,
       "score": null,
+      "method": "SimpleTES (source incumbent; global SOTA unverified)",
+      "model": "gpt-oss-120b",
+      "primary_result_url": "https://arxiv.org/html/2604.19341",
       "metric": {
         "name": "denoising score",
         "direction": "maximize",
@@ -489,6 +540,9 @@
       "scope": "task-level",
       "system": "MLEvolve",
       "score": 1.1901774219,
+      "method": "MLEvolve",
+      "model": "Gemini-3.1-Pro-preview",
+      "primary_result_url": "https://github.com/InternScience/MLEvolve",
       "metric": {
         "name": "ratio",
         "direction": "maximize",
@@ -517,6 +571,9 @@
       "scope": "contract-level",
       "system": null,
       "score": null,
+      "method": "SimpleTES (source incumbent; global SOTA unverified)",
+      "model": "gpt-oss-120b",
+      "primary_result_url": "https://arxiv.org/html/2604.19341",
       "metric": {
         "name": "added SWAPs",
         "direction": "minimize",
@@ -544,6 +601,9 @@
       "scope": "task-level",
       "system": "Poolish",
       "score": 1.45080664,
+      "method": "Poolish",
+      "model": "Not disclosed by leaderboard",
+      "primary_result_url": "https://einsteinarena.com/problems/third-autocorrelation-inequality",
       "metric": {
         "name": "bound",
         "direction": "minimize",
@@ -572,6 +632,9 @@
       "scope": "task-level",
       "system": "K-Search",
       "score": 1.028,
+      "method": "K-Search",
+      "model": "GPT-5.2 (released GPUMode default)",
+      "primary_result_url": "https://github.com/caoshiyi/K-Search",
       "metric": {
         "name": "runtime",
         "direction": "minimize",
@@ -600,6 +663,9 @@
       "scope": "contract-level",
       "system": null,
       "score": null,
+      "method": "SimpleTES (source incumbent; global SOTA unverified)",
+      "model": "gpt-oss-120b",
+      "primary_result_url": "https://arxiv.org/html/2604.19341",
       "metric": {
         "name": "propulsive cost",
         "direction": "minimize",
@@ -627,6 +693,9 @@
       "scope": "contract-level",
       "system": null,
       "score": null,
+      "method": "SimpleTES (source incumbent; global SOTA unverified)",
+      "model": "gpt-oss-120b",
+      "primary_result_url": "https://arxiv.org/html/2604.19341",
       "metric": {
         "name": "test MAE",
         "direction": "minimize",
@@ -654,6 +723,9 @@
       "scope": "contract-level",
       "system": null,
       "score": null,
+      "method": "SimpleTES (source incumbent; global SOTA unverified)",
+      "model": "gpt-oss-120b",
+      "primary_result_url": "https://arxiv.org/html/2604.19341",
       "metric": {
         "name": "test MAE",
         "direction": "minimize",
@@ -681,6 +753,9 @@
       "scope": "contract-level",
       "system": null,
       "score": null,
+      "method": "SimpleTES (source incumbent; global SOTA unverified)",
+      "model": "gpt-oss-120b",
+      "primary_result_url": "https://arxiv.org/html/2604.19341",
       "metric": {
         "name": "test MAE",
         "direction": "minimize",
@@ -708,6 +783,9 @@
       "scope": "contract-level",
       "system": null,
       "score": null,
+      "method": "SimpleTES (source incumbent; global SOTA unverified)",
+      "model": "gpt-oss-120b",
+      "primary_result_url": "https://arxiv.org/html/2604.19341",
       "metric": {
         "name": "test MAE",
         "direction": "minimize",
@@ -735,6 +813,9 @@
       "scope": "contract-level",
       "system": null,
       "score": null,
+      "method": "SimpleTES (source incumbent; global SOTA unverified)",
+      "model": "gpt-oss-120b",
+      "primary_result_url": "https://arxiv.org/html/2604.19341",
       "metric": {
         "name": "test MAE",
         "direction": "minimize",
@@ -762,6 +843,9 @@
       "scope": "contract-level",
       "system": null,
       "score": null,
+      "method": "SimpleTES (source incumbent; global SOTA unverified)",
+      "model": "gpt-oss-120b",
+      "primary_result_url": "https://arxiv.org/html/2604.19341",
       "metric": {
         "name": "execution time",
         "direction": "minimize",
@@ -789,6 +873,9 @@
       "scope": "suite-level",
       "system": null,
       "score": null,
+      "method": "No per-task SOTA published (suite aggregate: Tycho)",
+      "model": "Not disclosed",
+      "primary_result_url": "https://arcprize.org/leaderboard/community",
       "metric": {
         "name": "Relative Human Action Efficiency (RHAE)",
         "direction": "maximize",
@@ -815,6 +902,9 @@
       "scope": "suite-level",
       "system": null,
       "score": null,
+      "method": "No per-task SOTA published (suite aggregate: Tycho)",
+      "model": "Not disclosed",
+      "primary_result_url": "https://arcprize.org/leaderboard/community",
       "metric": {
         "name": "Relative Human Action Efficiency (RHAE)",
         "direction": "maximize",
@@ -842,6 +932,9 @@
       "scope": "suite-level",
       "system": null,
       "score": null,
+      "method": "No per-task SOTA published (suite aggregate: Tycho)",
+      "model": "Not disclosed",
+      "primary_result_url": "https://arcprize.org/leaderboard/community",
       "metric": {
         "name": "Relative Human Action Efficiency (RHAE)",
         "direction": "maximize",
@@ -868,6 +961,9 @@
       "scope": "suite-level",
       "system": null,
       "score": null,
+      "method": "No per-task SOTA published (suite aggregate: basic harness)",
+      "model": "Claude Opus 5",
+      "primary_result_url": "https://arxiv.org/html/2608.12593",
       "metric": {
         "name": "win rate",
         "direction": "maximize",
@@ -894,6 +990,9 @@
       "scope": "suite-level",
       "system": null,
       "score": null,
+      "method": "No per-task SOTA published (suite aggregate: basic harness)",
+      "model": "Claude Opus 5",
+      "primary_result_url": "https://arxiv.org/html/2608.12593",
       "metric": {
         "name": "win rate",
         "direction": "maximize",
@@ -920,6 +1019,9 @@
       "scope": "suite-level",
       "system": null,
       "score": null,
+      "method": "No per-task SOTA published (suite aggregate: basic harness)",
+      "model": "Claude Opus 5",
+      "primary_result_url": "https://arxiv.org/html/2608.12593",
       "metric": {
         "name": "win rate",
         "direction": "maximize",
@@ -946,6 +1048,9 @@
       "scope": "suite-level",
       "system": null,
       "score": null,
+      "method": "No per-task SOTA published (suite aggregate: basic harness)",
+      "model": "Claude Opus 5",
+      "primary_result_url": "https://arxiv.org/html/2608.12593",
       "metric": {
         "name": "win rate",
         "direction": "maximize",
@@ -972,6 +1077,9 @@
       "scope": "suite-level",
       "system": null,
       "score": null,
+      "method": "No per-task SOTA published (suite aggregate: basic harness)",
+      "model": "Claude Opus 5",
+      "primary_result_url": "https://arxiv.org/html/2608.12593",
       "metric": {
         "name": "win rate",
         "direction": "maximize",
@@ -998,6 +1106,9 @@
       "scope": "suite-level",
       "system": null,
       "score": null,
+      "method": "No per-task SOTA published (suite aggregate: basic harness)",
+      "model": "Claude Opus 5",
+      "primary_result_url": "https://arxiv.org/html/2608.12593",
       "metric": {
         "name": "win rate",
         "direction": "maximize",
@@ -1024,6 +1135,9 @@
       "scope": "suite-level",
       "system": null,
       "score": null,
+      "method": "No per-task SOTA published (suite aggregate: basic harness)",
+      "model": "Claude Opus 5",
+      "primary_result_url": "https://arxiv.org/html/2608.12593",
       "metric": {
         "name": "win rate",
         "direction": "maximize",
@@ -1050,6 +1164,9 @@
       "scope": "suite-level",
       "system": null,
       "score": null,
+      "method": "No per-task SOTA published (suite aggregate: basic harness)",
+      "model": "Claude Opus 5",
+      "primary_result_url": "https://arxiv.org/html/2608.12593",
       "metric": {
         "name": "win rate",
         "direction": "maximize",
@@ -1076,6 +1193,9 @@
       "scope": "suite-level",
       "system": null,
       "score": null,
+      "method": "No per-task SOTA published (suite aggregate: basic harness)",
+      "model": "Claude Opus 5",
+      "primary_result_url": "https://arxiv.org/html/2608.12593",
       "metric": {
         "name": "win rate",
         "direction": "maximize",
@@ -1102,6 +1222,9 @@
       "scope": "suite-level",
       "system": null,
       "score": null,
+      "method": "No per-task SOTA published (suite aggregate: basic harness)",
+      "model": "Claude Opus 5",
+      "primary_result_url": "https://arxiv.org/html/2608.12593",
       "metric": {
         "name": "win rate",
         "direction": "maximize",
@@ -1128,6 +1251,9 @@
       "scope": "suite-level",
       "system": null,
       "score": null,
+      "method": "No per-task SOTA published (suite aggregate: basic harness)",
+      "model": "Claude Opus 5",
+      "primary_result_url": "https://arxiv.org/html/2608.12593",
       "metric": {
         "name": "win rate",
         "direction": "maximize",
@@ -1154,6 +1280,9 @@
       "scope": "suite-level",
       "system": null,
       "score": null,
+      "method": "No per-task SOTA published (suite aggregate: basic harness)",
+      "model": "Claude Opus 5",
+      "primary_result_url": "https://arxiv.org/html/2608.12593",
       "metric": {
         "name": "win rate",
         "direction": "maximize",
@@ -1180,6 +1309,9 @@
       "scope": "suite-level",
       "system": null,
       "score": null,
+      "method": "No per-task SOTA published (suite aggregate: basic harness)",
+      "model": "Claude Opus 5",
+      "primary_result_url": "https://arxiv.org/html/2608.12593",
       "metric": {
         "name": "win rate",
         "direction": "maximize",
@@ -1206,6 +1338,9 @@
       "scope": "suite-level",
       "system": null,
       "score": null,
+      "method": "No per-task SOTA published (suite aggregate: basic harness)",
+      "model": "Claude Opus 5",
+      "primary_result_url": "https://arxiv.org/html/2608.12593",
       "metric": {
         "name": "win rate",
         "direction": "maximize",
@@ -1232,6 +1367,9 @@
       "scope": "suite-level",
       "system": null,
       "score": null,
+      "method": "No per-task SOTA published (suite aggregate: basic harness)",
+      "model": "Claude Opus 5",
+      "primary_result_url": "https://arxiv.org/html/2608.12593",
       "metric": {
         "name": "win rate",
         "direction": "maximize",
@@ -1258,6 +1396,9 @@
       "scope": "suite-level",
       "system": null,
       "score": null,
+      "method": "No per-task SOTA published (suite aggregate: basic harness)",
+      "model": "Claude Opus 5",
+      "primary_result_url": "https://arxiv.org/html/2608.12593",
       "metric": {
         "name": "win rate",
         "direction": "maximize",
@@ -1284,6 +1425,9 @@
       "scope": "suite-level",
       "system": null,
       "score": null,
+      "method": "No per-task SOTA published (suite aggregate: basic harness)",
+      "model": "Claude Opus 5",
+      "primary_result_url": "https://arxiv.org/html/2608.12593",
       "metric": {
         "name": "win rate",
         "direction": "maximize",
@@ -1310,6 +1454,9 @@
       "scope": "suite-level",
       "system": null,
       "score": null,
+      "method": "No per-task SOTA published (suite aggregate: basic harness)",
+      "model": "Claude Opus 5",
+      "primary_result_url": "https://arxiv.org/html/2608.12593",
       "metric": {
         "name": "win rate",
         "direction": "maximize",
@@ -1336,6 +1483,9 @@
       "scope": "suite-level",
       "system": null,
       "score": null,
+      "method": "No per-task SOTA published (suite aggregate: basic harness)",
+      "model": "Claude Opus 5",
+      "primary_result_url": "https://arxiv.org/html/2608.12593",
       "metric": {
         "name": "win rate",
         "direction": "maximize",
@@ -1362,6 +1512,9 @@
       "scope": "suite-level",
       "system": null,
       "score": null,
+      "method": "No per-task SOTA published (suite aggregate: basic harness)",
+      "model": "Claude Opus 5",
+      "primary_result_url": "https://arxiv.org/html/2608.12593",
       "metric": {
         "name": "win rate",
         "direction": "maximize",
@@ -1388,6 +1541,9 @@
       "scope": "suite-level",
       "system": null,
       "score": null,
+      "method": "No per-task SOTA published (suite aggregate: basic harness)",
+      "model": "Claude Opus 5",
+      "primary_result_url": "https://arxiv.org/html/2608.12593",
       "metric": {
         "name": "win rate",
         "direction": "maximize",

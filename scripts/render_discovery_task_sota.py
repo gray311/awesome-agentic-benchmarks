@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 TASK_PATH = ROOT / "data" / "discovery-tasks.json"
 SOTA_PATH = ROOT / "data" / "discovery-task-sota.json"
 DOC_PATH = ROOT / "docs" / "all-discovery-tasks.md"
+README_PATH = ROOT / "README.md"
 TTT_TASK_PATH = ROOT / "data" / "ttt-discover-tasks.json"
 FINCH_TASK_PATH = ROOT / "data" / "finch-collection-tasks.json"
 AS_OF = "2026-08-25"
@@ -47,6 +48,9 @@ CURRENT_RECORDS = {
     "circle-packing-n26": {
         "status": "live-leaderboard-best", "scope": "task-level",
         "system": "AlphaEvolve (tied on the live board)", "score": 2.6359830849,
+        "method": "AlphaEvolve (live-board tie)",
+        "model": "Not disclosed for leaderboard row",
+        "primary_result_url": EINSTEIN_CIRCLE,
         "evidence_status": "official-live-leaderboard",
         "evidence_urls": [EINSTEIN_CIRCLE, ALPHAEVOLVE_PAPER, SIMPLETES_PAPER, MLEVOLVE],
         "notes": "EinsteinArena lists AlphaEvolve first at 2.6359830849, with several agents tied at displayed precision. SimpleTES reports 2.635983 and MLEvolve 2.6359830395; neither should be presented as the unique current record.",
@@ -54,6 +58,9 @@ CURRENT_RECORDS = {
     "circle-packing-n32": {
         "status": "tie-at-published-precision", "scope": "task-level",
         "system": "nanodiscover + Qwen3-8B / Finch-8B (EFT), tied at published precision", "score": 2.939573,
+        "method": "nanodiscover (EFT)",
+        "model": "Qwen3-8B / Finch-8B",
+        "primary_result_url": EFT_PAPER,
         "evidence_status": "cross-paper-tie-at-published-precision",
         "evidence_urls": [EFT_PAPER, SIMPLETES_PAPER, ALPHAEVOLVE_PAPER],
         "notes": "EFT Table 6 reports 2.939573 for both nanodiscover + Qwen3-8B and nanodiscover + Finch-8B, above the 2.939572 SimpleTES source result at displayed precision. The two 2.939573 entries are tied only at published precision; full-precision artifacts are needed to order them.",
@@ -61,6 +68,9 @@ CURRENT_RECORDS = {
     "erdos-minimum-overlap": {
         "status": "live-leaderboard-best", "scope": "task-level",
         "system": "CodexProLong", "score": 0.38085857,
+        "method": "CodexProLong",
+        "model": "Not disclosed by leaderboard",
+        "primary_result_url": EINSTEIN_ERDOS,
         "evidence_status": "official-live-leaderboard-with-certification-caveat",
         "evidence_urls": [EINSTEIN_ERDOS, ERDOS_CERTIFICATION, TTT_DISCOVER, SIMPLETES_PAPER],
         "notes": "EinsteinArena's live leader is CodexProLong. The independent certification note verifies a slightly older 0.3808590566148069 construction and explains why a widely cited lower SimpleTES number was affected by normalization; leaderboard rank and rigorous certification are therefore reported separately.",
@@ -68,6 +78,9 @@ CURRENT_RECORDS = {
     "hadamard-determinant-n29": {
         "status": "tie-at-published-precision", "scope": "task-level",
         "system": "Orrick et al. human record (matched by SimpleTES)", "score": 0.935673,
+        "method": "Orrick et al. construction; matched by SimpleTES",
+        "model": "Human construction / gpt-oss-120b match",
+        "primary_result_url": HADAMARD_29,
         "evidence_status": "historical-record-matched-by-agent",
         "evidence_urls": [HADAMARD_29, SIMPLETES_PAPER],
         "notes": "The order-29 construction predates SimpleTES. SimpleTES matches the normalized determinant at published precision; it did not originate the record.",
@@ -75,6 +88,9 @@ CURRENT_RECORDS = {
     "scaling-law-domain-mix": {
         "status": "artifact-reported-best", "scope": "task-level",
         "system": "SLDAgent + Gemini-3-Pro-Preview", "score": 0.993529,
+        "method": "SLDAgent",
+        "model": "Gemini-3-Pro-Preview",
+        "primary_result_url": SLD_RESULTS,
         "evidence_status": "official-results-dataset",
         "evidence_urls": [SLD_RESULTS, SLD_CODE, SIMPLETES_PAPER],
         "notes": "Computed from the released SLDBench result records for the domain_mixture split. It exceeds the 0.991 SimpleTES source result under the matched split metric.",
@@ -82,12 +98,18 @@ CURRENT_RECORDS = {
     "scaling-law-lr-bsz": {
         "status": "artifact-reported-best", "scope": "task-level",
         "system": "SLDAgent + GPT-5", "score": 0.847918,
+        "method": "SLDAgent",
+        "model": "GPT-5",
+        "primary_result_url": SLD_RESULTS,
         "evidence_status": "official-results-dataset",
         "evidence_urls": [SLD_RESULTS, SLD_CODE, SIMPLETES_PAPER],
         "notes": "Computed from the released SLDBench result records for the lr_bsz split. It exceeds the 0.712 SimpleTES source result.",
     },
     "scaling-law-parallel": {
         "status": "precision-ambiguous", "scope": "task-level", "system": None, "score": None,
+        "method": "Unresolved: SLDAgent vs SimpleTES",
+        "model": "Claude Sonnet 4.5 / gpt-oss-120b",
+        "primary_result_url": SLD_RESULTS,
         "evidence_status": "incomparable-published-precision",
         "evidence_urls": [SLD_RESULTS, SLD_CODE, SIMPLETES_PAPER],
         "notes": "The official SLDBench result dataset has SLDAgent + Claude Sonnet 4.5 at 0.999971, while SimpleTES reports 1.000 only to three decimals. The rounded number cannot establish a strict win or tie, so no unique current record is assigned.",
@@ -99,6 +121,9 @@ CURRENT_RECORDS = {
     "scaling-law-u-shape": {
         "status": "artifact-reported-best", "scope": "task-level",
         "system": "Aider + GPT-5", "score": 0.38070320345369735,
+        "method": "Aider",
+        "model": "GPT-5",
+        "primary_result_url": SLD_RESULTS,
         "evidence_status": "official-results-dataset",
         "evidence_urls": [SLD_RESULTS, SLD_CODE, SIMPLETES_PAPER],
         "notes": "Computed from the released SLDBench easy_question/u-shape result records. It exceeds the -0.008 SimpleTES source result.",
@@ -106,6 +131,9 @@ CURRENT_RECORDS = {
     "second-autocorrelation-inequality": {
         "status": "live-leaderboard-best", "scope": "task-level",
         "system": "ClaudeExplorer", "score": 0.96359,
+        "method": "ClaudeExplorer",
+        "model": "Not disclosed by leaderboard",
+        "primary_result_url": EINSTEIN_AC2,
         "evidence_status": "official-live-leaderboard",
         "evidence_urls": [EINSTEIN_AC2, TTT_DISCOVER, SIMPLETES_PAPER, MLEVOLVE],
         "notes": "EinsteinArena currently ranks ClaudeExplorer first. The board also records AlphaEvolve and TTT-Discover as earlier results; SimpleTES's 0.962694 is no longer the public leader.",
@@ -113,6 +141,9 @@ CURRENT_RECORDS = {
     "sum-difference-problem": {
         "status": "artifact-reported-best", "scope": "task-level",
         "system": "MLEvolve", "score": 1.1901774219,
+        "method": "MLEvolve",
+        "model": "Gemini-3.1-Pro-preview",
+        "primary_result_url": MLEVOLVE,
         "evidence_status": "source-reported-matched-task-table",
         "evidence_urls": [MLEVOLVE, ALPHAEVOLVE_PAPER, SIMPLETES_PAPER],
         "notes": "MLEvolve's official comparison table reports 1.1901774219 on Sums differences problem 1, above AlphaEvolve (1.1479889651) and SimpleTES (1.143975 in that table; 1.144887 in the later post-trained SimpleTES result).",
@@ -120,6 +151,9 @@ CURRENT_RECORDS = {
     "third-autocorrelation-inequality": {
         "status": "live-leaderboard-best", "scope": "task-level",
         "system": "Poolish", "score": 1.45080664,
+        "method": "Poolish",
+        "model": "Not disclosed by leaderboard",
+        "primary_result_url": EINSTEIN_AC3,
         "evidence_status": "official-live-leaderboard",
         "evidence_urls": [EINSTEIN_AC3, SIMPLETES_PAPER, MLEVOLVE],
         "notes": "EinsteinArena currently ranks Poolish first. SimpleTES's 1.453675 is a historical source result, not the current live record.",
@@ -127,6 +161,9 @@ CURRENT_RECORDS = {
     "trimul-kernel": {
         "status": "artifact-reported-best", "scope": "task-level",
         "system": "K-Search", "score": 1.028,
+        "method": "K-Search",
+        "model": "GPT-5.2 (released GPUMode default)",
+        "primary_result_url": KSEARCH,
         "evidence_status": "matched-upstream-evaluator-local-artifact",
         "evidence_urls": [KSEARCH, TTT_DISCOVER, SIMPLETES_PAPER],
         "notes": "K-Search reports 1.028 ms on H100 across the seven upstream GPUMode workloads and releases the generated kernels. It beats the 1.122 ms SimpleTES paper result, but is a local matched-evaluator artifact rather than an official leaderboard submission.",
@@ -153,6 +190,9 @@ def build_sota(registry: dict) -> dict:
                 "scope": "contract-level",
                 "system": None,
                 "score": None,
+                "method": "SimpleTES (source incumbent; global SOTA unverified)",
+                "model": "gpt-oss-120b",
+                "primary_result_url": SIMPLETES_PAPER,
                 "metric": task["metric"],
                 "as_of": AS_OF,
                 "source_reported": {
@@ -181,6 +221,9 @@ def build_sota(registry: dict) -> dict:
                     "scope": "suite-level",
                     "system": None,
                     "score": None,
+                    "method": "No per-task SOTA published (suite aggregate: Tycho)",
+                    "model": "Not disclosed",
+                    "primary_result_url": ARC_BOARD,
                     "metric": task["metric"],
                     "as_of": AS_OF,
                     "evidence_status": "community-self-reported-no-task-breakdown",
@@ -202,6 +245,9 @@ def build_sota(registry: dict) -> dict:
                     "scope": "suite-level",
                     "system": None,
                     "score": None,
+                    "method": "No per-task SOTA published (suite aggregate: basic harness)",
+                    "model": "Claude Opus 5",
+                    "primary_result_url": DIG_PAPER,
                     "metric": task["metric"],
                     "as_of": AS_OF,
                     "evidence_status": "source-reported-no-task-breakdown",
@@ -254,6 +300,22 @@ def score_text(record: dict) -> str:
     return f"**Not published per task** — suite best: {best['system']}, {number_text(best['score'])} {best['unit']}"
 
 
+def result_cell(record: dict) -> str:
+    """Render only the result/status, keeping method and model in separate columns."""
+    direction = "↓" if record["metric"]["direction"] == "minimize" else "↑"
+    if record["status"] in {"live-leaderboard-best", "artifact-reported-best", "tie-at-published-precision"}:
+        qualifier = "tie" if record["status"] == "tie-at-published-precision" else "current record"
+        return f"{number_text(record['score'])} {direction} ({qualifier})"
+    if record["status"] == "precision-ambiguous":
+        candidates = " vs ".join(number_text(item["score"]) for item in record["candidates"])
+        return f"Unresolved at published precision ({candidates})"
+    if record["status"] == "source-reported-contract-incumbent":
+        source = record["source_reported"]
+        return f"{number_text(source['score'])} {direction} (source incumbent; SOTA unverified)"
+    best = record["suite_best"]
+    return f"No per-task result; suite {number_text(best['score'])} {best['unit']}"
+
+
 def source_reported_text(record: dict) -> str:
     source = record.get("source_reported")
     if source is None:
@@ -262,20 +324,63 @@ def source_reported_text(record: dict) -> str:
     return f"{source['system']}: {number_text(source['score'])} {direction}"
 
 
-def evidence_label(record: dict) -> str:
-    return {
-        "live-leaderboard-best": "live leaderboard",
-        "artifact-reported-best": "matched artifact/result set",
-        "tie-at-published-precision": "published-precision tie",
-        "precision-ambiguous": "precision unresolved",
-        "source-reported-contract-incumbent": "source result only",
-        "suite-level-only": "suite aggregate only",
-    }[record["status"]]
-
-
 def cell(value: object) -> str:
     """Render a compact Markdown-table cell without changing source data."""
     return str(value).replace("|", "\\|").replace("\n", " ")
+
+
+def sota_table_lines(registry: dict, sota: dict, *, readme: bool = False) -> list[str]:
+    """Build the task-first SOTA table shared by README and the detailed reference."""
+    records = {record["task_id"]: record for record in sota["records"]}
+    lines = [
+        "| # | Discovery task | Domain | Source | SOTA method / status | Model / backbone | Result | Link |",
+        "|---:|---|---|---|---|---|---|---|",
+    ]
+    for index, task in enumerate(registry["tasks"], 1):
+        record = records[task["id"]]
+        anchor = f"docs/all-discovery-tasks.md#{task['id']}" if readme else f"#{task['id']}"
+        lines.append(
+            f"| {index} | [{cell(task['name'])}]({anchor}) | {cell(task['domain'])} | "
+            f"{SUITE_LABELS[task['source_suite']]} | {cell(record['method'])} | {cell(record['model'])} | "
+            f"{cell(result_cell(record))} | [evidence]({record['primary_result_url']}) |"
+        )
+    return lines
+
+
+README_TABLE_START = "<!-- DISCOVERY_SOTA_TABLE:START -->"
+README_TABLE_END = "<!-- DISCOVERY_SOTA_TABLE:END -->"
+
+
+def render_readme(readme: str, registry: dict, sota: dict) -> str:
+    """Replace only the generated README table, preserving every hand-written section."""
+    if README_TABLE_START not in readme or README_TABLE_END not in readme:
+        raise ValueError("README discovery SOTA table markers are missing")
+    before, remainder = readme.split(README_TABLE_START, 1)
+    _, after = remainder.split(README_TABLE_END, 1)
+    generated = "\n".join(sota_table_lines(registry, sota, readme=True))
+    return f"{before}{README_TABLE_START}\n{generated}\n{README_TABLE_END}{after}"
+
+
+def ttt_record_fields(task: dict, ttt: dict) -> tuple[str, str, str, str]:
+    """Separate method, model, result, and evidence for a TTT-Discover task variant."""
+    record = task["current_record"]
+    system = record.get("system")
+    url = record.get("url", ttt["project_page"])
+    direction = "↓" if task["metric"]["direction"] == "minimize" else "↑"
+    if system is None:
+        return (
+            "TTT-Discover (source result; later SOTA unverified)",
+            ttt["model"],
+            f"{task['ttt_discover_result']} {direction} (source result)",
+            url,
+        )
+    model = {
+        "K-Search": "GPT-5.2 (released GPUMode default)",
+        "TTT-Discover": ttt["model"],
+        "TTT-Discover / SimpleTES": "gpt-oss-120b",
+        "SimpleTES": "gpt-oss-120b",
+    }.get(system, "Not disclosed by leaderboard")
+    return system, model, f"{record['score']} {direction} ({record['status']})", url
 
 
 def render_collection_catalogue(ttt: dict, finch: dict) -> list[str]:
@@ -299,27 +404,21 @@ def render_collection_catalogue(ttt: dict, finch: dict) -> list[str]:
         "The paper says it reports every attempted problem. Hardware- and dataset-specific evaluator contracts "
         "are kept as separate variants, giving 3 mathematics + 4 TriMul hardware + 2 AtCoder + 2 biology = 11.",
         "",
-        "| # | Task | Domain | Metric | TTT-Discover | Current-record field |",
-        "|---:|---|---|---|---:|---|",
+        "| # | Task | Domain | SOTA method / status | Model / backbone | Result | Link |",
+        "|---:|---|---|---|---|---|---|",
     ]
     for index, task in enumerate(ttt["tasks"], 1):
-        metric = task["metric"]
-        direction = "↓" if metric["direction"] == "minimize" else "↑"
-        record = task["current_record"]
-        if record.get("score") is None:
-            current = record["status"]
-        else:
-            current = f"{record['system']}: {record['score']} {direction} ({record['status']})"
+        method, model, result, url = ttt_record_fields(task, ttt)
         lines.append(
             f"| {index} | [{cell(task['name'])}](#{task['id']}) | {cell(task['domain'])} | "
-            f"{cell(metric['name'])} ({direction}, {cell(metric['unit'])}) | "
-            f"{task['ttt_discover_result']} | {cell(current)} |"
+            f"{cell(method)} | {cell(model)} | {cell(result)} | [evidence]({url}) |"
         )
 
     lines.extend(["", "#### TTT-Discover task contracts", ""])
     for task in ttt["tasks"]:
         metric = task["metric"]
         direction = "minimize ↓" if metric["direction"] == "minimize" else "maximize ↑"
+        method, model, result, url = ttt_record_fields(task, ttt)
         lines.extend(
             [
                 f"<a id=\"{task['id']}\"></a>",
@@ -333,6 +432,10 @@ def render_collection_catalogue(ttt: dict, finch: dict) -> list[str]:
                 f"- **Environment:** {task['environment']}",
                 f"- **Metric:** {metric['name']} · {direction} · {metric['unit']}",
                 f"- **TTT-Discover result:** {task['ttt_discover_result']}",
+                f"- **Current SOTA method / status:** {method}",
+                f"- **Model / backbone:** {model}",
+                f"- **Current result:** {result}",
+                f"- **Primary evidence:** [result source]({url})",
                 f"- **Current-record status:** `{task['current_record']['status']}` as of {task['current_record']['as_of']}",
                 "",
             ]
@@ -352,6 +455,8 @@ def render_collection_catalogue(ttt: dict, finch: dict) -> list[str]:
             "",
             "Finch is not itself the evaluator or the current SOTA for every row. Each task retains its upstream "
             "benchmark/evaluator; `current_dataset_rows` is trajectory coverage, not a score.",
+            "Because the released collection has no 442-row SOTA/model table, every Finch row below says so explicitly "
+            "and links to the dataset provenance instead of guessing a winner from trajectory logs.",
             "",
             "#### Group counts and evaluator contracts",
             "",
@@ -396,15 +501,17 @@ def render_collection_catalogue(ttt: dict, finch: dict) -> list[str]:
                     f"- **Environment:** {contract['environment']}",
                     f"- **Metric family:** {contract['metric']}",
                     "",
-                    "| # | Task ID | Upstream source | Paper/expansion status | Trajectories | Published description |",
-                    "|---:|---|---|---|---:|---|",
+                    "| # | Task ID | Upstream source | Paper/expansion status | Trajectories | SOTA method / status | Model | Link | Published description |",
+                    "|---:|---|---|---|---:|---|---|---|---|",
                 ]
             )
         running += 1
         description = task.get("paper_description", "No per-task description in arXiv v1; use the upstream evaluator artifact.")
         lines.append(
             f"| {running} | `{cell(task['task'])}` | {cell(task['upstream_benchmark'])} | "
-            f"`{task['paper_371_membership']}` | {task['current_dataset_rows']} | {cell(description)} |"
+            f"`{task['paper_371_membership']}` | {task['current_dataset_rows']} | "
+            f"Not published per task in Finch; consult upstream evaluator | — | "
+            f"[Finch provenance]({finch['dataset']}) | {cell(description)} |"
         )
         if running == len(finch["tasks"]) or finch["tasks"][running]["domain"] != current_domain:
             lines.append("")
@@ -458,18 +565,8 @@ def render_doc(registry: dict, sota: dict, ttt: dict, finch: dict) -> str:
         "",
         "## Master SOTA index",
         "",
-        "| # | Task | Domain | Source | Metric | Current record located | Evidence |",
-        "|---:|---|---|---|---|---|---|",
     ]
-
-    for index, task in enumerate(registry["tasks"], 1):
-        record = records[task["id"]]
-        metric = task["metric"]
-        direction = "↓" if metric["direction"] == "minimize" else "↑"
-        status = evidence_label(record)
-        lines.append(
-            f"| {index} | [{task['name']}](#{task['id']}) | {task['domain']} | {SUITE_LABELS[task['source_suite']]} | {metric['name']} ({direction}) | {score_text(record)} | {status} |"
-        )
+    lines.extend(sota_table_lines(registry, sota))
 
     lines.extend([""] + render_collection_catalogue(ttt, finch) + ["", "## Full task contracts", ""])
     current_domain = None
@@ -502,6 +599,8 @@ def render_doc(registry: dict, sota: dict, ttt: dict, finch: dict) -> str:
                 f"- **Metric:** {metric['name']} · {direction} · {metric['unit']}",
                 f"- **Prior reference:** {reference_text}",
                 f"- **Source-suite reported result:** {source_reported_text(record)}",
+                f"- **Current SOTA method / status:** {record['method']}",
+                f"- **Model / backbone:** {record['model']}",
                 f"- **Current record located:** {score_text(record)}",
                 f"- **Evidence status:** `{record['evidence_status']}` as of {record['as_of']}",
                 f"- **Primary evidence:** {evidence}",
@@ -541,7 +640,12 @@ def main() -> int:
     ttt = json.loads(TTT_TASK_PATH.read_text(encoding="utf-8"))
     finch = json.loads(FINCH_TASK_PATH.read_text(encoding="utf-8"))
     sota = build_sota(registry)
-    expected = {SOTA_PATH: serialize_sota(sota), DOC_PATH: render_doc(registry, sota, ttt, finch)}
+    readme = README_PATH.read_text(encoding="utf-8")
+    expected = {
+        SOTA_PATH: serialize_sota(sota),
+        DOC_PATH: render_doc(registry, sota, ttt, finch),
+        README_PATH: render_readme(readme, registry, sota),
+    }
 
     if args.check:
         stale = [path for path, content in expected.items() if not path.exists() or path.read_text(encoding="utf-8") != content]

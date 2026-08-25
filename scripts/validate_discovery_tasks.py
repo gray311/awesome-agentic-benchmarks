@@ -228,6 +228,12 @@ def validate() -> list[str]:
             errors.append(f"{task_id}: SOTA metric does not match task registry")
         if not is_iso_date(record.get("as_of")):
             errors.append(f"{task_id}: SOTA as_of must be an ISO date")
+        if not isinstance(record.get("method"), str) or not record["method"]:
+            errors.append(f"{task_id}: SOTA method/status must be a non-empty string")
+        if not isinstance(record.get("model"), str) or not record["model"]:
+            errors.append(f"{task_id}: SOTA model must be a non-empty string")
+        if not is_https_url(record.get("primary_result_url")):
+            errors.append(f"{task_id}: SOTA primary_result_url must be an HTTPS URL")
         if not isinstance(record.get("evidence_urls"), list) or not record["evidence_urls"]:
             errors.append(f"{task_id}: SOTA evidence_urls must be a non-empty array")
         elif any(not is_https_url(url) for url in record["evidence_urls"]):
