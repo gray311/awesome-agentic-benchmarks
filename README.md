@@ -10,7 +10,7 @@
 ![Validation](https://img.shields.io/badge/validation-passing-16a34a)
 [![License: MIT](https://img.shields.io/badge/license-MIT-f59e0b.svg)](LICENSE)
 
-[Discovery Tasks](docs/discovery-tasks.md) · [Interactive Discovery](docs/interactive-discovery-tasks.md) · [Task JSON](data/discovery-tasks.json) · [2026 Frontier Tracker](docs/2026-frontier-benchmarks.md) · [Benchmark Dimensions](docs/benchmark-dimensions.md) · [Model Coverage](docs/model-coverage.md) · [Suite JSON](data/benchmarks.json) · [Contributing](CONTRIBUTING.md)
+[Discovery Tasks](docs/discovery-tasks.md) · [Interactive Discovery](docs/interactive-discovery-tasks.md) · [Launch & Stars](docs/benchmark-release-and-stars.md) · [Task JSON](data/discovery-tasks.json) · [2026 Frontier Tracker](docs/2026-frontier-benchmarks.md) · [Benchmark Dimensions](docs/benchmark-dimensions.md) · [Model Coverage](docs/model-coverage.md) · [Suite JSON](data/benchmarks.json) · [Contributing](CONTRIBUTING.md)
 
 </div>
 
@@ -43,6 +43,7 @@ We therefore treat every score as a result of a complete experimental configurat
 
 ## 🔥 News
 
+- **2026-08-25** — Added launch dates and dated GitHub-star snapshots for all 59 benchmark entries, including live star badges, explicit date precision, repository-scope labels, and CI coverage checks.
 - **2026-08-25** — Added an interactive-discovery layer with ARC-AGI-3 and DiG-bench: 24 individually verified public environments, exact action/feedback/score contracts, private-split safeguards, and official frontier-model coverage.
 - **2026-08-25** — Refocused the repository on executable discovery tasks and added a validated 28-task SimpleTES registry across quantum compilation, astrodynamics, scientific algorithms, AI foundations, and mathematics discovery.
 - **2026-08-24** — Added a dated [2026 frontier tracker](docs/2026-frontier-benchmarks.md) covering TB3/continuous Terminal-Bench, both RSI Bench projects, AI4AI-Bench, TerminalWorld, and new safety benchmarks; unresolved names are now kept separate from verified releases.
@@ -57,6 +58,7 @@ We therefore treat every score as a result of a complete experimental configurat
 - [Mission: Evaluation Infrastructure for RSI](#-mission-evaluation-infrastructure-for-rsi)
 - [Benchmark dimensions](#-benchmark-dimensions)
 - [Discovery task registry](#-discovery-task-registry)
+- [Launch dates and GitHub stars](#-launch-dates-and-github-stars)
 - [Featured benchmark suites](#-featured-benchmark-suites)
 - [2026 frontier tracker](#-2026-frontier-tracker)
 - [Benchmark suite catalog](#-benchmark-suite-catalog)
@@ -133,15 +135,33 @@ The [Discovery Task Registry](docs/discovery-tasks.md) contains **52 individuall
 
 Each task is available in [machine-readable JSON](data/discovery-tasks.json). The full source suites are larger—ARC-AGI-3 has 135 environments and DiG-bench has 70—but private environments and public IDs that cannot yet be authenticated are not fabricated as task rows. See [Interactive Discovery Tasks](docs/interactive-discovery-tasks.md) for the protocol and extraction policy.
 
+## 🗓️ Launch dates and GitHub stars
+
+Launch time and repository popularity are tracked separately from capability scores. Dates use the earliest verified public artifact and preserve their actual precision; GitHub stars are dated snapshots and are never treated as benchmark quality.
+
+| Benchmark / task source | Launch | Official repository | Stars on 2026-08-25 |
+|---|---:|---|---:|
+| **MLE-bench** | 2024-10 | [openai/mle-bench](https://github.com/openai/mle-bench) | 1,716 |
+| **NatureBench** | 2026-06 | [FrontisAI/NatureBench](https://github.com/FrontisAI/NatureBench) | 102 |
+| **PostTrainBench** | 2026-03 | [aisa-group/PostTrainBench](https://github.com/aisa-group/PostTrainBench) | 532 |
+| **SimpleTES** | 2026-04 | [wq-will/SimpleTES](https://github.com/wq-will/SimpleTES) | 169 |
+| **ARC-AGI-3** | 2026-04-22 | [arcprize/ARC-AGI](https://github.com/arcprize/ARC-AGI) (toolkit) | 69 |
+| **DiG-bench** | 2026-08-12 | [discos-research/dig-bench](https://github.com/discos-research/dig-bench) | 24 |
+| **EdgeBench** | 2026-07-02 | [ByteDance-Seed/EdgeBench](https://github.com/ByteDance-Seed/EdgeBench) | 432 |
+
+See the [complete 59-benchmark launch and star table](docs/benchmark-release-and-stars.md) and its [machine-readable metadata](data/benchmark-metadata.json). Repositories shared by multiple evaluations are marked `shared-suite`; benchmarks without a verified official GitHub repository show `N/A`, not zero.
+
 ## 🌟 Featured benchmark suites
 
 These are the first fully documented suite-level entries. Their internal evaluation units should be extracted into the task registry when executable artifacts are available.
 
-| Benchmark | Primary dimension | Evaluation unit | Output | Environment | Current headline snapshot |
-|---|---|---|---|---|---|
-| [**MLE-bench**](https://github.com/openai/mle-bench) | Machine Learning Engineering | One offline Kaggle competition | Prediction submission | 24h, A10 GPU | 64.44% Any Medal for the leading comparable entry |
-| [**NatureBench**](https://github.com/FrontisAI/NatureBench) | Scientific Discovery | One Nature-family scientific ML problem | Executable pipeline and predictions | 4h, task-dependent GPU | 23.3% Surpass-SOTA for the leading entry |
-| [**PostTrainBench**](https://posttrainbench.com/) | Post-Training | One base-model × target-benchmark run | Post-trained model checkpoint | 10h, one H100 | 41.79% weighted average for the leading listed entry, with a fallback caveat |
+| Benchmark | Launch | GitHub stars¹ | Primary dimension | Evaluation unit | Output | Environment | Current headline snapshot |
+|---|---:|---:|---|---|---|---|---|
+| [**MLE-bench**](https://github.com/openai/mle-bench) | 2024-10 | 1,716 | Machine Learning Engineering | One offline Kaggle competition | Prediction submission | 24h, A10 GPU | 64.44% Any Medal for the leading comparable entry |
+| [**NatureBench**](https://github.com/FrontisAI/NatureBench) | 2026-06 | 102 | Scientific Discovery | One Nature-family scientific ML problem | Executable pipeline and predictions | 4h, task-dependent GPU | 23.3% Surpass-SOTA for the leading entry |
+| [**PostTrainBench**](https://posttrainbench.com/) | 2026-03 | 532 | Post-Training | One base-model × target-benchmark run | Post-trained model checkpoint | 10h, one H100 | 41.79% weighted average for the leading listed entry, with a fallback caveat |
+
+¹ Star snapshot: 2026-08-25. Use the complete metadata page for live badges and repository-scope caveats.
 
 ```text
 MLE-bench
@@ -183,86 +203,88 @@ Legend: **Detailed** = complete registry entry; **Tracked** = included in the mo
 
 ### AI R&D and scientific discovery
 
-| Benchmark | Dimension | Status | Paper / Code / Leaderboard |
-|---|---|---|---|
-| **MLE-bench** | Machine Learning Engineering | Detailed | [Paper](https://arxiv.org/abs/2410.07095) · [Code](https://github.com/openai/mle-bench) · [Leaderboard](https://github.com/openai/mle-bench#leaderboard) |
-| **NatureBench** | Scientific Discovery | Detailed | [Paper](https://arxiv.org/abs/2606.24530) · [Code](https://github.com/FrontisAI/NatureBench) · [Leaderboard](https://frontisai.github.io/NatureBench/) |
-| **PostTrainBench** | Post-Training | Detailed | [Paper](https://arxiv.org/abs/2603.08640) · [Code](https://github.com/aisa-group/PostTrainBench) · [Leaderboard](https://posttrainbench.com/) |
-| **ARC-AGI-3** | Interactive World Discovery | Detailed | [Report](https://arcprize.org/media/ARC_AGI_3_Technical_Report.pdf) · [Toolkit](https://github.com/arcprize/ARC-AGI) · [Docs](https://docs.arcprize.org/) |
-| **DiG-bench** | Interactive World Discovery | Detailed | [Paper](https://arxiv.org/abs/2608.12593) · [Code](https://github.com/discos-research/dig-bench) · [Leaderboard](https://digbench.ai/) |
-| **EdgeBench** | Environment Learning | Extraction queue | [Project](https://edge-bench.org/) · [Code](https://github.com/ByteDance-Seed/EdgeBench) |
-| **RSI Bench** | Open-Ended AI R&D / Post-Training | Live / Preview | [Project](https://www.rsi-benchmark.com/) · [Tasks](https://www.rsi-benchmark.com/tasks) · [Runs](https://www.rsi-benchmark.com/runs) |
-| **RSIBench** | Agent/Harness Improvement | Released dataset | [Dataset](https://huggingface.co/datasets/AgPerry/rsi-bench) · [Code](https://github.com/reacher-z/rsi-bench) |
-| **AI4AI-Bench** | Open-Ended AI R&D | Emerging | [Paper](https://arxiv.org/abs/2608.20318) |
-| **RE-Bench** | Open-Ended AI R&D | Tracked | [Paper](https://arxiv.org/abs/2411.15114) · [Code](https://github.com/METR/RE-Bench) |
-| **MLR-Bench** | Open-Ended AI R&D | Tracked | [Paper](https://proceedings.neurips.cc/paper_files/paper/2025/hash/ab8dd000d6f87f40061a73f8bca7fae4-Abstract-Datasets_and_Benchmarks_Track.html) |
-| **PaperBench** | Paper Reproduction | Tracked | [Paper](https://arxiv.org/abs/2504.01848) · [Project](https://openai.com/index/paperbench/) |
-| **InferenceBench** | AI Systems Optimization | Tracked | [Code](https://github.com/aisa-group/InferenceBench) |
-| **AgentHPOBench** | Machine Learning Engineering | Emerging | [Paper](https://arxiv.org/abs/2607.29626) |
-| **SciAgentArena** | Scientific Discovery | Emerging | [Paper](https://arxiv.org/abs/2606.12736) |
-| **EarthVerse** | Scientific Discovery | Emerging | [Paper](https://arxiv.org/abs/2608.23525) |
-| **ScienceAgentBench** | Scientific Discovery | Discovery queue | [Paper](https://arxiv.org/abs/2410.05080) · [Code](https://github.com/OSU-NLP-Group/ScienceAgentBench) |
-| **EXP-Bench** | Open-Ended AI R&D | Discovery queue | [Paper](https://arxiv.org/abs/2505.24785) · [Code](https://github.com/EvolvingLMMs-Lab/EXP-Bench) |
+| Benchmark | Launch | Stars¹ | Dimension | Status | Paper / Code / Leaderboard |
+|---|---|---|---|---|---|
+| **MLE-bench** | 2024-10 | 1,716 | Machine Learning Engineering | Detailed | [Paper](https://arxiv.org/abs/2410.07095) · [Code](https://github.com/openai/mle-bench) · [Leaderboard](https://github.com/openai/mle-bench#leaderboard) |
+| **NatureBench** | 2026-06 | 102 | Scientific Discovery | Detailed | [Paper](https://arxiv.org/abs/2606.24530) · [Code](https://github.com/FrontisAI/NatureBench) · [Leaderboard](https://frontisai.github.io/NatureBench/) |
+| **PostTrainBench** | 2026-03 | 532 | Post-Training | Detailed | [Paper](https://arxiv.org/abs/2603.08640) · [Code](https://github.com/aisa-group/PostTrainBench) · [Leaderboard](https://posttrainbench.com/) |
+| **ARC-AGI-3** | 2026-04-22 | 69 | Interactive World Discovery | Detailed | [Report](https://arcprize.org/media/ARC_AGI_3_Technical_Report.pdf) · [Toolkit](https://github.com/arcprize/ARC-AGI) · [Docs](https://docs.arcprize.org/) |
+| **DiG-bench** | 2026-08-12 | 24 | Interactive World Discovery | Detailed | [Paper](https://arxiv.org/abs/2608.12593) · [Code](https://github.com/discos-research/dig-bench) · [Leaderboard](https://digbench.ai/) |
+| **EdgeBench** | 2026-07-02 | 432 | Environment Learning | Extraction queue | [Project](https://edge-bench.org/) · [Code](https://github.com/ByteDance-Seed/EdgeBench) |
+| **RSI Bench** | 2026-08-07 | N/A | Open-Ended AI R&D / Post-Training | Live / Preview | [Project](https://www.rsi-benchmark.com/) · [Tasks](https://www.rsi-benchmark.com/tasks) · [Runs](https://www.rsi-benchmark.com/runs) |
+| **RSIBench** | 2026 | N/A | Agent/Harness Improvement | Released dataset | [Dataset](https://huggingface.co/datasets/AgPerry/rsi-bench) · [Code](https://github.com/reacher-z/rsi-bench) |
+| **AI4AI-Bench** | 2026-08-20 | N/A | Open-Ended AI R&D | Emerging | [Paper](https://arxiv.org/abs/2608.20318) |
+| **RE-Bench** | 2024-11 | 156 | Open-Ended AI R&D | Tracked | [Paper](https://arxiv.org/abs/2411.15114) · [Code](https://github.com/METR/RE-Bench) |
+| **MLR-Bench** | 2025 | N/A | Open-Ended AI R&D | Tracked | [Paper](https://proceedings.neurips.cc/paper_files/paper/2025/hash/ab8dd000d6f87f40061a73f8bca7fae4-Abstract-Datasets_and_Benchmarks_Track.html) |
+| **PaperBench** | 2025-04 | N/A | Paper Reproduction | Tracked | [Paper](https://arxiv.org/abs/2504.01848) · [Project](https://openai.com/index/paperbench/) |
+| **InferenceBench** | 2026-04 | 42 | AI Systems Optimization | Tracked | [Code](https://github.com/aisa-group/InferenceBench) |
+| **AgentHPOBench** | 2026-07 | N/A | Machine Learning Engineering | Emerging | [Paper](https://arxiv.org/abs/2607.29626) |
+| **SciAgentArena** | 2026-06 | N/A | Scientific Discovery | Emerging | [Paper](https://arxiv.org/abs/2606.12736) |
+| **EarthVerse** | 2026-08-24 | N/A | Scientific Discovery | Emerging | [Paper](https://arxiv.org/abs/2608.23525) |
+| **ScienceAgentBench** | 2024-10 | 161 | Scientific Discovery | Discovery queue | [Paper](https://arxiv.org/abs/2410.05080) · [Code](https://github.com/OSU-NLP-Group/ScienceAgentBench) |
+| **EXP-Bench** | 2025-05 | N/A | Open-Ended AI R&D | Discovery queue | [Paper](https://arxiv.org/abs/2505.24785) · [Code](https://github.com/EvolvingLMMs-Lab/EXP-Bench) |
 
 ### Coding and software engineering
 
-| Benchmark | Scope | Status | Project |
-|---|---|---|---|
-| **SWE-bench Verified** | Real GitHub issue resolution | Tracked | [Code](https://github.com/SWE-bench/SWE-bench) |
-| **SWE-bench Pro** | Harder professional repository tasks | Tracked | [Project](https://scale.com/leaderboard/swe_bench_pro_public) |
-| **SWE-bench Multilingual** | Repository tasks across programming languages | Tracked | [Code](https://github.com/multi-swe-bench/multi-swe-bench) |
-| **SWE-bench Multimodal** | UI-facing repository issues with visual context | Tracked | [Code](https://github.com/SWE-bench/SWE-bench) |
-| **Terminal-Bench** | Continuous long-horizon terminal tasks; TB3 lineage | Live | [Code](https://github.com/harbor-framework/terminal-bench) |
-| **TerminalWorld** | Reproduced real-world terminal environments | Live | [Project / Leaderboard](https://terminalworld.ai/) |
-| **TUA-Bench** | General-purpose terminal use | Tracked | [Code](https://github.com/facebookresearch/TUA-Bench) |
-| **SWE Refactor Bench** | Whole-repository migrations and technical-debt removal | Emerging | [Paper](https://arxiv.org/abs/2608.23564) |
-| **NetConfArena** | Closed-loop multi-device network configuration | Emerging | [Paper](https://arxiv.org/abs/2608.23179) |
-| **SWE-Lancer** | Paid freelance software-engineering tasks | Discovery queue | [Code](https://github.com/openai/SWELancer-Benchmark) |
+| Benchmark | Launch | Stars¹ | Scope | Status | Project |
+|---|---|---|---|---|---|
+| **SWE-bench Verified** | 2024-06 | 5,708 | Real GitHub issue resolution | Tracked | [Code](https://github.com/SWE-bench/SWE-bench) |
+| **SWE-bench Pro** | 2025 | N/A | Harder professional repository tasks | Tracked | [Project](https://scale.com/leaderboard/swe_bench_pro_public) |
+| **SWE-bench Multilingual** | 2025-02 | 359 | Repository tasks across programming languages | Tracked | [Code](https://github.com/multi-swe-bench/multi-swe-bench) |
+| **SWE-bench Multimodal** | 2025 | 5,708 | UI-facing repository issues with visual context | Tracked | [Code](https://github.com/SWE-bench/SWE-bench) |
+| **Terminal-Bench** | 2026-01 | 539 | Continuous long-horizon terminal tasks; TB3 lineage | Live | [Code](https://github.com/harbor-framework/terminal-bench) |
+| **TerminalWorld** | 2026-05 | N/A | Reproduced real-world terminal environments | Live | [Project / Leaderboard](https://terminalworld.ai/) |
+| **TUA-Bench** | 2026-06 | 46 | General-purpose terminal use | Tracked | [Code](https://github.com/facebookresearch/TUA-Bench) |
+| **SWE Refactor Bench** | 2026-08-24 | N/A | Whole-repository migrations and technical-debt removal | Emerging | [Paper](https://arxiv.org/abs/2608.23564) |
+| **NetConfArena** | 2026-08-24 | N/A | Closed-loop multi-device network configuration | Emerging | [Paper](https://arxiv.org/abs/2608.23179) |
+| **SWE-Lancer** | 2025-02 | 1,431 | Paid freelance software-engineering tasks | Discovery queue | [Code](https://github.com/openai/SWELancer-Benchmark) |
 
 ### Tool use and interaction
 
-| Benchmark | Scope | Status | Project |
-|---|---|---|---|
-| **tau-bench** | Stateful customer-service tool use | Tracked | [Code](https://github.com/sierra-research/tau-bench) |
-| **tau2-bench** | Dual-control tool-agent-user interaction | Tracked | [Code](https://github.com/sierra-research/tau2-bench) |
-| **BFCL** | Function calling and API selection | Tracked | [Code](https://github.com/ShishirPatil/gorilla) |
-| **MCP-Atlas** | Real MCP-server tool use | Tracked | [Code](https://github.com/scaleapi/mcp-atlas) · [Leaderboard](https://labs.scale.com/leaderboard/mcp_atlas) |
-| **MCP-Bench** | MCP discovery, selection, and execution | Tracked | [Code](https://github.com/Accenture/mcp-bench) |
-| **Toolathlon** | Diverse, realistic, long-horizon tool execution | Tracked | [Project](https://toolathlon.xyz/) |
-| **ACEBench** | Normal, special, and agent function calling | Tracked | [Results](https://github.com/Agent-Suite/AgentSuite/blob/main/ACEBench/README.md) |
+| Benchmark | Launch | Stars¹ | Scope | Status | Project |
+|---|---|---|---|---|---|
+| **tau-bench** | 2024-06 | 1,403 | Stateful customer-service tool use | Tracked | [Code](https://github.com/sierra-research/tau-bench) |
+| **tau2-bench** | 2025-06 | 1,867 | Dual-control tool-agent-user interaction | Tracked | [Code](https://github.com/sierra-research/tau2-bench) |
+| **BFCL** | 2023-07 | 13,007 | Function calling and API selection | Tracked | [Code](https://github.com/ShishirPatil/gorilla) |
+| **MCP-Atlas** | 2025-12 | 149 | Real MCP-server tool use | Tracked | [Code](https://github.com/scaleapi/mcp-atlas) · [Leaderboard](https://labs.scale.com/leaderboard/mcp_atlas) |
+| **MCP-Bench** | 2025-08 | 502 | MCP discovery, selection, and execution | Tracked | [Code](https://github.com/Accenture/mcp-bench) |
+| **Toolathlon** | 2025 | N/A | Diverse, realistic, long-horizon tool execution | Tracked | [Project](https://toolathlon.xyz/) |
+| **ACEBench** | 2026-07 | 3 | Normal, special, and agent function calling | Tracked | [Results](https://github.com/Agent-Suite/AgentSuite/blob/main/ACEBench/README.md) |
 
 ### Computer use and daily life
 
-| Benchmark | Scope | Status | Project |
-|---|---|---|---|
-| **OSWorld** | Real desktop applications | Tracked | [Code](https://github.com/xlang-ai/OSWorld) |
-| **OSWorld-Verified** | Reliability-focused OSWorld subset | Tracked | [Project](https://os-world.github.io/) |
-| **ScreenSpot-Pro** | Professional high-resolution GUI grounding | Tracked | [Code](https://github.com/likaixin2000/ScreenSpot-Pro-GUI-Grounding) |
-| **AndroidWorld** | Real Android application workflows | Tracked | [Code](https://github.com/google-research/android_world) |
-| **WindowsAgentArena** | Windows application workflows | Tracked | [Code](https://github.com/microsoft/WindowsAgentArena) |
-| **MobilePA-Bench** | Stateful mobile personal-assistant workflows | Emerging | [Paper](https://arxiv.org/abs/2608.23035) |
-| **TravelPlanner** | Constrained travel planning | Discovery queue | [Code](https://github.com/OSU-NLP-Group/TravelPlanner) |
+| Benchmark | Launch | Stars¹ | Scope | Status | Project |
+|---|---|---|---|---|---|
+| **OSWorld** | 2024-04 | 3,106 | Real desktop applications | Tracked | [Code](https://github.com/xlang-ai/OSWorld) |
+| **OSWorld-Verified** | 2025 | 3,106 | Reliability-focused OSWorld subset | Tracked | [Project](https://os-world.github.io/) |
+| **ScreenSpot-Pro** | 2025-01 | 391 | Professional high-resolution GUI grounding | Tracked | [Code](https://github.com/likaixin2000/ScreenSpot-Pro-GUI-Grounding) |
+| **AndroidWorld** | 2024-05 | 857 | Real Android application workflows | Tracked | [Code](https://github.com/google-research/android_world) |
+| **WindowsAgentArena** | 2024-07 | 889 | Windows application workflows | Tracked | [Code](https://github.com/microsoft/WindowsAgentArena) |
+| **MobilePA-Bench** | 2026-08-24 | N/A | Stateful mobile personal-assistant workflows | Emerging | [Paper](https://arxiv.org/abs/2608.23035) |
+| **TravelPlanner** | 2024-02 | 541 | Constrained travel planning | Discovery queue | [Code](https://github.com/OSU-NLP-Group/TravelPlanner) |
 
 ### General, professional, and safety agents
 
-| Benchmark | Dimension | Status | Project |
-|---|---|---|---|
-| **OmniaBench** | General Agent | Tracked | [Code](https://github.com/scuuy/OmniaBench) |
-| **AGENCYBENCH** | General Agent | Tracked | [Paper](https://aclanthology.org/2026.acl-long.337.pdf) |
-| **GDPval-AA v2** | Professional Work | Tracked | [Leaderboard](https://artificialanalysis.ai/evaluations/gdpval-aa) |
-| **Claw-Eval-Live** | Enterprise Agent Workflows | Tracked | [Code](https://github.com/Claw-Eval-Live/Claw-Eval-Live) |
-| **Agent3Sigma** | Agent Safety | Tracked | [Code](https://github.com/antgroup/Agent3Sigma) |
-| **SkillSafetyBench** | Skill and Local-Artifact Safety | Released | [Paper](https://arxiv.org/abs/2605.12015) · [Code](https://github.com/AI45Lab/skill-safety-bench) |
-| **TRUST-Bench** | Compromised-Tool Robustness | Emerging | [Paper](https://arxiv.org/abs/2605.17453) |
-| **AgentLAB** | Long-Horizon Agent Security | Emerging | [Paper](https://arxiv.org/abs/2602.16901) |
-| **TAMAS** | Multi-Agent System Safety | Released | [Paper](https://aclanthology.org/2026.acl-long.1442/) · [Code](https://github.com/microsoft/TAMAS) |
-| **ST-WebAgentBench** | Web-Agent Safety and Trust | Emerging | [Project](https://research.ibm.com/publications/st-webagentbench-a-benchmark-for-evaluating-safety-and-trustworthiness-in-web-agents--1) |
-| **AgentFairBench** | Fairness in Stateful Agent Decisions | Emerging | [Paper](https://arxiv.org/abs/2606.16723) |
-| **HVTB** | Reward-Hacking Detection | Emerging | [Paper](https://arxiv.org/abs/2608.22103) |
-| **CatchBench** | Evaluation Auditing | Work in progress | [Paper](https://arxiv.org/abs/2608.22808) |
-| **TheAgentCompany** | Simulated Knowledge Work | Discovery queue | [Code](https://github.com/TheAgentCompany/TheAgentCompany) |
-| **AgentDojo** | Prompt-Injection Safety | Discovery queue | [Code](https://github.com/ethz-spylab/agentdojo) |
-| **AgentHarm** | Harmful Agent Behavior | Discovery queue | [Code](https://github.com/UKGovernmentBEIS/inspect_evals) |
+| Benchmark | Launch | Stars¹ | Dimension | Status | Project |
+|---|---|---|---|---|---|
+| **OmniaBench** | 2026-07 | 12 | General Agent | Tracked | [Code](https://github.com/scuuy/OmniaBench) |
+| **AGENCYBENCH** | 2026 | N/A | General Agent | Tracked | [Paper](https://aclanthology.org/2026.acl-long.337.pdf) |
+| **GDPval-AA v2** | 2026 | N/A | Professional Work | Tracked | [Leaderboard](https://artificialanalysis.ai/evaluations/gdpval-aa) |
+| **Claw-Eval-Live** | 2026-04 | 44 | Enterprise Agent Workflows | Tracked | [Code](https://github.com/Claw-Eval-Live/Claw-Eval-Live) |
+| **Agent3Sigma** | 2026-05 | 30 | Agent Safety | Tracked | [Code](https://github.com/antgroup/Agent3Sigma) |
+| **SkillSafetyBench** | 2026-05 | 30 | Skill and Local-Artifact Safety | Released | [Paper](https://arxiv.org/abs/2605.12015) · [Code](https://github.com/AI45Lab/skill-safety-bench) |
+| **TRUST-Bench** | 2026-05 | N/A | Compromised-Tool Robustness | Emerging | [Paper](https://arxiv.org/abs/2605.17453) |
+| **AgentLAB** | 2026-02 | N/A | Long-Horizon Agent Security | Emerging | [Paper](https://arxiv.org/abs/2602.16901) |
+| **TAMAS** | 2026 | 24 | Multi-Agent System Safety | Released | [Paper](https://aclanthology.org/2026.acl-long.1442/) · [Code](https://github.com/microsoft/TAMAS) |
+| **ST-WebAgentBench** | 2026 | N/A | Web-Agent Safety and Trust | Emerging | [Project](https://research.ibm.com/publications/st-webagentbench-a-benchmark-for-evaluating-safety-and-trustworthiness-in-web-agents--1) |
+| **AgentFairBench** | 2026-06 | N/A | Fairness in Stateful Agent Decisions | Emerging | [Paper](https://arxiv.org/abs/2606.16723) |
+| **HVTB** | 2026-08-22 | N/A | Reward-Hacking Detection | Emerging | [Paper](https://arxiv.org/abs/2608.22103) |
+| **CatchBench** | 2026-08-24 | N/A | Evaluation Auditing | Work in progress | [Paper](https://arxiv.org/abs/2608.22808) |
+| **TheAgentCompany** | 2024-12 | 770 | Simulated Knowledge Work | Discovery queue | [Code](https://github.com/TheAgentCompany/TheAgentCompany) |
+| **AgentDojo** | 2024-06 | 768 | Prompt-Injection Safety | Discovery queue | [Code](https://github.com/ethz-spylab/agentdojo) |
+| **AgentHarm** | 2024-10 | 643 | Harmful Agent Behavior | Discovery queue | [Code](https://github.com/UKGovernmentBEIS/inspect_evals) |
+
+¹ GitHub star snapshot: 2026-08-25. `N/A` means no verified official repository or an unavailable repository; shared-suite and toolkit caveats are listed in [Launch & Stars](docs/benchmark-release-and-stars.md).
 
 ## 🤖 Model-family coverage
 

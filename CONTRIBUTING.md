@@ -31,6 +31,8 @@ Add the benchmark to `data/benchmarks.json` in alphabetical order by `id`.
 Every entry must include:
 
 - stable benchmark ID and official name;
+- earliest verified public launch date, its precision and evidence basis;
+- official GitHub repository, dated star count and repository scope, or an explicit no-repository status;
 - official paper, repository, and leaderboard URLs;
 - evaluation unit and task types;
 - agent-visible input and hidden information;
@@ -67,12 +69,14 @@ Blog posts and benchmark aggregators may help discovery but should not be the on
 - [ ] The entry satisfies the inclusion criteria.
 - [ ] Benchmark IDs remain unique and alphabetically ordered.
 - [ ] All score snapshots include an `as_of` date.
+- [ ] Launch and GitHub metadata are added to `data/benchmark-metadata.json`.
 - [ ] Model and scaffold are both named.
 - [ ] Environment and compute budget are recorded.
 - [ ] Integrity caveats are preserved.
 - [ ] At least two primary sources are linked.
 - [ ] `python scripts/validate_registry.py` passes.
 - [ ] `python scripts/validate_discovery_tasks.py` passes when task data changes.
+- [ ] `python scripts/validate_benchmark_metadata.py` passes.
 - [ ] The README landscape is updated when the new entry represents a new category.
 
 ## Taxonomy changes

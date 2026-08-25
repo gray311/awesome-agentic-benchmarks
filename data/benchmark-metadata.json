@@ -1,0 +1,1015 @@
+{
+  "$schema": "../schema/benchmark-metadata.schema.json",
+  "registry_version": "0.1.0",
+  "last_updated": "2026-08-25",
+  "star_snapshot_as_of": "2026-08-25",
+  "policy": {
+    "launch": "Earliest verified public paper, benchmark release, dataset publication, project launch, or repository publication. Precision is explicit; a month or year is not an exact day.",
+    "stars": "GitHub stargazers_count for the official benchmark repository, toolkit, or declared shared host suite. Null means no official repository or an unavailable repository, not zero stars."
+  },
+  "benchmarks": [
+    {
+      "id": "simpletes",
+      "name": "SimpleTES",
+      "launch": {
+        "value": "2026-04",
+        "precision": "month",
+        "basis": "paper",
+        "source": "https://arxiv.org/abs/2604.19341"
+      },
+      "github": {
+        "repository": "wq-will/SimpleTES",
+        "repository_scope": "benchmark-specific",
+        "stars": 169,
+        "stars_as_of": "2026-08-25",
+        "status": "available"
+      }
+    },
+    {
+      "id": "mle-bench",
+      "name": "MLE-bench",
+      "launch": {
+        "value": "2024-10",
+        "precision": "month",
+        "basis": "paper",
+        "source": "https://arxiv.org/abs/2410.07095"
+      },
+      "github": {
+        "repository": "openai/mle-bench",
+        "repository_scope": "benchmark-specific",
+        "stars": 1716,
+        "stars_as_of": "2026-08-25",
+        "status": "available"
+      }
+    },
+    {
+      "id": "naturebench",
+      "name": "NatureBench",
+      "launch": {
+        "value": "2026-06",
+        "precision": "month",
+        "basis": "paper",
+        "source": "https://arxiv.org/abs/2606.24530"
+      },
+      "github": {
+        "repository": "FrontisAI/NatureBench",
+        "repository_scope": "benchmark-specific",
+        "stars": 102,
+        "stars_as_of": "2026-08-25",
+        "status": "available"
+      }
+    },
+    {
+      "id": "posttrainbench",
+      "name": "PostTrainBench",
+      "launch": {
+        "value": "2026-03",
+        "precision": "month",
+        "basis": "paper",
+        "source": "https://arxiv.org/abs/2603.08640"
+      },
+      "github": {
+        "repository": "aisa-group/PostTrainBench",
+        "repository_scope": "benchmark-specific",
+        "stars": 532,
+        "stars_as_of": "2026-08-25",
+        "status": "available"
+      }
+    },
+    {
+      "id": "arc-agi-3",
+      "name": "ARC-AGI-3",
+      "launch": {
+        "value": "2026-04-22",
+        "precision": "day",
+        "basis": "official-release",
+        "source": "https://arcprize.org/arc-agi/3"
+      },
+      "github": {
+        "repository": "arcprize/ARC-AGI",
+        "repository_scope": "toolkit",
+        "stars": 69,
+        "stars_as_of": "2026-08-25",
+        "status": "available"
+      }
+    },
+    {
+      "id": "dig-bench",
+      "name": "DiG-bench",
+      "launch": {
+        "value": "2026-08-12",
+        "precision": "day",
+        "basis": "paper",
+        "source": "https://arxiv.org/abs/2608.12593"
+      },
+      "github": {
+        "repository": "discos-research/dig-bench",
+        "repository_scope": "benchmark-specific",
+        "stars": 24,
+        "stars_as_of": "2026-08-25",
+        "status": "available"
+      }
+    },
+    {
+      "id": "edgebench",
+      "name": "EdgeBench",
+      "launch": {
+        "value": "2026-07-02",
+        "precision": "day",
+        "basis": "official-release",
+        "source": "https://edge-bench.org/"
+      },
+      "github": {
+        "repository": "ByteDance-Seed/EdgeBench",
+        "repository_scope": "benchmark-specific",
+        "stars": 432,
+        "stars_as_of": "2026-08-25",
+        "status": "available"
+      }
+    },
+    {
+      "id": "rsi-bench-live",
+      "name": "RSI Bench",
+      "launch": {
+        "value": "2026-08-07",
+        "precision": "day",
+        "basis": "project-launch",
+        "source": "https://www.rsi-benchmark.com/"
+      },
+      "github": {
+        "repository": null,
+        "repository_scope": "none",
+        "stars": null,
+        "stars_as_of": null,
+        "status": "no-official-repository"
+      }
+    },
+    {
+      "id": "rsibench",
+      "name": "RSIBench",
+      "launch": {
+        "value": "2026",
+        "precision": "year",
+        "basis": "dataset-publication",
+        "source": "https://huggingface.co/datasets/AgPerry/rsi-bench"
+      },
+      "github": {
+        "repository": "reacher-z/rsi-bench",
+        "repository_scope": "benchmark-specific",
+        "stars": null,
+        "stars_as_of": null,
+        "status": "repository-unavailable"
+      }
+    },
+    {
+      "id": "ai4ai-bench",
+      "name": "AI4AI-Bench",
+      "launch": {
+        "value": "2026-08-20",
+        "precision": "day",
+        "basis": "paper",
+        "source": "https://arxiv.org/abs/2608.20318"
+      },
+      "github": {
+        "repository": null,
+        "repository_scope": "none",
+        "stars": null,
+        "stars_as_of": null,
+        "status": "no-official-repository"
+      }
+    },
+    {
+      "id": "re-bench",
+      "name": "RE-Bench",
+      "launch": {
+        "value": "2024-11",
+        "precision": "month",
+        "basis": "paper",
+        "source": "https://arxiv.org/abs/2411.15114"
+      },
+      "github": {
+        "repository": "METR/RE-Bench",
+        "repository_scope": "benchmark-specific",
+        "stars": 156,
+        "stars_as_of": "2026-08-25",
+        "status": "available"
+      }
+    },
+    {
+      "id": "mlr-bench",
+      "name": "MLR-Bench",
+      "launch": {
+        "value": "2025",
+        "precision": "year",
+        "basis": "paper",
+        "source": "https://proceedings.neurips.cc/paper_files/paper/2025/hash/ab8dd000d6f87f40061a73f8bca7fae4-Abstract-Datasets_and_Benchmarks_Track.html"
+      },
+      "github": {
+        "repository": null,
+        "repository_scope": "none",
+        "stars": null,
+        "stars_as_of": null,
+        "status": "no-official-repository"
+      }
+    },
+    {
+      "id": "paperbench",
+      "name": "PaperBench",
+      "launch": {
+        "value": "2025-04",
+        "precision": "month",
+        "basis": "paper",
+        "source": "https://arxiv.org/abs/2504.01848"
+      },
+      "github": {
+        "repository": null,
+        "repository_scope": "none",
+        "stars": null,
+        "stars_as_of": null,
+        "status": "no-official-repository"
+      }
+    },
+    {
+      "id": "inferencebench",
+      "name": "InferenceBench",
+      "launch": {
+        "value": "2026-04",
+        "precision": "month",
+        "basis": "repository-publication",
+        "source": "https://github.com/aisa-group/InferenceBench"
+      },
+      "github": {
+        "repository": "aisa-group/InferenceBench",
+        "repository_scope": "benchmark-specific",
+        "stars": 42,
+        "stars_as_of": "2026-08-25",
+        "status": "available"
+      }
+    },
+    {
+      "id": "agenthpobench",
+      "name": "AgentHPOBench",
+      "launch": {
+        "value": "2026-07",
+        "precision": "month",
+        "basis": "paper",
+        "source": "https://arxiv.org/abs/2607.29626"
+      },
+      "github": {
+        "repository": null,
+        "repository_scope": "none",
+        "stars": null,
+        "stars_as_of": null,
+        "status": "no-official-repository"
+      }
+    },
+    {
+      "id": "sciagentarena",
+      "name": "SciAgentArena",
+      "launch": {
+        "value": "2026-06",
+        "precision": "month",
+        "basis": "paper",
+        "source": "https://arxiv.org/abs/2606.12736"
+      },
+      "github": {
+        "repository": null,
+        "repository_scope": "none",
+        "stars": null,
+        "stars_as_of": null,
+        "status": "no-official-repository"
+      }
+    },
+    {
+      "id": "earthverse",
+      "name": "EarthVerse",
+      "launch": {
+        "value": "2026-08-24",
+        "precision": "day",
+        "basis": "paper",
+        "source": "https://arxiv.org/abs/2608.23525"
+      },
+      "github": {
+        "repository": null,
+        "repository_scope": "none",
+        "stars": null,
+        "stars_as_of": null,
+        "status": "no-official-repository"
+      }
+    },
+    {
+      "id": "scienceagentbench",
+      "name": "ScienceAgentBench",
+      "launch": {
+        "value": "2024-10",
+        "precision": "month",
+        "basis": "paper",
+        "source": "https://arxiv.org/abs/2410.05080"
+      },
+      "github": {
+        "repository": "OSU-NLP-Group/ScienceAgentBench",
+        "repository_scope": "benchmark-specific",
+        "stars": 161,
+        "stars_as_of": "2026-08-25",
+        "status": "available"
+      }
+    },
+    {
+      "id": "exp-bench",
+      "name": "EXP-Bench",
+      "launch": {
+        "value": "2025-05",
+        "precision": "month",
+        "basis": "paper",
+        "source": "https://arxiv.org/abs/2505.24785"
+      },
+      "github": {
+        "repository": "EvolvingLMMs-Lab/EXP-Bench",
+        "repository_scope": "benchmark-specific",
+        "stars": null,
+        "stars_as_of": null,
+        "status": "repository-unavailable"
+      }
+    },
+    {
+      "id": "swe-bench-verified",
+      "name": "SWE-bench Verified",
+      "launch": {
+        "value": "2024-06",
+        "precision": "month",
+        "basis": "official-release",
+        "source": "https://openai.com/index/introducing-swe-bench-verified/"
+      },
+      "github": {
+        "repository": "SWE-bench/SWE-bench",
+        "repository_scope": "shared-suite",
+        "stars": 5708,
+        "stars_as_of": "2026-08-25",
+        "status": "available"
+      }
+    },
+    {
+      "id": "swe-bench-pro",
+      "name": "SWE-bench Pro",
+      "launch": {
+        "value": "2025",
+        "precision": "year",
+        "basis": "project-launch",
+        "source": "https://scale.com/leaderboard/swe_bench_pro_public"
+      },
+      "github": {
+        "repository": null,
+        "repository_scope": "none",
+        "stars": null,
+        "stars_as_of": null,
+        "status": "no-official-repository"
+      }
+    },
+    {
+      "id": "swe-bench-multilingual",
+      "name": "SWE-bench Multilingual",
+      "launch": {
+        "value": "2025-02",
+        "precision": "month",
+        "basis": "repository-publication",
+        "source": "https://github.com/multi-swe-bench/multi-swe-bench"
+      },
+      "github": {
+        "repository": "multi-swe-bench/multi-swe-bench",
+        "repository_scope": "benchmark-specific",
+        "stars": 359,
+        "stars_as_of": "2026-08-25",
+        "status": "available"
+      }
+    },
+    {
+      "id": "swe-bench-multimodal",
+      "name": "SWE-bench Multimodal",
+      "launch": {
+        "value": "2025",
+        "precision": "year",
+        "basis": "project-launch",
+        "source": "https://github.com/SWE-bench/SWE-bench"
+      },
+      "github": {
+        "repository": "SWE-bench/SWE-bench",
+        "repository_scope": "shared-suite",
+        "stars": 5708,
+        "stars_as_of": "2026-08-25",
+        "status": "available"
+      }
+    },
+    {
+      "id": "terminal-bench",
+      "name": "Terminal-Bench",
+      "launch": {
+        "value": "2026-01",
+        "precision": "month",
+        "basis": "repository-publication",
+        "source": "https://github.com/harbor-framework/terminal-bench"
+      },
+      "github": {
+        "repository": "harbor-framework/terminal-bench",
+        "repository_scope": "benchmark-specific",
+        "stars": 539,
+        "stars_as_of": "2026-08-25",
+        "status": "available"
+      }
+    },
+    {
+      "id": "terminalworld",
+      "name": "TerminalWorld",
+      "launch": {
+        "value": "2026-05",
+        "precision": "month",
+        "basis": "project-launch",
+        "source": "https://terminalworld.ai/"
+      },
+      "github": {
+        "repository": null,
+        "repository_scope": "none",
+        "stars": null,
+        "stars_as_of": null,
+        "status": "no-official-repository"
+      }
+    },
+    {
+      "id": "tua-bench",
+      "name": "TUA-Bench",
+      "launch": {
+        "value": "2026-06",
+        "precision": "month",
+        "basis": "repository-publication",
+        "source": "https://github.com/facebookresearch/TUA-Bench"
+      },
+      "github": {
+        "repository": "facebookresearch/TUA-Bench",
+        "repository_scope": "benchmark-specific",
+        "stars": 46,
+        "stars_as_of": "2026-08-25",
+        "status": "available"
+      }
+    },
+    {
+      "id": "swe-refactor-bench",
+      "name": "SWE Refactor Bench",
+      "launch": {
+        "value": "2026-08-24",
+        "precision": "day",
+        "basis": "paper",
+        "source": "https://arxiv.org/abs/2608.23564"
+      },
+      "github": {
+        "repository": null,
+        "repository_scope": "none",
+        "stars": null,
+        "stars_as_of": null,
+        "status": "no-official-repository"
+      }
+    },
+    {
+      "id": "netconfarena",
+      "name": "NetConfArena",
+      "launch": {
+        "value": "2026-08-24",
+        "precision": "day",
+        "basis": "paper",
+        "source": "https://arxiv.org/abs/2608.23179"
+      },
+      "github": {
+        "repository": null,
+        "repository_scope": "none",
+        "stars": null,
+        "stars_as_of": null,
+        "status": "no-official-repository"
+      }
+    },
+    {
+      "id": "swe-lancer",
+      "name": "SWE-Lancer",
+      "launch": {
+        "value": "2025-02",
+        "precision": "month",
+        "basis": "repository-publication",
+        "source": "https://github.com/openai/SWELancer-Benchmark"
+      },
+      "github": {
+        "repository": "openai/SWELancer-Benchmark",
+        "repository_scope": "benchmark-specific",
+        "stars": 1431,
+        "stars_as_of": "2026-08-25",
+        "status": "available"
+      }
+    },
+    {
+      "id": "tau-bench",
+      "name": "tau-bench",
+      "launch": {
+        "value": "2024-06",
+        "precision": "month",
+        "basis": "repository-publication",
+        "source": "https://github.com/sierra-research/tau-bench"
+      },
+      "github": {
+        "repository": "sierra-research/tau-bench",
+        "repository_scope": "benchmark-specific",
+        "stars": 1403,
+        "stars_as_of": "2026-08-25",
+        "status": "available"
+      }
+    },
+    {
+      "id": "tau2-bench",
+      "name": "tau2-bench",
+      "launch": {
+        "value": "2025-06",
+        "precision": "month",
+        "basis": "repository-publication",
+        "source": "https://github.com/sierra-research/tau2-bench"
+      },
+      "github": {
+        "repository": "sierra-research/tau2-bench",
+        "repository_scope": "benchmark-specific",
+        "stars": 1867,
+        "stars_as_of": "2026-08-25",
+        "status": "available"
+      }
+    },
+    {
+      "id": "bfcl",
+      "name": "BFCL",
+      "launch": {
+        "value": "2023-07",
+        "precision": "month",
+        "basis": "paper",
+        "source": "https://gorilla.cs.berkeley.edu/leaderboard.html"
+      },
+      "github": {
+        "repository": "ShishirPatil/gorilla",
+        "repository_scope": "shared-suite",
+        "stars": 13007,
+        "stars_as_of": "2026-08-25",
+        "status": "available"
+      }
+    },
+    {
+      "id": "mcp-atlas",
+      "name": "MCP-Atlas",
+      "launch": {
+        "value": "2025-12",
+        "precision": "month",
+        "basis": "repository-publication",
+        "source": "https://github.com/scaleapi/mcp-atlas"
+      },
+      "github": {
+        "repository": "scaleapi/mcp-atlas",
+        "repository_scope": "benchmark-specific",
+        "stars": 149,
+        "stars_as_of": "2026-08-25",
+        "status": "available"
+      }
+    },
+    {
+      "id": "mcp-bench",
+      "name": "MCP-Bench",
+      "launch": {
+        "value": "2025-08",
+        "precision": "month",
+        "basis": "repository-publication",
+        "source": "https://github.com/Accenture/mcp-bench"
+      },
+      "github": {
+        "repository": "Accenture/mcp-bench",
+        "repository_scope": "benchmark-specific",
+        "stars": 502,
+        "stars_as_of": "2026-08-25",
+        "status": "available"
+      }
+    },
+    {
+      "id": "toolathlon",
+      "name": "Toolathlon",
+      "launch": {
+        "value": "2025",
+        "precision": "year",
+        "basis": "project-launch",
+        "source": "https://toolathlon.xyz/"
+      },
+      "github": {
+        "repository": null,
+        "repository_scope": "none",
+        "stars": null,
+        "stars_as_of": null,
+        "status": "no-official-repository"
+      }
+    },
+    {
+      "id": "acebench",
+      "name": "ACEBench",
+      "launch": {
+        "value": "2026-07",
+        "precision": "month",
+        "basis": "repository-publication",
+        "source": "https://github.com/Agent-Suite/AgentSuite/blob/main/ACEBench/README.md"
+      },
+      "github": {
+        "repository": "Agent-Suite/AgentSuite",
+        "repository_scope": "shared-suite",
+        "stars": 3,
+        "stars_as_of": "2026-08-25",
+        "status": "available"
+      }
+    },
+    {
+      "id": "osworld",
+      "name": "OSWorld",
+      "launch": {
+        "value": "2024-04",
+        "precision": "month",
+        "basis": "paper",
+        "source": "https://arxiv.org/abs/2404.07972"
+      },
+      "github": {
+        "repository": "xlang-ai/OSWorld",
+        "repository_scope": "benchmark-specific",
+        "stars": 3106,
+        "stars_as_of": "2026-08-25",
+        "status": "available"
+      }
+    },
+    {
+      "id": "osworld-verified",
+      "name": "OSWorld-Verified",
+      "launch": {
+        "value": "2025",
+        "precision": "year",
+        "basis": "official-release",
+        "source": "https://os-world.github.io/"
+      },
+      "github": {
+        "repository": "xlang-ai/OSWorld",
+        "repository_scope": "shared-suite",
+        "stars": 3106,
+        "stars_as_of": "2026-08-25",
+        "status": "available"
+      }
+    },
+    {
+      "id": "screenspot-pro",
+      "name": "ScreenSpot-Pro",
+      "launch": {
+        "value": "2025-01",
+        "precision": "month",
+        "basis": "repository-publication",
+        "source": "https://github.com/likaixin2000/ScreenSpot-Pro-GUI-Grounding"
+      },
+      "github": {
+        "repository": "likaixin2000/ScreenSpot-Pro-GUI-Grounding",
+        "repository_scope": "benchmark-specific",
+        "stars": 391,
+        "stars_as_of": "2026-08-25",
+        "status": "available"
+      }
+    },
+    {
+      "id": "androidworld",
+      "name": "AndroidWorld",
+      "launch": {
+        "value": "2024-05",
+        "precision": "month",
+        "basis": "repository-publication",
+        "source": "https://github.com/google-research/android_world"
+      },
+      "github": {
+        "repository": "google-research/android_world",
+        "repository_scope": "benchmark-specific",
+        "stars": 857,
+        "stars_as_of": "2026-08-25",
+        "status": "available"
+      }
+    },
+    {
+      "id": "windowsagentarena",
+      "name": "WindowsAgentArena",
+      "launch": {
+        "value": "2024-07",
+        "precision": "month",
+        "basis": "repository-publication",
+        "source": "https://github.com/microsoft/WindowsAgentArena"
+      },
+      "github": {
+        "repository": "microsoft/WindowsAgentArena",
+        "repository_scope": "benchmark-specific",
+        "stars": 889,
+        "stars_as_of": "2026-08-25",
+        "status": "available"
+      }
+    },
+    {
+      "id": "mobilepa-bench",
+      "name": "MobilePA-Bench",
+      "launch": {
+        "value": "2026-08-24",
+        "precision": "day",
+        "basis": "paper",
+        "source": "https://arxiv.org/abs/2608.23035"
+      },
+      "github": {
+        "repository": null,
+        "repository_scope": "none",
+        "stars": null,
+        "stars_as_of": null,
+        "status": "no-official-repository"
+      }
+    },
+    {
+      "id": "travelplanner",
+      "name": "TravelPlanner",
+      "launch": {
+        "value": "2024-02",
+        "precision": "month",
+        "basis": "paper",
+        "source": "https://arxiv.org/abs/2402.01622"
+      },
+      "github": {
+        "repository": "OSU-NLP-Group/TravelPlanner",
+        "repository_scope": "benchmark-specific",
+        "stars": 541,
+        "stars_as_of": "2026-08-25",
+        "status": "available"
+      }
+    },
+    {
+      "id": "omniabench",
+      "name": "OmniaBench",
+      "launch": {
+        "value": "2026-07",
+        "precision": "month",
+        "basis": "repository-publication",
+        "source": "https://github.com/scuuy/OmniaBench"
+      },
+      "github": {
+        "repository": "scuuy/OmniaBench",
+        "repository_scope": "benchmark-specific",
+        "stars": 12,
+        "stars_as_of": "2026-08-25",
+        "status": "available"
+      }
+    },
+    {
+      "id": "agencybench",
+      "name": "AGENCYBENCH",
+      "launch": {
+        "value": "2026",
+        "precision": "year",
+        "basis": "paper",
+        "source": "https://aclanthology.org/2026.acl-long.337.pdf"
+      },
+      "github": {
+        "repository": null,
+        "repository_scope": "none",
+        "stars": null,
+        "stars_as_of": null,
+        "status": "no-official-repository"
+      }
+    },
+    {
+      "id": "gdpval-aa-v2",
+      "name": "GDPval-AA v2",
+      "launch": {
+        "value": "2026",
+        "precision": "year",
+        "basis": "project-launch",
+        "source": "https://artificialanalysis.ai/evaluations/gdpval-aa"
+      },
+      "github": {
+        "repository": null,
+        "repository_scope": "none",
+        "stars": null,
+        "stars_as_of": null,
+        "status": "no-official-repository"
+      }
+    },
+    {
+      "id": "claw-eval-live",
+      "name": "Claw-Eval-Live",
+      "launch": {
+        "value": "2026-04",
+        "precision": "month",
+        "basis": "repository-publication",
+        "source": "https://github.com/Claw-Eval-Live/Claw-Eval-Live"
+      },
+      "github": {
+        "repository": "Claw-Eval-Live/Claw-Eval-Live",
+        "repository_scope": "benchmark-specific",
+        "stars": 44,
+        "stars_as_of": "2026-08-25",
+        "status": "available"
+      }
+    },
+    {
+      "id": "agent3sigma",
+      "name": "Agent3Sigma",
+      "launch": {
+        "value": "2026-05",
+        "precision": "month",
+        "basis": "repository-publication",
+        "source": "https://github.com/antgroup/Agent3Sigma"
+      },
+      "github": {
+        "repository": "antgroup/Agent3Sigma",
+        "repository_scope": "benchmark-specific",
+        "stars": 30,
+        "stars_as_of": "2026-08-25",
+        "status": "available"
+      }
+    },
+    {
+      "id": "skillsafetybench",
+      "name": "SkillSafetyBench",
+      "launch": {
+        "value": "2026-05",
+        "precision": "month",
+        "basis": "paper",
+        "source": "https://arxiv.org/abs/2605.12015"
+      },
+      "github": {
+        "repository": "AI45Lab/skill-safety-bench",
+        "repository_scope": "benchmark-specific",
+        "stars": 30,
+        "stars_as_of": "2026-08-25",
+        "status": "available"
+      }
+    },
+    {
+      "id": "trust-bench",
+      "name": "TRUST-Bench",
+      "launch": {
+        "value": "2026-05",
+        "precision": "month",
+        "basis": "paper",
+        "source": "https://arxiv.org/abs/2605.17453"
+      },
+      "github": {
+        "repository": null,
+        "repository_scope": "none",
+        "stars": null,
+        "stars_as_of": null,
+        "status": "no-official-repository"
+      }
+    },
+    {
+      "id": "agentlab",
+      "name": "AgentLAB",
+      "launch": {
+        "value": "2026-02",
+        "precision": "month",
+        "basis": "paper",
+        "source": "https://arxiv.org/abs/2602.16901"
+      },
+      "github": {
+        "repository": null,
+        "repository_scope": "none",
+        "stars": null,
+        "stars_as_of": null,
+        "status": "no-official-repository"
+      }
+    },
+    {
+      "id": "tamas",
+      "name": "TAMAS",
+      "launch": {
+        "value": "2026",
+        "precision": "year",
+        "basis": "paper",
+        "source": "https://aclanthology.org/2026.acl-long.1442/"
+      },
+      "github": {
+        "repository": "microsoft/TAMAS",
+        "repository_scope": "benchmark-specific",
+        "stars": 24,
+        "stars_as_of": "2026-08-25",
+        "status": "available"
+      }
+    },
+    {
+      "id": "st-webagentbench",
+      "name": "ST-WebAgentBench",
+      "launch": {
+        "value": "2026",
+        "precision": "year",
+        "basis": "paper",
+        "source": "https://research.ibm.com/publications/st-webagentbench-a-benchmark-for-evaluating-safety-and-trustworthiness-in-web-agents--1"
+      },
+      "github": {
+        "repository": null,
+        "repository_scope": "none",
+        "stars": null,
+        "stars_as_of": null,
+        "status": "no-official-repository"
+      }
+    },
+    {
+      "id": "agentfairbench",
+      "name": "AgentFairBench",
+      "launch": {
+        "value": "2026-06",
+        "precision": "month",
+        "basis": "paper",
+        "source": "https://arxiv.org/abs/2606.16723"
+      },
+      "github": {
+        "repository": null,
+        "repository_scope": "none",
+        "stars": null,
+        "stars_as_of": null,
+        "status": "no-official-repository"
+      }
+    },
+    {
+      "id": "hvtb",
+      "name": "HVTB",
+      "launch": {
+        "value": "2026-08-22",
+        "precision": "day",
+        "basis": "paper",
+        "source": "https://arxiv.org/abs/2608.22103"
+      },
+      "github": {
+        "repository": null,
+        "repository_scope": "none",
+        "stars": null,
+        "stars_as_of": null,
+        "status": "no-official-repository"
+      }
+    },
+    {
+      "id": "catchbench",
+      "name": "CatchBench",
+      "launch": {
+        "value": "2026-08-24",
+        "precision": "day",
+        "basis": "paper",
+        "source": "https://arxiv.org/abs/2608.22808"
+      },
+      "github": {
+        "repository": null,
+        "repository_scope": "none",
+        "stars": null,
+        "stars_as_of": null,
+        "status": "no-official-repository"
+      }
+    },
+    {
+      "id": "theagentcompany",
+      "name": "TheAgentCompany",
+      "launch": {
+        "value": "2024-12",
+        "precision": "month",
+        "basis": "paper",
+        "source": "https://arxiv.org/abs/2412.14161"
+      },
+      "github": {
+        "repository": "TheAgentCompany/TheAgentCompany",
+        "repository_scope": "benchmark-specific",
+        "stars": 770,
+        "stars_as_of": "2026-08-25",
+        "status": "available"
+      }
+    },
+    {
+      "id": "agentdojo",
+      "name": "AgentDojo",
+      "launch": {
+        "value": "2024-06",
+        "precision": "month",
+        "basis": "paper",
+        "source": "https://arxiv.org/abs/2406.13352"
+      },
+      "github": {
+        "repository": "ethz-spylab/agentdojo",
+        "repository_scope": "benchmark-specific",
+        "stars": 768,
+        "stars_as_of": "2026-08-25",
+        "status": "available"
+      }
+    },
+    {
+      "id": "agentharm",
+      "name": "AgentHarm",
+      "launch": {
+        "value": "2024-10",
+        "precision": "month",
+        "basis": "paper",
+        "source": "https://arxiv.org/abs/2410.09024"
+      },
+      "github": {
+        "repository": "UKGovernmentBEIS/inspect_evals",
+        "repository_scope": "shared-suite",
+        "stars": 643,
+        "stars_as_of": "2026-08-25",
+        "status": "available"
+      }
+    }
+  ]
+}
