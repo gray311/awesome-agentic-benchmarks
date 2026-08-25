@@ -41,6 +41,18 @@ Coverage is role-aware:
 | ScreenSpot-Pro | Computer use | ? | M | ? | ? | M | [Claude system card](https://www-cdn.anthropic.com/0b4915911bb0d19eca5b5ee635c80fef830a37ea.pdf), [Qwen benchmark appendix](https://github.com/QwenLM/Qwen-MM-Plugins/blob/main/tests/assets/real/qwen3vl-tex/content/table_flagship_models.tex) |
 | AndroidWorld | Computer use | ? | ? | ? | ? | M | [Qwen benchmark appendix](https://github.com/QwenLM/Qwen-MM-Plugins/blob/main/tests/assets/real/qwen3vl-tex/content/table_flagship_models.tex) |
 | WindowsAgentArena | Computer use | ? | ? | ? | ? | M | [Qwen benchmark appendix](https://github.com/QwenLM/Qwen-MM-Plugins/blob/main/tests/assets/real/qwen3vl-tex/content/table_flagship_models.tex) |
+| OSWorld 2.0 | Computer use | A | A | ? | ? | ? | [Official paper](https://arxiv.org/abs/2606.29537) |
+| OSWorld-MCP | Computer use / MCP | A | A | ? | A | A | [Official repository and updates](https://github.com/X-PLUG/OSWorld-MCP) |
+| WeaveBench | Computer use / GUI+CLI | A | A | ? | ? | A | [Official repository and trajectories](https://github.com/weavebench/WeaveBench) |
+| DeskCraft | Professional computer use | A | A | ? | ? | A | [Official repository](https://github.com/mrwwk/DeskCraft) |
+| ClawBench | Live-web computer use | A | A | ? | A | A | [Official repository](https://github.com/TIGER-AI-Lab/ClawBench) |
+| SaaS-Bench | Professional browser use | A | A | ? | ? | A | [Official paper and repository](https://github.com/UniPat-AI/SaaS-Bench) |
+| MobileWorld | Mobile computer use | A | A | ? | A | A | [Official leaderboard and trajectories](https://tongyi-mai.github.io/MobileWorld/) |
+| UI-Vision | GUI grounding/action | A | A | ? | ? | A | [Official result tables](https://github.com/uivision/UI-Vision) |
+| AgentCLUE-CUA | Offline Chinese CUA | ? | ? | A | ? | A | [Official leaderboard](https://www.cluebenchmarks.com/superclue_2025) |
+| MAS-Bench | Mobile GUI+shortcut | ? | ? | A | ? | A | [Official ACL paper](https://aclanthology.org/2026.acl-long.316/) |
+| OS-Harm | Computer-use safety | A | A | ? | ? | ? | [Official paper](https://arxiv.org/abs/2506.14866) |
+| RTC-Bench / RedTeamCUA | Prompt-injection safety | A | A | ? | ? | ? | [Official paper and repository](https://github.com/OSU-NLP-Group/RedTeamCUA) |
 | OmniaBench | General agent | A | A | A | A | A | [Official repository and leaderboard](https://github.com/scuuy/OmniaBench) |
 | AGENCYBENCH | General agent | A | A | A | A | A | [Official ACL paper](https://aclanthology.org/2026.acl-long.337.pdf) |
 | TUA-Bench | Terminal use | A | A | A | ? | A | [Official repository](https://github.com/facebookresearch/TUA-Bench) |
@@ -69,9 +81,9 @@ The following benchmark families are already in the discovery queue but still ne
 - Coding: SWE-Lancer, Multi-SWE-bench, LiveCodeBench, BigCodeBench, KernelBench, TritonBench, DreamBench-SWE, NetConfArena.
 - AI R&D: MLRC-Bench, EXP-Bench, MLGym, MLAgentBench, AutoResearchBench, Scientist-Bench, LongWoF-Bench.
 - Scientific research: ScienceAgentBench, DiscoveryBench, LAB-Bench, SciCode, AstaBench, SciAgentArena, K-Bench.
-- Web and research: GAIA, WebArena, VisualWebArena, WebVoyager, Mind2Web, Online-Mind2Web, ResearchArena.
-- Computer and daily life: OSWorld 2.0, AssistantBench, TravelPlanner, WebShop, WorkArena, TheAgentCompany, MobilePA-Bench.
-- Tools and professional work: ToolBench, ToolSandbox, SpreadsheetBench 2, APEX-Agents, OfficeQA Pro, SaaS-Bench.
+- Web and research: GAIA, ResearchArena, and remaining unnormalized WebArena/VisualWebArena provider runs. WebVoyager, Mind2Web, and Online-Mind2Web now have task contracts in the [CUA/GUI registry](cua-gui-benchmarks.md).
+- Computer and GUI use: AssistantBench and remaining score normalization for the 70-artifact [CUA/GUI registry](cua-gui-benchmarks.md). OSWorld 2.0, MobileWorld, MobilePA-Bench, WindowsWorld, MacAgentBench, WeaveBench, and DeskCraft are no longer discovery-only names.
+- Tools and professional work: ToolBench, ToolSandbox, SpreadsheetBench 2, APEX-Agents, and OfficeQA Pro. SaaS-Bench now has a task contract in the CUA/GUI registry.
 - Multi-agent: SOTOPIA, MultiAgentBench, GAMA-Bench, Collab-Overcooked.
 - Safety and cyber: AgentDojo, AgentHarm, AgentPoison, OS-Harm, CyBench, CyberGym, CVE-Bench, BountyBench, TRUST-Bench, AgentLAB, AgentFairBench, HVTB, Trust-Memevo, Manager Coercion Benchmark.
 

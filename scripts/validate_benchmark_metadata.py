@@ -16,6 +16,7 @@ DATA_PATH = ROOT / "data" / "benchmark-metadata.json"
 README_PATH = ROOT / "README.md"
 DOC_PATH = ROOT / "docs" / "benchmark-release-and-stars.md"
 DISCOVERY_PATH = ROOT / "data" / "discovery-tasks.json"
+CUA_GUI_PATH = ROOT / "data" / "cua-gui-benchmarks.json"
 ID_PATTERN = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 LAUNCH_PATTERNS = {
     "year": re.compile(r"^[0-9]{4}$"),
@@ -103,7 +104,9 @@ def validate() -> list[str]:
     catalog_start = readme.index("### AI R&D and scientific discovery")
     catalog_end = readme.index("## 🤖 Model-family coverage")
     catalog_names = set(CATALOG_ROW.findall(readme[catalog_start:catalog_end]))
-    missing_catalog = sorted(catalog_names - names)
+    cua_gui = json.loads(CUA_GUI_PATH.read_text(encoding="utf-8"))
+    cua_gui_names = {entry["name"] for entry in cua_gui.get("benchmarks", [])}
+    missing_catalog = sorted(catalog_names - names - cua_gui_names)
     if missing_catalog:
         errors.append("README catalog entries missing metadata: " + ", ".join(missing_catalog))
 

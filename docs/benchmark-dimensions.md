@@ -16,7 +16,7 @@ For scientific discovery, dimension and task are also separate: `mathematics-dis
 | `paper-reproduction` | Paper Reproduction | Reconstruct code, environments, experiments, and results from research papers | PaperBench, CORE-Bench, SUPER, ResearchCodeBench, SciReplicate-Bench |
 | `data-science-analytics` | Data Science & Analytics | Analyze structured data, write SQL, create visualizations, and produce evidence-backed conclusions | DataSciBench, DABench, InfiAgent-DABench, BixBench |
 | `web-research-browsing` | Web Research & Browsing | Locate, verify, and synthesize information through web interaction | BrowseComp, WebArena, VisualWebArena, ResearchArena, GAIA |
-| `computer-use-daily-life` | Computer Use & Daily Life | Complete everyday workflows in desktop, mobile, terminal, and browser environments | OSWorld, AndroidWorld, TUA-Bench, MobilePA-Bench, TravelPlanner |
+| `computer-use-gui` | Computer Use & GUI Interaction | Ground controls and complete workflows in desktop, browser, mobile, and hybrid GUI+CLI/MCP environments | OSWorld 2.0, WeaveBench, MobileWorld, ScreenSpot-Pro, WindowsWorld |
 | `tool-use` | Tool Use & Customer Interaction | Select and call APIs or tools while following stateful policies | BFCL, ToolBench, tau-bench, tau2-bench, ToolSandbox, MCP-Atlas |
 | `professional-enterprise-work` | Professional & Enterprise Work | Complete economically valuable office and knowledge-work workflows | GDPval, TheAgentCompany, WorkArena, SpreadsheetBench 2, APEX-Agents |
 | `multi-agent` | Multi-Agent Coordination | Coordinate, delegate, negotiate, or compete across multiple agents | MultiAgentBench, GAMA-Bench, Collab-Overcooked, SOTOPIA |

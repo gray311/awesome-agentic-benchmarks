@@ -10,7 +10,7 @@
 ![Validation](https://img.shields.io/badge/validation-passing-16a34a)
 [![License: MIT](https://img.shields.io/badge/license-MIT-f59e0b.svg)](LICENSE)
 
-[All Discovery Tasks + SOTA](docs/all-discovery-tasks.md) · [TTT Task JSON](data/ttt-discover-tasks.json) · [Finch 442-Task JSON](data/finch-collection-tasks.json) · [Discovery Overview](docs/discovery-tasks.md) · [Interactive Discovery](docs/interactive-discovery-tasks.md) · [Launch & Stars](docs/benchmark-release-and-stars.md) · [Core Task JSON](data/discovery-tasks.json) · [SOTA JSON](data/discovery-task-sota.json) · [2026 Frontier Tracker](docs/2026-frontier-benchmarks.md) · [Benchmark Dimensions](docs/benchmark-dimensions.md) · [Model Coverage](docs/model-coverage.md) · [Suite JSON](data/benchmarks.json) · [Contributing](CONTRIBUTING.md)
+[All Discovery Tasks + SOTA](docs/all-discovery-tasks.md) · [CUA & GUI: 70 Artifacts](docs/cua-gui-benchmarks.md) · [CUA/GUI JSON](data/cua-gui-benchmarks.json) · [TTT Task JSON](data/ttt-discover-tasks.json) · [Finch 442-Task JSON](data/finch-collection-tasks.json) · [Discovery Overview](docs/discovery-tasks.md) · [Interactive Discovery](docs/interactive-discovery-tasks.md) · [Launch & Stars](docs/benchmark-release-and-stars.md) · [Core Task JSON](data/discovery-tasks.json) · [SOTA JSON](data/discovery-task-sota.json) · [2026 Frontier Tracker](docs/2026-frontier-benchmarks.md) · [Benchmark Dimensions](docs/benchmark-dimensions.md) · [Model Coverage](docs/model-coverage.md) · [Suite JSON](data/benchmarks.json) · [Contributing](CONTRIBUTING.md)
 
 </div>
 
@@ -43,6 +43,7 @@ We therefore treat every score as a result of a complete experimental configurat
 
 ## 🔥 News
 
+- **2026-08-25** — Added a task-contract registry for 70 computer-use and GUI artifacts, including 31 launched in 2026: desktop, browser, mobile, grounding, hybrid GUI+CLI/MCP, professional workflow, arena, privacy, prompt-injection, safety, and robustness evaluations now have explicit inputs, outputs, metrics, environments, dates, stars, and GPT/Claude/GLM/Kimi/Qwen evidence.
 - **2026-08-25** — Rebuilt discovery coverage around task sources rather than SimpleTES comparisons: all 11 published TTT-Discover variants and all 442 task IDs in the current Finch Collection are now enumerated, with the paper's 371-task snapshot and its official 47-vs-46 appendix inconsistency preserved explicitly.
 - **2026-08-25** — Corrected the discovery record model so source-paper results are never automatically labeled SOTA; current records, published-precision ties, contract-only incumbents, and suite-only evidence are now tracked separately.
 - **2026-08-25** — Published a single-file reference for all 52 discovery tasks with complete task contracts and a validated machine-readable result snapshot.
@@ -68,7 +69,7 @@ We therefore treat every score as a result of a complete experimental configurat
   - [AI R&D and scientific discovery](#ai-rd-and-scientific-discovery)
   - [Coding and software engineering](#coding-and-software-engineering)
   - [Tool use and interaction](#tool-use-and-interaction)
-  - [Computer use and daily life](#computer-use-and-daily-life)
+  - [Computer use and GUI interaction](#computer-use-and-gui-interaction)
   - [General, professional, and safety agents](#general-professional-and-safety-agents)
 - [Model-family coverage](#-model-family-coverage)
 - [Machine-readable registries](#-machine-readable-registries)
@@ -105,7 +106,7 @@ Dimensions describe **what the benchmark evaluates**. SFT, DPO, GRPO, RLHF, LoRA
 | **Interactive World Discovery** | Inferring unfamiliar dynamics, rules, goals, and strategies from action-conditioned feedback | ARC-AGI-3, DiG-bench, EdgeBench |
 | **Paper Reproduction** | Reconstructing research code, environments, and results | PaperBench, CORE-Bench, SUPER |
 | **Web Research & Browsing** | Locating and synthesizing hard-to-find information | BrowseComp, WebArena, GAIA |
-| **Computer Use & Daily Life** | Completing workflows in desktop, mobile, and browser environments | OSWorld, TUA-Bench, MobilePA-Bench |
+| **Computer Use & GUI Interaction** | Grounding controls and completing executable workflows across desktop, browser, mobile, hybrid GUI+CLI/MCP, and safety-critical interfaces | OSWorld 2.0, WeaveBench, MobileWorld, ScreenSpot-Pro, OS-Harm |
 | **Tool Use** | Selecting APIs and tools while following stateful policies | BFCL, tau2-bench, MCP-Atlas |
 | **Professional Work** | Completing realistic office and knowledge-work deliverables | GDPval-AA, SpreadsheetBench 2, WorkArena |
 | **Multi-Agent Coordination** | Delegation, collaboration, negotiation, and competition | MultiAgentBench, GAMA-Bench, SOTOPIA |
@@ -258,17 +259,34 @@ Legend: **Detailed** = complete registry entry; **Tracked** = included in the mo
 | **Toolathlon** | 2025 | N/A | Diverse, realistic, long-horizon tool execution | Tracked | [Project](https://toolathlon.xyz/) |
 | **ACEBench** | 2026-07 | 3 | Normal, special, and agent function calling | Tracked | [Results](https://github.com/Agent-Suite/AgentSuite/blob/main/ACEBench/README.md) |
 
-### Computer use and daily life
+### Computer use and GUI interaction
 
-| Benchmark | Launch | Stars¹ | Scope | Status | Project |
-|---|---|---|---|---|---|
-| **OSWorld** | 2024-04 | 3,106 | Real desktop applications | Tracked | [Code](https://github.com/xlang-ai/OSWorld) |
-| **OSWorld-Verified** | 2025 | 3,106 | Reliability-focused OSWorld subset | Tracked | [Project](https://os-world.github.io/) |
-| **ScreenSpot-Pro** | 2025-01 | 391 | Professional high-resolution GUI grounding | Tracked | [Code](https://github.com/likaixin2000/ScreenSpot-Pro-GUI-Grounding) |
-| **AndroidWorld** | 2024-05 | 857 | Real Android application workflows | Tracked | [Code](https://github.com/google-research/android_world) |
-| **WindowsAgentArena** | 2024-07 | 889 | Windows application workflows | Tracked | [Code](https://github.com/microsoft/WindowsAgentArena) |
-| **MobilePA-Bench** | 2026-08-24 | N/A | Stateful mobile personal-assistant workflows | Emerging | [Paper](https://arxiv.org/abs/2608.23035) |
-| **TravelPlanner** | 2024-02 | 541 | Constrained travel planning | Discovery queue | [Code](https://github.com/OSU-NLP-Group/TravelPlanner) |
+The full [Computer-Use and GUI Agent Benchmark registry](docs/cua-gui-benchmarks.md) contains **70 artifacts**, including **31 launched in 2026**. It keeps `static-grounding`, `offline-trajectory`, `interactive-episode`, `long-horizon-workflow`, `arena-preference`, and `safety-adversarial` results separate. Every row records the input question, agent-visible observation, required output, evaluator, environment, launch source, dated stars, and verified model-family evidence.
+
+| Benchmark | Launch | Stars¹ | Platform / evaluation unit | Why it is distinct | Project |
+|---|---:|---:|---|---|---|
+| **OSWorld** | 2024-04 | 3,106 | Desktop · interactive episode | 369 real-computer tasks | [Code](https://github.com/xlang-ai/OSWorld) |
+| **OSWorld-Verified** | 2025-07-28 | 3,106 | Desktop · interactive episode | Repaired tasks, evaluators, and verified submission protocol | [Project](https://xlang.ai/blog/osworld-verified) |
+| **OSWorld 2.0** | 2026-06 | 258 | Desktop · long-horizon workflow | 108 workflows; binary and partial scoring at up to 500 steps | [Code](https://github.com/xlang-ai/OSWorld-V2) |
+| **WindowsWorld** | 2026-04 | 21 | Windows · long-horizon workflow | 181 process-centric tasks; 77.9% multi-app | [Code](https://github.com/HITsz-TMG/WindowsWorld) |
+| **MacAgentBench** | 2026-06 | 49 | macOS · long-horizon workflow | 676 tasks across 25 applications | [Code](https://github.com/JetAstra/MacAgentBench) |
+| **WeaveBench** | 2026-06-05 | 159 | Desktop GUI+CLI · long-horizon workflow | 114 channel-non-substitutable hybrid tasks | [Code](https://github.com/weavebench/WeaveBench) |
+| **DeskCraft** | 2026-06-02 | 91 | Desktop · professional workflow | 538 standard and user-interactive delivery tasks | [Code](https://github.com/mrwwk/DeskCraft) |
+| **ClawBench** | 2026-04 | 585 | Live web · interactive episode | 283 tasks on production websites with write interception | [Code](https://github.com/TIGER-AI-Lab/ClawBench) |
+| **SaaS-Bench** | 2026-05 | 96 | Web · professional workflow | 106 tasks on 23 self-hosted SaaS applications | [Code](https://github.com/UniPat-AI/SaaS-Bench) |
+| **MobileWorld** | 2025-12-23 | 258 | Mobile GUI+MCP · long-horizon workflow | 201 tasks with cross-app and agent-user interaction | [Code](https://github.com/Tongyi-MAI/MobileWorld) |
+| **VenusBench-Mobile** | 2026-04 | 1,010² | Mobile · interactive episode | User-intent tasks and environment-variation diagnostics | [Code](https://github.com/inclusionAI/UI-Venus/tree/VenusBench-Mobile) |
+| **MemGUI-Bench** | 2026-02-03 | 48 | Mobile · memory workflow | Dynamic, long-horizon memory evaluation | [Code](https://github.com/lgy0404/MemGUI-Bench) |
+| **MobileGym-Bench** | 2026-05 | 773 | Mobile simulation · interactive episode | 416 parameterized templates with deterministic judges | [Code](https://github.com/Purewhiter/mobilegym) |
+| **AndroidDaily** | 2026-05-26 | N/A | Real Android · long-horizon workflow | 350 tasks across 94 closed-source applications | [Paper](https://arxiv.org/abs/2605.27761) |
+| **OS-Marathon** | 2026-01-28 | N/A | Desktop · repetitive workflow | 242 scalable expense/transcript tasks | [Project](https://os-marathon.github.io/) |
+| **ScreenSpot-Pro** | 2025-01 | 391 | Desktop · static grounding | 4,304 instructions over professional high-resolution GUIs | [Code](https://github.com/likaixin2000/ScreenSpot-Pro-GUI-Grounding) |
+| **AgentCLUE-CUA** | 2026 | N/A | Cross-platform · offline trajectory | Chinese grounding, information, and agent-action sub-scores | [Leaderboard](https://www.cluebenchmarks.com/superclue_2025) |
+| **OS-Harm** | 2025-06 | 71 | Desktop · safety adversarial | 150 deliberate-misuse, injection, and misbehavior tasks | [Code](https://github.com/tml-epfl/os-harm) |
+| **RTC-Bench / RedTeamCUA** | 2025-05 | 60 | Desktop/web · safety adversarial | 864 indirect prompt-injection examples across three environments | [Code](https://github.com/OSU-NLP-Group/RedTeamCUA) |
+| **OSGuard** | 2026-06 | N/A | Desktop · safety adversarial | Action-level safety plus OSWorld-derived invariant checking | [Paper](https://arxiv.org/abs/2606.15034) |
+
+¹ Star snapshot: 2026-08-25. ² Shared method repository; stars do not measure the benchmark alone. See the full registry for every repository-scope caveat and the other 50 artifacts.
 
 ### General, professional, and safety agents
 
@@ -325,9 +343,11 @@ Benchmarks with reported results for all five target families already include:
 
 The evidence source, exact model version, role, and remaining gaps are recorded in [Model Coverage](docs/model-coverage.md). A checkmark means that a result has been reported; it does **not** imply that scores produced with different scaffolds are directly comparable.
 
+CUA/GUI coverage is currently **distributed across complementary benchmarks**, rather than supported by one trustworthy five-family apples-to-apples run. For example, [MobileWorld](docs/cua-gui-benchmarks.md#reported-model-family-coverage) reports GPT, Claude, Kimi, and Qwen; AgentCLUE-CUA and the official GLM-V evaluations add GLM evidence; OSWorld-MCP, ClawBench, AndroidWorld, WebVoyager, and UI-Vision provide further overlapping checks. The CUA registry leaves cells blank when only harness support—not an evaluated result—was found.
+
 ## 🧱 Machine-readable registries
 
-The task-level registry is [data/discovery-tasks.json](data/discovery-tasks.json), validated against [schema/discovery-task.schema.json](schema/discovery-task.schema.json). The suite-level registry is [data/benchmarks.json](data/benchmarks.json), validated against [schema/benchmark.schema.json](schema/benchmark.schema.json).
+The task-level registry is [data/discovery-tasks.json](data/discovery-tasks.json), validated against [schema/discovery-task.schema.json](schema/discovery-task.schema.json). The suite-level registry is [data/benchmarks.json](data/benchmarks.json), validated against [schema/benchmark.schema.json](schema/benchmark.schema.json). The dedicated [CUA/GUI registry](data/cua-gui-benchmarks.json) adds 70 task-contract records with its own dependency-free validator and generated [human-readable catalog](docs/cua-gui-benchmarks.md).
 
 Each detailed task or suite entry records:
 
@@ -361,6 +381,8 @@ Validate locally:
 ```bash
 python scripts/validate_registry.py
 python scripts/validate_discovery_tasks.py
+python scripts/validate_cua_gui_benchmarks.py
+python scripts/render_cua_gui_benchmarks.py --check
 python scripts/render_discovery_task_sota.py --check
 ```
 
