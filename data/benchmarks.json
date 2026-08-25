@@ -1,0 +1,846 @@
+{
+  "$schema": "../schema/benchmark.schema.json",
+  "registry_version": "0.1.0",
+  "last_updated": "2026-08-24",
+  "benchmarks": [
+    {
+      "id": "mle-bench",
+      "name": "MLE-bench",
+      "organization": "OpenAI",
+      "release_year": 2024,
+      "summary": "An offline suite of Kaggle competitions for evaluating end-to-end machine-learning engineering agents.",
+      "classification": {
+        "primary_dimension": "machine-learning-engineering",
+        "secondary_dimensions": [
+          "ai-r-and-d"
+        ],
+        "capabilities": [
+          "coding",
+          "data-analysis",
+          "debugging",
+          "experimentation",
+          "long-horizon-execution",
+          "resource-management"
+        ]
+      },
+      "status": {
+        "maturity": "established",
+        "leaderboard": "paused_for_new_submissions",
+        "notes": "The v1 leaderboard paused new submissions on 2026-04-24 while the maintainers develop a stronger fairness process; known v1 task issues are documented upstream."
+      },
+      "urls": {
+        "paper": "https://arxiv.org/abs/2410.07095",
+        "repository": "https://github.com/openai/mle-bench",
+        "leaderboard": "https://github.com/openai/mle-bench#leaderboard"
+      },
+      "task_suite": {
+        "evaluation_units": 75,
+        "development_units": 7,
+        "lite_units": 22,
+        "difficulty_split": {
+          "low": 22,
+          "medium": 38,
+          "high": 15
+        },
+        "domains": [
+          "machine-learning-engineering"
+        ],
+        "task_types": [
+          "image-classification",
+          "text-classification",
+          "tabular-modeling",
+          "image-segmentation",
+          "audio-classification",
+          "llm-training",
+          "image-other",
+          "forecasting",
+          "image-to-image",
+          "object-detection",
+          "sequence-to-sequence",
+          "signal-processing",
+          "text-other",
+          "image-to-text",
+          "video-classification"
+        ],
+        "evaluation_unit_description": "One complete offline Kaggle competition."
+      },
+      "input": {
+        "question_form": "Competition brief plus train/test data rather than a single natural-language question.",
+        "agent_visible": [
+          "/home/instructions.txt",
+          "/home/data/description.md",
+          "/home/data/*",
+          "submission-format validator"
+        ],
+        "hidden": [
+          "test labels",
+          "competition grader",
+          "test score during the run"
+        ],
+        "feedback_during_run": "Submission-format validation only; no test score."
+      },
+      "output": {
+        "artifact": "/home/submission/submission.csv",
+        "artifact_type": "predictions",
+        "executable": false
+      },
+      "evaluation": {
+        "headline_metric": "Any Medal percentage",
+        "headline_definition": "Percentage of competitions in which the submission reaches the reconstructed Kaggle bronze, silver, or gold threshold.",
+        "per_task_metrics": "Competition-specific metrics such as accuracy, AUC, RMSE, F1, or IoU.",
+        "aggregation": "Mean Any Medal percentage over at least three seeds; official guidance requests mean plus or minus SEM for Low, Medium, High, and All splits.",
+        "secondary_metrics": [
+          "made-submission-rate",
+          "valid-submission-rate",
+          "above-median-rate",
+          "bronze-rate",
+          "silver-rate",
+          "gold-rate",
+          "raw-competition-score"
+        ],
+        "judge_type": "deterministic graders plus human leaderboard thresholds"
+      },
+      "environment": {
+        "isolation": "linux-amd64 container; Sysbox or equivalently strong isolation recommended",
+        "time_limit_hours": 24,
+        "accelerator": "1x NVIDIA A10 24GB",
+        "cpu": "36 vCPUs",
+        "memory": "440GB RAM",
+        "dataset_scale": "approximately 3.3TB full; 158GB Lite",
+        "internet_policy": "Not fixed as a universal benchmark requirement; evaluators must report whether internet access was available.",
+        "scaffold_policy": "Agent-agnostic; results must identify the scaffold and all LLMs used."
+      },
+      "score_snapshots": [
+        {
+          "as_of": "2026-08-24",
+          "metric": "Any Medal percentage, All split",
+          "scale": "0-100",
+          "entries": [
+            {
+              "system": "Famou-Agent 2.0 + Gemini-3-Pro-Preview",
+              "score": 64.44,
+              "uncertainty": "±1.18 SEM"
+            },
+            {
+              "system": "AIBuildAI + Claude-Opus-4.6",
+              "score": 63.11,
+              "uncertainty": "±0.44 SEM"
+            },
+            {
+              "system": "Thesis + GPT-5-Codex",
+              "score": 48.44,
+              "uncertainty": "±3.64 SEM"
+            },
+            {
+              "system": "R&D-Agent + GPT-5",
+              "score": 35.11,
+              "uncertainty": "±0.44 SEM"
+            },
+            {
+              "system": "AIDE + o1-preview",
+              "score": 17.12,
+              "uncertainty": "±0.61 SEM"
+            },
+            {
+              "system": "AIDE + GPT-4o-2024-08-06",
+              "score": 8.63,
+              "uncertainty": "±0.54 SEM"
+            }
+          ],
+          "caveat": "Agent and scaffold effects are inseparable from model effects. Entries marked upstream as non-comparable because of test-set feedback are excluded here."
+        }
+      ],
+      "integrity": {
+        "primary_risks": [
+          "competition-solution contamination",
+          "plagiarism",
+          "public-data label leakage",
+          "task-specific test-set reconstruction issues"
+        ],
+        "controls": [
+          "hidden labels",
+          "isolated grading",
+          "rule-violation detector",
+          "plagiarism detector",
+          "grading-report review"
+        ]
+      },
+      "rsi_relevance": {
+        "level": "enabling-capability",
+        "improvement_target": "task-specific machine-learning system",
+        "directly_modifies_model_weights": true,
+        "modifies_evaluated_agent_itself": false,
+        "closed_loop_feedback": "weak",
+        "artifact_persists_after_run": true,
+        "why_it_matters": "Measures whether an agent can autonomously perform the data, training, experimentation, and delivery loop required to build better AI components."
+      },
+      "model_coverage": {
+        "as_of": "2026-08-24",
+        "families": {
+          "gpt": {
+            "status": "verified-agent",
+            "agent_models": [
+              "GPT-4o-2024-08-06",
+              "GPT-5",
+              "GPT-5-Codex",
+              "o1-preview"
+            ],
+            "target_models": [],
+            "judge_models": [],
+            "evidence": [
+              {
+                "role": "agent-model",
+                "source_type": "official-leaderboard",
+                "url": "https://github.com/openai/mle-bench#leaderboard",
+                "accessed": "2026-08-24"
+              }
+            ]
+          },
+          "claude": {
+            "status": "verified-agent",
+            "agent_models": [
+              "Claude Opus 4.6"
+            ],
+            "target_models": [],
+            "judge_models": [],
+            "evidence": [
+              {
+                "role": "agent-model",
+                "source_type": "official-leaderboard",
+                "url": "https://github.com/openai/mle-bench#leaderboard",
+                "accessed": "2026-08-24"
+              }
+            ]
+          },
+          "glm": {
+            "status": "not-yet-verified",
+            "agent_models": [],
+            "target_models": [],
+            "judge_models": [],
+            "evidence": []
+          },
+          "kimi": {
+            "status": "not-yet-verified",
+            "agent_models": [],
+            "target_models": [],
+            "judge_models": [],
+            "evidence": []
+          },
+          "qwen": {
+            "status": "not-yet-verified",
+            "agent_models": [],
+            "target_models": [],
+            "judge_models": [],
+            "evidence": []
+          }
+        },
+        "notes": "A missing family means no qualifying primary-source result was found yet; it does not prove the family has never been evaluated."
+      },
+      "sources": [
+        {
+          "type": "paper",
+          "url": "https://arxiv.org/abs/2410.07095",
+          "accessed": "2026-08-24"
+        },
+        {
+          "type": "repository",
+          "url": "https://github.com/openai/mle-bench",
+          "accessed": "2026-08-24"
+        },
+        {
+          "type": "agent-instructions",
+          "url": "https://github.com/openai/mle-bench/blob/main/environment/instructions.txt",
+          "accessed": "2026-08-24"
+        }
+      ]
+    },
+    {
+      "id": "naturebench",
+      "name": "NatureBench",
+      "organization": "FrontisAI",
+      "release_year": 2026,
+      "summary": "A cross-disciplinary benchmark asking coding agents to solve scientific ML tasks distilled from Nature-family papers and compete with the papers' reported SOTA.",
+      "classification": {
+        "primary_dimension": "scientific-discovery",
+        "secondary_dimensions": [
+          "ai-r-and-d",
+          "scientific-machine-learning"
+        ],
+        "capabilities": [
+          "coding",
+          "data-analysis",
+          "experimentation",
+          "long-horizon-execution",
+          "scientific-reasoning"
+        ]
+      },
+      "status": {
+        "maturity": "active",
+        "leaderboard": "open_by_reviewed_submission",
+        "notes": "The public leaderboard is actively updated and uses a post-hoc validity judge; older paper and README headline results are not the current maximum."
+      },
+      "urls": {
+        "paper": "https://arxiv.org/abs/2606.24530",
+        "repository": "https://github.com/FrontisAI/NatureBench",
+        "dataset": "https://huggingface.co/datasets/FrontisAI/NatureBench",
+        "leaderboard": "https://frontisai.github.io/NatureBench/"
+      },
+      "task_suite": {
+        "evaluation_units": 90,
+        "evaluated_instances": 332,
+        "domains": [
+          "cellular-omics",
+          "protein-biology",
+          "biomedical-modeling",
+          "physical-modeling",
+          "molecular-design",
+          "relational-reasoning"
+        ],
+        "task_types": [
+          "classification",
+          "regression",
+          "clustering-and-integration",
+          "segmentation",
+          "generation-and-design",
+          "sequence-prediction",
+          "structure-prediction",
+          "forecasting",
+          "combinatorial-optimization"
+        ],
+        "evaluation_unit_description": "One scientific ML problem distilled from a peer-reviewed Nature-family paper; a task may contain multiple evaluated instances."
+      },
+      "input": {
+        "question_form": "A method-hidden scientific task brief, data description, and visible train/validation/test inputs.",
+        "agent_visible": [
+          "problem/README.md",
+          "problem/data_description.md",
+          "problem/data/*",
+          "task-specific container environment"
+        ],
+        "hidden": [
+          "source paper method pathway",
+          "evaluation ground truth",
+          "evaluation implementation directory"
+        ],
+        "feedback_during_run": "Limited score feedback through an external evaluation service; trajectories can contain multiple submission attempts."
+      },
+      "output": {
+        "artifact": "workspace/run.py plus output/{instance_name}/predictions.csv",
+        "artifact_type": "executable scientific ML pipeline and predictions",
+        "executable": true
+      },
+      "evaluation": {
+        "headline_metric": "Surpass-SOTA percentage",
+        "headline_definition": "Percentage of all 90 tasks that are judge-valid and achieve SOTA-normalized relative gap g greater than 0.1.",
+        "per_task_metrics": "Task-specific scientific metrics normalized as g = dir * (m - m_sota) / abs(m_sota).",
+        "aggregation": "Task-level normalized gaps; current public scoring divides valid matches or surpasses by the full official task count.",
+        "secondary_metrics": [
+          "match-sota-percentage",
+          "median-g-all",
+          "median-g-valid",
+          "completion-rate",
+          "score-rate",
+          "invalid-count"
+        ],
+        "judge_type": "deterministic per-task evaluator plus post-hoc LLM validity judge"
+      },
+      "environment": {
+        "isolation": "independent task-specific Docker container with host-side evaluation service",
+        "time_limit_hours": 4,
+        "accelerator": "70 gpu_low tasks use 1x RTX 3090/4090 24GB; 17 gpu_high tasks use 1x NVIDIA A800 80GB; 3 tasks are CPU-only",
+        "cpu": "task-dependent",
+        "memory": "task-dependent",
+        "dataset_scale": "approximately 1.25TB",
+        "internet_policy": "Web search disabled for official comparable runs.",
+        "scaffold_policy": "Built-in adapters support Claude Code, Codex, and Gemini CLI; custom agents are supported."
+      },
+      "score_snapshots": [
+        {
+          "as_of": "2026-08-24",
+          "metric": "Surpass-SOTA percentage",
+          "scale": "0-100",
+          "entries": [
+            {
+              "system": "Opus 5 + Claude Code",
+              "score": 23.3,
+              "secondary": "Match-SOTA 57.8%; median g 0.0136; CR 87.8%"
+            },
+            {
+              "system": "Opus 5 + AIBuildAI 2.5",
+              "score": 23.3,
+              "secondary": "Match-SOTA 53.3%; median g 0.0041; CR 91.1%"
+            },
+            {
+              "system": "Opus 4.7 + Claude Code",
+              "score": 15.6,
+              "secondary": "Match-SOTA 41.1%; median g -0.0300; CR 86.7%"
+            },
+            {
+              "system": "Kimi K3 + Claude Code",
+              "score": 14.4,
+              "secondary": "Match-SOTA 33.3%; median g -0.1269; CR 78.9%"
+            },
+            {
+              "system": "GLM-5.2 + Claude Code",
+              "score": 13.3,
+              "secondary": "Match-SOTA 35.6%; median g -0.0813; CR 88.9%"
+            },
+            {
+              "system": "GPT-5.4 + Codex",
+              "score": 6.7,
+              "secondary": "Match-SOTA 24.4%; median g -0.1721; CR 78.9%"
+            }
+          ],
+          "caveat": "The arXiv abstract's 17.8% and an older README's 15.6% describe earlier evaluation snapshots. The dynamic leaderboard is the current result source."
+        }
+      ],
+      "integrity": {
+        "primary_risks": [
+          "recovering the source paper method",
+          "hard-coded predictions",
+          "label leakage",
+          "constant or non-general scientific shortcuts",
+          "evaluator bypass"
+        ],
+        "controls": [
+          "information firewall",
+          "web-search-disabled protocol",
+          "hidden ground truth",
+          "container isolation",
+          "post-hoc validity judge",
+          "maintainer artifact review"
+        ]
+      },
+      "rsi_relevance": {
+        "level": "advanced-enabling-capability",
+        "improvement_target": "published scientific machine-learning method",
+        "directly_modifies_model_weights": true,
+        "modifies_evaluated_agent_itself": false,
+        "closed_loop_feedback": "medium",
+        "artifact_persists_after_run": true,
+        "why_it_matters": "Tests whether agents can translate scientific problems into executable ML research and produce methods that generalize beyond a paper's reported frontier."
+      },
+      "model_coverage": {
+        "as_of": "2026-08-24",
+        "families": {
+          "gpt": {
+            "status": "verified-multiple-roles",
+            "agent_models": [
+              "GPT-5.4"
+            ],
+            "target_models": [],
+            "judge_models": [
+              "GPT-5.5"
+            ],
+            "evidence": [
+              {
+                "role": "agent-model",
+                "source_type": "official-leaderboard",
+                "url": "https://frontisai.github.io/NatureBench/",
+                "accessed": "2026-08-24"
+              },
+              {
+                "role": "judge-model",
+                "source_type": "official-repository",
+                "url": "https://github.com/FrontisAI/NatureBench",
+                "accessed": "2026-08-24"
+              }
+            ]
+          },
+          "claude": {
+            "status": "verified-agent",
+            "agent_models": [
+              "Claude Opus 4.7",
+              "Claude Opus 5"
+            ],
+            "target_models": [],
+            "judge_models": [],
+            "evidence": [
+              {
+                "role": "agent-model",
+                "source_type": "official-leaderboard",
+                "url": "https://frontisai.github.io/NatureBench/",
+                "accessed": "2026-08-24"
+              }
+            ]
+          },
+          "glm": {
+            "status": "verified-agent",
+            "agent_models": [
+              "GLM-5.2"
+            ],
+            "target_models": [],
+            "judge_models": [],
+            "evidence": [
+              {
+                "role": "agent-model",
+                "source_type": "official-repository",
+                "url": "https://github.com/FrontisAI/NatureBench",
+                "accessed": "2026-08-24"
+              }
+            ]
+          },
+          "kimi": {
+            "status": "verified-agent",
+            "agent_models": [
+              "Kimi K3"
+            ],
+            "target_models": [],
+            "judge_models": [],
+            "evidence": [
+              {
+                "role": "agent-model",
+                "source_type": "official-repository",
+                "url": "https://github.com/FrontisAI/NatureBench",
+                "accessed": "2026-08-24"
+              }
+            ]
+          },
+          "qwen": {
+            "status": "verified-agent",
+            "agent_models": [
+              "Qwen 3.8 Max"
+            ],
+            "target_models": [],
+            "judge_models": [],
+            "evidence": [
+              {
+                "role": "agent-model",
+                "source_type": "official-repository",
+                "url": "https://github.com/FrontisAI/NatureBench",
+                "accessed": "2026-08-24"
+              }
+            ]
+          }
+        },
+        "notes": "NatureBench is currently the strongest seed entry for a five-family scientific-agent comparison."
+      },
+      "sources": [
+        {
+          "type": "paper",
+          "url": "https://arxiv.org/abs/2606.24530",
+          "accessed": "2026-08-24"
+        },
+        {
+          "type": "repository",
+          "url": "https://github.com/FrontisAI/NatureBench",
+          "accessed": "2026-08-24"
+        },
+        {
+          "type": "dataset",
+          "url": "https://huggingface.co/datasets/FrontisAI/NatureBench",
+          "accessed": "2026-08-24"
+        },
+        {
+          "type": "leaderboard",
+          "url": "https://frontisai.github.io/NatureBench/",
+          "accessed": "2026-08-24"
+        }
+      ]
+    },
+    {
+      "id": "posttrainbench",
+      "name": "PostTrainBench",
+      "organization": "AISA / ELLIS Institute Tübingen and collaborators",
+      "release_year": 2026,
+      "summary": "A benchmark for measuring whether CLI agents can autonomously post-train small language models under a bounded single-GPU budget.",
+      "classification": {
+        "primary_dimension": "post-training",
+        "secondary_dimensions": [
+          "ai-r-and-d",
+          "model-improvement"
+        ],
+        "capabilities": [
+          "coding",
+          "data-curation",
+          "experimentation",
+          "long-horizon-execution",
+          "model-training",
+          "resource-management"
+        ]
+      },
+      "status": {
+        "maturity": "active",
+        "leaderboard": "active_v1_1",
+        "notes": "Version 1.1 adds independent contamination, external-API, prior-trace-lookup, and model-identity checks."
+      },
+      "urls": {
+        "paper": "https://arxiv.org/abs/2603.08640",
+        "repository": "https://github.com/aisa-group/PostTrainBench",
+        "leaderboard": "https://posttrainbench.com/"
+      },
+      "task_suite": {
+        "evaluation_units": 28,
+        "base_models": [
+          "Qwen3-1.7B-Base",
+          "Qwen3-4B-Base",
+          "SmolLM3-3B-Base",
+          "Gemma-3-4B-PT"
+        ],
+        "domains": [
+          "llm-post-training",
+          "ai-r-and-d"
+        ],
+        "task_types": [
+          "competition-math",
+          "grade-school-math",
+          "graduate-science-qa",
+          "code-generation",
+          "function-calling",
+          "creative-writing",
+          "multi-turn-medical-assistance"
+        ],
+        "target_benchmarks": [
+          "AIME-2025",
+          "ArenaHard-Writing",
+          "BFCL-v3-exec-simple",
+          "GPQA-Main",
+          "GSM8K",
+          "HealthBench-Easy",
+          "HumanEval"
+        ],
+        "evaluation_unit_description": "One ten-hour attempt to post-train one provided base model for one target benchmark."
+      },
+      "input": {
+        "question_form": "An open-ended R&D objective specifying a base model and target benchmark.",
+        "agent_visible": [
+          "provided base-model checkpoint",
+          "evaluate.py",
+          "terminal and filesystem",
+          "internet access",
+          "timer",
+          "decontamination checker"
+        ],
+        "hidden": [
+          "target benchmark held-out test items",
+          "final evaluation results until completion"
+        ],
+        "feedback_during_run": "The agent may query evaluate.py on permitted evaluation data and iterate on training."
+      },
+      "output": {
+        "artifact": "final_model/",
+        "artifact_type": "post-trained language-model checkpoint",
+        "executable": true
+      },
+      "evaluation": {
+        "headline_metric": "Weighted average downstream benchmark score",
+        "headline_definition": "For each downstream benchmark, average performance across the four base models, then apply difficulty-derived benchmark weights.",
+        "per_task_metrics": "Exact-match accuracy for AIME, GSM8K, GPQA and BFCL; HumanEval pass@1; GPT-5-mini judge for ArenaHard-Writing and HealthBench-Easy.",
+        "aggregation": "Weighted average using AIME 0.2265, ArenaHard-Writing 0.0904, BFCL 0.0746, GPQA Main 0.2246, GSM8K 0.0936, HealthBench-Easy 0.1841, and HumanEval 0.1061.",
+        "secondary_metrics": [
+          "per-benchmark-score",
+          "per-base-model-score",
+          "runtime",
+          "budget-use",
+          "integrity-verdict"
+        ],
+        "judge_type": "Inspect-based evaluation plus exact-match and LLM judges; separate integrity judges"
+      },
+      "environment": {
+        "isolation": "containerized CLI-agent run on an HPC or equivalent GPU worker",
+        "time_limit_hours": 10,
+        "accelerator": "1x NVIDIA H100",
+        "cpu": "host-dependent",
+        "memory": "host-dependent",
+        "dataset_scale": "target-dependent",
+        "internet_policy": "Internet access allowed, subject to contamination and external-model-distillation rules.",
+        "scaffold_policy": "Native CLI scaffold where available; Claude Code, Codex CLI, Gemini CLI, and OpenCode are represented."
+      },
+      "score_snapshots": [
+        {
+          "as_of": "2026-08-24",
+          "metric": "Weighted average percentage, v1.1",
+          "scale": "0-100",
+          "entries": [
+            {
+              "system": "Official Instruct Models",
+              "score": 51.14,
+              "secondary": "Reference only; training exceeds the ten-hour one-H100 constraint."
+            },
+            {
+              "system": "Fable 5 + Claude Code Max",
+              "score": 41.79,
+              "uncertainty": "±1.7 SD",
+              "secondary": "GPQA cells use Opus 4.8 Max fallback scores."
+            },
+            {
+              "system": "GPT-5.6 Sol + Codex CLI Max",
+              "score": 36.23,
+              "uncertainty": "±0.2 SD"
+            },
+            {
+              "system": "Opus 5 + Claude Code",
+              "score": 35.04,
+              "uncertainty": "±1.4 SD"
+            },
+            {
+              "system": "Kimi K3 + Claude Code",
+              "score": 31.96,
+              "uncertainty": "±0.3 SD"
+            },
+            {
+              "system": "GLM-5.2 + Claude Code Max",
+              "score": 31.7,
+              "uncertainty": "±2.1 SD"
+            },
+            {
+              "system": "GPT-5.5 + Codex CLI xHigh",
+              "score": 27.23,
+              "uncertainty": "±0.6 SD"
+            },
+            {
+              "system": "Base Models, zero-shot",
+              "score": 7.53
+            }
+          ],
+          "caveat": "The paper-era best agent score was 23.2%. Current leaderboard results include newer agents and v1.1 integrity handling. Fable 5 is not a pure-model result because of its GPQA fallback."
+        }
+      ],
+      "integrity": {
+        "primary_risks": [
+          "training on benchmark test items",
+          "substituting an instruction-tuned checkpoint",
+          "external-model distillation",
+          "using evaluator API credentials for data generation",
+          "consulting prior PostTrainBench traces",
+          "modifying the evaluation harness"
+        ],
+        "controls": [
+          "test-item decontamination tool",
+          "contamination judge",
+          "external-API-usage judge",
+          "prior-trace-lookup judge",
+          "programmatic model-identity check",
+          "base-model-score fallback for flagged runs"
+        ]
+      },
+      "rsi_relevance": {
+        "level": "direct-ai-improvement",
+        "improvement_target": "provided base language model",
+        "directly_modifies_model_weights": true,
+        "modifies_evaluated_agent_itself": false,
+        "closed_loop_feedback": "strong",
+        "artifact_persists_after_run": true,
+        "why_it_matters": "Directly evaluates whether an agent can research, train, validate, and deliver an improved language model under bounded compute."
+      },
+      "model_coverage": {
+        "as_of": "2026-08-24",
+        "families": {
+          "gpt": {
+            "status": "verified-multiple-roles",
+            "agent_models": [
+              "GPT-5.5",
+              "GPT-5.6 Sol"
+            ],
+            "target_models": [],
+            "judge_models": [
+              "GPT-5-mini"
+            ],
+            "evidence": [
+              {
+                "role": "agent-model",
+                "source_type": "official-leaderboard",
+                "url": "https://posttrainbench.com/",
+                "accessed": "2026-08-24"
+              },
+              {
+                "role": "judge-model",
+                "source_type": "official-leaderboard",
+                "url": "https://posttrainbench.com/",
+                "accessed": "2026-08-24"
+              }
+            ]
+          },
+          "claude": {
+            "status": "verified-agent",
+            "agent_models": [
+              "Claude Opus 4.6",
+              "Claude Opus 4.7",
+              "Claude Opus 4.8",
+              "Claude Opus 5",
+              "Claude Sonnet 4.6"
+            ],
+            "target_models": [],
+            "judge_models": [],
+            "evidence": [
+              {
+                "role": "agent-model",
+                "source_type": "official-leaderboard",
+                "url": "https://posttrainbench.com/",
+                "accessed": "2026-08-24"
+              }
+            ]
+          },
+          "glm": {
+            "status": "verified-agent",
+            "agent_models": [
+              "GLM-5.2"
+            ],
+            "target_models": [],
+            "judge_models": [],
+            "evidence": [
+              {
+                "role": "agent-model",
+                "source_type": "official-leaderboard",
+                "url": "https://posttrainbench.com/",
+                "accessed": "2026-08-24"
+              }
+            ]
+          },
+          "kimi": {
+            "status": "verified-agent",
+            "agent_models": [
+              "Kimi K2.5",
+              "Kimi K3"
+            ],
+            "target_models": [],
+            "judge_models": [],
+            "evidence": [
+              {
+                "role": "agent-model",
+                "source_type": "official-leaderboard",
+                "url": "https://posttrainbench.com/",
+                "accessed": "2026-08-24"
+              }
+            ]
+          },
+          "qwen": {
+            "status": "verified-target",
+            "agent_models": [],
+            "target_models": [
+              "Qwen3-1.7B-Base",
+              "Qwen3-4B-Base"
+            ],
+            "judge_models": [],
+            "evidence": [
+              {
+                "role": "target-model",
+                "source_type": "official-leaderboard",
+                "url": "https://posttrainbench.com/",
+                "accessed": "2026-08-24"
+              }
+            ]
+          }
+        },
+        "notes": "Qwen is verified here only as the model being post-trained, not as the agent driving the post-training workflow."
+      },
+      "sources": [
+        {
+          "type": "paper",
+          "url": "https://arxiv.org/abs/2603.08640",
+          "accessed": "2026-08-24"
+        },
+        {
+          "type": "repository",
+          "url": "https://github.com/aisa-group/PostTrainBench",
+          "accessed": "2026-08-24"
+        },
+        {
+          "type": "leaderboard",
+          "url": "https://posttrainbench.com/",
+          "accessed": "2026-08-24"
+        }
+      ]
+    }
+  ]
+}

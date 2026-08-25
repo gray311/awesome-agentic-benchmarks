@@ -1,0 +1,330 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/awesome-agentic-benchmarks/benchmark.schema.json",
+  "title": "Awesome Agentic Benchmarks Registry",
+  "type": "object",
+  "required": [
+    "registry_version",
+    "last_updated",
+    "benchmarks"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "registry_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date"
+    },
+    "benchmarks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/benchmark"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "benchmark": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "organization",
+        "release_year",
+        "summary",
+        "classification",
+        "status",
+        "urls",
+        "task_suite",
+        "input",
+        "output",
+        "evaluation",
+        "environment",
+        "score_snapshots",
+        "integrity",
+        "rsi_relevance",
+        "model_coverage",
+        "sources"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "organization": {
+          "type": "string",
+          "minLength": 1
+        },
+        "release_year": {
+          "type": "integer",
+          "minimum": 2010
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 20
+        },
+        "classification": {
+          "type": "object",
+          "required": [
+            "primary_dimension",
+            "secondary_dimensions",
+            "capabilities"
+          ],
+          "properties": {
+            "primary_dimension": {
+              "type": "string",
+              "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+            },
+            "secondary_dimensions": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+              },
+              "uniqueItems": true
+            },
+            "capabilities": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+              },
+              "uniqueItems": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "urls": {
+          "type": "object",
+          "required": [
+            "paper",
+            "repository",
+            "leaderboard"
+          ],
+          "additionalProperties": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
+        "task_suite": {
+          "type": "object",
+          "required": [
+            "evaluation_units",
+            "domains",
+            "task_types",
+            "evaluation_unit_description"
+          ]
+        },
+        "input": {
+          "type": "object",
+          "required": [
+            "question_form",
+            "agent_visible",
+            "hidden",
+            "feedback_during_run"
+          ]
+        },
+        "output": {
+          "type": "object",
+          "required": [
+            "artifact",
+            "artifact_type",
+            "executable"
+          ]
+        },
+        "evaluation": {
+          "type": "object",
+          "required": [
+            "headline_metric",
+            "headline_definition",
+            "per_task_metrics",
+            "aggregation",
+            "judge_type"
+          ]
+        },
+        "environment": {
+          "type": "object",
+          "required": [
+            "isolation",
+            "time_limit_hours",
+            "accelerator",
+            "internet_policy",
+            "scaffold_policy"
+          ]
+        },
+        "score_snapshots": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "as_of",
+              "metric",
+              "scale",
+              "entries",
+              "caveat"
+            ]
+          }
+        },
+        "integrity": {
+          "type": "object",
+          "required": [
+            "primary_risks",
+            "controls"
+          ]
+        },
+        "rsi_relevance": {
+          "type": "object",
+          "required": [
+            "level",
+            "improvement_target",
+            "directly_modifies_model_weights",
+            "modifies_evaluated_agent_itself",
+            "closed_loop_feedback",
+            "artifact_persists_after_run",
+            "why_it_matters"
+          ],
+          "properties": {
+            "level": {
+              "enum": [
+                "supporting-capability",
+                "enabling-capability",
+                "advanced-enabling-capability",
+                "direct-ai-improvement",
+                "agent-self-improvement",
+                "recursive-self-improvement"
+              ]
+            },
+            "closed_loop_feedback": {
+              "enum": [
+                "none",
+                "weak",
+                "medium",
+                "strong"
+              ]
+            }
+          }
+        },
+        "model_coverage": {
+          "type": "object",
+          "required": [
+            "as_of",
+            "families"
+          ],
+          "properties": {
+            "as_of": {
+              "type": "string",
+              "format": "date"
+            },
+            "families": {
+              "type": "object",
+              "required": [
+                "gpt",
+                "claude",
+                "glm",
+                "kimi",
+                "qwen"
+              ],
+              "properties": {
+                "gpt": { "$ref": "#/$defs/modelFamilyCoverage" },
+                "claude": { "$ref": "#/$defs/modelFamilyCoverage" },
+                "glm": { "$ref": "#/$defs/modelFamilyCoverage" },
+                "kimi": { "$ref": "#/$defs/modelFamilyCoverage" },
+                "qwen": { "$ref": "#/$defs/modelFamilyCoverage" }
+              },
+              "additionalProperties": false
+            },
+            "notes": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "sources": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "required": [
+              "type",
+              "url",
+              "accessed"
+            ]
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "modelFamilyCoverage": {
+      "type": "object",
+      "required": [
+        "status",
+        "agent_models",
+        "target_models",
+        "judge_models",
+        "evidence"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "verified-agent",
+            "verified-target",
+            "verified-judge",
+            "verified-multiple-roles",
+            "not-yet-verified"
+          ]
+        },
+        "agent_models": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "target_models": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "judge_models": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["role", "source_type", "url", "accessed"],
+            "properties": {
+              "role": {
+                "enum": ["agent-model", "target-model", "judge-model"]
+              },
+              "source_type": {
+                "enum": [
+                  "official-paper",
+                  "official-repository",
+                  "official-leaderboard",
+                  "official-model-card",
+                  "third-party-reproduction"
+                ]
+              },
+              "url": { "type": "string", "format": "uri" },
+              "accessed": { "type": "string", "format": "date" }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
