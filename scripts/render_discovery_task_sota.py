@@ -14,7 +14,6 @@ ROOT = Path(__file__).resolve().parents[1]
 TASK_PATH = ROOT / "data" / "discovery-tasks.json"
 SOTA_PATH = ROOT / "data" / "discovery-task-sota.json"
 DOC_PATH = ROOT / "docs" / "all-discovery-tasks.md"
-README_PATH = ROOT / "README.md"
 TTT_TASK_PATH = ROOT / "data" / "ttt-discover-tasks.json"
 FINCH_TASK_PATH = ROOT / "data" / "finch-collection-tasks.json"
 AS_OF = "2026-08-25"
@@ -339,8 +338,8 @@ def cell(value: object) -> str:
     return str(value).replace("|", "\\|").replace("\n", " ")
 
 
-def sota_table_lines(registry: dict, sota: dict, *, readme: bool = False) -> list[str]:
-    """Build the task-first SOTA table shared by README and the detailed reference."""
+def sota_table_lines(registry: dict, sota: dict) -> list[str]:
+    """Build the task-first SOTA table for the detailed discovery reference."""
     records = {record["task_id"]: record for record in sota["records"]}
     lines = [
         "| # | Discovery task | Domain | Task origin / evaluator | SOTA method / status | Model / backbone | Result | SOTA evidence |",
@@ -348,27 +347,13 @@ def sota_table_lines(registry: dict, sota: dict, *, readme: bool = False) -> lis
     ]
     for index, task in enumerate(registry["tasks"], 1):
         record = records[task["id"]]
-        anchor = f"docs/all-discovery-tasks.md#{task['id']}" if readme else f"#{task['id']}"
+        anchor = f"#{task['id']}"
         lines.append(
             f"| {index} | [{cell(task['name'])}]({anchor}) | {cell(task['domain'])} | "
             f"[{cell(record['task_origin'])}]({record['task_url']}) | {cell(record['method'])} | {cell(record['model'])} | "
             f"{cell(result_cell(record))} | [evidence]({record['primary_result_url']}) |"
         )
     return lines
-
-
-README_TABLE_START = "<!-- DISCOVERY_SOTA_TABLE:START -->"
-README_TABLE_END = "<!-- DISCOVERY_SOTA_TABLE:END -->"
-
-
-def render_readme(readme: str, registry: dict, sota: dict) -> str:
-    """Replace only the generated README table, preserving every hand-written section."""
-    if README_TABLE_START not in readme or README_TABLE_END not in readme:
-        raise ValueError("README discovery SOTA table markers are missing")
-    before, remainder = readme.split(README_TABLE_START, 1)
-    _, after = remainder.split(README_TABLE_END, 1)
-    generated = "\n".join(sota_table_lines(registry, sota, readme=True))
-    return f"{before}{README_TABLE_START}\n{generated}\n{README_TABLE_END}{after}"
 
 
 def ttt_record_fields(task: dict, ttt: dict) -> tuple[str, str, str, str]:
@@ -653,11 +638,9 @@ def main() -> int:
     ttt = json.loads(TTT_TASK_PATH.read_text(encoding="utf-8"))
     finch = json.loads(FINCH_TASK_PATH.read_text(encoding="utf-8"))
     sota = build_sota(registry)
-    readme = README_PATH.read_text(encoding="utf-8")
     expected = {
         SOTA_PATH: serialize_sota(sota),
         DOC_PATH: render_doc(registry, sota, ttt, finch),
-        README_PATH: render_readme(readme, registry, sota),
     }
 
     if args.check:
