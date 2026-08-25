@@ -1,0 +1,1164 @@
+{
+  "$schema": "../schema/discovery-task-sota.schema.json",
+  "snapshot_date": "2026-08-25",
+  "definition": "Best result located under the exact published task contract; suite aggregates are never imputed to individual tasks.",
+  "records": [
+    {
+      "task_id": "asymmetric-matrix-multiplication",
+      "status": "task-level-current-best",
+      "scope": "task-level",
+      "system": "SimpleTES + gpt-oss-120b",
+      "score": 0.44,
+      "metric": {
+        "name": "runtime",
+        "direction": "minimize",
+        "unit": "ms"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-current-best",
+      "evidence_urls": [
+        "https://arxiv.org/html/2604.19341",
+        "https://github.com/wq-will/SimpleTES/tree/main/best_results"
+      ],
+      "notes": "Best result located under the released task evaluator. This is a source-reported record, not an independent global certification."
+    },
+    {
+      "task_id": "batched-cumulative-sum",
+      "status": "task-level-current-best",
+      "scope": "task-level",
+      "system": "SimpleTES + gpt-oss-120b",
+      "score": 0.104,
+      "metric": {
+        "name": "runtime",
+        "direction": "minimize",
+        "unit": "ms"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-current-best",
+      "evidence_urls": [
+        "https://arxiv.org/html/2604.19341",
+        "https://github.com/wq-will/SimpleTES/tree/main/best_results"
+      ],
+      "notes": "Best result located under the released task evaluator. This is a source-reported record, not an independent global certification."
+    },
+    {
+      "task_id": "cassini-trajectory",
+      "status": "task-level-current-best",
+      "scope": "task-level",
+      "system": "SimpleTES + gpt-oss-120b",
+      "score": 0.820129,
+      "metric": {
+        "name": "propulsive cost",
+        "direction": "minimize",
+        "unit": "normalized mission objective"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-current-best",
+      "evidence_urls": [
+        "https://arxiv.org/html/2604.19341",
+        "https://github.com/wq-will/SimpleTES/tree/main/best_results"
+      ],
+      "notes": "Best result located under the released task evaluator. This is a source-reported record, not an independent global certification."
+    },
+    {
+      "task_id": "circle-packing-n26",
+      "status": "task-level-current-best",
+      "scope": "task-level",
+      "system": "SimpleTES + gpt-oss-120b",
+      "score": 2.635983,
+      "metric": {
+        "name": "sum of radii",
+        "direction": "maximize",
+        "unit": "unit-square length"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-current-best",
+      "evidence_urls": [
+        "https://arxiv.org/html/2604.19341",
+        "https://github.com/wq-will/SimpleTES/tree/main/best_results"
+      ],
+      "notes": "Best result located under the released task evaluator. This is a source-reported record, not an independent global certification."
+    },
+    {
+      "task_id": "circle-packing-n32",
+      "status": "task-level-current-best",
+      "scope": "task-level",
+      "system": "SimpleTES + gpt-oss-120b",
+      "score": 2.939572,
+      "metric": {
+        "name": "sum of radii",
+        "direction": "maximize",
+        "unit": "unit-square length"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-current-best",
+      "evidence_urls": [
+        "https://arxiv.org/html/2604.19341",
+        "https://github.com/wq-will/SimpleTES/tree/main/best_results"
+      ],
+      "notes": "Best result located under the released task evaluator. This is a source-reported record, not an independent global certification."
+    },
+    {
+      "task_id": "erdos-minimum-overlap",
+      "status": "task-level-current-best",
+      "scope": "task-level",
+      "system": "SimpleTES + gpt-oss-120b",
+      "score": 0.380868,
+      "metric": {
+        "name": "overlap",
+        "direction": "minimize",
+        "unit": "dimensionless bound"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-current-best",
+      "evidence_urls": [
+        "https://arxiv.org/html/2604.19341",
+        "https://github.com/wq-will/SimpleTES/tree/main/best_results"
+      ],
+      "notes": "Best result located under the released task evaluator. This is a source-reported record, not an independent global certification."
+    },
+    {
+      "task_id": "galileo-trajectory",
+      "status": "task-level-current-best",
+      "scope": "task-level",
+      "system": "SimpleTES + gpt-oss-120b",
+      "score": 0.795108,
+      "metric": {
+        "name": "propulsive cost",
+        "direction": "minimize",
+        "unit": "normalized mission objective"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-current-best",
+      "evidence_urls": [
+        "https://arxiv.org/html/2604.19341",
+        "https://github.com/wq-will/SimpleTES/tree/main/best_results"
+      ],
+      "notes": "Best result located under the released task evaluator. This is a source-reported record, not an independent global certification."
+    },
+    {
+      "task_id": "hadamard-determinant-n29",
+      "status": "task-level-current-best",
+      "scope": "task-level",
+      "system": "SimpleTES + gpt-oss-120b",
+      "score": 0.935673,
+      "metric": {
+        "name": "normalized determinant",
+        "direction": "maximize",
+        "unit": "dimensionless"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-current-best",
+      "evidence_urls": [
+        "https://arxiv.org/html/2604.19341",
+        "https://github.com/wq-will/SimpleTES/tree/main/best_results"
+      ],
+      "notes": "Best result located under the released task evaluator. This is a source-reported record, not an independent global certification."
+    },
+    {
+      "task_id": "lasso-regularization-path",
+      "status": "task-level-current-best",
+      "scope": "task-level",
+      "system": "SimpleTES + gpt-oss-120b",
+      "score": 2502.3,
+      "metric": {
+        "name": "runtime",
+        "direction": "minimize",
+        "unit": "ms"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-current-best",
+      "evidence_urls": [
+        "https://arxiv.org/html/2604.19341",
+        "https://github.com/wq-will/SimpleTES/tree/main/best_results"
+      ],
+      "notes": "Best result located under the released task evaluator. This is a source-reported record, not an independent global certification."
+    },
+    {
+      "task_id": "mariner-10-trajectory",
+      "status": "task-level-current-best",
+      "scope": "task-level",
+      "system": "SimpleTES + gpt-oss-120b",
+      "score": 0.326993,
+      "metric": {
+        "name": "propulsive cost",
+        "direction": "minimize",
+        "unit": "normalized mission objective"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-current-best",
+      "evidence_urls": [
+        "https://arxiv.org/html/2604.19341",
+        "https://github.com/wq-will/SimpleTES/tree/main/best_results"
+      ],
+      "notes": "Best result located under the released task evaluator. This is a source-reported record, not an independent global certification."
+    },
+    {
+      "task_id": "rosetta-trajectory",
+      "status": "task-level-current-best",
+      "scope": "task-level",
+      "system": "SimpleTES + gpt-oss-120b",
+      "score": 1.552968,
+      "metric": {
+        "name": "propulsive cost",
+        "direction": "minimize",
+        "unit": "normalized mission objective"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-current-best",
+      "evidence_urls": [
+        "https://arxiv.org/html/2604.19341",
+        "https://github.com/wq-will/SimpleTES/tree/main/best_results"
+      ],
+      "notes": "Best result located under the released task evaluator. This is a source-reported record, not an independent global certification."
+    },
+    {
+      "task_id": "scaling-law-domain-mix",
+      "status": "task-level-current-best",
+      "scope": "task-level",
+      "system": "SimpleTES + gpt-oss-120b",
+      "score": 0.991,
+      "metric": {
+        "name": "extrapolation R2",
+        "direction": "maximize",
+        "unit": "coefficient of determination"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-current-best",
+      "evidence_urls": [
+        "https://arxiv.org/html/2604.19341",
+        "https://github.com/wq-will/SimpleTES/tree/main/best_results"
+      ],
+      "notes": "Best result located under the released task evaluator. This is a source-reported record, not an independent global certification."
+    },
+    {
+      "task_id": "scaling-law-lr-bsz",
+      "status": "task-level-current-best",
+      "scope": "task-level",
+      "system": "SimpleTES + gpt-oss-120b",
+      "score": 0.712,
+      "metric": {
+        "name": "extrapolation R2",
+        "direction": "maximize",
+        "unit": "coefficient of determination"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-current-best",
+      "evidence_urls": [
+        "https://arxiv.org/html/2604.19341",
+        "https://github.com/wq-will/SimpleTES/tree/main/best_results"
+      ],
+      "notes": "Best result located under the released task evaluator. This is a source-reported record, not an independent global certification."
+    },
+    {
+      "task_id": "scaling-law-parallel",
+      "status": "task-level-current-best",
+      "scope": "task-level",
+      "system": "SimpleTES + gpt-oss-120b",
+      "score": 1.0,
+      "metric": {
+        "name": "extrapolation R2",
+        "direction": "maximize",
+        "unit": "coefficient of determination"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-current-best",
+      "evidence_urls": [
+        "https://arxiv.org/html/2604.19341",
+        "https://github.com/wq-will/SimpleTES/tree/main/best_results"
+      ],
+      "notes": "Best result located under the released task evaluator. This is a source-reported record, not an independent global certification."
+    },
+    {
+      "task_id": "scaling-law-u-shape",
+      "status": "task-level-current-best",
+      "scope": "task-level",
+      "system": "SimpleTES + gpt-oss-120b",
+      "score": -0.008,
+      "metric": {
+        "name": "extrapolation R2",
+        "direction": "maximize",
+        "unit": "coefficient of determination"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-current-best",
+      "evidence_urls": [
+        "https://arxiv.org/html/2604.19341",
+        "https://github.com/wq-will/SimpleTES/tree/main/best_results"
+      ],
+      "notes": "Best result located under the released task evaluator. This is a source-reported record, not an independent global certification."
+    },
+    {
+      "task_id": "second-autocorrelation-inequality",
+      "status": "task-level-current-best",
+      "scope": "task-level",
+      "system": "SimpleTES + gpt-oss-120b",
+      "score": 0.962694,
+      "metric": {
+        "name": "bound",
+        "direction": "maximize",
+        "unit": "dimensionless"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-current-best",
+      "evidence_urls": [
+        "https://arxiv.org/html/2604.19341",
+        "https://github.com/wq-will/SimpleTES/tree/main/best_results"
+      ],
+      "notes": "Best result located under the released task evaluator. This is a source-reported record, not an independent global certification."
+    },
+    {
+      "task_id": "single-cell-rna-denoising",
+      "status": "task-level-current-best",
+      "scope": "task-level",
+      "system": "SimpleTES + gpt-oss-120b",
+      "score": 0.74,
+      "metric": {
+        "name": "denoising score",
+        "direction": "maximize",
+        "unit": "OpenProblems composite score"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-current-best",
+      "evidence_urls": [
+        "https://arxiv.org/html/2604.19341",
+        "https://github.com/wq-will/SimpleTES/tree/main/best_results"
+      ],
+      "notes": "Best result located under the released task evaluator. This is a source-reported record, not an independent global certification."
+    },
+    {
+      "task_id": "sum-difference-problem",
+      "status": "task-level-current-best",
+      "scope": "task-level",
+      "system": "SimpleTES + trajectory-level post-trained gpt-oss-120b",
+      "score": 1.144887,
+      "metric": {
+        "name": "ratio",
+        "direction": "maximize",
+        "unit": "dimensionless"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-current-best",
+      "evidence_urls": [
+        "https://arxiv.org/html/2604.19341",
+        "https://github.com/wq-will/SimpleTES/tree/main/best_results"
+      ],
+      "notes": "Best result located under the released task evaluator. This is a source-reported record, not an independent global certification."
+    },
+    {
+      "task_id": "superconducting-qubit-routing",
+      "status": "task-level-current-best",
+      "scope": "task-level",
+      "system": "SimpleTES + gpt-oss-120b",
+      "score": 15147,
+      "metric": {
+        "name": "added SWAPs",
+        "direction": "minimize",
+        "unit": "aggregate gate count"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-current-best",
+      "evidence_urls": [
+        "https://arxiv.org/html/2604.19341",
+        "https://github.com/wq-will/SimpleTES/tree/main/best_results"
+      ],
+      "notes": "Best result located under the released task evaluator. This is a source-reported record, not an independent global certification."
+    },
+    {
+      "task_id": "third-autocorrelation-inequality",
+      "status": "task-level-current-best",
+      "scope": "task-level",
+      "system": "SimpleTES + gpt-oss-120b",
+      "score": 1.453675,
+      "metric": {
+        "name": "bound",
+        "direction": "minimize",
+        "unit": "dimensionless"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-current-best",
+      "evidence_urls": [
+        "https://arxiv.org/html/2604.19341",
+        "https://github.com/wq-will/SimpleTES/tree/main/best_results"
+      ],
+      "notes": "Best result located under the released task evaluator. This is a source-reported record, not an independent global certification."
+    },
+    {
+      "task_id": "trimul-kernel",
+      "status": "task-level-current-best",
+      "scope": "task-level",
+      "system": "SimpleTES + gpt-oss-120b",
+      "score": 1.122,
+      "metric": {
+        "name": "runtime",
+        "direction": "minimize",
+        "unit": "ms"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-current-best",
+      "evidence_urls": [
+        "https://arxiv.org/html/2604.19341",
+        "https://github.com/wq-will/SimpleTES/tree/main/best_results"
+      ],
+      "notes": "Best result located under the released task evaluator. This is a source-reported record, not an independent global certification."
+    },
+    {
+      "task_id": "voyager-2-trajectory",
+      "status": "task-level-current-best",
+      "scope": "task-level",
+      "system": "SimpleTES + gpt-oss-120b",
+      "score": 3.430214,
+      "metric": {
+        "name": "propulsive cost",
+        "direction": "minimize",
+        "unit": "normalized mission objective"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-current-best",
+      "evidence_urls": [
+        "https://arxiv.org/html/2604.19341",
+        "https://github.com/wq-will/SimpleTES/tree/main/best_results"
+      ],
+      "notes": "Best result located under the released task evaluator. This is a source-reported record, not an independent global certification."
+    },
+    {
+      "task_id": "zapbench-h1",
+      "status": "task-level-current-best",
+      "scope": "task-level",
+      "system": "SimpleTES + gpt-oss-120b",
+      "score": 0.0165,
+      "metric": {
+        "name": "test MAE",
+        "direction": "minimize",
+        "unit": "normalized activity"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-current-best",
+      "evidence_urls": [
+        "https://arxiv.org/html/2604.19341",
+        "https://github.com/wq-will/SimpleTES/tree/main/best_results"
+      ],
+      "notes": "Best result located under the released task evaluator. This is a source-reported record, not an independent global certification."
+    },
+    {
+      "task_id": "zapbench-h4",
+      "status": "task-level-current-best",
+      "scope": "task-level",
+      "system": "SimpleTES + gpt-oss-120b",
+      "score": 0.0211,
+      "metric": {
+        "name": "test MAE",
+        "direction": "minimize",
+        "unit": "normalized activity"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-current-best",
+      "evidence_urls": [
+        "https://arxiv.org/html/2604.19341",
+        "https://github.com/wq-will/SimpleTES/tree/main/best_results"
+      ],
+      "notes": "Best result located under the released task evaluator. This is a source-reported record, not an independent global certification."
+    },
+    {
+      "task_id": "zapbench-h8",
+      "status": "task-level-current-best",
+      "scope": "task-level",
+      "system": "SimpleTES + gpt-oss-120b",
+      "score": 0.023,
+      "metric": {
+        "name": "test MAE",
+        "direction": "minimize",
+        "unit": "normalized activity"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-current-best",
+      "evidence_urls": [
+        "https://arxiv.org/html/2604.19341",
+        "https://github.com/wq-will/SimpleTES/tree/main/best_results"
+      ],
+      "notes": "Best result located under the released task evaluator. This is a source-reported record, not an independent global certification."
+    },
+    {
+      "task_id": "zapbench-h16",
+      "status": "task-level-current-best",
+      "scope": "task-level",
+      "system": "SimpleTES + gpt-oss-120b",
+      "score": 0.0251,
+      "metric": {
+        "name": "test MAE",
+        "direction": "minimize",
+        "unit": "normalized activity"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-current-best",
+      "evidence_urls": [
+        "https://arxiv.org/html/2604.19341",
+        "https://github.com/wq-will/SimpleTES/tree/main/best_results"
+      ],
+      "notes": "Best result located under the released task evaluator. This is a source-reported record, not an independent global certification."
+    },
+    {
+      "task_id": "zapbench-h32",
+      "status": "task-level-current-best",
+      "scope": "task-level",
+      "system": "SimpleTES + gpt-oss-120b",
+      "score": 0.0259,
+      "metric": {
+        "name": "test MAE",
+        "direction": "minimize",
+        "unit": "normalized activity"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-current-best",
+      "evidence_urls": [
+        "https://arxiv.org/html/2604.19341",
+        "https://github.com/wq-will/SimpleTES/tree/main/best_results"
+      ],
+      "notes": "Best result located under the released task evaluator. This is a source-reported record, not an independent global certification."
+    },
+    {
+      "task_id": "zoned-neutral-atom-compilation",
+      "status": "task-level-current-best",
+      "scope": "task-level",
+      "system": "SimpleTES + gpt-oss-120b",
+      "score": 19507.5,
+      "metric": {
+        "name": "execution time",
+        "direction": "minimize",
+        "unit": "geometric-mean simulator time"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-current-best",
+      "evidence_urls": [
+        "https://arxiv.org/html/2604.19341",
+        "https://github.com/wq-will/SimpleTES/tree/main/best_results"
+      ],
+      "notes": "Best result located under the released task evaluator. This is a source-reported record, not an independent global certification."
+    },
+    {
+      "task_id": "arc-agi-3-ls20",
+      "status": "suite-level-only",
+      "scope": "suite-level",
+      "system": null,
+      "score": null,
+      "metric": {
+        "name": "Relative Human Action Efficiency (RHAE)",
+        "direction": "maximize",
+        "unit": "percent"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "community-self-reported-no-task-breakdown",
+      "suite_best": {
+        "system": "Tycho",
+        "score": 100.0,
+        "metric_name": "ARC-AGI-3 public-demo RHAE score",
+        "unit": "percent"
+      },
+      "evidence_urls": [
+        "https://arcprize.org/leaderboard/community",
+        "https://arcprize.org/scorecards/08b98aa0-5df0-42c0-b501-856f553a21e9",
+        "https://arcprize.org/media/ARC_AGI_3_Technical_Report.pdf"
+      ],
+      "notes": "The official community page reports Tycho at 100.0% on the public-demo suite, but labels community results self-reported and does not expose an attributable per-game breakdown. The suite score must not be copied into this task row."
+    },
+    {
+      "task_id": "arc-agi-3-ft09",
+      "status": "suite-level-only",
+      "scope": "suite-level",
+      "system": null,
+      "score": null,
+      "metric": {
+        "name": "Relative Human Action Efficiency (RHAE)",
+        "direction": "maximize",
+        "unit": "percent"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "community-self-reported-no-task-breakdown",
+      "suite_best": {
+        "system": "Tycho",
+        "score": 100.0,
+        "metric_name": "ARC-AGI-3 public-demo RHAE score",
+        "unit": "percent"
+      },
+      "evidence_urls": [
+        "https://arcprize.org/leaderboard/community",
+        "https://arcprize.org/scorecards/08b98aa0-5df0-42c0-b501-856f553a21e9",
+        "https://arcprize.org/media/ARC_AGI_3_Technical_Report.pdf",
+        "https://arcprize.org/replay/591e7e51-5004-4510-9e03-eca2b2d81edb?frame=19"
+      ],
+      "notes": "The official community page reports Tycho at 100.0% on the public-demo suite, but labels community results self-reported and does not expose an attributable per-game breakdown. The suite score must not be copied into this task row. A public ft09 replay reaches 100%, but its model and harness fields are blank."
+    },
+    {
+      "task_id": "arc-agi-3-vc33",
+      "status": "suite-level-only",
+      "scope": "suite-level",
+      "system": null,
+      "score": null,
+      "metric": {
+        "name": "Relative Human Action Efficiency (RHAE)",
+        "direction": "maximize",
+        "unit": "percent"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "community-self-reported-no-task-breakdown",
+      "suite_best": {
+        "system": "Tycho",
+        "score": 100.0,
+        "metric_name": "ARC-AGI-3 public-demo RHAE score",
+        "unit": "percent"
+      },
+      "evidence_urls": [
+        "https://arcprize.org/leaderboard/community",
+        "https://arcprize.org/scorecards/08b98aa0-5df0-42c0-b501-856f553a21e9",
+        "https://arcprize.org/media/ARC_AGI_3_Technical_Report.pdf"
+      ],
+      "notes": "The official community page reports Tycho at 100.0% on the public-demo suite, but labels community results self-reported and does not expose an attributable per-game breakdown. The suite score must not be copied into this task row."
+    },
+    {
+      "task_id": "dig-bench-p-1",
+      "status": "suite-level-only",
+      "scope": "suite-level",
+      "system": null,
+      "score": null,
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-no-task-breakdown",
+      "suite_best": {
+        "system": "Claude Opus 5, basic harness",
+        "score": 50,
+        "metric_name": "games won",
+        "unit": "games out of 70"
+      },
+      "human_reference": "Every game was solved by at least one human on the first attempt.",
+      "evidence_urls": [
+        "https://arxiv.org/html/2608.12593",
+        "https://digbench.ai/"
+      ],
+      "notes": "The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA."
+    },
+    {
+      "task_id": "dig-bench-p-2",
+      "status": "suite-level-only",
+      "scope": "suite-level",
+      "system": null,
+      "score": null,
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-no-task-breakdown",
+      "suite_best": {
+        "system": "Claude Opus 5, basic harness",
+        "score": 50,
+        "metric_name": "games won",
+        "unit": "games out of 70"
+      },
+      "human_reference": "Every game was solved by at least one human on the first attempt.",
+      "evidence_urls": [
+        "https://arxiv.org/html/2608.12593",
+        "https://digbench.ai/"
+      ],
+      "notes": "The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA."
+    },
+    {
+      "task_id": "dig-bench-p-3",
+      "status": "suite-level-only",
+      "scope": "suite-level",
+      "system": null,
+      "score": null,
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-no-task-breakdown",
+      "suite_best": {
+        "system": "Claude Opus 5, basic harness",
+        "score": 50,
+        "metric_name": "games won",
+        "unit": "games out of 70"
+      },
+      "human_reference": "Every game was solved by at least one human on the first attempt.",
+      "evidence_urls": [
+        "https://arxiv.org/html/2608.12593",
+        "https://digbench.ai/"
+      ],
+      "notes": "The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA."
+    },
+    {
+      "task_id": "dig-bench-p-4",
+      "status": "suite-level-only",
+      "scope": "suite-level",
+      "system": null,
+      "score": null,
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-no-task-breakdown",
+      "suite_best": {
+        "system": "Claude Opus 5, basic harness",
+        "score": 50,
+        "metric_name": "games won",
+        "unit": "games out of 70"
+      },
+      "human_reference": "Every game was solved by at least one human on the first attempt.",
+      "evidence_urls": [
+        "https://arxiv.org/html/2608.12593",
+        "https://digbench.ai/"
+      ],
+      "notes": "The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA."
+    },
+    {
+      "task_id": "dig-bench-p-5",
+      "status": "suite-level-only",
+      "scope": "suite-level",
+      "system": null,
+      "score": null,
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-no-task-breakdown",
+      "suite_best": {
+        "system": "Claude Opus 5, basic harness",
+        "score": 50,
+        "metric_name": "games won",
+        "unit": "games out of 70"
+      },
+      "human_reference": "Every game was solved by at least one human on the first attempt.",
+      "evidence_urls": [
+        "https://arxiv.org/html/2608.12593",
+        "https://digbench.ai/"
+      ],
+      "notes": "The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA."
+    },
+    {
+      "task_id": "dig-bench-p-6",
+      "status": "suite-level-only",
+      "scope": "suite-level",
+      "system": null,
+      "score": null,
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-no-task-breakdown",
+      "suite_best": {
+        "system": "Claude Opus 5, basic harness",
+        "score": 50,
+        "metric_name": "games won",
+        "unit": "games out of 70"
+      },
+      "human_reference": "Every game was solved by at least one human on the first attempt.",
+      "evidence_urls": [
+        "https://arxiv.org/html/2608.12593",
+        "https://digbench.ai/"
+      ],
+      "notes": "The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA."
+    },
+    {
+      "task_id": "dig-bench-p-7",
+      "status": "suite-level-only",
+      "scope": "suite-level",
+      "system": null,
+      "score": null,
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-no-task-breakdown",
+      "suite_best": {
+        "system": "Claude Opus 5, basic harness",
+        "score": 50,
+        "metric_name": "games won",
+        "unit": "games out of 70"
+      },
+      "human_reference": "Every game was solved by at least one human on the first attempt.",
+      "evidence_urls": [
+        "https://arxiv.org/html/2608.12593",
+        "https://digbench.ai/"
+      ],
+      "notes": "The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA."
+    },
+    {
+      "task_id": "dig-bench-p-8",
+      "status": "suite-level-only",
+      "scope": "suite-level",
+      "system": null,
+      "score": null,
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-no-task-breakdown",
+      "suite_best": {
+        "system": "Claude Opus 5, basic harness",
+        "score": 50,
+        "metric_name": "games won",
+        "unit": "games out of 70"
+      },
+      "human_reference": "Every game was solved by at least one human on the first attempt.",
+      "evidence_urls": [
+        "https://arxiv.org/html/2608.12593",
+        "https://digbench.ai/"
+      ],
+      "notes": "The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA."
+    },
+    {
+      "task_id": "dig-bench-p-9",
+      "status": "suite-level-only",
+      "scope": "suite-level",
+      "system": null,
+      "score": null,
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-no-task-breakdown",
+      "suite_best": {
+        "system": "Claude Opus 5, basic harness",
+        "score": 50,
+        "metric_name": "games won",
+        "unit": "games out of 70"
+      },
+      "human_reference": "Every game was solved by at least one human on the first attempt.",
+      "evidence_urls": [
+        "https://arxiv.org/html/2608.12593",
+        "https://digbench.ai/"
+      ],
+      "notes": "The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA."
+    },
+    {
+      "task_id": "dig-bench-p-10",
+      "status": "suite-level-only",
+      "scope": "suite-level",
+      "system": null,
+      "score": null,
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-no-task-breakdown",
+      "suite_best": {
+        "system": "Claude Opus 5, basic harness",
+        "score": 50,
+        "metric_name": "games won",
+        "unit": "games out of 70"
+      },
+      "human_reference": "Every game was solved by at least one human on the first attempt.",
+      "evidence_urls": [
+        "https://arxiv.org/html/2608.12593",
+        "https://digbench.ai/"
+      ],
+      "notes": "The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA."
+    },
+    {
+      "task_id": "dig-bench-p-11",
+      "status": "suite-level-only",
+      "scope": "suite-level",
+      "system": null,
+      "score": null,
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-no-task-breakdown",
+      "suite_best": {
+        "system": "Claude Opus 5, basic harness",
+        "score": 50,
+        "metric_name": "games won",
+        "unit": "games out of 70"
+      },
+      "human_reference": "Every game was solved by at least one human on the first attempt.",
+      "evidence_urls": [
+        "https://arxiv.org/html/2608.12593",
+        "https://digbench.ai/"
+      ],
+      "notes": "The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA."
+    },
+    {
+      "task_id": "dig-bench-p-12",
+      "status": "suite-level-only",
+      "scope": "suite-level",
+      "system": null,
+      "score": null,
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-no-task-breakdown",
+      "suite_best": {
+        "system": "Claude Opus 5, basic harness",
+        "score": 50,
+        "metric_name": "games won",
+        "unit": "games out of 70"
+      },
+      "human_reference": "Every game was solved by at least one human on the first attempt.",
+      "evidence_urls": [
+        "https://arxiv.org/html/2608.12593",
+        "https://digbench.ai/"
+      ],
+      "notes": "The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA."
+    },
+    {
+      "task_id": "dig-bench-p-13",
+      "status": "suite-level-only",
+      "scope": "suite-level",
+      "system": null,
+      "score": null,
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-no-task-breakdown",
+      "suite_best": {
+        "system": "Claude Opus 5, basic harness",
+        "score": 50,
+        "metric_name": "games won",
+        "unit": "games out of 70"
+      },
+      "human_reference": "Every game was solved by at least one human on the first attempt.",
+      "evidence_urls": [
+        "https://arxiv.org/html/2608.12593",
+        "https://digbench.ai/"
+      ],
+      "notes": "The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA."
+    },
+    {
+      "task_id": "dig-bench-p-14",
+      "status": "suite-level-only",
+      "scope": "suite-level",
+      "system": null,
+      "score": null,
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-no-task-breakdown",
+      "suite_best": {
+        "system": "Claude Opus 5, basic harness",
+        "score": 50,
+        "metric_name": "games won",
+        "unit": "games out of 70"
+      },
+      "human_reference": "Every game was solved by at least one human on the first attempt.",
+      "evidence_urls": [
+        "https://arxiv.org/html/2608.12593",
+        "https://digbench.ai/"
+      ],
+      "notes": "The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA."
+    },
+    {
+      "task_id": "dig-bench-p-15",
+      "status": "suite-level-only",
+      "scope": "suite-level",
+      "system": null,
+      "score": null,
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-no-task-breakdown",
+      "suite_best": {
+        "system": "Claude Opus 5, basic harness",
+        "score": 50,
+        "metric_name": "games won",
+        "unit": "games out of 70"
+      },
+      "human_reference": "Every game was solved by at least one human on the first attempt.",
+      "evidence_urls": [
+        "https://arxiv.org/html/2608.12593",
+        "https://digbench.ai/"
+      ],
+      "notes": "The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA."
+    },
+    {
+      "task_id": "dig-bench-p-16",
+      "status": "suite-level-only",
+      "scope": "suite-level",
+      "system": null,
+      "score": null,
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-no-task-breakdown",
+      "suite_best": {
+        "system": "Claude Opus 5, basic harness",
+        "score": 50,
+        "metric_name": "games won",
+        "unit": "games out of 70"
+      },
+      "human_reference": "Every game was solved by at least one human on the first attempt.",
+      "evidence_urls": [
+        "https://arxiv.org/html/2608.12593",
+        "https://digbench.ai/"
+      ],
+      "notes": "The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA."
+    },
+    {
+      "task_id": "dig-bench-p-17",
+      "status": "suite-level-only",
+      "scope": "suite-level",
+      "system": null,
+      "score": null,
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-no-task-breakdown",
+      "suite_best": {
+        "system": "Claude Opus 5, basic harness",
+        "score": 50,
+        "metric_name": "games won",
+        "unit": "games out of 70"
+      },
+      "human_reference": "Every game was solved by at least one human on the first attempt.",
+      "evidence_urls": [
+        "https://arxiv.org/html/2608.12593",
+        "https://digbench.ai/"
+      ],
+      "notes": "The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA."
+    },
+    {
+      "task_id": "dig-bench-p-18",
+      "status": "suite-level-only",
+      "scope": "suite-level",
+      "system": null,
+      "score": null,
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-no-task-breakdown",
+      "suite_best": {
+        "system": "Claude Opus 5, basic harness",
+        "score": 50,
+        "metric_name": "games won",
+        "unit": "games out of 70"
+      },
+      "human_reference": "Every game was solved by at least one human on the first attempt.",
+      "evidence_urls": [
+        "https://arxiv.org/html/2608.12593",
+        "https://digbench.ai/"
+      ],
+      "notes": "The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA."
+    },
+    {
+      "task_id": "dig-bench-p-19",
+      "status": "suite-level-only",
+      "scope": "suite-level",
+      "system": null,
+      "score": null,
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-no-task-breakdown",
+      "suite_best": {
+        "system": "Claude Opus 5, basic harness",
+        "score": 50,
+        "metric_name": "games won",
+        "unit": "games out of 70"
+      },
+      "human_reference": "Every game was solved by at least one human on the first attempt.",
+      "evidence_urls": [
+        "https://arxiv.org/html/2608.12593",
+        "https://digbench.ai/"
+      ],
+      "notes": "The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA."
+    },
+    {
+      "task_id": "dig-bench-p-20",
+      "status": "suite-level-only",
+      "scope": "suite-level",
+      "system": null,
+      "score": null,
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-no-task-breakdown",
+      "suite_best": {
+        "system": "Claude Opus 5, basic harness",
+        "score": 50,
+        "metric_name": "games won",
+        "unit": "games out of 70"
+      },
+      "human_reference": "Every game was solved by at least one human on the first attempt.",
+      "evidence_urls": [
+        "https://arxiv.org/html/2608.12593",
+        "https://digbench.ai/"
+      ],
+      "notes": "The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA."
+    },
+    {
+      "task_id": "dig-bench-p-21",
+      "status": "suite-level-only",
+      "scope": "suite-level",
+      "system": null,
+      "score": null,
+      "metric": {
+        "name": "win rate",
+        "direction": "maximize",
+        "unit": "fraction of runs"
+      },
+      "as_of": "2026-08-25",
+      "evidence_status": "source-reported-no-task-breakdown",
+      "suite_best": {
+        "system": "Claude Opus 5, basic harness",
+        "score": 50,
+        "metric_name": "games won",
+        "unit": "games out of 70"
+      },
+      "human_reference": "Every game was solved by at least one human on the first attempt.",
+      "evidence_urls": [
+        "https://arxiv.org/html/2608.12593",
+        "https://digbench.ai/"
+      ],
+      "notes": "The paper publishes a 50/70 suite-level best but no official per-game result table for P-1 through P-21. Human solvability is a reference, not a model SOTA."
+    }
+  ]
+}

@@ -14,6 +14,8 @@ from urllib.parse import urlparse
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY_PATH = ROOT / "data" / "discovery-tasks.json"
 DOC_PATH = ROOT / "docs" / "discovery-tasks.md"
+ALL_TASKS_DOC_PATH = ROOT / "docs" / "all-discovery-tasks.md"
+SOTA_PATH = ROOT / "data" / "discovery-task-sota.json"
 ID_PATTERN = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 SEMVER_PATTERN = re.compile(r"^[0-9]+\.[0-9]+\.[0-9]+$")
 DOMAINS = {
@@ -132,6 +134,7 @@ def validate() -> list[str]:
         return errors + ["tasks must be a non-empty array"]
 
     docs = DOC_PATH.read_text(encoding="utf-8") if DOC_PATH.exists() else ""
+    all_tasks_doc = ALL_TASKS_DOC_PATH.read_text(encoding="utf-8") if ALL_TASKS_DOC_PATH.exists() else ""
     seen_ids: set[str] = set()
     for index, task in enumerate(tasks):
         prefix = f"tasks[{index}]"
@@ -194,6 +197,54 @@ def validate() -> list[str]:
 
         if task["name"] not in docs:
             errors.append(f"{task_id}: task name is missing from docs/discovery-tasks.md")
+
+        if f'<a id="{task_id}"></a>' not in all_tasks_doc:
+            errors.append(f"{task_id}: task anchor is missing from docs/all-discovery-tasks.md")
+
+    try:
+        sota = json.loads(SOTA_PATH.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        return errors + [f"Cannot load {SOTA_PATH}: {exc}"]
+
+    if not is_iso_date(sota.get("snapshot_date")):
+        errors.append("SOTA snapshot_date must be an ISO date")
+    records = sota.get("records")
+    if not isinstance(records, list):
+        return errors + ["SOTA records must be an array"]
+
+    record_ids: set[str] = set()
+    tasks_by_id = {task["id"]: task for task in tasks}
+    for index, record in enumerate(records):
+        prefix = f"sota.records[{index}]"
+        task_id = record.get("task_id")
+        if task_id in record_ids:
+            errors.append(f"duplicate SOTA task id: {task_id}")
+        record_ids.add(task_id)
+        task = tasks_by_id.get(task_id)
+        if task is None:
+            errors.append(f"{prefix}: unknown task_id {task_id!r}")
+            continue
+        if record.get("metric") != task["metric"]:
+            errors.append(f"{task_id}: SOTA metric does not match task registry")
+        if not is_iso_date(record.get("as_of")):
+            errors.append(f"{task_id}: SOTA as_of must be an ISO date")
+        if not isinstance(record.get("evidence_urls"), list) or not record["evidence_urls"]:
+            errors.append(f"{task_id}: SOTA evidence_urls must be a non-empty array")
+        elif any(not is_https_url(url) for url in record["evidence_urls"]):
+            errors.append(f"{task_id}: every SOTA evidence URL must use HTTPS")
+        if record.get("status") == "task-level-current-best":
+            if record.get("scope") != "task-level" or not isinstance(record.get("score"), (int, float)) or not record.get("system"):
+                errors.append(f"{task_id}: task-level SOTA requires task scope, system, and numeric score")
+        elif record.get("status") == "suite-level-only":
+            if record.get("scope") != "suite-level" or record.get("score") is not None or record.get("system") is not None or not isinstance(record.get("suite_best"), dict):
+                errors.append(f"{task_id}: suite-only SOTA must keep task score/system null and declare suite_best")
+        else:
+            errors.append(f"{task_id}: invalid SOTA status")
+
+    if record_ids != seen_ids:
+        missing = sorted(seen_ids - record_ids)
+        extra = sorted(record_ids - seen_ids)
+        errors.append(f"SOTA coverage mismatch; missing={missing}, extra={extra}")
 
     return errors
 

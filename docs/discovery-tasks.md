@@ -41,7 +41,7 @@ The second mode is documented in depth in [Interactive Discovery Tasks](interact
 1. a **source suite** that currently exposes 28 task packages; and
 2. an **evaluated discovery system** that produced the reported candidate results.
 
-The source reports `gpt-oss-20b` as the generator for the comparison summarized here. Matched runs using GPT, Claude, GLM, Kimi, and Qwen agents have not yet been recorded for these 28 task contracts; those cells should remain unknown rather than inferred from other benchmarks.
+The current paper reports `gpt-oss-120b` as the generator for the comparison summarized here. Matched runs using GPT, Claude, GLM, Kimi, and Qwen agents have not yet been recorded for these 28 task contracts; those cells should remain unknown rather than inferred from other benchmarks.
 
 The shared task contract is concrete:
 
@@ -154,7 +154,7 @@ Scores below reproduce the supplied comparison table and are labeled **source-re
 | **Erdős minimum overlap** | Overlap ↓ | Together AI: 0.380871 | 0.380868 | Reported improvement; certification caveat |
 | **Second autocorrelation inequality** | Bound ↑ | Together AI: 0.961206 | 0.962694 | Improved |
 | **Third autocorrelation inequality** | Bound ↓ | Together AI: 1.454555 | 1.453675 | Improved |
-| **Sum-Difference problem** | Ratio ↑ | AlphaEvolve V2: 1.121936 | 1.143975 | Improved |
+| **Sum-Difference problem** | Ratio ↑ | AlphaEvolve V2: 1.121936 | 1.144887 (post-trained) | Improved |
 | **Circle packing in a unit square (n=26)** | Sum of radii ↑ | AlphaEvolve V2: 2.635983 | 2.635983 | Matched at shown precision |
 | **Circle packing in a unit square (n=32)** | Sum of radii ↑ | AlphaEvolve V2: 2.939572 | 2.939572 | Matched at shown precision |
 | **Hadamard maximum determinant (n=29)** | Normalized determinant ↑ | Orrick: 0.935673 | 0.935673 | Matched at shown precision |

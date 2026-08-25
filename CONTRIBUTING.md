@@ -76,6 +76,7 @@ Blog posts and benchmark aggregators may help discovery but should not be the on
 - [ ] At least two primary sources are linked.
 - [ ] `python scripts/validate_registry.py` passes.
 - [ ] `python scripts/validate_discovery_tasks.py` passes when task data changes.
+- [ ] `python scripts/render_discovery_task_sota.py --check` confirms the all-task SOTA reference is current.
 - [ ] `python scripts/validate_benchmark_metadata.py` passes.
 - [ ] The README landscape is updated when the new entry represents a new category.
 

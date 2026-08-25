@@ -1,6 +1,6 @@
 {
   "$schema": "../schema/discovery-task.schema.json",
-  "registry_version": "0.2.0",
+  "registry_version": "0.2.1",
   "last_updated": "2026-08-25",
   "source_suites": [
     {
@@ -48,7 +48,7 @@
       "id": "simpletes",
       "name": "SimpleTES",
       "role": "task-source-and-evaluated-system",
-      "evaluated_model": "gpt-oss-20b",
+      "evaluated_model": "gpt-oss-120b",
       "result_status": "source-reported",
       "paper": "https://arxiv.org/abs/2604.19341",
       "repository": "https://github.com/wq-will/SimpleTES",
@@ -57,7 +57,7 @@
       "task_count": 28,
       "public_task_count": 28,
       "model_families": ["other"],
-      "notes": "The source reports gpt-oss-20b as the evaluated generator; matched runs for the five tracked frontier model families remain open."
+      "notes": "The current paper reports gpt-oss-120b as the evaluated generator; matched runs for the five tracked frontier model families remain open."
     }
   ],
   "tasks": [
@@ -362,10 +362,10 @@
       "evaluation": "Validate the construction and recompute the objective from its sumset and difference set.",
       "environment": "Python; no external task setup listed.",
       "reference_result": {"system": "AlphaEvolve V2", "score": 1.121936},
-      "reported_result": {"system": "SimpleTES", "score": 1.143975},
+      "reported_result": {"system": "SimpleTES + trajectory-level post-trained gpt-oss-120b", "score": 1.144887},
       "outcome": "improved",
       "evidence_urls": ["https://arxiv.org/abs/2604.19341", "https://github.com/wq-will/SimpleTES/blob/main/best_results/README.md"],
-      "integrity_notes": "Source-reported rounded score; verify the released set and exact objective independently."
+      "integrity_notes": "The current paper reports 1.143975 for the training-free run and 1.144887 after trajectory-level post-training. Verify the released set and exact objective independently."
     },
     {
       "id": "superconducting-qubit-routing",

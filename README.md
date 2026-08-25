@@ -10,7 +10,7 @@
 ![Validation](https://img.shields.io/badge/validation-passing-16a34a)
 [![License: MIT](https://img.shields.io/badge/license-MIT-f59e0b.svg)](LICENSE)
 
-[Discovery Tasks](docs/discovery-tasks.md) · [Interactive Discovery](docs/interactive-discovery-tasks.md) · [Launch & Stars](docs/benchmark-release-and-stars.md) · [Task JSON](data/discovery-tasks.json) · [2026 Frontier Tracker](docs/2026-frontier-benchmarks.md) · [Benchmark Dimensions](docs/benchmark-dimensions.md) · [Model Coverage](docs/model-coverage.md) · [Suite JSON](data/benchmarks.json) · [Contributing](CONTRIBUTING.md)
+[All Discovery Tasks + SOTA](docs/all-discovery-tasks.md) · [Discovery Overview](docs/discovery-tasks.md) · [Interactive Discovery](docs/interactive-discovery-tasks.md) · [Launch & Stars](docs/benchmark-release-and-stars.md) · [Task JSON](data/discovery-tasks.json) · [SOTA JSON](data/discovery-task-sota.json) · [2026 Frontier Tracker](docs/2026-frontier-benchmarks.md) · [Benchmark Dimensions](docs/benchmark-dimensions.md) · [Model Coverage](docs/model-coverage.md) · [Suite JSON](data/benchmarks.json) · [Contributing](CONTRIBUTING.md)
 
 </div>
 
@@ -43,6 +43,7 @@ We therefore treat every score as a result of a complete experimental configurat
 
 ## 🔥 News
 
+- **2026-08-25** — Published a single-file reference for all 52 discovery tasks with complete task contracts, task-level current-best results where available, suite-only evidence where per-task results are not public, and a validated machine-readable SOTA snapshot.
 - **2026-08-25** — Added launch dates and dated GitHub-star snapshots for all 59 benchmark entries, including live star badges, explicit date precision, repository-scope labels, and CI coverage checks.
 - **2026-08-25** — Added an interactive-discovery layer with ARC-AGI-3 and DiG-bench: 24 individually verified public environments, exact action/feedback/score contracts, private-split safeguards, and official frontier-model coverage.
 - **2026-08-25** — Refocused the repository on executable discovery tasks and added a validated 28-task SimpleTES registry across quantum compilation, astrodynamics, scientific algorithms, AI foundations, and mathematics discovery.
@@ -122,7 +123,7 @@ The catalog separates three layers:
 | **Task suite/source** | SimpleTES, ARC-AGI-3, DiG-bench | Provenance grouping that exposes one or more tasks |
 | **Method or evaluated system** | SimpleTES search, TTT-Discover, EFT, AlphaEvolve | Attached to a result or configuration; not treated as the task itself |
 
-The [Discovery Task Registry](docs/discovery-tasks.md) contains **52 individually verified tasks** from three source suites:
+The [all-in-one Discovery Task + SOTA reference](docs/all-discovery-tasks.md) contains **52 individually verified tasks** from three source suites; the shorter [registry overview](docs/discovery-tasks.md) remains available for landscape browsing:
 
 | Domain | Tasks | Examples |
 |---|---:|---|
@@ -133,7 +134,7 @@ The [Discovery Task Registry](docs/discovery-tasks.md) contains **52 individuall
 | Mathematics discovery | 7 | Erdős minimum overlap, autocorrelation inequalities, sum-difference, circle packing, and Hadamard determinant |
 | Interactive world discovery | 24 | ARC-AGI-3's three anonymous public games and DiG-bench P-1 through P-21 |
 
-Each task is available in [machine-readable JSON](data/discovery-tasks.json). The full source suites are larger—ARC-AGI-3 has 135 environments and DiG-bench has 70—but private environments and public IDs that cannot yet be authenticated are not fabricated as task rows. See [Interactive Discovery Tasks](docs/interactive-discovery-tasks.md) for the protocol and extraction policy.
+Each task is available in [machine-readable JSON](data/discovery-tasks.json), with a separate [dated SOTA snapshot](data/discovery-task-sota.json). Of the 52 tasks, 28 currently have a task-level best result under the released evaluator. The other 24 expose only suite-level results, which are explicitly not imputed to individual tasks. The full source suites are larger—ARC-AGI-3 has 135 environments and DiG-bench has 70—but private environments and public IDs that cannot yet be authenticated are not fabricated as task rows. See [Interactive Discovery Tasks](docs/interactive-discovery-tasks.md) for the protocol and extraction policy.
 
 ## 🗓️ Launch dates and GitHub stars
 
@@ -354,6 +355,7 @@ Validate locally:
 ```bash
 python scripts/validate_registry.py
 python scripts/validate_discovery_tasks.py
+python scripts/render_discovery_task_sota.py --check
 ```
 
 ## ✅ Inclusion criteria
@@ -392,6 +394,7 @@ Before opening a PR:
 4. Distinguish agent, target, and judge models.
 5. Run `python scripts/validate_registry.py`.
 6. Run `python scripts/validate_discovery_tasks.py` when changing the task registry.
+7. Run `python scripts/render_discovery_task_sota.py --check` when changing task or SOTA data.
 
 ## 🔗 Related repositories
 
