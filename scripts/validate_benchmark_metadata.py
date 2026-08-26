@@ -101,9 +101,12 @@ def validate() -> list[str]:
             errors.append(f"{benchmark_id}: missing from metadata documentation")
 
     readme = README_PATH.read_text(encoding="utf-8")
-    catalog_start = readme.index("### AI R&D and scientific discovery")
-    catalog_end = readme.index("## 🤖 Model-family coverage")
-    catalog_names = set(CATALOG_ROW.findall(readme[catalog_start:catalog_end]))
+    papers_heading = "## Papers"
+    if papers_heading not in readme:
+        errors.append("README is missing the Papers section")
+        catalog_names: set[str] = set()
+    else:
+        catalog_names = set(CATALOG_ROW.findall(readme[readme.index(papers_heading) :]))
     cua_gui = json.loads(CUA_GUI_PATH.read_text(encoding="utf-8"))
     cua_gui_names = {entry["name"] for entry in cua_gui.get("benchmarks", [])}
     missing_catalog = sorted(catalog_names - names - cua_gui_names)
