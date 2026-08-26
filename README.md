@@ -33,18 +33,18 @@ Dimensions describe **what the benchmark evaluates**. SFT, DPO, GRPO, RLHF, LoRA
 
 ## Papers
 
-Stars are a **2026-08-25 snapshot** of the official benchmark repository (or a clearly marked shared toolkit); frontier results were checked on **2026-08-26**. `N/A` means that no verified official GitHub repository was available. Results are only compared within the same benchmark version, track, and harness policy; a newly released model is not labeled SOTA until a result exists. `—` means that no trustworthy single leader could be established.
+Stars are a **2026-08-25 snapshot** of the official benchmark repository (or a clearly marked shared toolkit); frontier results were checked on **2026-08-26**. `N/A` means that no verified official GitHub repository was available. Results are only compared within the same benchmark version, track, and harness policy; a newly released model is not labeled SOTA until a result exists. `Official board` means a benchmark-owner leaderboard, `method-reported` means a paper or agent repository result not yet on that board, and `vendor-reported` means a model-provider evaluation that may use a different harness. `—` means that no trustworthy single leader could be established.
 
 ### AI R&D and scientific discovery
 
 | Benchmark | Stars | Current SOTA / frontier results | Paper / Primary resources |
 |---|---:|---|---|
 | **MLE-bench** | 1,716 | Famou-Agent 2.0 + Gemini-3-Pro-Preview — 64.44% (latest official board) | [Paper](https://arxiv.org/abs/2410.07095); [Code](https://github.com/openai/mle-bench); [Leaderboard](https://www.mlebench.com/) |
-| **NatureBench** | 102 | Opus 5 + Claude Code — 23.3% Surpass-SOTA | [Paper](https://arxiv.org/abs/2606.24530); [Code](https://github.com/FrontisAI/NatureBench); [Leaderboard](https://frontisai.github.io/NatureBench/) |
+| **NatureBench** | 102 | Opus 5 + Claude Code / AIBuildAI 2.5 — 23.3% Surpass-SOTA (tied; Opus ranks first on secondary metrics) | [Paper](https://arxiv.org/abs/2606.24530); [Code](https://github.com/FrontisAI/NatureBench); [Leaderboard](https://frontisai.github.io/NatureBench/) |
 | **PostTrainBench** | 532 | Fable 5 + Claude Code Max — 41.79% (GPQA uses Opus 4.8 fallback); GPT-5.6 Sol run flagged | [Paper](https://arxiv.org/abs/2603.08640); [Code](https://github.com/aisa-group/PostTrainBench); [Leaderboard](https://posttrainbench.com/) |
 | **ARC-AGI-3** | 69 | Opus 5 — 30.2% verified track; [Tycho](https://arcprize.org/leaderboard/community) — 100% public-demo track | [Report](https://arcprize.org/media/ARC_AGI_3_Technical_Report.pdf); [Toolkit](https://github.com/arcprize/ARC-AGI); [Leaderboard](https://arcprize.org/arc-agi/3/leaderboard) |
 | **DiG-bench** | 24 | Opus 5 + Prime Agent | [Paper](https://arxiv.org/abs/2608.12593); [Code](https://github.com/discos-research/dig-bench); [Leaderboard](https://digbench.ai/) |
-| **EdgeBench** | 432 | Claude Opus 4.8 — 43.6 at 12h (release board) | [Project / Leaderboard](https://edge-bench.org/); [Code](https://github.com/ByteDance-Seed/EdgeBench) |
+| **EdgeBench** | 432 | Claude Opus 4.8 — 44.2 at 12h (current official repository table; 51-task public subset) | [Project](https://edge-bench.org/); [Code / Results](https://github.com/ByteDance-Seed/EdgeBench#open-source-subset-51-tasks) |
 | **RSI Bench** | N/A | — (task-dependent) | [Project](https://www.rsi-benchmark.com/); [Tasks](https://www.rsi-benchmark.com/tasks); [Runs](https://www.rsi-benchmark.com/runs) |
 | **RSIBench** | N/A | — | [Dataset](https://huggingface.co/datasets/AgPerry/rsi-bench); [Code](https://github.com/reacher-z/rsi-bench) |
 | **AI4AI-Bench** | N/A | — | [Paper](https://arxiv.org/abs/2608.20318) |
@@ -63,9 +63,10 @@ Stars are a **2026-08-25 snapshot** of the official benchmark repository (or a c
 | Benchmark | Stars | Current SOTA / frontier results | Paper / Primary resources |
 |---|---:|---|---|
 | **SWE-bench Verified** | 5,708 | **Claude Opus 5 — 97.0%**; GPT-5.6 Sol Max — 96.2%; Claude Fable 5 Max — 95.0% (Vals, 2026-08-19) | [Code](https://github.com/SWE-bench/SWE-bench); [Vals leaderboard](https://www.vals.ai/benchmarks/swebench) |
-| **SWE-bench Pro** | N/A | **Claude Fable 5 — 80.0%** vendor track; GPT-5.6 Sol — 64.6%; GPT-5.4 xHigh — 59.1% standardized Scale track | [Project / Leaderboard](https://scale.com/leaderboard/swe_bench_pro_public) |
-| **SWE-bench Multilingual** | 359 | **Claude Opus 5 — 89.5%** | [Code](https://github.com/multi-swe-bench/multi-swe-bench); [Leaderboard](https://www.swebench.com/) |
-| **SWE-bench Multimodal** | 5,708 | **Claude Opus 5 — 59.4%** | [Code](https://github.com/SWE-bench/SWE-bench); [Leaderboard](https://www.swebench.com/) |
+| **SWE-bench Pro** | N/A | Official standardized public board: **Muse Spark 1.1 + mini-SWE-agent — 61.5%**; vendor-reported, non-comparable harness: Claude Fable 5 — 80.0%, GPT-5.6 Sol — 64.6% | [Scale leaderboard](https://labs.scale.com/leaderboard/swe_bench_pro_public); [OpenAI model-card evaluation](https://openai.com/index/gpt-5-6/) |
+| **Multi-SWE-bench** | 359 | — (no maintained live leaderboard; paper results are reported per language, model, and harness) | [Paper](https://arxiv.org/abs/2504.02605); [Code](https://github.com/multi-swe-bench/multi-swe-bench) |
+| **SWE-bench Multilingual** | 5,708¹ | **Gemini 3 Flash + mini-SWE-agent — 72.70%** (official board) | [Benchmark](https://www.swebench.com/multilingual.html); [Code](https://github.com/SWE-bench/SWE-bench); [Leaderboard](https://www.swebench.com/) |
+| **SWE-bench Multimodal** | 5,708¹ | **GUIRepair + o3 — 35.98%; Codefuse Pycfuse SVR + o3 — 35.98%** (tied official board) | [Code](https://github.com/SWE-bench/SWE-bench); [Leaderboard](https://www.swebench.com/) |
 | **Terminal-Bench** | 539 | **Opus 5 Max + mini-SWE-agent — 42.7%**; GPT-5.6 Sol Max + Codex — 34.6%; Fable 5 Max + Claude Code — 34.1% (v3.0) | [Code](https://github.com/harbor-framework/terminal-bench); [Leaderboard](https://www.frontierbench.ai/) |
 | **TerminalWorld** | N/A | Claude Opus 4.7 + Terminus-2 — 62.5% (board last updated 2026-05-21) | [Project / Leaderboard](https://terminalworld.ai/) |
 | **TUA-Bench** | 46 | Claude Code + Claude Opus 4.8 Max — 65.8% (release result) | [Code](https://github.com/facebookresearch/TUA-Bench); [Leaderboard](https://tuabench.ai/) |
@@ -78,11 +79,11 @@ Stars are a **2026-08-25 snapshot** of the official benchmark repository (or a c
 | Benchmark | Stars | Current SOTA / frontier results | Paper / Primary resources |
 |---|---:|---|---|
 | **tau-bench** | 1,403 | — | [Code](https://github.com/sierra-research/tau-bench) |
-| **tau2-bench** | 1,867 | GLM-5.2 — 99.1% (Aug 2026 public snapshot) | [Code](https://github.com/sierra-research/tau2-bench) |
+| **tau2-bench** | 1,867 | **Qwen3.5-397B-A17B — 87.9% Pass¹** (official τ² text board) | [Code](https://github.com/sierra-research/tau2-bench); [Leaderboard](https://taubench.com/) |
 | **BFCL** | 13,007 | Claude Opus 4.5 (FC) — 77.47% (official V4 board last updated 2026-04-12) | [Code](https://github.com/ShishirPatil/gorilla); [Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard) |
 | **MCP-Atlas** | 149 | Muse Spark 1.1 — 88.1%; Opus 5 — 85.8%; Fable 5 — 83.3%; GPT-5.6 Sol — 81.8% | [Code](https://github.com/scaleapi/mcp-atlas); [Leaderboard](https://labs.scale.com/leaderboard/mcp_atlas) |
 | **MCP-Bench** | 502 | — | [Code](https://github.com/Accenture/mcp-bench) |
-| **Toolathlon** | N/A | Opus 5 — 80.6% (Aug 23 mirror); Muse Spark 1.1 — 75.6% (Aug 22 mirror); GPT-5.6 Sol — 58.0% | [Project](https://toolathlon.xyz/) |
+| **Toolathlon** | N/A | — (no official comparable live board); vendor-reported common evaluation: Claude Mythos 5 / Mythos Preview — 61.7%, GPT-5.6 Sol — 58.0% | [Project](https://toolathlon.xyz/); [Code](https://github.com/hkust-nlp/Toolathlon); [OpenAI model-card evaluation](https://openai.com/index/gpt-5-6/) |
 | **ACEBench** | 3 | — | [Results](https://github.com/Agent-Suite/AgentSuite/blob/main/ACEBench/README.md) |
 
 ### Computer use and GUI interaction
@@ -90,22 +91,22 @@ Stars are a **2026-08-25 snapshot** of the official benchmark repository (or a c
 | Benchmark | Stars | Current SOTA / frontier results | Paper / Primary resources |
 |---|---:|---|---|
 | **OSWorld** | 3,106 | Original protocol; current submissions use OSWorld-Verified | [Code](https://github.com/xlang-ai/OSWorld); [Leaderboard](https://os-world.github.io/) |
-| **OSWorld-Verified** | 3,106¹ | **Qwen3.8 Max Preview — 86.1%**; Claude Fable 5 — 85.0%; GPT-5.6 Sol — 83.0% (2026-08-25 public snapshot) | [Project](https://xlang.ai/blog/osworld-verified); [Leaderboard](https://os-world.github.io/) |
-| **OSWorld 2.0** | 258 | Claude Opus 4.8 + batched actions — 20.6% binary / 54.8% partial credit (full 108-task board) | [Code](https://github.com/xlang-ai/OSWorld-V2); [Project](https://osworld-v2.xlang.ai/) |
+| **OSWorld-Verified** | 3,106¹ | Method-reported: **Ouroboros + Opus 5 — 90.69%**; official verified sheet: Intelligence-Indeed Agent — 90.19%, Fable 5 — 85.96%, Opus 5 — 83.39% | [Project](https://xlang.ai/blog/osworld-verified); [Official results sheet](https://osworld-v1.xlang.ai/static/data/osworld_verified_results.xlsx); [Ouroboros paper](https://arxiv.org/abs/2608.08311) |
+| **OSWorld 2.0** | 258 | Vendor-reported partial credit: **GPT-5.6 Sol — 62.6%**; official release board: Opus 4.8 + batched actions — 20.6% binary / 54.8% partial (108 tasks) | [Code](https://github.com/xlang-ai/OSWorld-V2); [Project](https://osworld-v2.xlang.ai/); [OpenAI result](https://openai.com/index/gpt-5-6/) |
 | **WindowsWorld** | 21 | — | [Code](https://github.com/HITsz-TMG/WindowsWorld) |
-| **MacAgentBench** | 49 | Claude Opus 4.6 + OpenClaw | [Code](https://github.com/JetAstra/MacAgentBench) |
-| **WeaveBench** | 159 | LongHorizon-Harness + Qwen3.7-Plus + Claude Code executor — 80.7% pass rate (full 114 tasks) | [Code](https://github.com/weavebench/WeaveBench); [Leaderboard](https://weavebench.github.io/) |
+| **MacAgentBench** | 49 | Claude Opus 4.6 + OpenClaw — 73.7% Pass@1 (official repository snapshot) | [Code / Results](https://github.com/JetAstra/MacAgentBench) |
+| **WeaveBench** | 159 | Method-reported: **LongHorizon-Harness + Qwen3.7-Plus + Claude Code executor — 80.7%** (114 tasks); official live board: Opus 4.7 + Claude Code — 41.2% | [Code](https://github.com/weavebench/WeaveBench); [Official leaderboard](https://weavebench.github.io/); [LongHorizon-Harness](https://github.com/AMAP-ML/LongHorizon-Harness) |
 | **DeskCraft** | 91 | Kimi K2.6 — 33.8% standard; GPT-5.4 — 27.6% interactive (split-dependent) | [Code](https://github.com/mrwwk/DeskCraft); [Project](https://mrwwk.github.io/DeskCraft/) |
 | **ClawBench** | 585 | — | [Code](https://github.com/TIGER-AI-Lab/ClawBench) |
-| **SaaS-Bench** | 96 | Claude Opus 4.6 — 1.9% resolved (paper result) | [Code](https://github.com/UniPat-AI/SaaS-Bench) |
-| **MobileWorld** | 258 | Qwen-UI-Agent — 82.1% | [Code](https://github.com/Tongyi-MAI/MobileWorld); [Leaderboard](https://tongyi-mai.github.io/MobileWorld/) |
+| **SaaS-Bench** | 96 | **Claude Opus 4.7 — 3.8% resolved / 43.9% checkpoint score** (paper result) | [Paper](https://arxiv.org/abs/2605.15777); [Code](https://github.com/UniPat-AI/SaaS-Bench) |
+| **MobileWorld** | 258 | Method-reported: **Qwen-UI-Agent — 82.1%** (GUI-only, 50-step setting) | [Code](https://github.com/Tongyi-MAI/MobileWorld); [Leaderboard](https://tongyi-mai.github.io/MobileWorld/); [Qwen-UI-Agent](https://github.com/Tongyi-MAI/Qwen-UI-Agent) |
 | **VenusBench-Mobile** | 1,010¹ | — | [Code](https://github.com/inclusionAI/UI-Venus/tree/VenusBench-Mobile) |
-| **MemGUI-Bench** | 48 | Kimi K2.6 (board last updated 2026-06) | [Code](https://github.com/lgy0404/MemGUI-Bench) |
+| **MemGUI-Bench** | 48 | Official board ranks Kimi K2.6 first — 39.1 p@1 / 68.8 p@3 / 45.5 IRR (updated 2026-06) | [Code](https://github.com/lgy0404/MemGUI-Bench); [Leaderboard](https://memgui-bench.github.io/) |
 | **MobileGym-Bench** | 773 | Gemini 3.1 Pro — 58.8% | [Code](https://github.com/Purewhiter/mobilegym); [Leaderboard](https://mobilegym.dev/) |
-| **AndroidDaily** | N/A | Qwen-UI-Agent — 97.5% | [Paper](https://arxiv.org/abs/2605.27761) |
+| **AndroidDaily** | N/A | Method-reported: Qwen-UI-Agent — 97.5% | [Paper](https://arxiv.org/abs/2605.27761); [Qwen-UI-Agent](https://github.com/Tongyi-MAI/Qwen-UI-Agent) |
 | **OS-Marathon** | N/A | — | [Project](https://os-marathon.github.io/) |
 | **ScreenSpot-Pro** | 391 | — | [Code](https://github.com/likaixin2000/ScreenSpot-Pro-GUI-Grounding) |
-| **AgentCLUE-CUA** | N/A | Qwen3-VL-235B-A22B-Thinking — 87.37 | [Leaderboard](https://www.cluebenchmarks.com/superclue_2025) |
+| **AgentCLUE-CUA** | N/A | Qwen3-VL-235B-A22B-Thinking — 87.37 (official snapshot dated 2025-10-30) | [Leaderboard](https://www.cluebenchmarks.com/superclue_2025) |
 | **OS-Harm** | 71 | No single SOTA (safety/utility trade-off) | [Code](https://github.com/tml-epfl/os-harm) |
 | **RTC-Bench / RedTeamCUA** | 60 | No single SOTA (attack/defense metrics) | [Code](https://github.com/OSU-NLP-Group/RedTeamCUA) |
 | **OSGuard** | N/A | No single SOTA (safety/utility trade-off) | [Paper](https://arxiv.org/abs/2606.15034) |
@@ -116,7 +117,7 @@ Stars are a **2026-08-25 snapshot** of the official benchmark repository (or a c
 |---|---:|---|---|
 | **OmniaBench** | 12 | Claude Sonnet 5 — 58.54%; GPT-5.6 Sol — 57.14% | [Code](https://github.com/scuuy/OmniaBench) |
 | **AGENCYBENCH** | N/A | — | [Paper](https://aclanthology.org/2026.acl-long.337.pdf) |
-| **GDPval-AA v2** | N/A | Claude Opus 5 Max — 1,835 Elo | [Leaderboard](https://artificialanalysis.ai/evaluations/gdpval-aa) |
+| **GDPval-AA v2** | N/A | Claude Opus 5 Max — 1,831 Elo (official board, checked 2026-08-26) | [Leaderboard](https://artificialanalysis.ai/evaluations/gdpval-aa) |
 | **Claw-Eval-Live** | 44 | Claude Opus 4.6 — 83.6% (latest released board) | [Code](https://github.com/Claw-Eval-Live/Claw-Eval-Live); [Leaderboard](https://claw-eval-live.github.io/#/leaderboard) |
 | **Agent3Sigma** | 30 | Claude Opus 4.6 — 85.1 (latest released board) | [Code / Leaderboard](https://github.com/antgroup/Agent3Sigma) |
 | **SkillSafetyBench** | 30 | No single SOTA (capability/safety trade-off) | [Paper](https://arxiv.org/abs/2605.12015); [Code](https://github.com/AI45Lab/skill-safety-bench) |
@@ -127,7 +128,7 @@ Stars are a **2026-08-25 snapshot** of the official benchmark repository (or a c
 | **AgentFairBench** | N/A | No single SOTA (fairness/utility trade-off) | [Paper](https://arxiv.org/abs/2606.16723) |
 | **HVTB** | N/A | No single SOTA (reward-hacking detection) | [Paper](https://arxiv.org/abs/2608.22103) |
 | **CatchBench** | N/A | No single SOTA (evaluation auditing) | [Paper](https://arxiv.org/abs/2608.22808) |
-| **TheAgentCompany** | 770 | DeepSeek-V3.2 — 42.9% (latest public snapshot) | [Code](https://github.com/TheAgentCompany/TheAgentCompany) |
+| **TheAgentCompany** | 770 | Paper-reported baseline: Gemini-2.5-Pro + OpenHands 0.28.1 — 30% success / 39% partial-credit score; no maintained comparable live board | [Paper](https://arxiv.org/abs/2412.14161); [Code](https://github.com/TheAgentCompany/TheAgentCompany) |
 | **AgentDojo** | 768 | No single SOTA (utility/security frontier) | [Code](https://github.com/ethz-spylab/agentdojo) |
 | **AgentHarm** | 643¹ | No single SOTA (harm/refusal metrics) | [Code](https://github.com/UKGovernmentBEIS/inspect_evals) |
 

@@ -366,8 +366,8 @@
       }
     },
     {
-      "id": "swe-bench-multilingual",
-      "name": "SWE-bench Multilingual",
+      "id": "multi-swe-bench",
+      "name": "Multi-SWE-bench",
       "launch": {
         "value": "2025-02",
         "precision": "month",
@@ -378,6 +378,23 @@
         "repository": "multi-swe-bench/multi-swe-bench",
         "repository_scope": "benchmark-specific",
         "stars": 359,
+        "stars_as_of": "2026-08-25",
+        "status": "available"
+      }
+    },
+    {
+      "id": "swe-bench-multilingual",
+      "name": "SWE-bench Multilingual",
+      "launch": {
+        "value": "2025-04",
+        "precision": "month",
+        "basis": "paper",
+        "source": "https://arxiv.org/abs/2504.21798"
+      },
+      "github": {
+        "repository": "SWE-bench/SWE-bench",
+        "repository_scope": "shared-suite",
+        "stars": 5708,
         "stars_as_of": "2026-08-25",
         "status": "available"
       }
