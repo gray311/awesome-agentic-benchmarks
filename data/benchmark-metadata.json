@@ -775,7 +775,7 @@
     },
     {
       "id": "agencybench",
-      "name": "AGENCYBENCH",
+      "name": "AgencyBench",
       "launch": {
         "value": "2026",
         "precision": "year",

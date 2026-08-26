@@ -23,7 +23,7 @@ For scientific discovery, dimension, task provenance, and evaluated method are s
 | `safety-security` | Safety & Security | Measure harmful actions, prompt injection, compromised tools, malicious skills, cyber capability, permissions, and control | SkillSafetyBench, TRUST-Bench, AgentLAB, TAMAS, ST-WebAgentBench |
 | `evaluation-integrity` | Evaluation Integrity & Reward Hacking | Test whether success is genuine, whether verifiers can be exploited, and whether judges remain reliable under leakage or manipulation | HVTB, CatchBench |
 | `embodied-robotics` | Embodied Agents & Robotics | Navigate and manipulate physical or simulated environments | ALFWorld, EmbodiedBench, Habitat, VirtualHome, RoboBench |
-| `general-agent` | General Agent Capability | Test broad combinations of planning, reasoning, tools, and long-horizon execution | AgentBench, OmniaBench, Agents' Last Exam, AGENCYBENCH |
+| `general-agent` | General Agent Capability | Test broad combinations of planning, reasoning, tools, and long-horizon execution | AgentBench, OmniaBench, Agents' Last Exam, AgencyBench |
 
 ## AI4AI hierarchy
 

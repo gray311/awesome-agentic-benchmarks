@@ -54,7 +54,7 @@ Coverage is role-aware:
 | OS-Harm | Computer-use safety | A | A | ? | ? | ? | [Official paper](https://arxiv.org/abs/2506.14866) |
 | RTC-Bench / RedTeamCUA | Prompt-injection safety | A | A | ? | ? | ? | [Official paper and repository](https://github.com/OSU-NLP-Group/RedTeamCUA) |
 | OmniaBench | General agent | A | A | A | A | A | [Official repository and leaderboard](https://github.com/scuuy/OmniaBench) |
-| AGENCYBENCH | General agent | A | A | A | A | A | [Official ACL paper](https://aclanthology.org/2026.acl-long.337.pdf) |
+| AgencyBench | General agent | A | A | A | A | A | [Official ACL paper](https://aclanthology.org/2026.acl-long.337.pdf) |
 | TUA-Bench | Terminal use | A | A | A | ? | A | [Official repository](https://github.com/facebookresearch/TUA-Bench) |
 | Agent3Sigma | Safety | A | A | A | A | A | [Official repository and leaderboard](https://github.com/antgroup/Agent3Sigma) |
 | Claw-Eval-Live | Professional workflows | A | A | A | A | A | [Official repository and leaderboard](https://github.com/Claw-Eval-Live/Claw-Eval-Live) |

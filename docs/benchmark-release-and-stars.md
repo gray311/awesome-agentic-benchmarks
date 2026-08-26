@@ -20,7 +20,7 @@ The machine-readable source is [data/benchmark-metadata.json](../data/benchmark-
 | Benchmark | Launch | Precision / basis | Official GitHub and stars |
 |---|---|---|---|
 | **ACEBench** | [2026-07](https://github.com/Agent-Suite/AgentSuite/blob/main/ACEBench/README.md) | month / repository-publication | [Agent-Suite/AgentSuite](https://github.com/Agent-Suite/AgentSuite) · ![GitHub stars](https://img.shields.io/github/stars/Agent-Suite/AgentSuite?style=flat&label=stars) · snapshot 3 · shared-suite |
-| **AGENCYBENCH** | [2026](https://aclanthology.org/2026.acl-long.337.pdf) | year / paper | N/A |
+| **AgencyBench** | [2026](https://aclanthology.org/2026.acl-long.337.pdf) | year / paper | N/A |
 | **Agent3Sigma** | [2026-05](https://github.com/antgroup/Agent3Sigma) | month / repository-publication | [antgroup/Agent3Sigma](https://github.com/antgroup/Agent3Sigma) · ![GitHub stars](https://img.shields.io/github/stars/antgroup/Agent3Sigma?style=flat&label=stars) · snapshot 30 |
 | **AgentDojo** | [2024-06](https://arxiv.org/abs/2406.13352) | month / paper | [ethz-spylab/agentdojo](https://github.com/ethz-spylab/agentdojo) · ![GitHub stars](https://img.shields.io/github/stars/ethz-spylab/agentdojo?style=flat&label=stars) · snapshot 768 |
 | **AgentFairBench** | [2026-06](https://arxiv.org/abs/2606.16723) | month / paper | N/A |
