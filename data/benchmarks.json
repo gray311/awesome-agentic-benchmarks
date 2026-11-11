@@ -1,8 +1,229 @@
 {
   "$schema": "../schema/benchmark.schema.json",
   "registry_version": "0.1.0",
-  "last_updated": "2026-08-24",
+  "last_updated": "2026-11-11",
   "benchmarks": [
+    {
+      "id": "ec2-bench",
+      "name": "EC2-Bench",
+      "organization": "EC2-Bench authors",
+      "release_year": 2026,
+      "summary": "A benchmark and systematic analysis of edge-cloud collaboration during long-horizon digital-workspace agent execution, measuring task performance, resource usage, and privacy exposure together.",
+      "classification": {
+        "primary_dimension": "general-agents",
+        "secondary_dimensions": [
+          "tool-use",
+          "professional-work",
+          "safety-and-security"
+        ],
+        "capabilities": [
+          "planning",
+          "tool-use",
+          "long-horizon-execution",
+          "edge-cloud-collaboration",
+          "privacy-exposure-auditing"
+        ]
+      },
+      "status": {
+        "maturity": "research-preprint",
+        "leaderboard": "paper-and-official-repository-results",
+        "notes": "No independently maintained global leaderboard verified; compare only matched model, collaboration strategy, task suite, and runtime configurations."
+      },
+      "urls": {
+        "paper": "https://arxiv.org/abs/2610.17816",
+        "repository": "https://github.com/OpenBMB/EC2-Bench",
+        "leaderboard": "https://github.com/OpenBMB/EC2-Bench#leaderboard",
+        "dataset": "https://huggingface.co/datasets/chengpingan/EC2-Bench",
+        "project": "https://passionate11.github.io/ec2-bench-project-page/"
+      },
+      "task_suite": {
+        "evaluation_units": 128,
+        "privacy_annotated_units": 100,
+        "domains": [
+          "digital-workspace"
+        ],
+        "task_types": [
+          "office-and-daily-tasks",
+          "information-search-and-gathering",
+          "safety-and-security",
+          "development-and-operations",
+          "data-analysis",
+          "automation"
+        ],
+        "evaluation_unit_description": "One executable digital-workspace task with an initial workspace, task instruction, task-specific tools or skills, and post-execution grading."
+      },
+      "input": {
+        "question_form": "Chinese or English natural-language task instruction with a stateful local digital workspace.",
+        "agent_visible": [
+          "task instruction",
+          "workspace files and application state",
+          "OpenClaw tools and task-specific skills",
+          "previous actions, tool calls, and observations"
+        ],
+        "hidden": [
+          "grading code and ground-truth evaluation data during execution"
+        ],
+        "feedback_during_run": "Tool observations and application-state changes; ground-truth graders are injected only after the agent finishes."
+      },
+      "output": {
+        "artifact": "Task-specific output files, application-state changes, final response, and an execution trajectory with model-usage records.",
+        "artifact_type": "workspace-artifacts-and-execution-trace",
+        "executable": true
+      },
+      "evaluation": {
+        "headline_metric": "Task completion score (%)",
+        "headline_definition": "Task-specific weighted checks combining rule-based validation, environment-state auditing, and rubric-based LLM judging.",
+        "per_task_metrics": "Completion score; Pass3; cloud input/cache-read/output tokens and USD cost; edge FLOPs; fraction of annotated sensitivity units visible to the cloud.",
+        "aggregation": "Average scores over three independent runs per task and configuration; privacy exposure is evaluated on the 100 annotated tasks.",
+        "judge_type": "Task-specific executable checks plus GPT-5.4-mini for semantic and privacy-exposure judgements."
+      },
+      "environment": {
+        "isolation": "Paper experiments used E2B sandboxes; the public release provides per-task Docker containers with a local workspace and task-specific mock services.",
+        "time_limit_hours": 1.0555555555555556,
+        "time_limit_note": "Task-specific deadlines, not a uniform budget: 180-3800 seconds in the 128 released task records at commit 4c635dfc23e0622ae1fd9b587199787d8c7dbb2a; time_limit_hours records the maximum deadline.",
+        "accelerator": "No single mandatory accelerator verified; edge model endpoints may be locally hosted or served remotely.",
+        "internet_policy": "Cloud model/API access is needed for collaborative configurations; task-specific network access depends on the workspace and services.",
+        "scaffold_policy": "The paper uses the shared OpenClaw runtime and tool interface for all compared configurations; pin the runtime, model endpoints, strategy, and grading configuration."
+      },
+      "score_snapshots": [
+        {
+          "as_of": "2026-11-11",
+          "metric": "Task completion score, main paper Table 2",
+          "scale": "0-100",
+          "entries": [
+            {
+              "system": "OpenClaw + GLM-5.3, cloud-only",
+              "score": 82.7
+            },
+            {
+              "system": "OpenClaw + Qwen3.5-9B, edge-only",
+              "score": 39.12
+            },
+            {
+              "system": "OpenClaw + Qwen3.5-9B (edge) + GLM-5.3 (cloud), edge-controlled advisory",
+              "score": 60.46
+            }
+          ],
+          "caveat": "Author-reported, three-run means, not a universal model ranking. The collaborative row uses a 9B edge model; cloud cost and privacy exposure must be read alongside completion. Qwen3.5-27B and Qwen3.7-Plus are capability proxies for future stronger edges, not demonstrated uniform real-device deployments."
+        }
+      ],
+      "integrity": {
+        "primary_risks": [
+          "public task and workspace contamination",
+          "LLM-judge error in semantic and privacy grading",
+          "task-adaptation and runtime-version effects",
+          "non-comparable cloud pricing or model configurations"
+        ],
+        "controls": [
+          "grading code and ground truth kept out of the agent runtime until after execution",
+          "shared runtime and task suite across compared strategies",
+          "three independent runs per task/configuration",
+          "fine-grained sensitivity annotations with human-validated privacy judging"
+        ]
+      },
+      "rsi_relevance": {
+        "level": "supporting-capability",
+        "improvement_target": "Execution-time collaboration policy and resource/privacy trade-offs.",
+        "directly_modifies_model_weights": false,
+        "modifies_evaluated_agent_itself": false,
+        "closed_loop_feedback": "weak",
+        "artifact_persists_after_run": true,
+        "why_it_matters": "Provides task and trajectory evidence for comparing agent execution strategies; the benchmark itself does not constitute recursive self-improvement."
+      },
+      "model_coverage": {
+        "as_of": "2026-11-11",
+        "families": {
+          "gpt": {
+            "status": "verified-judge",
+            "agent_models": [],
+            "target_models": [],
+            "judge_models": [
+              "GPT-5.4-mini"
+            ],
+            "evidence": [
+              {
+                "role": "judge-model",
+                "source_type": "official-paper",
+                "url": "https://arxiv.org/abs/2610.17816",
+                "accessed": "2026-11-11"
+              }
+            ]
+          },
+          "claude": {
+            "status": "not-yet-verified",
+            "agent_models": [],
+            "target_models": [],
+            "judge_models": [],
+            "evidence": []
+          },
+          "glm": {
+            "status": "verified-agent",
+            "agent_models": [
+              "GLM-5.3"
+            ],
+            "target_models": [],
+            "judge_models": [],
+            "evidence": [
+              {
+                "role": "agent-model",
+                "source_type": "official-paper",
+                "url": "https://arxiv.org/abs/2610.17816",
+                "accessed": "2026-11-11"
+              }
+            ]
+          },
+          "kimi": {
+            "status": "not-yet-verified",
+            "agent_models": [],
+            "target_models": [],
+            "judge_models": [],
+            "evidence": []
+          },
+          "qwen": {
+            "status": "verified-agent",
+            "agent_models": [
+              "Qwen3.5-2B",
+              "Qwen3.5-9B",
+              "Qwen3.5-27B",
+              "Qwen3.7-Plus"
+            ],
+            "target_models": [],
+            "judge_models": [],
+            "evidence": [
+              {
+                "role": "agent-model",
+                "source_type": "official-paper",
+                "url": "https://arxiv.org/abs/2610.17816",
+                "accessed": "2026-11-11"
+              }
+            ]
+          }
+        },
+        "notes": "Family roles verified from paper Section 5. Not-yet-verified means no role established in the checked sources, not that a model family cannot be evaluated."
+      },
+      "sources": [
+        {
+          "type": "official-paper",
+          "url": "https://arxiv.org/abs/2610.17816",
+          "accessed": "2026-11-11"
+        },
+        {
+          "type": "official-repository",
+          "url": "https://github.com/OpenBMB/EC2-Bench/blob/4c635dfc23e0622ae1fd9b587199787d8c7dbb2a/README.md",
+          "accessed": "2026-11-11"
+        },
+        {
+          "type": "official-task-records",
+          "url": "https://github.com/OpenBMB/EC2-Bench/tree/4c635dfc23e0622ae1fd9b587199787d8c7dbb2a/tasks/EC2Bench",
+          "accessed": "2026-11-11"
+        },
+        {
+          "type": "official-runtime",
+          "url": "https://github.com/OpenBMB/EC2-Bench/blob/4c635dfc23e0622ae1fd9b587199787d8c7dbb2a/eval/run_batch.py",
+          "accessed": "2026-11-11"
+        }
+      ]
+    },
     {
       "id": "mle-bench",
       "name": "MLE-bench",

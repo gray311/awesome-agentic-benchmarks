@@ -1,8 +1,8 @@
 {
   "$schema": "../schema/benchmark-metadata.schema.json",
   "registry_version": "0.1.0",
-  "last_updated": "2026-08-25",
-  "star_snapshot_as_of": "2026-08-25",
+  "last_updated": "2026-11-11",
+  "star_snapshot_as_of": "2026-11-11",
   "policy": {
     "launch": "Earliest verified public paper, benchmark release, dataset publication, project launch, or repository publication. Precision is explicit; a month or year is not an exact day.",
     "stars": "GitHub stargazers_count for the official benchmark repository, toolkit, or declared shared host suite. Null means no official repository or an unavailable repository, not zero stars."
@@ -20,8 +20,8 @@
       "github": {
         "repository": "wq-will/SimpleTES",
         "repository_scope": "benchmark-specific",
-        "stars": 169,
-        "stars_as_of": "2026-08-25",
+        "stars": 190,
+        "stars_as_of": "2026-11-11",
         "status": "available"
       }
     },
@@ -37,8 +37,8 @@
       "github": {
         "repository": "openai/mle-bench",
         "repository_scope": "benchmark-specific",
-        "stars": 1716,
-        "stars_as_of": "2026-08-25",
+        "stars": 1794,
+        "stars_as_of": "2026-11-11",
         "status": "available"
       }
     },
@@ -54,8 +54,8 @@
       "github": {
         "repository": "FrontisAI/NatureBench",
         "repository_scope": "benchmark-specific",
-        "stars": 102,
-        "stars_as_of": "2026-08-25",
+        "stars": 139,
+        "stars_as_of": "2026-11-11",
         "status": "available"
       }
     },
@@ -71,8 +71,8 @@
       "github": {
         "repository": "aisa-group/PostTrainBench",
         "repository_scope": "benchmark-specific",
-        "stars": 532,
-        "stars_as_of": "2026-08-25",
+        "stars": 620,
+        "stars_as_of": "2026-11-11",
         "status": "available"
       }
     },
@@ -88,8 +88,8 @@
       "github": {
         "repository": "arcprize/ARC-AGI",
         "repository_scope": "toolkit",
-        "stars": 69,
-        "stars_as_of": "2026-08-25",
+        "stars": 89,
+        "stars_as_of": "2026-11-11",
         "status": "available"
       }
     },
@@ -105,8 +105,8 @@
       "github": {
         "repository": "discos-research/dig-bench",
         "repository_scope": "benchmark-specific",
-        "stars": 24,
-        "stars_as_of": "2026-08-25",
+        "stars": 30,
+        "stars_as_of": "2026-11-11",
         "status": "available"
       }
     },
@@ -122,8 +122,8 @@
       "github": {
         "repository": "ByteDance-Seed/EdgeBench",
         "repository_scope": "benchmark-specific",
-        "stars": 432,
-        "stars_as_of": "2026-08-25",
+        "stars": 476,
+        "stars_as_of": "2026-11-11",
         "status": "available"
       }
     },
@@ -190,8 +190,8 @@
       "github": {
         "repository": "METR/RE-Bench",
         "repository_scope": "benchmark-specific",
-        "stars": 156,
-        "stars_as_of": "2026-08-25",
+        "stars": 171,
+        "stars_as_of": "2026-11-11",
         "status": "available"
       }
     },
@@ -241,8 +241,8 @@
       "github": {
         "repository": "aisa-group/InferenceBench",
         "repository_scope": "benchmark-specific",
-        "stars": 42,
-        "stars_as_of": "2026-08-25",
+        "stars": 54,
+        "stars_as_of": "2026-11-11",
         "status": "available"
       }
     },
@@ -309,8 +309,8 @@
       "github": {
         "repository": "OSU-NLP-Group/ScienceAgentBench",
         "repository_scope": "benchmark-specific",
-        "stars": 161,
-        "stars_as_of": "2026-08-25",
+        "stars": 184,
+        "stars_as_of": "2026-11-11",
         "status": "available"
       }
     },
@@ -343,8 +343,8 @@
       "github": {
         "repository": "SWE-bench/SWE-bench",
         "repository_scope": "shared-suite",
-        "stars": 5708,
-        "stars_as_of": "2026-08-25",
+        "stars": 6169,
+        "stars_as_of": "2026-11-11",
         "status": "available"
       }
     },
@@ -377,8 +377,8 @@
       "github": {
         "repository": "multi-swe-bench/multi-swe-bench",
         "repository_scope": "benchmark-specific",
-        "stars": 359,
-        "stars_as_of": "2026-08-25",
+        "stars": 364,
+        "stars_as_of": "2026-11-11",
         "status": "available"
       }
     },
@@ -394,8 +394,8 @@
       "github": {
         "repository": "SWE-bench/SWE-bench",
         "repository_scope": "shared-suite",
-        "stars": 5708,
-        "stars_as_of": "2026-08-25",
+        "stars": 6169,
+        "stars_as_of": "2026-11-11",
         "status": "available"
       }
     },
@@ -411,8 +411,8 @@
       "github": {
         "repository": "SWE-bench/SWE-bench",
         "repository_scope": "shared-suite",
-        "stars": 5708,
-        "stars_as_of": "2026-08-25",
+        "stars": 6169,
+        "stars_as_of": "2026-11-11",
         "status": "available"
       }
     },
@@ -428,8 +428,8 @@
       "github": {
         "repository": "harbor-framework/terminal-bench",
         "repository_scope": "benchmark-specific",
-        "stars": 539,
-        "stars_as_of": "2026-08-25",
+        "stars": 1036,
+        "stars_as_of": "2026-11-11",
         "status": "available"
       }
     },
@@ -462,8 +462,8 @@
       "github": {
         "repository": "facebookresearch/TUA-Bench",
         "repository_scope": "benchmark-specific",
-        "stars": 46,
-        "stars_as_of": "2026-08-25",
+        "stars": 48,
+        "stars_as_of": "2026-11-11",
         "status": "available"
       }
     },
@@ -513,8 +513,8 @@
       "github": {
         "repository": "openai/SWELancer-Benchmark",
         "repository_scope": "benchmark-specific",
-        "stars": 1431,
-        "stars_as_of": "2026-08-25",
+        "stars": 1428,
+        "stars_as_of": "2026-11-11",
         "status": "available"
       }
     },
@@ -530,8 +530,8 @@
       "github": {
         "repository": "sierra-research/tau-bench",
         "repository_scope": "benchmark-specific",
-        "stars": 1403,
-        "stars_as_of": "2026-08-25",
+        "stars": 1496,
+        "stars_as_of": "2026-11-11",
         "status": "available"
       }
     },
@@ -547,8 +547,8 @@
       "github": {
         "repository": "sierra-research/tau2-bench",
         "repository_scope": "benchmark-specific",
-        "stars": 1867,
-        "stars_as_of": "2026-08-25",
+        "stars": 2430,
+        "stars_as_of": "2026-11-11",
         "status": "available"
       }
     },
@@ -564,8 +564,8 @@
       "github": {
         "repository": "ShishirPatil/gorilla",
         "repository_scope": "shared-suite",
-        "stars": 13007,
-        "stars_as_of": "2026-08-25",
+        "stars": 13068,
+        "stars_as_of": "2026-11-11",
         "status": "available"
       }
     },
@@ -581,8 +581,8 @@
       "github": {
         "repository": "scaleapi/mcp-atlas",
         "repository_scope": "benchmark-specific",
-        "stars": 149,
-        "stars_as_of": "2026-08-25",
+        "stars": 164,
+        "stars_as_of": "2026-11-11",
         "status": "available"
       }
     },
@@ -598,8 +598,8 @@
       "github": {
         "repository": "Accenture/mcp-bench",
         "repository_scope": "benchmark-specific",
-        "stars": 502,
-        "stars_as_of": "2026-08-25",
+        "stars": 515,
+        "stars_as_of": "2026-11-11",
         "status": "available"
       }
     },
@@ -633,7 +633,7 @@
         "repository": "Agent-Suite/AgentSuite",
         "repository_scope": "shared-suite",
         "stars": 3,
-        "stars_as_of": "2026-08-25",
+        "stars_as_of": "2026-11-11",
         "status": "available"
       }
     },
@@ -649,8 +649,8 @@
       "github": {
         "repository": "xlang-ai/OSWorld",
         "repository_scope": "benchmark-specific",
-        "stars": 3106,
-        "stars_as_of": "2026-08-25",
+        "stars": 3258,
+        "stars_as_of": "2026-11-11",
         "status": "available"
       }
     },
@@ -666,8 +666,8 @@
       "github": {
         "repository": "xlang-ai/OSWorld",
         "repository_scope": "shared-suite",
-        "stars": 3106,
-        "stars_as_of": "2026-08-25",
+        "stars": 3258,
+        "stars_as_of": "2026-11-11",
         "status": "available"
       }
     },
@@ -683,8 +683,8 @@
       "github": {
         "repository": "likaixin2000/ScreenSpot-Pro-GUI-Grounding",
         "repository_scope": "benchmark-specific",
-        "stars": 391,
-        "stars_as_of": "2026-08-25",
+        "stars": 398,
+        "stars_as_of": "2026-11-11",
         "status": "available"
       }
     },
@@ -700,8 +700,8 @@
       "github": {
         "repository": "google-research/android_world",
         "repository_scope": "benchmark-specific",
-        "stars": 857,
-        "stars_as_of": "2026-08-25",
+        "stars": 1012,
+        "stars_as_of": "2026-11-11",
         "status": "available"
       }
     },
@@ -717,8 +717,8 @@
       "github": {
         "repository": "microsoft/WindowsAgentArena",
         "repository_scope": "benchmark-specific",
-        "stars": 889,
-        "stars_as_of": "2026-08-25",
+        "stars": 915,
+        "stars_as_of": "2026-11-11",
         "status": "available"
       }
     },
@@ -751,8 +751,8 @@
       "github": {
         "repository": "OSU-NLP-Group/TravelPlanner",
         "repository_scope": "benchmark-specific",
-        "stars": 541,
-        "stars_as_of": "2026-08-25",
+        "stars": 569,
+        "stars_as_of": "2026-11-11",
         "status": "available"
       }
     },
@@ -768,8 +768,8 @@
       "github": {
         "repository": "scuuy/OmniaBench",
         "repository_scope": "benchmark-specific",
-        "stars": 12,
-        "stars_as_of": "2026-08-25",
+        "stars": 15,
+        "stars_as_of": "2026-11-11",
         "status": "available"
       }
     },
@@ -819,8 +819,8 @@
       "github": {
         "repository": "Claw-Eval-Live/Claw-Eval-Live",
         "repository_scope": "benchmark-specific",
-        "stars": 44,
-        "stars_as_of": "2026-08-25",
+        "stars": 46,
+        "stars_as_of": "2026-11-11",
         "status": "available"
       }
     },
@@ -836,8 +836,8 @@
       "github": {
         "repository": "antgroup/Agent3Sigma",
         "repository_scope": "benchmark-specific",
-        "stars": 30,
-        "stars_as_of": "2026-08-25",
+        "stars": 38,
+        "stars_as_of": "2026-11-11",
         "status": "available"
       }
     },
@@ -853,8 +853,8 @@
       "github": {
         "repository": "AI45Lab/skill-safety-bench",
         "repository_scope": "benchmark-specific",
-        "stars": 30,
-        "stars_as_of": "2026-08-25",
+        "stars": 33,
+        "stars_as_of": "2026-11-11",
         "status": "available"
       }
     },
@@ -904,8 +904,8 @@
       "github": {
         "repository": "microsoft/TAMAS",
         "repository_scope": "benchmark-specific",
-        "stars": 24,
-        "stars_as_of": "2026-08-25",
+        "stars": 33,
+        "stars_as_of": "2026-11-11",
         "status": "available"
       }
     },
@@ -989,8 +989,8 @@
       "github": {
         "repository": "TheAgentCompany/TheAgentCompany",
         "repository_scope": "benchmark-specific",
-        "stars": 770,
-        "stars_as_of": "2026-08-25",
+        "stars": 813,
+        "stars_as_of": "2026-11-11",
         "status": "available"
       }
     },
@@ -1006,8 +1006,8 @@
       "github": {
         "repository": "ethz-spylab/agentdojo",
         "repository_scope": "benchmark-specific",
-        "stars": 768,
-        "stars_as_of": "2026-08-25",
+        "stars": 1017,
+        "stars_as_of": "2026-11-11",
         "status": "available"
       }
     },
@@ -1023,8 +1023,25 @@
       "github": {
         "repository": "UKGovernmentBEIS/inspect_evals",
         "repository_scope": "shared-suite",
-        "stars": 643,
-        "stars_as_of": "2026-08-25",
+        "stars": 737,
+        "stars_as_of": "2026-11-11",
+        "status": "available"
+      }
+    },
+    {
+      "id": "ec2-bench",
+      "name": "EC2-Bench",
+      "launch": {
+        "value": "2026-10-13",
+        "precision": "day",
+        "basis": "paper",
+        "source": "https://arxiv.org/abs/2610.17816"
+      },
+      "github": {
+        "repository": "OpenBMB/EC2-Bench",
+        "repository_scope": "benchmark-specific",
+        "stars": 22,
+        "stars_as_of": "2026-11-11",
         "status": "available"
       }
     }
