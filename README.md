@@ -33,7 +33,7 @@ Dimensions describe **what the benchmark evaluates**. SFT, DPO, GRPO, RLHF, LoRA
 
 ## Papers
 
-Stars are a **2026-08-25 snapshot** of the official benchmark repository (or a clearly marked shared toolkit); frontier results were checked on **2026-08-26**. `N/A` means that no verified official GitHub repository was available. Results are only compared within the same benchmark version, track, and harness policy; a newly released model is not labeled SOTA until a result exists. `Official board` means a benchmark-owner leaderboard, `method-reported` means a paper or agent repository result not yet on that board, and `vendor-reported` means a model-provider evaluation that may use a different harness. `—` means that no trustworthy single leader could be established.
+Stars are a **2026-08-25 snapshot** (EC2-Bench stars checked on **2026-11-11**) of the official benchmark repository (or a clearly marked shared toolkit); frontier results were checked on **2026-08-26**. `N/A` means that no verified official GitHub repository was available. Results are only compared within the same benchmark version, track, and harness policy; a newly released model is not labeled SOTA until a result exists. `Official board` means a benchmark-owner leaderboard, `method-reported` means a paper or agent repository result not yet on that board, and `vendor-reported` means a model-provider evaluation that may use a different harness. `—` means that no trustworthy single leader could be established.
 
 ### AI R&D and scientific discovery
 
@@ -131,6 +131,7 @@ Stars are a **2026-08-25 snapshot** of the official benchmark repository (or a c
 | **TheAgentCompany** | 770 | Paper-reported baseline: Gemini-2.5-Pro + OpenHands 0.28.1 — 30% success / 39% partial-credit score; no maintained comparable live board | [Paper](https://arxiv.org/abs/2412.14161); [Code](https://github.com/TheAgentCompany/TheAgentCompany) |
 | **AgentDojo** | 768 | Official trade-off results: Claude 3.5 Sonnet — 79.38% utility / 1.11% targeted ASR; Claude 3.7 Sonnet — 88.66% utility / 7.31% targeted ASR (same attack, no defense) | [Code](https://github.com/ethz-spylab/agentdojo); [Results](https://agentdojo.spylab.ai/results/) |
 | **AgentHarm** | 643¹ | 2026 safety–utility frontier: **TRIAD + Tri-Guard — 80.92 HS / 13.05 harm score**, averaged over Qwen3-32B, Kimi-2.5, Gemini-2.5-Pro, and GPT-5.1 | [Benchmark](https://ukgovernmentbeis.github.io/inspect_evals/evals/agentharm/); [TRIAD results](https://yuhaosunabc.github.io/TRIAD/) |
+| **EC2-Bench** | 22 | Paper configuration: OpenClaw + Qwen3.5-9B (edge) + GLM-5.3 (cloud), edge-controlled advisory - 60.46% completion; compare cloud cost and privacy exposure alongside it | [Paper](https://arxiv.org/abs/2610.17816); [Code / Results](https://github.com/OpenBMB/EC2-Bench); [Project](https://passionate11.github.io/ec2-bench-project-page/) |
 
 ¹ Stars belong to a shared suite, toolkit, or method repository rather than a benchmark-only repository.
 
