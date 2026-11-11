@@ -78,7 +78,7 @@
         "judge_type": "Task-specific executable checks plus GPT-5.4-mini for semantic and privacy-exposure judgements."
       },
       "environment": {
-        "isolation": "Per-task Docker containers with a local workspace and task-specific mock services.",
+        "isolation": "Paper experiments used E2B sandboxes; the public release provides per-task Docker containers with a local workspace and task-specific mock services.",
         "time_limit_hours": 1.0555555555555556,
         "time_limit_note": "Task-specific deadlines, not a uniform budget: 180-3800 seconds in the 128 released task records at commit 4c635dfc23e0622ae1fd9b587199787d8c7dbb2a; time_limit_hours records the maximum deadline.",
         "accelerator": "No single mandatory accelerator verified; edge model endpoints may be locally hosted or served remotely.",
